@@ -1,0 +1,190 @@
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -36,7 +36,7 @@
+ ###############################################################################
+ 
+ # Installation directory prefix for install/uninstall
+-PREFIX      ?= /usr/local
++DESTDIR     ?= /usr/local
+ 
+ ###############################################################################
+ 
+@@ -403,65 +403,65 @@
+             $(CHOWN) "$(IUSGR)" "/var/tmp/vi.recover" && \
+                 $(CHMOD) "1777" "/var/tmp/vi.recover"; }
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(PREFIX)/bin"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(DESTDIR)/bin"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -d "$(PREFIX)/bin" || $(MKDIR) "$(PREFIX)/bin"
++	@$(VERBOSE); $(TEST) -d "$(DESTDIR)/bin" || $(MKDIR) "$(DESTDIR)/bin"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(PREFIX)/libexec"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(DESTDIR)/libexec"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -d "$(PREFIX)/libexec" || $(MKDIR) "$(PREFIX)/libexec"
++	@$(VERBOSE); $(TEST) -d "$(DESTDIR)/libexec" || $(MKDIR) "$(DESTDIR)/libexec"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(PREFIX)/share/man/man1"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(DESTDIR)/share/man/man1"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -d "$(PREFIX)/share/man/man1" || \
+-        $(MKDIR) "$(PREFIX)/share/man/man1"
++	@$(VERBOSE); $(TEST) -d "$(DESTDIR)/share/man/man1" || \
++        $(MKDIR) "$(DESTDIR)/share/man/man1"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(PREFIX)/share/man/man8"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "mkdir:" "$(DESTDIR)/share/man/man8"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -d "$(PREFIX)/share/man/man8" || \
+-        $(MKDIR) "$(PREFIX)/share/man/man8"
++	@$(VERBOSE); $(TEST) -d "$(DESTDIR)/share/man/man8" || \
++        $(MKDIR) "$(DESTDIR)/share/man/man8"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "cp:" "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "cp:" "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ endif # DEBUG
+-	@$(VERBOSE); $(CP) ./bin/vi "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
+-        $(CHOWN) "$(IUSGR)" "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
+-            $(CHMOD) "$(IPERM)" "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++	@$(VERBOSE); $(CP) ./bin/vi "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
++        $(CHOWN) "$(IUSGR)" "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
++            $(CHMOD) "$(IPERM)" "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "ln:" "$(PREFIX)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "ln:" "$(DESTDIR)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -x "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
+-        $(LNS) "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" \
+-            "$(PREFIX)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
++	@$(VERBOSE); $(TEST) -x "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
++        $(LNS) "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" \
++            "$(DESTDIR)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t%s\t%42s\n" "ln:" "$(PREFIX)/bin/$(BINPREFIX)view$(BINSUFFIX)"
++	-@$(PRINTF) "\r\t%s\t%42s\n" "ln:" "$(DESTDIR)/bin/$(BINPREFIX)view$(BINSUFFIX)"
+ endif # DEBUG
+-	@$(VERBOSE); $(TEST) -x "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
+-        $(LNS) "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)" \
+-            "$(PREFIX)/bin/$(BINPREFIX)view$(BINSUFFIX)"
++	@$(VERBOSE); $(TEST) -x "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" && \
++        $(LNS) "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)" \
++            "$(DESTDIR)/bin/$(BINPREFIX)view$(BINSUFFIX)"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\t%s\t%42s\n" \
+-        "cp:" "$(PREFIX)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
++        "cp:" "$(DESTDIR)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
+ endif # DEBUG
+ 	@$(VERBOSE); $(CP) "./scripts/virecover" \
+-        "$(PREFIX)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)" && \
++        "$(DESTDIR)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)" && \
+             $(CHMOD) "$(IPERM)" \
+-                "$(PREFIX)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
++                "$(DESTDIR)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\t%s\t%42s\n" \
+-        "cp:" "$(PREFIX)/share/man/man1/$(BINPREFIX){vi,ex,view}$(BINSUFFIX).1"
++        "cp:" "$(DESTDIR)/share/man/man1/$(BINPREFIX){vi,ex,view}$(BINSUFFIX).1"
+ endif # DEBUG
+ 	@$(VERBOSE); $(CP) "docs/USD.doc/vi.man/vi.1" \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" && \
+-            $(LNS) "$(PREFIX)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" \
+-                "$(PREFIX)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1" && \
+-                    $(LNS) "$(PREFIX)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" \
+-                        "$(PREFIX)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" && \
++            $(LNS) "$(DESTDIR)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" \
++                "$(DESTDIR)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1" && \
++                    $(LNS) "$(DESTDIR)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1" \
++                        "$(DESTDIR)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\t%s\t%42s\n" \
+-        "cp:" "$(PREFIX)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
++        "cp:" "$(DESTDIR)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
+ endif # DEBUG
+ 	@$(VERBOSE); $(CP) "scripts/virecover.8" \
+-        "$(PREFIX)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
++        "$(DESTDIR)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
+ 
+ ###############################################################################
+ 
+@@ -471,9 +471,9 @@
+ endif # (,$(findstring install-strip,$(MAKECMDGOALS)))
+ install-strip: install
+ ifndef DEBUG
+-	-@$(PRINTF) "\r\t$(STRIP):\t%42s\n" "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++	-@$(PRINTF) "\r\t$(STRIP):\t%42s\n" "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ endif # DEBUG
+-	@$(VERBOSE); $(STRIP) "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++	@$(VERBOSE); $(STRIP) "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ 
+ ###############################################################################
+ 
+@@ -496,51 +496,51 @@
+ uninstall:
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)vi$(BINSUFFIX)"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)ex$(BINSUFFIX)"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/bin/$(BINPREFIX)view$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)view$(BINSUFFIX)"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/bin/$(BINPREFIX)view$(BINSUFFIX)"
++        "$(DESTDIR)/bin/$(BINPREFIX)view$(BINSUFFIX)"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)vi$(BINSUFFIX).1"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)ex$(BINSUFFIX).1"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1"
++        "$(DESTDIR)/share/man/man1/$(BINPREFIX)view$(BINSUFFIX).1"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
++        "$(DESTDIR)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
++        "$(DESTDIR)/share/man/man8/$(BINPREFIX)vi.recover$(BINSUFFIX).8"
+ ifndef DEBUG
+ 	-@$(PRINTF) "\r\trm:\t%42s\n" \
+-        "$(PREFIX)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
++        "$(DESTDIR)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
+ endif # DEBUG
+ 	-@$(VERBOSE); $(RMF) \
+-        "$(PREFIX)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
++        "$(DESTDIR)/libexec/$(BINPREFIX)vi.recover$(BINSUFFIX)"
+ 
+ ###############################################################################
