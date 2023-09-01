@@ -2,7 +2,7 @@ pkgname = "linux-headers"
 pkgver = "6.1.19"
 pkgrel = 0
 make_cmd = "gmake"
-hostmakedepends = ["gmake", "perl"]
+hostmakedepends = ["gmake"] #, "perl"]
 pkgdesc = "Linux API headers for userland development"
 maintainer = "q66 <q66@chimera-linux.org>"
 license = "GPL-2.0-only"
@@ -10,7 +10,7 @@ url = "http://www.kernel.org"
 source = f"$(KERNEL_SITE)/kernel/v{pkgver[0]}.x/linux-{pkgver}.tar.xz"
 sha256 = "9e991c6e5f6c1ca45eea98c55e82ef6ae3dccc73b3e8a655c8665e585f5a8647"
 # nothing to test
-options = ["!check"]
+options = ["bootstrap", "!check"]
 
 match self.profile().arch:
     case "x86_64":

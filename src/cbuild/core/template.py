@@ -2068,13 +2068,13 @@ def from_module(m, ret):
     # since they provide extras and possibly help in cross-compiling scenarios
     # as well as with LTO
     if ret.stage == 0:
-        ret.tools["CC"] = "clang"
-        ret.tools["CXX"] = "clang++"
-        ret.tools["CPP"] = "clang-cpp"
-        ret.tools["LD"] = "ld.lld"
+        ret.tools["CC"] = "gcc"
+        ret.tools["CXX"] = "g++"
+        ret.tools["CPP"] = "cpp"
+        ret.tools["LD"] = "ld"
         ret.tools["NM"] = "nm"
         ret.tools["AR"] = "ar"
-        ret.tools["AS"] = "clang"
+        ret.tools["AS"] = "as"
         ret.tools["RANLIB"] = "ranlib"
         ret.tools["STRIP"] = "strip"
         # objdump explicitly not provided
@@ -2082,6 +2082,7 @@ def from_module(m, ret):
         ret.tools["READELF"] = "readelf"
         ret.tools["PKG_CONFIG"] = "pkg-config"
     else:
+        # FIXME: Do these too
         if "CC" not in ret.tools:
             ret.tools["CC"] = "clang"
         if "CXX" not in ret.tools:

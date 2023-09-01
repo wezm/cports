@@ -1,6 +1,6 @@
 pkgname = "base-cbuild"
 pkgver = "0.1"
-pkgrel = 2
+pkgrel = 3
 build_style = "meta"
 pkgdesc = "Core package set for cbuild containers"
 maintainer = "q66 <q66@chimera-linux.org>"
@@ -9,19 +9,23 @@ url = "https://chimera-linux.org"
 
 # musl must be built first to provide shlibs for later packages during stage 0
 depends = [
-    "musl-devel",
-    "elftoolchain",
-    "ncurses",
-    "llvm",
-    "clang",
-    "lld",
-    "chimerautils-extra",
-    "apk-tools",
-    "bmake",
-    "bsdtar",
-    "tzdata",
-    "fakeroot-core",
-    f"base-cbuild-progs={pkgver}-r{pkgrel}",
+    #"linux-headers",
+    #  "musl-devel",
+    "glibc-devel",
+    "binutils", # replaces elftoolchain I think
+    #  "elftoolchain",
+    #  "ncurses",
+    "gcc-bootstrap",
+    #  "llvm",
+    #  "clang",
+    #  "lld",
+    #  "chimerautils-extra",
+    #  "apk-tools",
+    #  "bmake",
+    #  "bsdtar",
+    #  "tzdata",
+    #  "fakeroot-core",
+    #  f"base-cbuild-progs={pkgver}-r{pkgrel}",
 ]
 provides = ["apk-tools-cache-link=9999-r0"]
 

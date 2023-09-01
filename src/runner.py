@@ -516,8 +516,8 @@ def bootstrap(tgt):
 
         # extra program checks
         for prog in [
-            "clang",
-            "lld",
+            "gcc",
+            #"lld",
             "cmake",
             "meson",
             "patch",
