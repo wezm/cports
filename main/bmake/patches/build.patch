@@ -41,11 +41,3 @@
  		MAKE_VERSION=`sed -n '/^_MAKE_VERSION/ { s,.*=  *,,;p; }' $srcdir/Makefile`
  		cat << EOM
  You can install by running:
---- a/install-sh
-+++ b/install-sh
-@@ -1,4 +1,4 @@
--:
-+#!/bin/sh
- # NAME:
- #	install.sh - portable version of install(1)
- #

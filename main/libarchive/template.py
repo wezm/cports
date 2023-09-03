@@ -10,6 +10,7 @@ configure_args = [
     "--with-openssl",
     "--without-xml2",
     "--without-nettle",
+    "--without-libb2",
     "--disable-rpath",
 ]
 configure_gen = []
@@ -19,8 +20,7 @@ makedepends = [
     "libbz2-devel",
     "liblz4-devel",
     "liblzma-devel",
-    "libzstd-devel",
-    "musl-bsd-headers",
+    #  "musl-bsd-headers",
     "openssl-devel",
     "zlib-devel",
 ]
@@ -28,8 +28,8 @@ pkgdesc = "Library to read/write several different streaming archive formats"
 maintainer = "q66 <q66@chimera-linux.org>"
 license = "BSD-2-Clause"
 url = "http://www.libarchive.org"
-source = f"https://github.com/libarchive/libarchive/releases/download/v{pkgver}/libarchive-{pkgver}.tar.gz"
-sha256 = "5d24e40819768f74daf846b99837fc53a3a9dcdf3ce1c2003fe0596db850f0f0"
+source = f"https://github.com/libarchive/libarchive/releases/download/v{pkgver}/libarchive-{pkgver}.tar.xz"
+sha256 = "b17403ce670ff18d8e06fea05a9ea9accf70678c88f1b9392a2e29b51127895f"
 # encoding failures on musl; harmless
 options = ["bootstrap", "!check"]
 

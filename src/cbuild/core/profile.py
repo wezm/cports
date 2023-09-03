@@ -18,7 +18,7 @@ hardening_fields = {
     "pie": True,
     "ssp": True,  # this should really be compiler default
     "scp": True,  # stack-clash-protection
-    "int": True,  # ubsan integer hardening
+    "int": False,  # ubsan integer hardening FIXME: turn back on after bootstrap stage 0
     # options affecting enabled hardening types
     "cfi-genptr": False,  # loosen pointer type checks
     "cfi-icall": True,  # indirect call checks

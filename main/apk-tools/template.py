@@ -8,8 +8,8 @@ hostmakedepends = ["pkgconf", "meson", "lua5.4", "lua5.4-zlib", "scdoc"]
 makedepends = [
     "openssl-devel-static",
     "zlib-devel-static",
-    "libunwind-devel-static",
-    "libatomic-chimera-devel-static",
+    #  "libunwind-devel-static",
+    #  "libatomic-chimera-devel-static",
 ]
 pkgdesc = "Alpine package manager"
 maintainer = "q66 <q66@chimera-linux.org>"
@@ -20,7 +20,7 @@ sha256 = "30ddbbc4e3fbe935be66fd79d106f3186023ee5e9d90752543a686a0b52793ee"
 options = ["bootstrap"]
 
 if self.stage > 0:
-    makedepends += ["linux-headers", "musl-devel-static"]
+    makedepends += ["linux-headers", "glibc-devel"]
     if self.stage > 1:
         depends = ["ca-certificates"]
 else:
@@ -47,7 +47,8 @@ def init_configure(self):
 
 def post_install(self):
     self.install_dir("etc/apk")
-    self.ln_s("../../var/cache/apk", self.destdir / "etc/apk/cache")
+    if self.stage > 0:
+        self.ln_s("../../var/cache/apk", self.destdir / "etc/apk/cache")
 
 
 @subpackage("apk-tools-devel")

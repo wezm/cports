@@ -14,12 +14,14 @@ configure_args = [
     #  "--build=$(../scripts/config.guess)"
     "--with-glibc-version=2.38",
     f"--with-sysroot=/usr/{_trip}",
+    "--disable-bootstrap", # because https://stackoverflow.com/questions/46487529/crosscompiling-gcc-link-tests-are-not-allowed-after-gcc-no-executables-when-che
     "--with-newlib",
     "--without-headers",
     "--enable-default-pie",
     "--enable-default-ssp",
     "--disable-nls",
     "--disable-shared",
+    #  "--enable-shared",
     "--disable-multilib",
     "--disable-threads",
     "--disable-libatomic",
@@ -60,6 +62,14 @@ sha256 = [
 # resistance is futile
 options = ["bootstrap", "!check", "!lto"] # TODO: check
 
+if self.stage == 0:
+    options += ["!scanrundeps"]
+
+hardening = ["!pie"]
+
+# FIXME
+#  nopie_files = ["usr/bin/x86_64-pc-linux-gnu-gcc-*", "usr/bin/gcov*", "usr/libexec/gcc/x86_64-pc-linux-gnu/13.2.0/*"]
+
 configure_gen = []
 
 
@@ -79,16 +89,16 @@ configure_gen = []
 #  def post_configure(self):
 #      1 / 0
 
-#  def post_install(self):
-#      # fix up hardlinks
-#      self.rm(self.destdir / "usr/libexec/getconf/POSIX_V7_LP64_OFF64")
-#      self.install_link("POSIX_V6_LP64_OFF64", "usr/libexec/getconf/POSIX_V7_LP64_OFF64")
+def post_install(self):
+    for f in ["c++", "gcc-nm", "g++", "gcc", "gcc-ranlib", "gcc-ar"]:
+        self.rm(self.destdir / f"usr/bin/{f}")
+        self.install_link(f"../{_trip}-{f}", f"usr/bin/{f}")
 
-#      self.rm(self.destdir / "usr/libexec/getconf/XBS5_LP64_OFF64")
-#      self.install_link("POSIX_V6_LP64_OFF64", "usr/libexec/getconf/XBS5_LP64_OFF64")
+    self.rm(self.destdir / "usr/bin/x86_64-pc-linux-gnu-c++")
+    self.install_link("x86_64-pc-linux-gnu-g++", "usr/bin/x86_64-pc-linux-gnu-c++")
 
-#      self.rm(self.destdir / "usr/bin/getconf")
-#      self.install_link("..//libexec/getconf/POSIX_V6_LP64_OFF64", "usr/bin/getconf")
+    self.rm(self.destdir / "usr/bin/x86_64-pc-linux-gnu-gcc")
+    self.install_link(f"x86_64-pc-linux-gnu-gcc-{pkgver}", "usr/bin/x86_64-pc-linux-gnu-gcc")
 
 
 

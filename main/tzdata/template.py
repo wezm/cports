@@ -2,9 +2,10 @@ pkgname = "tzdata"
 pkgver = "2023c"
 pkgrel = 0
 hostmakedepends = [
-    "musl-devel-static",
-    "libunwind-devel-static",
-    "libatomic-chimera-devel-static",
+    "glibc-devel",
+    #  "musl-devel-static",
+    #  "libunwind-devel-static",
+    #  "libatomic-chimera-devel-static",
 ]
 pkgdesc = "Time zone and daylight-saving time data"
 maintainer = "q66 <q66@chimera-linux.org>"

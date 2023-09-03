@@ -6,17 +6,19 @@ configure_args = []
 hostmakedepends = ["flex", "byacc", "meson", "pkgconf"]
 makedepends = [
     "acl-devel",
-    "ncurses-devel",
+    #  "ncurses-devel",
+    "ncurses-libtinfo-devel",
     "libedit-devel",
     "openssl-devel",
-    "musl-fts-devel",
-    "musl-rpmatch-devel",
+    #  "musl-fts-devel",
+    #  "musl-rpmatch-devel",
     "liblzma-devel",
     "zlib-devel",
     "libbz2-devel",
     "linux-headers",
     "libxo-devel",
-    "musl-bsd-headers",
+    #  "musl-bsd-headers",
+    "glibc-devel",
 ]
 depends = ["base-files"]
 pkgdesc = "Chimera Linux userland"

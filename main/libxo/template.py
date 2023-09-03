@@ -4,14 +4,14 @@ pkgrel = 0
 build_style = "gnu_configure"
 configure_args = ["--disable-dependency-tracking"]
 hostmakedepends = ["pkgconf"]
-makedepends = ["musl-bsd-headers"]
+makedepends = ["glibc-devel"] # why is this needed?
 pkgdesc = "Library for generating text, XML, JSON, and HTML output"
 maintainer = "q66 <q66@chimera-linux.org>"
 license = "BSD-2-Clause"
 url = "https://github.com/Juniper/libxo"
 source = f"https://github.com/Juniper/{pkgname}/releases/download/{pkgver}/{pkgname}-{pkgver}.tar.gz"
 sha256 = "9f2f276d7a5f25ff6fbfc0f38773d854c9356e7f985501627d0c0ee336c19006"
-tool_flags = {"CFLAGS": ["-Wno-unused-command-line-argument"]}
+#  tool_flags = {"CFLAGS": ["-Wno-unused-command-line-argument"]}
 options = ["bootstrap"]
 
 if self.stage > 0:
@@ -23,6 +23,7 @@ else:
         "--disable-gettext",
         "--disable-shared",
         "--enable-text-only",
+        "--with-gnu-ld"
     ]
 
 
@@ -37,10 +38,21 @@ def init_configure(self):
 def post_install(self):
     self.install_license("Copyright")
 
+    if self.stage == 0:
+        # remove broken symlinks
+        self.rm(self.destdir / "usr/lib/libxo/encoder/cbor.enc")
+        self.rm(self.destdir / "usr/lib/libxo/encoder/csv.enc")
+        self.rm(self.destdir / "usr/lib/libxo/encoder/test.enc")
+
+
+@subpackage("libxo-devel-static", self.stage == 0)
+def _static(self):
+    return ["usr/lib/libxo.a", "usr/lib/libxo/encoder/*.a"]
 
 @subpackage("libxo-devel")
 def _devel(self):
     return self.default_devel()
+
 
 
 @subpackage("libxo-progs")
