@@ -14,6 +14,7 @@ configure_args = [
     #  "--build=$(../scripts/config.guess)"
     "--with-glibc-version=2.38",
     f"--with-sysroot=/usr/{_trip}",
+    #  "--with-build-sysroot=/usr/x86_64-linux-gnu",
     "--disable-bootstrap", # because https://stackoverflow.com/questions/46487529/crosscompiling-gcc-link-tests-are-not-allowed-after-gcc-no-executables-when-che
     "--with-newlib",
     "--without-headers",
@@ -66,6 +67,12 @@ if self.stage == 0:
     options += ["!scanrundeps"]
 
 hardening = ["!pie"]
+
+#  tool_flags = {
+#      "CFLAGS": ["-fPIC"],
+#      "CXXFLAGS": ["-fPIC"],
+#      "LDFLAGS": [],
+#  }
 
 # FIXME
 #  nopie_files = ["usr/bin/x86_64-pc-linux-gnu-gcc-*", "usr/bin/gcov*", "usr/libexec/gcc/x86_64-pc-linux-gnu/13.2.0/*"]

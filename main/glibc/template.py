@@ -8,7 +8,7 @@ configure_args = [
       # TODO: cross
       #  f"--host={_trip}"
       #  "--build=$(../scripts/config.guess)"
-      "--with-headers=/usr/include",
+      #"--with-headers=/usr/include",
       #  "--with-bugurl=https://bugs.archlinux.org/",
       #  "--sbindir=/usr/bin",
       #  "--libdir=/usr/lib",
@@ -20,13 +20,13 @@ configure_args = [
       "--enable-kernel=4.4", # LFS uses 4.14, drawbacks to that?
       #  "--enable-multi-arch",
       "--enable-stack-protector=strong",
-      "--enable-systemtap",
       "--disable-profile",
       "--disable-werror",
       "--with-gd=no",
 ]
 make_cmd = "gmake"
-hostmakedepends = ["gmake"]
+# These auxiliary programs are missing or incompatible versions: msgfmt makeinfo
+hostmakedepends = ["gmake"] # FIXME: needs gawk bison, and python3 makeinfo
 makedepends = ["linux-headers"]
 pkgdesc = "GNU libc"
 maintainer = "Wesley Moore <wes@wezm.net>"
@@ -39,6 +39,8 @@ options = ["bootstrap", "!check", "!lto"] # TODO: check
 
 configure_gen = []
 
+if self.stage > 0:
+    configure_args += ["--enable-systemtap"]
 
 def pre_configure(self):
     build_dir = (self.cwd / self.make_dir)
@@ -47,6 +49,7 @@ def pre_configure(self):
         cf.write(
             f"""
 slibdir=/usr/lib
+libdir=/usr/lib
 rtlddir=/usr/lib
 sbindir=/usr/bin
 rootsbindir=/usr/bin
@@ -65,8 +68,9 @@ def post_install(self):
     self.install_link("POSIX_V6_LP64_OFF64", "usr/libexec/getconf/XBS5_LP64_OFF64")
 
     self.rm(self.destdir / "usr/bin/getconf")
-    self.install_link("..//libexec/getconf/POSIX_V6_LP64_OFF64", "usr/bin/getconf")
+    self.install_link("../libexec/getconf/POSIX_V6_LP64_OFF64", "usr/bin/getconf")
 
+    #  self.install_link("lib", "usr/lib64")
 
 
 @subpackage("glibc-devel")

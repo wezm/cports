@@ -7,8 +7,8 @@ hostmakedepends = ["flex", "byacc", "meson", "pkgconf"]
 makedepends = [
     "acl-devel",
     #  "ncurses-devel",
-    "ncurses-libtinfo-devel",
-    "libedit-devel",
+    #  "ncurses-libtinfo-devel",
+    #  "libedit-devel",
     "openssl-devel",
     #  "musl-fts-devel",
     #  "musl-rpmatch-devel",
@@ -16,7 +16,7 @@ makedepends = [
     "zlib-devel",
     "libbz2-devel",
     "linux-headers",
-    "libxo-devel",
+    "libxo-devel-static",
     #  "musl-bsd-headers",
     "glibc-devel",
 ]
@@ -34,6 +34,8 @@ options = ["bootstrap", "!check"]
 if self.stage > 0:
     makedepends += ["linux-headers"]
     configure_args += ["-Dtiny=enabled"]
+else:
+    configure_args += ["-Dlibedit=disabled"]
 
 
 def init_configure(self):
@@ -70,9 +72,8 @@ def _full(self):
     self.pkgdesc = f"{pkgdesc} (additional tools)"
     self.depends = [f"{pkgname}={pkgver}-r{pkgrel}"]
 
-    return [
+    extra = [
         "etc/locate.rc",
-        "usr/bin/bc",
         "usr/bin/calendar",
         "usr/bin/cal",
         "usr/bin/compress",
@@ -92,7 +93,6 @@ def _full(self):
         "usr/bin/vi",
         "usr/bin/view",
         "usr/libexec/locate.*",
-        "usr/share/man/man1/bc.1",
         "usr/share/man/man1/calendar.1",
         "usr/share/man/man1/cal.1",
         "usr/share/man/man1/compress.1",
@@ -113,6 +113,14 @@ def _full(self):
         "usr/share/man/man1/view.1",
         "usr/share/man/man8/locate.updatedb.8",
         "usr/share/man/man8/updatedb.8",
-        "usr/share/misc/bc.library",
         "usr/share/vi",
     ]
+
+    if self.stage > 0:
+        extra += [
+            "usr/bin/bc",
+            "usr/share/man/man1/bc.1",
+            "usr/share/misc/bc.library",
+        ]
+
+    return extra

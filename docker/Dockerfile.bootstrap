@@ -1,0 +1,29 @@
+FROM archlinux:base-devel-20230723.0.166908
+
+ARG BUILD_UID=1000
+ARG BUILD_GID=1000
+ARG USER=build
+
+RUN pacman -Syu --needed --noconfirm gcc cmake meson ninja patch pkgconf bmake binutils flex perl m4 linux-headers python bubblewrap git make texinfo \
+        gawk bison # for building glibc, would be good if mawk and byacc could be used
+
+RUN pacman -S --needed --noconfirm curl ca-certificates && \
+    curl https://repo.chimera-linux.org/apk/apk-x86_64-3.0.0_pre0-r0.static -o /usr/local/bin/apk && \
+    chmod 755 /usr/local/bin/apk && \
+    groupadd --gid ${BUILD_GID} ${USER} && \
+    useradd --uid ${BUILD_UID} --gid ${USER} --home-dir /home/${USER} --create-home --comment Builder ${USER}
+
+USER build
+
+WORKDIR /home/${USER}
+
+COPY entrypoint.sh ./entrypoint.sh
+
+RUN mkdir src
+
+WORKDIR /home/${USER}/src
+
+VOLUME /home/${USER}/src
+
+ENTRYPOINT ["../entrypoint.sh"]
+
