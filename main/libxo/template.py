@@ -37,11 +37,20 @@ def init_configure(self):
 def post_install(self):
     self.install_license("Copyright")
 
+    if self.stage == 0:
+        # remove broken symlinks
+        self.rm(self.destdir / "usr/lib/libxo/encoder/cbor.enc")
+        self.rm(self.destdir / "usr/lib/libxo/encoder/csv.enc")
+        self.rm(self.destdir / "usr/lib/libxo/encoder/test.enc")
+
+
+@subpackage("libxo-devel-static", self.stage == 0)
+def _static(self):
+    return ["usr/lib/libxo.a", "usr/lib/libxo/encoder/*.a"]
 
 @subpackage("libxo-devel")
 def _devel(self):
     return self.default_devel()
-
 
 @subpackage("libxo-progs")
 def _progs(self):

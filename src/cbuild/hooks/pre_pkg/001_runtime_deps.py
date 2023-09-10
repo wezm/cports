@@ -255,7 +255,10 @@ def _scan_pc(pkg):
                 pkg.log_warn(f"redundant runtime dependency '{prov}'")
             continue
         # no provider found
-        pkg.error(f"   pc: {k} <-> UNKNOWN PACKAGE!")
+        if pkg.stage == 0:
+            pkg.log_warn(f"   pc: {k} <-> UNKNOWN PACKAGE!")
+        else:
+            pkg.error(f"   pc: {k} <-> UNKNOWN PACKAGE!")
 
 
 def _scan_symlinks(pkg):

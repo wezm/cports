@@ -19,7 +19,6 @@ makedepends = [
     "bzip2-devel",
     "lz4-devel",
     "xz-devel",
-    "zstd-devel",
     "musl-bsd-headers",
     "openssl-devel",
     "zlib-devel",

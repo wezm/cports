@@ -47,7 +47,8 @@ def init_configure(self):
 
 def post_install(self):
     self.install_dir("etc/apk")
-    self.ln_s("../../var/cache/apk", self.destdir / "etc/apk/cache")
+    if self.stage > 0:
+        self.ln_s("../../var/cache/apk", self.destdir / "etc/apk/cache")
 
 
 @subpackage("apk-tools-devel")

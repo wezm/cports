@@ -15,7 +15,6 @@ makedepends = [
     "zlib-devel",
     "bzip2-devel",
     "linux-headers",
-    "libxo-devel",
     "musl-bsd-headers",
 ]
 depends = ["base-files"]
@@ -30,9 +29,11 @@ hardening = ["vis", "cfi"]
 options = ["bootstrap", "!check"]
 
 if self.stage > 0:
-    makedepends += ["linux-headers"]
+    makedepends += ["linux-headers", "libxo-devel"]
     configure_args += ["-Dtiny=enabled"]
-
+else:
+    makedepends += ["libxo-devel-static"]
+    
 
 def init_configure(self):
     if self.stage > 0:
