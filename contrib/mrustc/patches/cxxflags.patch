@@ -1,0 +1,57 @@
+diff --git a/Makefile b/Makefile
+index 671ccb7..ca414ad 100644
+--- a/Makefile
++++ b/Makefile
+@@ -54,7 +54,7 @@ CXXFLAGS += -Wno-misleading-indentation
+ #CXXFLAGS += -Wno-unused-private-field
+ #CXXFLAGS += -Wno-unknown-warning-option
+ 
+-CXXFLAGS += -Werror=return-type
++#CXXFLAGS += -Werror=return-type
+ 
+ # Force the use of `bash` as the shell
+ SHELL = bash
+diff --git a/src/trans/target.cpp b/src/trans/target.cpp
+index bc40b00..5435559 100644
+--- a/src/trans/target.cpp
++++ b/src/trans/target.cpp
+@@ -425,6 +425,13 @@ namespace
+                 ARCH_X86_64
+                 };
+         }
++        else if(target_name == "x86_64-linux-musl")
++        {
++            return TargetSpec {
++                "unix", "linux", "musl", {CodegenMode::Gnu11, false, "x86_64-linux-musl", BACKEND_C_OPTS_GNU},
++                ARCH_X86_64
++                };
++        }
+         else if(target_name == "x86_64-unknown-linux-gnux32")
+         {
+             return TargetSpec {
+diff --git a/tools/common/target_detect.h b/tools/common/target_detect.h
+index 5cdaadd..8744fd4 100644
+--- a/tools/common/target_detect.h
++++ b/tools/common/target_detect.h
+@@ -20,7 +20,7 @@
+ #  if defined(_ILP32)
+ #   define DEFAULT_TARGET_NAME "x86_64-unknown-linux-gnux32"
+ #  else
+-#   define DEFAULT_TARGET_NAME "x86_64-linux-gnu"
++#   define DEFAULT_TARGET_NAME "x86_64-linux-musl"
+ #  endif
+ # elif defined(__aarch64__)
+ #  define DEFAULT_TARGET_NAME "aarch64-linux-gnu"
+diff --git a/tools/minicargo/Makefile b/tools/minicargo/Makefile
+index 5488cad..8987418 100644
+--- a/tools/minicargo/Makefile
++++ b/tools/minicargo/Makefile
+@@ -45,7 +45,7 @@ endif
+ 
+ $(OBJDIR)%.o: %.cpp
+ 	@+mkdir -p $(dir $@)
+-	@echo [CXX] $<
++	@echo [CXX] $< $(CXXFLAGS)
+ 	$V$(CXX) -o $@ -c $< $(CXXFLAGS) -MMD -MP -MF $@.dep
+ 
+ ../../bin/common_lib.a: $(wildcard ../common/*.* ../common/Makefile)

@@ -1,0 +1,11 @@
+--- mrustc-c70b86e138018b0e144dd179a5bd6c6e0972b350.orig/Makefile	2023-09-03 18:34:03.000000000 +1000
++++ mrustc-c70b86e138018b0e144dd179a5bd6c6e0972b350/Makefile	2023-09-11 17:08:19.533000000 +1000
+@@ -181,7 +181,7 @@
+ $(OBJDIR)version.o: $(OBJDIR)%.o: src/%.cpp $(filter-out $(OBJDIR)version.o,$(OBJ)) Makefile
+ 	@+mkdir -p $(dir $@)
+ 	@echo [CXX] -o $@
+-	$V$(CXX) -o $@ -c $< $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $@.dep -D VERSION_GIT_FULLHASH=\"$(shell git show --pretty=%H -s --no-show-signature)\" -D VERSION_GIT_BRANCH="\"$(shell git symbolic-ref -q --short HEAD || git describe --tags --exact-match)\"" -D VERSION_GIT_SHORTHASH=\"$(shell git show -s --pretty=%h --no-show-signature)\" -D VERSION_BUILDTIME="\"$(shell date -uR)\"" -D VERSION_GIT_ISDIRTY=$(shell git diff-index --quiet HEAD; echo $$?)
++	$V$(CXX) -o $@ -c $< $(CXXFLAGS) $(CPPFLAGS) -MMD -MP -MF $@.dep -D VERSION_GIT_FULLHASH=\"c70b86e138018b0e144dd179a5bd6c6e0972b350\" -D VERSION_GIT_BRANCH=\"master\" -D VERSION_GIT_SHORTHASH=\"c70b86e1\" -D VERSION_BUILDTIME="\"$(shell date -uR)\"" -D VERSION_GIT_ISDIRTY=0
+ 
+ src/main.cpp: $(PCHS:%=src/%.gch)
+ 

@@ -1,0 +1,21 @@
+diff --git a/minicargo.mk b/minicargo.mk
+index a09aa1f..a132f11 100644
+--- a/minicargo.mk
++++ b/minicargo.mk
+@@ -117,7 +117,7 @@ endif
+ 
+ SRCDIR_RUST_TESTS := $(RUSTCSRC)src/test/
+ 
+-LLVM_CONFIG := $(RUSTCSRC)build/bin/llvm-config
++LLVM_CONFIG ?= $(RUSTCSRC)build/bin/llvm-config
+ ifeq ($(shell uname -s || echo not),Darwin)
+  # /usr/bin/uname because uname might call coreutils
+  # which can make the arm64 uname called when
+@@ -191,6 +191,7 @@ $(RUSTC_SRC_DL): $(RUSTC_SRC_TARBALL) rustc-$(RUSTC_VERSION)-src.patch
+ # - libstd, libpanic_unwind, libtest and libgetopts
+ # - libproc_macro (mrustc)
+ $(OUTDIR)libstd.rlib: $(MRUSTC) $(MINICARGO) $(RUSTC_SRC_DL)
++	@echo $(RUSTC_TARGET)
+ 	$(MINICARGO) $(RUSTCSRC)$(RUST_LIB_PREFIX)std --vendor-dir $(VENDOR_DIR) --script-overrides $(OVERRIDE_DIR) --output-dir $(OUTDIR) $(MINICARGO_FLAGS)
+ 	@test -e $@
+ $(OUTDIR)libpanic_unwind.rlib: $(OUTDIR)libstd.rlib
