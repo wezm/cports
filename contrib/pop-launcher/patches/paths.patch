@@ -1,0 +1,37 @@
+diff --git a/plugins/src/scripts/mod.rs b/plugins/src/scripts/mod.rs
+index 8c93dd7..ba8d4f1 100644
+--- a/plugins/src/scripts/mod.rs
++++ b/plugins/src/scripts/mod.rs
+@@ -14,7 +14,7 @@ use tokio::process::Command;
+ 
+ const LOCAL_PATH: &str = ".local/share/pop-launcher/scripts";
+ const SYSTEM_ADMIN_PATH: &str = "/etc/pop-launcher/scripts";
+-const DISTRIBUTION_PATH: &str = "/usr/lib/pop-launcher/scripts";
++const DISTRIBUTION_PATH: &str = "/usr/libexec/pop-launcher/scripts";
+ 
+ pub async fn main() {
+     let mut requests = json_input_stream(async_stdin());
+diff --git a/plugins/src/terminal/mod.rs b/plugins/src/terminal/mod.rs
+index 15df6ec..bb10173 100644
+--- a/plugins/src/terminal/mod.rs
++++ b/plugins/src/terminal/mod.rs
+@@ -124,5 +124,5 @@ fn detect_terminal() -> (PathBuf, &'static str) {
+         return (read_link(&found).unwrap_or(found), "-e");
+     }
+ 
+-    (PathBuf::from("/usr/bin/gnome-terminal"), "--")
++    (PathBuf::from("/usr/bin/kgx"), "--")
+ }
+diff --git a/src/lib.rs b/src/lib.rs
+index 9776d03..bd32320 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -19,7 +19,7 @@ pub const LOCAL_PLUGINS: &str = concatcp!(LOCAL, "/plugins");
+ pub const SYSTEM: &str = "/etc/pop-launcher";
+ pub const SYSTEM_PLUGINS: &str = concatcp!(SYSTEM, "/plugins");
+ 
+-pub const DISTRIBUTION: &str = "/usr/lib/pop-launcher";
++pub const DISTRIBUTION: &str = "/usr/libexec/pop-launcher";
+ pub const DISTRIBUTION_PLUGINS: &str = concatcp!(DISTRIBUTION, "/plugins");
+ 
+ pub const PLUGIN_PATHS: &[&str] = &[LOCAL_PLUGINS, SYSTEM_PLUGINS, DISTRIBUTION_PLUGINS];
