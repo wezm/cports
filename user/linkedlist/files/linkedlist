@@ -1,0 +1,9 @@
+# linkedlist service
+
+type = process
+command = /usr/bin/linkedlistd
+run-as = _linkedlist
+env-file = linkedlist.env
+logfile = /var/log/linkedlist.log
+depends-on = local.target
+smooth-recovery = true
