@@ -1,6 +1,6 @@
 pkgname = "soju"
 pkgver = "0.8.2"
-pkgrel = 0
+pkgrel = 3
 build_style = "go"
 make_build_args = [
     "-ldflags="
@@ -20,6 +20,7 @@ license = "AGPL-3.0-or-later"
 url = "https://soju.im"
 source = f"https://codeberg.org/emersion/soju/archive/v{pkgver}.tar.gz"
 sha256 = "926a76e968d656d53a82163ea72e0a522b018e239dc0be85f60cf3550e22a2fb"
+env = {"CGO_ENABLED": "1"}
 
 
 def post_build(self):
