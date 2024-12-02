@@ -1,9 +1,9 @@
 pkgname = "linkedlist"
 # pkgver = "2.0.0_git20241108"
 # until this is fixed: https://github.com/pyinfra-dev/pyinfra/pull/1233
-pkgver = "2.0.10"
+pkgver = "2.0.11"
 pkgrel = 0
-_gitrev = "22b0670"
+_gitrev = "b811819"
 _token = self.get_data("forge_token")
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -16,7 +16,7 @@ maintainer = "Wesley Moore <wes@wezm.net>"
 license = "custom:none"
 url = "https://forge.wezm.net/wezm/linkedlist"
 source = f"https://forge.wezm.net/api/v1/repos/wezm/linkedlist/archive/{_gitrev}.tar.gz?access_token={_token}>linkedlist-{pkgver}.tar.gz"
-sha256 = "ba1fd31bc14ee96ade06b4ebdcdbb5109395b5f9dfc3d4a795f4960c44e78387"
+sha256 = "16e1d24c338c4e9c2ae18d6f80d7ae879f997a153ef2fdb7c54c756bbe0c72d9"
 
 def post_install(self):
     self.install_sysusers(self.files_path / "sysusers.conf")
