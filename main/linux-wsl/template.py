@@ -1,5 +1,5 @@
 # update linux-lts-zfs-bin when bumping
-pkgname = "linux-lts"
+pkgname = "linux-wsl"
 pkgver = "6.6.71"
 pkgrel = 0
 archs = ["aarch64", "ppc64le", "ppc64", "ppc", "riscv64", "x86_64"]
@@ -35,14 +35,14 @@ if self.profile().cross:
     broken = "linux-devel does not come out right"
 
 
-@subpackage("linux-lts-devel")
+@subpackage("linux-wsl-devel")
 def _(self):
     self.depends += ["clang"]
     self.options = ["foreignelf", "execstack", "!scanshlibs"]
     return ["usr/src", "usr/lib/modules/*/build"]
 
 
-@subpackage("linux-lts-dbg", self.build_dbg)
+@subpackage("linux-wsl-dbg", self.build_dbg)
 def _(self):
     self.options = [
         "!scanrundeps",
