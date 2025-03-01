@@ -1,6 +1,6 @@
 pkgname = "gdb"
 pkgver = "16.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--disable-werror",
@@ -10,6 +10,7 @@ configure_args = [
     "--with-system-readline",
     "--with-system-gdbinit=/etc/gdb/gdbinint",
     "--with-python=/usr/bin/python",
+    "--enable-targets=all",
 ]
 # needs autoconf 2.69
 configure_gen = []
