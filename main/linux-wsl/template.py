@@ -1,6 +1,6 @@
 # update linux-lts-zfs-bin when bumping
 pkgname = "linux-wsl"
-pkgver = "6.6.71"
+pkgver = "6.6.71.1"
 pkgrel = 0
 archs = ["aarch64", "ppc64le", "ppc64", "ppc", "riscv64", "x86_64"]
 build_style = "linux-kernel"
@@ -10,11 +10,11 @@ hostmakedepends = ["base-kernel-devel"]
 depends = ["base-kernel"]
 provides = ["linux"]
 pkgdesc = f"Linux kernel {pkgver[0 : pkgver.rfind('.')]}.x"
-maintainer = "q66 <q66@chimera-linux.org>"
 license = "GPL-2.0-only"
 url = "https://kernel.org"
-source = f"https://cdn.kernel.org/pub/linux/kernel/v{pkgver[0]}.x/linux-{pkgver}.tar.xz"
-sha256 = "219715ba2dcfa6539fba09ad3f9212772f3507189eb60d77f8e89b06c32e724e"
+#source = f"https://cdn.kernel.org/pub/linux/kernel/v{pkgver[0]}.x/linux-{pkgver}.tar.xz"
+source = "https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-6.6.75.1.tar.gz"
+sha256 = "3f39b69e198bf7cb56a25d49bcd76a078353d233ff259f04636ec71a6d32bf00"
 # no meaningful checking to be done
 options = [
     "!check",
