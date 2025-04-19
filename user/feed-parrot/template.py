@@ -1,7 +1,7 @@
 pkgname = "feed-parrot"
-pkgver = "2.0.0_git20250419"
+pkgver = "2.0.1_git20250419"
 pkgrel = 0
-_gitrev = "2e956ef"
+_gitrev = "2a1d56e"
 _token = self.get_data("github_token")
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
@@ -16,4 +16,4 @@ source_headers = {
     "X-GitHub-Api-Version": "2022-11-28",
     "Authorization": f"Bearer {_token}",
 }
-sha256 = "8fec6d99a210b0837c17b0595827838053b27c0d16b68ed6e53d6267dd8123fa"
+sha256 = "99692ba8af4041053994608794b086d2ae2288ee2f3d49b0760675c4f60a2777"
