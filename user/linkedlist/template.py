@@ -1,7 +1,7 @@
 pkgname = "linkedlist"
 # pkgver = "2.0.0_git20241108"
 # until this is fixed: https://github.com/pyinfra-dev/pyinfra/pull/1233
-pkgver = "2.0.18"
+pkgver = "2.0.19"
 pkgrel = 0
 _gitrev = "8792e87"
 _token = self.get_data("forge_token")
@@ -14,7 +14,6 @@ makedepends = [
     "rust-std",
 ]
 pkgdesc = "Linked List web application"
-maintainer = "Wesley Moore <wes@wezm.net>"
 license = "custom:none"
 url = "https://forge.wezm.net/wezm/linkedlist"
 source = f"https://forge.wezm.net/api/v1/repos/wezm/linkedlist/archive/{_gitrev}.tar.gz?access_token={_token}>linkedlist-{pkgver}.tar.gz"
