@@ -1,0 +1,10 @@
+# linkedlist service
+
+type = process
+command = /usr/bin/nonsense
+working-dir = /home/wmoore/home.wezm.net
+run-as = wmoore
+env-file = nonsense.env
+logfile = /var/log/nonsense.log
+depends-on = local.target
+smooth-recovery = true
