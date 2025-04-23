@@ -1,6 +1,6 @@
 pkgname = "clang-rt-cross"
 pkgver = "20.1.3"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 configure_args = [
     "-DCMAKE_BUILD_TYPE=Release",
@@ -68,6 +68,7 @@ _targetlist = [
     "ppc64le",
     "ppc64",
     "ppc",
+    "x86",
     "x86_64",
     "riscv64",
     "loongarch64",

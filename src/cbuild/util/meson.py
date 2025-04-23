@@ -8,7 +8,7 @@ def _make_crossfile(pkg, build_dir):
 
     # map known profiles to meson arch
     match pkg.profile().arch:
-        case "aarch64" | "x86_64" | "riscv64":
+        case "aarch64" | "x86" | "x86_64" | "riscv64":
             meson_cpu = pkg.profile().arch
         case "ppc64le" | "ppc64":
             meson_cpu = "ppc64"
