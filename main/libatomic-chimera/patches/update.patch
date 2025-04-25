@@ -12,7 +12,7 @@ index 6c649f0..9b32255 100644
  OBJS = atomic.o
  
 diff --git a/atomic.c b/atomic.c
-index 343e48b..35634ce 100644
+index 343e48b..4641cc2 100644
 --- a/atomic.c
 +++ b/atomic.c
 @@ -9,7 +9,6 @@
@@ -32,14 +32,14 @@ index 343e48b..35634ce 100644
  //  2) Atomic operations, rather than explicit mutexes, are most commonly used
  //     on code where contended operations are rate.
  //
-@@ -36,30 +35,40 @@
+@@ -36,30 +35,41 @@
  //===----------------------------------------------------------------------===//
  
  #include <stdbool.h>
 -#include <string.h>
  #include <stddef.h>
  #include <stdint.h>
--#include <fenv.h>
+ #include <fenv.h>
  
 +// We use __builtin_mem* here to avoid dependencies on libc-provided headers.
 +#define memcpy __builtin_memcpy
@@ -87,7 +87,7 @@ index 343e48b..35634ce 100644
    intptr_t hash = (intptr_t)ptr;
    // Disregard the lowest 4 bits.  We want all values that may be part of the
    // same memory operation to hash to the same value and therefore use the same
-@@ -79,7 +88,6 @@ static inline __attribute__((always_inline)) lock_t *lock_for_pointer(void *ptr)
+@@ -79,7 +89,6 @@ static inline __attribute__((always_inline)) lock_t *lock_for_pointer(void *ptr)
  #define ATOMIC_ALWAYS_LOCK_FREE_OR_ALIGNED_LOCK_FREE(size, p)                  \
    (__atomic_always_lock_free(size, p) ||                                       \
     (__atomic_always_lock_free(size, 0) && ((uintptr_t)p % size) == 0))
@@ -95,7 +95,7 @@ index 343e48b..35634ce 100644
  #define IS_LOCK_FREE_1(p) ATOMIC_ALWAYS_LOCK_FREE_OR_ALIGNED_LOCK_FREE(1, p)
  #define IS_LOCK_FREE_2(p) ATOMIC_ALWAYS_LOCK_FREE_OR_ALIGNED_LOCK_FREE(2, p)
  #define IS_LOCK_FREE_4(p) ATOMIC_ALWAYS_LOCK_FREE_OR_ALIGNED_LOCK_FREE(4, p)
-@@ -127,11 +135,11 @@ bool __atomic_is_lock_free_c(size_t size, void *ptr) {
+@@ -127,11 +136,11 @@ bool __atomic_is_lock_free_c(size_t size, void *ptr) {
  #pragma redefine_extname __atomic_load_c __atomic_load
  void __atomic_load_c(int size, void *src, void *dest, int model) {
  #define LOCK_FREE_ACTION(type)                                                 \
@@ -109,7 +109,7 @@ index 343e48b..35634ce 100644
    lock(l);
    memcpy(dest, src, size);
    unlock(l);
-@@ -142,11 +150,11 @@ void __atomic_load_c(int size, void *src, void *dest, int model) {
+@@ -142,11 +151,11 @@ void __atomic_load_c(int size, void *src, void *dest, int model) {
  #pragma redefine_extname __atomic_store_c __atomic_store
  void __atomic_store_c(int size, void *dest, void *src, int model) {
  #define LOCK_FREE_ACTION(type)                                                 \
@@ -123,7 +123,7 @@ index 343e48b..35634ce 100644
    lock(l);
    memcpy(dest, src, size);
    unlock(l);
-@@ -161,12 +169,12 @@ void __atomic_store_c(int size, void *dest, void *src, int model) {
+@@ -161,12 +170,12 @@ void __atomic_store_c(int size, void *dest, void *src, int model) {
  int __atomic_compare_exchange_c(int size, void *ptr, void *expected,
                                  void *desired, int success, int failure) {
  #define LOCK_FREE_ACTION(type)                                                 \
@@ -139,7 +139,7 @@ index 343e48b..35634ce 100644
    lock(l);
    if (memcmp(ptr, expected, size) == 0) {
      memcpy(ptr, desired, size);
-@@ -184,11 +192,11 @@ int __atomic_compare_exchange_c(int size, void *ptr, void *expected,
+@@ -184,11 +193,11 @@ int __atomic_compare_exchange_c(int size, void *ptr, void *expected,
  void __atomic_exchange_c(int size, void *ptr, void *val, void *old, int model) {
  #define LOCK_FREE_ACTION(type)                                                 \
    *(type *)old =                                                               \
@@ -153,7 +153,7 @@ index 343e48b..35634ce 100644
    lock(l);
    memcpy(old, ptr, size);
    memcpy(ptr, val, size);
-@@ -217,8 +225,8 @@ void __atomic_exchange_c(int size, void *ptr, void *val, void *old, int model) {
+@@ -217,8 +226,8 @@ void __atomic_exchange_c(int size, void *ptr, void *val, void *old, int model) {
  #define OPTIMISED_CASE(n, lockfree, type)                                      \
    type __atomic_load_##n(type *src, int model) {                               \
      if (lockfree(src))                                                         \
@@ -164,7 +164,7 @@ index 343e48b..35634ce 100644
      lock(l);                                                                   \
      type val = *src;                                                           \
      unlock(l);                                                                 \
-@@ -230,10 +238,10 @@ OPTIMISED_CASES
+@@ -230,10 +239,10 @@ OPTIMISED_CASES
  #define OPTIMISED_CASE(n, lockfree, type)                                      \
    void __atomic_store_##n(type *dest, type val, int model) {                   \
      if (lockfree(dest)) {                                                      \
@@ -177,7 +177,7 @@ index 343e48b..35634ce 100644
      lock(l);                                                                   \
      *dest = val;                                                               \
      unlock(l);                                                                 \
-@@ -245,8 +253,8 @@ OPTIMISED_CASES
+@@ -245,8 +254,8 @@ OPTIMISED_CASES
  #define OPTIMISED_CASE(n, lockfree, type)                                      \
    type __atomic_exchange_##n(type *dest, type val, int model) {                \
      if (lockfree(dest))                                                        \
@@ -188,7 +188,7 @@ index 343e48b..35634ce 100644
      lock(l);                                                                   \
      type tmp = *dest;                                                          \
      *dest = val;                                                               \
-@@ -260,9 +268,9 @@ OPTIMISED_CASES
+@@ -260,9 +269,9 @@ OPTIMISED_CASES
    bool __atomic_compare_exchange_##n(type *ptr, type *expected, type desired,  \
                                       int success, int failure) {               \
      if (lockfree(ptr))                                                         \
@@ -201,7 +201,7 @@ index 343e48b..35634ce 100644
      lock(l);                                                                   \
      if (*ptr == *expected) {                                                   \
        *ptr = desired;                                                          \
-@@ -282,56 +290,32 @@ OPTIMISED_CASES
+@@ -282,56 +291,32 @@ OPTIMISED_CASES
  #define ATOMIC_RMW(n, lockfree, type, opname, op)                              \
    type __atomic_fetch_##opname##_##n(type *ptr, type val, int model) {         \
      if (lockfree(ptr))                                                         \
