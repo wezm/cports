@@ -1,6 +1,6 @@
 pkgname = "openssl3"
 pkgver = "3.4.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "configure"
 configure_script = "Configure"
 configure_args = [
@@ -41,6 +41,9 @@ if self.stage > 0:
     makedepends = ["linux-headers"]
 else:
     configure_args += ["no-asm"]
+
+#  if self.profile().cross:
+#      configure_args += ["no-threads"]
 
 match self.profile().arch:
     case "x86_64":
