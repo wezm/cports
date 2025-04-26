@@ -8,7 +8,8 @@ configure_args = [
     "-DDISABLE_WERROR=ON",
     "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
 ]
-hostmakedepends = ["cmake", "ninja", "pkgconf", "doxygen"]
+# hostmakedepends = ["cmake", "ninja", "pkgconf", "doxygen"]
+hostmakedepends = ["cmake", "ninja", "pkgconf"]
 pkgdesc = "JSON implementation in C"
 license = "MIT"
 url = "https://json-c.github.io/json-c"
