@@ -360,7 +360,7 @@ def _scan_svc(pkg):
             pkg.svc_requires.append(f"{pfx}:{sv}")
             continue
         # no provider found
-        pkg.error(f"  {pfx}: {sv} (unknown provider)")
+        pkg.log_warn(f"  {pfx}: {sv} (unknown provider)")
 
 
 def _scan_symlinks(pkg):
