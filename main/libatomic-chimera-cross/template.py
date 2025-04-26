@@ -1,6 +1,6 @@
 pkgname = "libatomic-chimera-cross"
 pkgver = "0.90.0"
-pkgrel = 5
+pkgrel = 6
 build_style = "makefile"
 makedepends = ["musl-cross"]
 depends = ["musl-cross"]

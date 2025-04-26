@@ -1,6 +1,6 @@
 pkgname = "libatomic-chimera"
 pkgver = "0.90.0"
-pkgrel = 1
+pkgrel = 2
 build_style = "makefile"
 pkgdesc = "ABI-compatible GNU libatomic alternative"
 license = "Apache-2.0"
