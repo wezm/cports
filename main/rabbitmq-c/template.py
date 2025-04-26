@@ -9,7 +9,7 @@ configure_args = [
     "-DBUILD_TESTS=ON",
     "-DBUILD_TOOLS=ON",
 ]
-hostmakedepends = ["cmake", "ninja", "pkgconf", "doxygen", "xmlto"]
+hostmakedepends = ["cmake", "ninja", "pkgconf", "xmlto"]
 makedepends = ["openssl3-devel", "popt-devel"]
 pkgdesc = "RabbitMQ C client"
 license = "MIT"
