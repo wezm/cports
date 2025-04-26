@@ -65,6 +65,8 @@ match self.profile().arch:
         _arch, _abi = "power", "sysv"
     case "aarch64" | "armhf" | "armv7":
         _arch, _abi = "arm", "aapcs"
+    case "x86":
+        _arch, _abi = "x86", "sysv"
     case "x86_64":
         _arch, _abi = "x86", "sysv"
         _libs.append("stacktrace_from_exception")
@@ -76,7 +78,19 @@ match self.profile().arch:
         broken = f"Unknown CPU architecture: {self.profile().arch}"
 
 
-def _call_b2(self, *args):
+def _call_b2(self, *args_tuple):
+    args = list(args_tuple)
+    if self.profile().arch == "x86":
+        # error: On this platform memory leaks are possible if capturing
+        # stacktrace from exceptions is enabled and exceptions are thrown
+        # concurrently and libc++ runtime is used. Define
+        # `BOOST_STACKTRACE_LIBCXX_RUNTIME_MAY_CAUSE_MEMORY_LEAK` to suppress
+        # this error if the library would not be used with libc++ runtime (for
+        # example, it would be only used with GCC runtime). Otherwise, disable
+        # the boost_stacktrace_from_exception library build (for example by
+        # `./b2 boost.stacktrace.from_exception=off` option)
+        args.append("boost.stacktrace.from_exception=off")
+
     self.do(
         self.chroot_cwd / "b2",
         f"-j{self.make_jobs}",
