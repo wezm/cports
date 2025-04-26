@@ -134,7 +134,7 @@ if _enable_flang:
     _enabled_projects += ["flang"]
 
 match self.profile().arch:
-    case "x86_64":
+    case "x86" | "x86_64":
         _arch = "X86"
     case "aarch64":
         _arch = "AArch64"

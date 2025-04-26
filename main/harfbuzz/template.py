@@ -34,7 +34,7 @@ license = "MIT"
 url = "http://www.freedesktop.org/wiki/Software/HarfBuzz"
 source = f"https://github.com/harfbuzz/harfbuzz/releases/download/{pkgver}/harfbuzz-{pkgver}.tar.xz"
 sha256 = "4a7890090538136db64742073af4b4d776ab8b50e6855676a8165eb8b7f60b7a"
-options = ["!cross"]
+#options = ["!cross"]
 
 
 def post_install(self):

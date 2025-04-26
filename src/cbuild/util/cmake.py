@@ -44,6 +44,7 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
                 | "ppc64le"
                 | "ppc64"
                 | "ppc"
+                | "x86"
                 | "x86_64"
                 | "riscv64"
                 | "armhf"

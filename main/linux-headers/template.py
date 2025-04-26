@@ -11,7 +11,7 @@ sha256 = "f011f6c8ea471df1b3dbbdd1eb261b29c92e43360503c3ebd005beec2155b66a"
 options = ["!check"]
 
 match self.profile().arch:
-    case "x86_64":
+    case "x86" | "x86_64":
         _arch = "x86_64"
     case "aarch64":
         _arch = "arm64"
