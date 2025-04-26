@@ -1,0 +1,28 @@
+diff --git a/compiler/rustc_target/src/spec/mod.rs b/compiler/rustc_target/src/spec/mod.rs
+index faa59e1ab..30d35327d 100644
+--- a/compiler/rustc_target/src/spec/mod.rs
++++ b/compiler/rustc_target/src/spec/mod.rs
+@@ -1681,6 +1681,7 @@ supported_targets! {
+     ("powerpc64-chimera-linux-musl", powerpc64_chimera_linux_musl),
+     ("powerpc64le-chimera-linux-musl", powerpc64le_chimera_linux_musl),
+     ("riscv64-chimera-linux-musl", riscv64_chimera_linux_musl),
++    ("i586-chimera-linux-musl", i586_chimera_linux_musl),
+     ("x86_64-unknown-linux-gnu", x86_64_unknown_linux_gnu),
+     ("x86_64-unknown-linux-gnux32", x86_64_unknown_linux_gnux32),
+     ("i686-unknown-linux-gnu", i686_unknown_linux_gnu),
+diff --git a/compiler/rustc_target/src/spec/targets/i586_chimera_linux_musl.rs b/compiler/rustc_target/src/spec/targets/i586_chimera_linux_musl.rs
+new file mode 100644
+index 000000000..204f16784
+--- /dev/null
++++ b/compiler/rustc_target/src/spec/targets/i586_chimera_linux_musl.rs
+@@ -0,0 +1,10 @@
++use crate::spec::Target;
++
++pub(crate) fn target() -> Target {
++    let mut base = super::i586_unknown_linux_musl::target();
++
++    base.llvm_target = "i586-chimera-linux-musl".into();
++    base.options.vendor = "chimera".into();
++
++    base
++}
