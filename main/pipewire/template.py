@@ -4,7 +4,7 @@ pkgrel = 0
 build_style = "meson"
 configure_args = [
     "--auto-features=enabled",
-    "-Ddocs=enabled",
+    "-Ddocs=disabled",
     "-Dman=enabled",
     "-Dlogind-provider=libelogind",
     "-Dsdl2=disabled",  # examples
@@ -25,7 +25,6 @@ configure_args = [
 ]
 hostmakedepends = [
     "bash",
-    "doxygen",
     "gettext",
     "glib-devel",
     "graphviz",
