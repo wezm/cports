@@ -8,7 +8,10 @@ depends = ["!rust"]
 pkgdesc = "Rust programming language bootstrap toolchain"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
-_urlb = "https://repo.chimera-linux.org/distfiles"
+if self.profile().arch == "x86":
+    _urlb = "https://files.wezm.net/chimera"
+else:
+    _urlb = "https://repo.chimera-linux.org/distfiles"
 source = [
     f"{_urlb}/rustc-{pkgver}-{self.profile().triplet}.tar.xz",
     f"{_urlb}/rust-std-{pkgver}-{self.profile().triplet}.tar.xz",
@@ -45,6 +48,11 @@ match self.profile().arch:
         sha256 = [
             "8d590e01be55a77111b2f09402f252194acc58d13f42dc951e1756d47dfc5a24",
             "b435f433b116834cf21bd8ba4d263542f2007a0542feb4f7b3dd7792321a2ed2",
+        ]
+    case "x86":
+        sha256 = [
+            "dc4caea35e2e920921302ab558b22cfb873a115822574c3b90fe8bf7320a5f2a",
+            "4503e0075ba2554d6848b73cc74b3b14282a1b0ebfe9f7d8383b6d8a69aecebf",
         ]
     case "x86_64":
         sha256 = [
