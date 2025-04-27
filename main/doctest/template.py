@@ -3,9 +3,9 @@ pkgver = "2.4.11"
 pkgrel = 1
 build_style = "cmake"
 configure_args = [
-        "-DDOCTEST_USE_STD_HEADERS=ON",
-        "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
-        ]
+    "-DDOCTEST_USE_STD_HEADERS=ON",
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+]
 hostmakedepends = [
     "cmake",
     "ninja",

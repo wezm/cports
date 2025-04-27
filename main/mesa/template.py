@@ -87,7 +87,7 @@ _subproject_list = [
     "ucd-trie",
     "unicode-ident",
 ]
-#source = f"https://mesa.freedesktop.org/archive/mesa-{pkgver.replace('_', '-')}.tar.xz"
+# source = f"https://mesa.freedesktop.org/archive/mesa-{pkgver.replace('_', '-')}.tar.xz"
 source = "https://web.archive.org/web/20250417004603/https://mesa.freedesktop.org/archive/mesa-25.0.4.tar.xz"
 sha256 = "76293cf4372ca4e4e73fd6c36c567b917b608a4db9d11bd2e33068199a7df04d"
 # lots of issues in swrast and so on

@@ -38,8 +38,8 @@ make_check_args = [
     + "-i test_pickletools "  # ppc64le stack overflow
     + "-i test_sysconfig "  # temporary until fix-mach.patch is gone
     + "-i test.test_strptime.StrptimeTests.test_date_locale2 "
-    + "-i test.test_fcntl.TestFcntl.test_fcntl_64_bit " # x86: OSError: [Errno 22] Invalid argument
-    + "-i test.test_math.MathTests.testExp2 " # x86: exp2(2.3): expected 4.924577653379665, got 4.913924743054326 (error = 0.0107 (11994110742902 ulps); permitted error = 0 or 5 ulps)
+    + "-i test.test_fcntl.TestFcntl.test_fcntl_64_bit "  # x86: OSError: [Errno 22] Invalid argument
+    + "-i test.test_math.MathTests.testExp2 "  # x86: exp2(2.3): expected 4.924577653379665, got 4.913924743054326 (error = 0.0107 (11994110742902 ulps); permitted error = 0 or 5 ulps)
 ]
 hostmakedepends = [
     "autoconf-archive",

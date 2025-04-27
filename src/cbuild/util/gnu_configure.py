@@ -126,7 +126,7 @@ def configure(
             "ppc64": ["powerpc-common", "powerpc-linux", "powerpc64-linux"],
             "x86_64": ["x86_64-linux"],
             # TODO: work out how to generate this
-            #"x86": ["x86-linux"],
+            # "x86": ["x86-linux"],
         }.get(pkg.profile().arch, [])
         for ln in cl:
             _read_cache(cachedir, ln, eenv)
