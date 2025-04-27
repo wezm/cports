@@ -1,7 +1,15 @@
 pkgname = "lldb"
 pkgver = "20.1.3"
 pkgrel = 0
-archs = ["aarch64", "loongarch64", "ppc64le", "ppc64", "riscv64", "x86_64"]
+archs = [
+    "aarch64",
+    "loongarch64",
+    "ppc64le",
+    "ppc64",
+    "riscv64",
+    "x86_64",
+    "x86",
+]
 build_style = "cmake"
 configure_args = [
     "-DCMAKE_BUILD_TYPE=Release",
