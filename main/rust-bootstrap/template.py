@@ -1,6 +1,6 @@
 pkgname = "rust-bootstrap"
 pkgver = "1.86.0"
-pkgrel = 0
+pkgrel = 1
 # satisfy revdeps
 makedepends = ["zlib-ng-compat", "ncurses-libs", "zstd"]
 # overlapping files
@@ -8,7 +8,7 @@ depends = ["!rust"]
 pkgdesc = "Rust programming language bootstrap toolchain"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
-if self.profile().arch == "x86":
+if self.profile().arch == "x86" or self.profile().arch == "x86_64":
     _urlb = "https://files.wezm.net/chimera"
 else:
     _urlb = "https://repo.chimera-linux.org/distfiles"
@@ -56,8 +56,8 @@ match self.profile().arch:
         ]
     case "x86_64":
         sha256 = [
-            "6b5838f0f64b057147624eb61dda8b31735e4a74b5c8a544a6ddc4c96fb71ec4",
-            "6a772bf9d8354509a469462cbe36595627b79fc2d9e179eab08d9a7b96fc5a8a",
+            "3516b5ab59bae74f2819d5dda1d2676179cea542ddbfe94735f7bd345a1e3a5d",
+            "ba225518a9020fdafebf413bb35951c4afe84450f9d15cbe5107b4be94fe313e",
         ]
     case _:
         broken = f"not yet built for {self.profile().arch}"
