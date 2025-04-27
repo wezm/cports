@@ -37,7 +37,6 @@ makedepends = [
     "libpng-devel",
     "libsm-devel",
     "libtheora-devel",
-    "libvisual-devel",
     "libvorbis-devel",
     "libxext-devel",
     "libxi-devel",
@@ -52,7 +51,6 @@ makedepends = [
 ]
 depends = [
     f"gstreamer~{pkgver}",
-    "libvisual-plugins-meta",
     "orc",
 ]
 checkdepends = ["fonts-liberation-otf"]
@@ -65,6 +63,19 @@ sha256 = "e23189fbed2ec486690382d1055c19eeaf5aae3e95e2576fc4c884d96a90e69e"
 hardening = ["!int"]
 # gobject-introspection
 options = ["!cross"]
+
+
+if self.profile().arch == "x86":
+    configure_args += [
+        "-Dlibvisual=disabled",
+    ]
+else:
+    makedepends += [
+        "libvisual-devel",
+    ]
+    depends += [
+        "libvisual-plugins-meta",
+    ]
 
 
 @subpackage("gst-plugins-base-devel")
