@@ -9,7 +9,6 @@ configure_args = [
 ]
 hostmakedepends = [
     "cmake",
-    "doxygen",
     "nasm",
     "ninja",
     "perl",
