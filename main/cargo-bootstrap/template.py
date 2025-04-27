@@ -9,7 +9,10 @@ depends = ["!cargo"]
 pkgdesc = "Bootstrap binaries of Rust package manager"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
-source = f"https://repo.chimera-linux.org/distfiles/cargo-{pkgver}-{self.profile().triplet}.tar.xz"
+if self.profile().arch == "x86":
+    source = f"https://files.wezm.net/chimera/cargo-{pkgver}-{self.profile().triplet}.tar.xz"
+else:
+    source = f"https://repo.chimera-linux.org/distfiles/cargo-{pkgver}-{self.profile().triplet}.tar.xz"
 options = ["!strip"]
 
 match self.profile().arch:
@@ -36,6 +39,10 @@ match self.profile().arch:
     case "riscv64":
         sha256 = (
             "e25ce707fcfe0f0e238954d1b57ab6035714cd21404e27b7308abcc9a77da24d"
+        )
+    case "x86":
+        sha256 = (
+            "7646b321557b65a336ed7c78886accc2791b9691f3ed56bc74fef5237e2240b6"
         )
     case "x86_64":
         sha256 = (
