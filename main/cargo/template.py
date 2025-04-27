@@ -37,6 +37,8 @@ else:
     makedepends += ["rust-std", "libgit2-devel"]
     depends = ["rust"]
 
+if self.profile().cross:
+    env["TARGET_PKG_CONFIG_PATH"] = str(self.profile().sysroot / "usr" / "lib" / "pkgconfig")
 
 def post_patch(self):
     from cbuild.util import cargo
