@@ -346,10 +346,14 @@ def summarize_repo(repopath, olist, quiet=False):
                 else:
                     obsolete.append(f.name)
 
-            if compare_version(tov, fromv, False) < 0 and not quiet:
-                logger.get().out(
-                    f"\f[orange]WARNING: Using lower version ({fromf} => {tof}): newer timestamp..."
-                )
+            try:
+                if compare_version(tov, fromv, False) < 0 and not quiet:
+                    logger.get().out(
+                        f"\f[orange]WARNING: Using lower version ({fromf} => {tof}): newer timestamp..."
+                    )
+            except NameError:
+                # tov or fromv may not be defined if else branch is hit above
+                pass
 
     for k, v in rtimes.items():
         olist.append(v[1])
