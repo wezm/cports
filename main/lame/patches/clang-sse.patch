@@ -1,0 +1,19 @@
+--- a/libmp3lame/vector/xmm_quantize_sub.c.orig   2025-04-27 12:43:29.207783196 +0000
++++ b/libmp3lame/vector/xmm_quantize_sub.c        2025-04-27 12:45:51.095701462 +0000
+@@ -53,10 +53,14 @@
+
+ /* make sure functions with SSE instructions maintain their own properly aligned stack */
+ #if defined (__GNUC__) && ((__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 2)))
+-#define SSE_FUNCTION __attribute__((force_align_arg_pointer))
++#define REALIGN __attribute__((force_align_arg_pointer))
++#define TARGET(x) __attribute__((target(x)))
+ #else
+-#define SSE_FUNCTION
++#define REALIGN
++#define TARGET(x)
+ #endif
++
++#define SSE_FUNCTION REALIGN TARGET("sse2")
+
+
+ SSE_FUNCTION void
