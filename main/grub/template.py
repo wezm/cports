@@ -76,6 +76,8 @@ _platforms = [
 ]
 
 match self.profile().arch:
+    case "x86":
+        _archs = ["i386"]
     case "x86_64":
         _archs = ["i386", "x86_64"]
     case "ppc64le" | "ppc64" | "ppc":
