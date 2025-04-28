@@ -10,6 +10,7 @@ archs = [
     "ppc",
     "riscv64",
     "x86_64",
+    "x86",
 ]
 build_style = "linux-kernel"
 configure_args = ["FLAVOR=generic", f"RELEASE={pkgrel}"]
