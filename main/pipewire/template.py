@@ -5,7 +5,7 @@ build_style = "meson"
 configure_args = [
     "--auto-features=enabled",
     "-Ddocs=disabled",
-    "-Dman=enabled",
+    "-Dman=disabled",
     "-Dlogind-provider=libelogind",
     "-Dsdl2=disabled",  # examples
     "-Dsystemd=disabled",
@@ -143,7 +143,7 @@ def _(self):
         "usr/bin/pw-jack",
         "usr/lib/libjack*",
         "usr/share/pipewire/jack.conf",
-        "usr/share/man/man1/pw-jack.1",
+        #"usr/share/man/man1/pw-jack.1",
     ]
 
 
