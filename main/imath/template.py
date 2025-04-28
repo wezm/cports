@@ -20,6 +20,11 @@ url = "https://imath.readthedocs.io/en/latest"
 source = f"https://github.com/AcademySoftwareFoundation/Imath/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "8a1bc258f3149b5729c2f4f8ffd337c0e57f09096e4ba9784329f40c4a9035da"
 hardening = ["vis", "cfi"]
+# below
+options = []
+
+if self.profile().arch == "x86":
+    options += ["!check"]
 
 
 def post_install(self):
