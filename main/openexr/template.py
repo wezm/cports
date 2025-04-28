@@ -33,6 +33,13 @@ _exclude_tests = [
 if self.profile().arch == "armv7":
     # bus error
     _exclude_tests.append("OpenEXR.testLargeDataWindowOffsets")
+elif self.profile().arch == "x86":
+    # Subprocess aborted
+    _exclude_tests += [
+        "OpenEXRCore.testCPUIdent",
+        "OpenEXRCore.testDWATable",
+    ]
+
 
 make_check_args = ["-E", f"({'|'.join(_exclude_tests)})"]
 
