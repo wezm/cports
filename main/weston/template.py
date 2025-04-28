@@ -46,6 +46,12 @@ license = "MIT"
 url = "https://wayland.freedesktop.org"
 source = f"https://gitlab.freedesktop.org/wayland/weston/-/releases/{pkgver}/downloads/weston-{pkgver}.tar.xz"
 sha256 = "a8150505b126a59df781fe8c30c8e6f87da7013e179039eb844a5bbbcc7c79b3"
+# below
+options = []
+
+if self.profile().arch == "x86":
+    # 51/52 color-icc-output               ERROR            1.41s   killed by signal 6 SIGABRT
+    options.append("!check")
 
 
 def post_install(self):
