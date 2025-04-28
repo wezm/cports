@@ -55,7 +55,8 @@ if self.profile().cross:
 # because this may not match the cbuild arch name
 match self.profile().arch:
     case (
-        "x86_64"
+        "x86"
+        | "x86_64"
         | "ppc64le"
         | "ppc64"
         | "ppc"
