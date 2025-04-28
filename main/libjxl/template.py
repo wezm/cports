@@ -59,7 +59,7 @@ hardening = ["!vis", "!cfi"]
 
 
 # FIXME
-if self.profile().arch == "riscv64":
+if self.profile().arch == "riscv64" or self.profile().arch == "x86":
     configure_args += ["-DBUILD_TESTING=OFF"]
 
 
