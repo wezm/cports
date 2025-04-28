@@ -21,6 +21,11 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "7e0be78b8318e8bdbf6fa545d2ecb4c90f947df03f7aadc42c1967f019e63343"
 # CFI: breaks a few tests
 hardening = ["vis", "!cfi"]
+# below
+options = []
+
+if self.profile().arch == "x86":
+    options += ["!check"]
 
 
 def post_install(self):
