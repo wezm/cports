@@ -17,6 +17,8 @@ options = ["!check"]
 # TODO: kernel hook?
 
 match self.profile().arch:
+    case "x86":
+        _loader = "grubia32.efi"
     case "x86_64":
         _loader = "grubx64.efi"
     case "aarch64":
