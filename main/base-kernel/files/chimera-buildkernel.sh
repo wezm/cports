@@ -107,7 +107,7 @@ esac
 
 validate_arch() {
     case "$ARCH" in
-        x86_64|i386|arm|arm64|loongarch|powerpc|riscv) ;;
+        x86_64|i386|i586|arm|arm64|loongarch|powerpc|riscv) ;;
         *) die "Unknown kernel architecture '$ARCH'";;
     esac
 }
