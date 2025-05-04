@@ -131,7 +131,16 @@ def configure(self):
         _lto = "thin" if self.can_lto() else "thin-local"
     else:
         _comp = "xz"
-        _comp_prof = "best"
+        # compression is done with 6 threads:
+        #   xz2::stream::MtStreamBuilder::new().threads(6).preset(9).encoder().unwrap()
+        # and uses -9 for best, which runs a 32-bit machine out of memory:
+        #   thread 'main' panicked at src/tools/rust-installer/src/compression.rs:111:92:
+        #   called `Result::unwrap()` on an `Err` value: Mem
+        # so use balanced (6)
+        if self.profile().arch == "x86":
+            _comp_prof = "balanced"
+        else:
+            _comp_prof = "best"
         _lto = "thin-local"
 
     tgt_profile = self.profile()
