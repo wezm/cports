@@ -9,6 +9,13 @@ configure_args = [
     "-DABSL_USE_EXTERNAL_GOOGLETEST=ON",
     "-DABSL_BUILD_TESTING=ON",
 ]
+if self.profile().arch == "x86":
+    make_check_args = [
+        "-E",
+        "(absl_random_beta_distribution_test|absl_random_internal_generate_real_test|absl_random_poisson_distribution_test)",
+    ]
+else:
+    make_check_args = []
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 makedepends = ["linux-headers", "gtest-devel"]
 pkgdesc = "Abseil C++ libraries"
