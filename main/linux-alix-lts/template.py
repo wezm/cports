@@ -1,11 +1,11 @@
 pkgname = "linux-alix-lts"
 pkgver = "6.12.24"
-pkgrel = 0
+pkgrel = 5
 archs = [
     "x86",
 ]
 build_style = "linux-kernel"
-configure_args = ["FLAVOR=generic", f"RELEASE={pkgrel}"]
+configure_args = ["FLAVOR=alix", f"RELEASE={pkgrel}"]
 make_dir = "build"
 make_install_env = {"ZSTD_CLEVEL": "9"}
 hostmakedepends = ["base-kernel-devel"]
