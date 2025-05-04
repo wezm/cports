@@ -42,7 +42,7 @@ match self.profile().arch:
         )
     case "x86":
         sha256 = (
-            "7646b321557b65a336ed7c78886accc2791b9691f3ed56bc74fef5237e2240b6"
+            "35f9f809e288aaa4d12e01bd86777423381d31265186f2eb41979aeb557acf86"
         )
     case "x86_64":
         sha256 = (
