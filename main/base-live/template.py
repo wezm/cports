@@ -22,9 +22,13 @@ match self.profile().arch:
         depends += ["grub-powerpc-ieee1275"]
     case "riscv64":
         depends += ["grub-riscv64-efi"]
+    case "x86":
+        depends += ["grub-i386-efi", "grub-i386-pc"]
     case "x86_64":
         depends += ["grub-i386-efi", "grub-i386-pc", "grub-x86_64-efi"]
 
 # extra bootloaders on efi targets, again for offline install
 if self.profile().arch in ["aarch64", "loongarch64", "riscv64", "x86_64"]:
     depends += ["limine", "systemd-boot"]
+elif self.profile().arch == "x86":
+    depends += ["limine"]
