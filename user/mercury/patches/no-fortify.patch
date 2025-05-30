@@ -1,0 +1,4 @@
+--- Mmake.params.orig	2025-05-28 13:23:32.095671997 +0000
++++ Mmake.params	2025-05-28 13:24:17.272462462 +0000
+@@ -0,0 +1 @@
++EXTRA_CFLAGS += -U_FORTIFY_SOURCE
