@@ -1,6 +1,6 @@
 pkgname = "mercury"
 pkgver = "2024.02.27"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--disable-csharp-grade",
@@ -9,7 +9,8 @@ configure_args = [
     "--enable-libgrades=hlc.gc,hlc.gc.memprof,hlc.gc.prof,hlc.par.gc",
 ]
 make_dir = "."
-hostmakedepends = ["gmake", "pkgconf", "flex", "bison"]
+hostmakedepends = ["gmake", "pkgconf", "flex", "bison", "perl"]
+depends = ["gmake", "perl", "clang"]
 pkgdesc = "Mercury compiler"
 license = "GPL-2.0-only"
 url = "http://www.mercurylang.org"
