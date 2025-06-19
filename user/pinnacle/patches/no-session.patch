@@ -1,0 +1,13 @@
+the -session wrapper is a systemd script, use the normal session startup that
+imports envs itself
+--
+--- a/resources/pinnacle.desktop
++++ b/resources/pinnacle.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Name=Pinnacle
+ Comment=A Wayland compositor inspired by AwesomeWM
+-Exec=pinnacle-session
++Exec=/usr/bin/pinnacle --session
+ Type=Application
+ DesktopNames=pinnacle
