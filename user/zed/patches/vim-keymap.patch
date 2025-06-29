@@ -1,0 +1,31 @@
+From ec9b2474189cfb429a90b2c9c248fb2746cacc5e Mon Sep 17 00:00:00 2001
+From: Wesley Moore <wes@wezm.net>
+Date: Thu, 26 Jun 2025 09:14:25 +1000
+Subject: [PATCH] fix: remove unimplemented keybinds for AI agent
+
+---
+ assets/keymaps/vim.json | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+diff --git a/assets/keymaps/vim.json b/assets/keymaps/vim.json
+index f2d50bd13f3052..9d207d27ce1930 100644
+--- a/assets/keymaps/vim.json
++++ b/assets/keymaps/vim.json
+@@ -846,16 +846,7 @@
+   },
+   {
+     "context": "MessageEditor > Editor && VimControl",
+-    "bindings": {
+-      "enter": "agent::Chat",
+-      // TODO: Implement search
+-      "/": null,
+-      "?": null,
+-      "#": null,
+-      "*": null,
+-      "n": null,
+-      "shift-n": null
+-    }
++    "bindings": {}
+   },
+   {
+     "context": "os != macos && Editor && edit_prediction_conflict",
