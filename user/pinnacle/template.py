@@ -1,6 +1,6 @@
 pkgname = "pinnacle"
 pkgver = "0.1.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
 # skip integration tests that fail
 make_check_args = [
@@ -25,11 +25,25 @@ makedepends = [
     "mesa-gbm-devel",
     "lua5.4-devel",
 ]
+depends = [
+    "lua5.4",
+    "lua5.4-cqueues", # todo package these
+    "lua5.4-http",
+    "lua5.4-protobuf",
+    "lua5.4-posix",
+]
 pkgdesc = "Tiling Wayland compositor"
-license = "GPL-3.0-or-later"
+license = "GPL-3.0-or-later AND MPL-2.0"
 url = "https://github.com/pinnacle-comp/pinnacle"
-source = f"{url}/archive/v{pkgver}.tar.gz"
-sha256 = "9002dd4caa8ab8d7831a8e66f449e535a8bfef6b04eeac9afd98ca1e4b5a3fb4"
+source = [
+    f"{url}/archive/v{pkgver}.tar.gz",
+    f"{url}/releases/download/v{pkgver}/pinnacle-api-{pkgver}-1.all.rock>pinnacle-api-{pkgver}-1.zip",
+]
+source_paths = [".", "lua-module"]
+sha256 = [
+    "9002dd4caa8ab8d7831a8e66f449e535a8bfef6b04eeac9afd98ca1e4b5a3fb4",
+    "3924f915bd6abfeb714414ae09953e20f86b194aeb08323fdb070262dd93c067",
+]
 # cross: generates completions using host binary
 options = ["!cross"]
 
@@ -62,3 +76,9 @@ def install(self):
     )
     for shell in ["bash", "fish", "zsh"]:
         self.install_completion(f"pinnacle.{shell}", shell, "pinnacle")
+
+    self.install_file("lua-module/lua/pinnacle.lua", "usr/share/lua/5.4")
+    self.install_files("lua-module/lua/pinnacle", "usr/share/lua/5.4")
+
+
+# todo separate lua package?

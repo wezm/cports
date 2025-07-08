@@ -1,0 +1,22 @@
+diff -ruN libfaketime-0.9.10.orig/src/Makefile libfaketime-0.9.10/src/Makefile
+--- libfaketime-0.9.10.orig/src/Makefile	2025-05-29 21:09:49.595646128 +1000
++++ libfaketime-0.9.10/src/Makefile	2025-05-29 21:10:18.744148144 +1000
+@@ -110,7 +110,7 @@
+ LIBDIRNAME ?= /lib/faketime
+ PLATFORM ?=$(shell uname)
+ 
+-CFLAGS += -std=gnu99 -Wall -Wextra -Werror -Wno-nonnull-compare -DFAKE_PTHREAD -DFAKE_STAT -DFAKE_UTIME -DFAKE_SLEEP -DFAKE_TIMERS -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'$(PREFIX)'"' -DLIBDIRNAME='"'$(LIBDIRNAME)'"' $(FAKETIME_COMPILE_CFLAGS)
++CFLAGS += -std=gnu99 -Wall -Wextra -Wno-nonnull-compare -DFAKE_STAT -DFAKE_UTIME -DFAKE_SLEEP -DFAKE_INTERNAL_CALLS -fPIC -DPREFIX='"'$(PREFIX)'"' -DLIBDIRNAME='"'$(LIBDIRNAME)'"' $(FAKETIME_COMPILE_CFLAGS)
+ ifeq ($(PLATFORM),SunOS)
+ CFLAGS += -D__EXTENSIONS__ -D_XOPEN_SOURCE=600
+ endif
+@@ -118,9 +118,6 @@
+ LIB_LDFLAGS += -shared
+ 
+ LDFLAGS += $(FAKETIME_LINK_FLAGS) -lpthread
+-ifneq ($(PLATFORM),SunOS)
+-LDFLAGS += -Wl,--version-script=libfaketime.map
+-endif
+ 
+ LDADD += -ldl -lm -lrt
+ BIN_LDFLAGS += -lrt
