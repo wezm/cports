@@ -237,6 +237,22 @@ def post_install(self):
     )
     self.install_link(f"usr/lib/gcc/{_trip}/{_bver}", _mnver)
 
+@subpackage("gcc-libs")
+def _(self):
+    self.subdesc = "GCC libraries"
+    return [f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a", "usr/lib/libatomic.*", "usr/lib/libgcc_s.*"]
+
+@subpackage("libstdc++")
+def _(self):
+    self.subdesc = "C++ standard library"
+    # TODO: self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
+    return ["usr/lib/libstdc++*", "usr/lib/libsupc++.*"]
+
+@subpackage("libstdc++-devel")
+def _(self):
+    self.subdesc = "C++ standard library dev"
+    return ["usr/include/c++"]
+
 
 #  @subpackage("gcc-fortran")
 #  def _(self):
