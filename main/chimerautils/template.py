@@ -12,7 +12,6 @@ makedepends = [
     "bzip2-devel",
     "libedit-devel",
     "libxo-devel",
-    "musl-bsd-headers",
     "ncurses-devel",
     "openssl3-devel",
     "xz-devel",

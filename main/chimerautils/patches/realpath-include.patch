@@ -1,0 +1,13 @@
+diff --git a/src.custom/realpath/realpath.cc b/src.custom/realpath/realpath.cc
+index 65be494..c86c0dc 100644
+--- a/src.custom/realpath/realpath.cc
++++ b/src.custom/realpath/realpath.cc
+@@ -31,6 +31,7 @@
+ #include <utility>
+ #include <cstdio>
+ #include <cstdlib>
++#include <cstring>
+ #include <cerrno>
+ 
+ #include <unistd.h>
+
