@@ -144,4 +144,6 @@ def post_install(self):
 
 @subpackage("glibc-devel")
 def _(self):
+    self.options = ["!splitstatic"]
+    self.depends += ["linux-headers"]
     return self.default_devel()
