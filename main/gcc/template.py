@@ -44,14 +44,9 @@ configure_args = [
     "--enable-tls",
     "--with-bugurl=https://github.com/chimera-linux/cports/issues",
     f"--with-pkgversion=Chimera {pkgver}",
-    "--with-gmp",
     "--with-gnu-as",
     "--with-gnu-ld",
-    "--with-isl",
-    "--with-mpc",
-    "--with-mpfr",
     "--with-system-zlib",
-    # "--with-system-zstd",
     "--with-linker-hash-style=gnu",
     f"--with-gxx-include-dir=/usr/include/c++/{_bver}",
     "--with-gxx-libcxx-include-dir=/usr/include/c++/v1",
@@ -67,17 +62,12 @@ hostmakedepends = [
     "texinfo",
 ]
 makedepends = [
-    "gmp-devel",
-    "isl-devel",
     # "libcxx-devel-static",
     #  "libucontext-devel",
     # "libunwind-devel-static",
-    "mpc-devel",
-    "mpfr-devel",
     "zlib-ng-compat-devel",
     # "zstd-devel",
 ]
-# TODO: Gate ztd on stage/bootstrap
 depends = [
     f"binutils-{self.profile().arch}",
     #  f"clang-rt-devel~{_clangver}",
@@ -86,8 +76,23 @@ depends = [
 pkgdesc = "GNU Compiler Collection"
 license = "GPL-3.0-or-later"
 url = "https://gcc.gnu.org"
-source = f"$(GNU_SITE)/gcc/gcc-{pkgver}/gcc-{pkgver}.tar.xz"
-sha256 = "438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"
+source = [f"$(GNU_SITE)/gcc/gcc-{pkgver}/gcc-{pkgver}.tar.xz"]
+source_paths = ["."]
+sha256 = ["438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"]
+
+if self.stage == 0:
+    source += [
+        "https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz",
+        "$(GNU_SITE)/mpc/mpc-1.3.1.tar.gz",
+        "https://www.mpfr.org/mpfr-4.2.2/mpfr-4.2.2.tar.xz",
+    ]
+    source_paths += ["gmp", "mpc", "mpfr"]
+    sha256 += [
+        "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898",
+        "ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8",
+        "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01",
+    ]
+
 hardening = ["!int", "!format", "!var-init"]
 # no tests to run
 options = ["bootstrap", "!check", "!lto", "!relr", "!cross", "!scanshlibs"]
@@ -96,6 +101,15 @@ if self.stage == 0:
     # SONAME: ld-linux-x86-64.so.2 (unknown provider)
     # SONAME: libm.so.6 (unknown provider)
     options += ["!scanrundeps"]
+
+if self.stage == 0:
+    # Stop these being pulled in from the host
+    configure_args += ["--without-isl", "--without-zstd"]
+else:
+    # TODO: Gate zstd on stage/bootstrap
+    # "--with-system-zstd",
+    configure_args += ["--with-gmp", "--with-mpc", "--with-mpfr", "--with-isl"]
+    makedepends += ["gmp-devel", "mpc-devel", "mpfr-devel", "isl-devel"]
 
 # FIXME: This is None when bootstrapping
 # _trip = self.profile().triplet
