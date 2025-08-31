@@ -275,7 +275,7 @@ def scan(pkg, somap):
     # as otherise we cannot provide guarantees about the host system
     if pkg.stage > 0:
         rsroot = pkg.rparent.profile().sysroot.relative_to("/")
-        libcp = paths.bldroot() / rsroot / "usr/lib/libc.so"
+        libcp = paths.bldroot() / rsroot / "usr/lib/libc.so.6"
         libc = scan_one(libcp)
 
     for fpath in scandir.rglob("*"):
