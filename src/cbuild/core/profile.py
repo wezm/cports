@@ -97,7 +97,7 @@ def _get_archflags(prof, tmpl, hard, name):
         if sanrt:
             sflags.append("-fno-sanitize-trap=cfi")
 
-    if tmpl.stage > 0 and hard["int"] and name != "FFLAGS":
+    if tmpl.stage > 1 and hard["int"] and name != "FFLAGS":
         sflags.append(
             "-fsanitize=signed-integer-overflow,integer-divide-by-zero"
         )
