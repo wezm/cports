@@ -12,7 +12,6 @@ configure_args = [
     "--with-system-zlib",
     "--with-mmap",
     "--with-pic",
-    "--with-zstd",
     "--disable-install-libbfd",
     "--disable-multilib",
     "--disable-werror",
@@ -35,7 +34,14 @@ hostmakedepends = [
     "pkgconf",
     "texinfo",
 ]
-if self.stage > 0:
+if self.stage == 0:
+    configure_args += [
+        "--without-zstd",
+    ]
+else:
+    configure_args += [
+        "--with-zstd",
+    ]
     makedepends = [
         "jansson-devel",
         "linux-headers",
@@ -221,25 +227,34 @@ def install(self):
             if p == "as":
                 f.symlink_to(tf.name)
         # rename native version
-        self.rename(f"usr/bin/{p}", f"g{p}")
-        self.rename(f"usr/share/man/man1/{p}.1", f"g{p}.1")
+
+        # This breaks things later because core/template uses un-prefixed versions.
+        # If you point the build at the prefixed versions then the bootstrap fails
+        # because the stage 0 host has to have prefixed versions. So, for now
+        # disable the renaming.
+        # TODO: Work out how to resolve this when LLVM is brought back into the mix.
+        #  self.rename(f"usr/bin/{p}", f"g{p}")
+        #  self.rename(f"usr/share/man/man1/{p}.1", f"g{p}.1")
 
     # gas can be symlinked to as though, as nothing else provides it
-    self.install_link("usr/bin/as", "gas")
-    self.install_link("usr/share/man/man1/as.1", "gas.1")
+    #  self.install_link("usr/bin/as", "gas")
+    #  self.install_link("usr/share/man/man1/as.1", "gas.1")
 
-    tgt = self.profile()
+    # FIXME: This is None when bootstraping
+    # tgt = self.profile()
+    with self.profile(self.profile().arch) as _pf:
+        _trip = _pf.triplet
 
     # create triplet symlinks for native
     for p in (self.destdir / "usr/bin").glob("*"):
         if p.name.find("-") > 0:
             continue
-        p.with_name(f"{tgt.triplet}-{p.name}").symlink_to(p.name)
+        p.with_name(f"{_trip}-{p.name}").symlink_to(p.name)
 
     for p in (self.destdir / "usr/share/man/man1").glob("*.1"):
         if p.name.find("-") > 0:
             continue
-        p.with_name(f"{tgt.triplet}-{p.name}").symlink_to(p.name)
+        p.with_name(f"{_trip}-{p.name}").symlink_to(p.name)
 
 
 @subpackage("binutils-common")
