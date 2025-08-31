@@ -64,6 +64,9 @@ def post_install(self):
     # less
     self.uninstall("usr/bin/zless")
     self.uninstall("usr/share/man/man1/zless.1")
+    # glibc
+    self.uninstall("usr/bin/gencat")
+    self.uninstall("usr/share/man/man1/gencat.1")
     # base shell
     self.install_shell("/usr/bin/sh")
     # tiny tools
@@ -113,7 +116,6 @@ def _(self):
         "cmd:ee",
         "cmd:ex",
         "cmd:fetch",
-        "cmd:gencat",
         "cmd:indent",
         "cmd:locate*",
         "cmd:m4",
