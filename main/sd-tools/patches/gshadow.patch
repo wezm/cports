@@ -1,0 +1,33 @@
+commit 54fc48a6ab0cd4fff85c3d87e0fd0459cb695ec3
+Author: Wesley Moore <wes@wezm.net>
+Date:   Sun Sep 7 15:09:13 2025 +1000
+
+    Allow HAVE_GSHADOW to be overridden
+
+diff --git a/meson.build b/meson.build
+index 8d97fbb..5c1e07c 100644
+--- a/meson.build
++++ b/meson.build
+@@ -40,7 +40,13 @@ conf = configuration_data()
+ conf.set_quoted('PROJECT_NAME', meson.project_name())
+ conf.set_quoted('PROJECT_VERSION', meson.project_version())
+ conf.set10('HAVE_ACL', libacl.found())
+-conf.set10('HAVE_GSHADOW', cc.has_function('fgetsgent'))
++if get_option('gshadow').enabled()
++  conf.set10('HAVE_GSHADOW', true)
++elif get_option('gshadow').disabled()
++  conf.set10('HAVE_GSHADOW', false)
++else
++  conf.set10('HAVE_GSHADOW', cc.has_function('fgetsgent'))
++endif
+ conf.set('_GNU_SOURCE', 1)
+ 
+ config_h = configure_file(
+diff --git a/meson_options.txt b/meson_options.txt
+index 19cdb66..59e7273 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -1,2 +1,3 @@
+ option('acl', type: 'feature', description: 'libacl support')
+ option('tests', type: 'boolean', value: true, description: 'enable testing')
++option('gshadow', type: 'feature', description: 'override for HAVE_GSHADOW')

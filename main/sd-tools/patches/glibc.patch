@@ -1,0 +1,31 @@
+commit ba7ff89fee76c5e2907eed2d5743568180bfbfb2
+Author: Wesley Moore <wes@wezm.net>
+Date:   Sun Sep 7 14:21:21 2025 +1000
+
+    Add a getdents implementation for glibc
+
+diff --git a/src/shared/copy.c b/src/shared/copy.c
+index ee2ac42..d3bc43b 100644
+--- a/src/shared/copy.c
++++ b/src/shared/copy.c
+@@ -9,6 +9,7 @@
+ #include <sys/file.h>
+ #include <sys/ioctl.h>
+ #include <sys/sendfile.h>
++#include <sys/syscall.h> // for getdents impl
+ #include <sys/xattr.h>
+ #include <unistd.h>
+ 
+@@ -876,6 +877,12 @@ static int fd_copy_node(
+              (uint8_t*) (de) < (uint8_t*) _end;                         \
+              (de) = (struct dirent*) ((uint8_t*) (de) + (de)->d_reclen))
+ 
++int getdents(int fd, struct dirent *buf, size_t len)
++{
++	if (len>INT_MAX) len = INT_MAX;
++	return syscall(SYS_getdents, fd, buf, len);
++}
++
+ static int dir_is_empty_at(int dir_fd, const char *path) {
+         _cleanup_close_ int fd = -EBADF;
+         struct dirent *buf;

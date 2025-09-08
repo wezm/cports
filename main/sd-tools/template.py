@@ -2,6 +2,9 @@ pkgname = "sd-tools"
 pkgver = "0.99.0"
 pkgrel = 4
 build_style = "meson"
+configure_args = [
+    "-Dgshadow=disabled",
+]
 hostmakedepends = ["meson", "pkgconf"]
 makedepends = [
     "acl-devel",
