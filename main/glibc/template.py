@@ -50,11 +50,15 @@ tools = {
     "CPP": "cpp",
     "AS": "as",
     "LD": "ld.bfd",
-    "OBJDUMP": "gobjdump",
-    "SED": "sed",
+    "OBJDUMP": "objdump",  # TODO: gobjdump
 }
 # resistance is futile
-options = ["bootstrap", "!check", "!lto"]
+options = ["bootstrap", "!check", "!lto"]  # TODO: check
+
+# work around:
+# objdump -f /builddir/glibc-2.42/build/format.lds.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > /builddir/glibc-2.42/build/format.lds
+# sed: 1: "s/.*file format \(.*\)/ ...": invalid command code T
+exec_wrappers = [("/usr/bin/gsed", "sed")]
 
 configure_gen = []
 
@@ -75,10 +79,6 @@ sbindir=/usr/bin
 rootsbindir=/usr/bin
 """
         )
-
-
-#  def post_configure(self):
-#      1 / 0
 
 
 def post_install(self):

@@ -1,0 +1,10 @@
+--- a/sysdeps/posix/system.c.orig	2025-09-01 15:55:32.768464686 +1000
++++ b/sysdeps/posix/system.c	2025-09-01 15:55:34.591258247 +1000
+@@ -147,7 +147,6 @@
+   ret = __posix_spawn (&pid, SHELL_PATH, NULL, &spawn_attr,
+ 		       (char *const[]){ (char *) SHELL_NAME,
+ 					(char *) "-c",
+-					(char *) "--",
+ 					(char *) line, NULL },
+ 		       __environ);
+   __posix_spawnattr_destroy (&spawn_attr);
