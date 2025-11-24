@@ -1,0 +1,2173 @@
+From 14e0ced2dbf77d0e1393a9a316e8528acb38b4ac Mon Sep 17 00:00:00 2001
+From: Jakub Panek <me@panekj.dev>
+Date: Mon, 3 Nov 2025 00:25:13 +0100
+Subject: [PATCH] remove livekit dependency
+
+---
+ Cargo.lock                               | 556 +----------------
+ Cargo.toml                               |   8 +-
+ assets/settings/default.json             |   8 +-
+ crates/audio/Cargo.toml                  |   3 -
+ crates/audio/src/audio.rs                |  33 +-
+ crates/call/Cargo.toml                   |   3 -
+ crates/call/src/call_impl/mod.rs         |   1 -
+ crates/call/src/call_impl/participant.rs |   8 +-
+ crates/call/src/call_impl/room.rs        | 735 +----------------------
+ crates/collab/Cargo.toml                 |   2 -
+ crates/collab/src/lib.rs                 |   8 +-
+ crates/collab/src/rpc.rs                 | 101 +---
+ crates/workspace/src/shared_screen.rs    |  26 +-
+ 13 files changed, 51 insertions(+), 1441 deletions(-)
+
+diff --git a/Cargo.lock b/Cargo.lock
+index 3dc7b2337edcb1..a39e2e30486a88 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -1299,7 +1299,6 @@ dependencies = [
+  "crossbeam",
+  "denoise",
+  "gpui",
+- "libwebrtc",
+  "log",
+  "parking_lot",
+  "rodio",
+@@ -2190,7 +2189,7 @@ dependencies = [
+  "ash-window",
+  "bitflags 2.9.4",
+  "bytemuck",
+- "codespan-reporting 0.12.0",
++ "codespan-reporting",
+  "glow",
+  "gpu-alloc",
+  "gpu-alloc-ash",
+@@ -2248,7 +2247,7 @@ dependencies = [
+  "arrayvec",
+  "cc",
+  "cfg-if",
+- "constant_time_eq 0.3.1",
++ "constant_time_eq",
+ ]
+ 
+ [[package]]
+@@ -2525,26 +2524,6 @@ dependencies = [
+  "either",
+ ]
+ 
+-[[package]]
+-name = "bzip2"
+-version = "0.4.4"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "bdb116a6ef3f6c3698828873ad02c3014b3c85cadb88496095628e3ef1e347f8"
+-dependencies = [
+- "bzip2-sys",
+- "libc",
+-]
+-
+-[[package]]
+-name = "bzip2-sys"
+-version = "0.1.13+1.0.8"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "225bff33b2141874fe80d71e07d6eec4f85c5c216453dd96388240f96e1acc14"
+-dependencies = [
+- "cc",
+- "pkg-config",
+-]
+-
+ [[package]]
+ name = "cached"
+ version = "0.56.0"
+@@ -2593,7 +2572,6 @@ dependencies = [
+  "gpui_tokio",
+  "http_client",
+  "language",
+- "livekit_client",
+  "log",
+  "postage",
+  "project",
+@@ -2657,7 +2635,7 @@ dependencies = [
+  "thiserror 1.0.69",
+  "ug",
+  "yoke 0.7.5",
+- "zip 1.1.4",
++ "zip",
+ ]
+ 
+ [[package]]
+@@ -3290,17 +3268,6 @@ dependencies = [
+  "unicode-width",
+ ]
+ 
+-[[package]]
+-name = "codespan-reporting"
+-version = "0.13.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "ba7a06c0b31fff5ff2e1e7d37dbf940864e2a974b336e1a2938d10af6e8fb283"
+-dependencies = [
+- "serde",
+- "termcolor",
+- "unicode-width",
+-]
+-
+ [[package]]
+ name = "codestral"
+ version = "0.1.0"
+@@ -3371,8 +3338,6 @@ dependencies = [
+  "indoc",
+  "language",
+  "language_model",
+- "livekit_api",
+- "livekit_client",
+  "log",
+  "lsp",
+  "menu",
+@@ -3656,12 +3621,6 @@ dependencies = [
+  "tiny-keccak",
+ ]
+ 
+-[[package]]
+-name = "constant_time_eq"
+-version = "0.1.5"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "245097e9a4535ee1e3e3931fcfcd55a796a44c643e8596ff6566d68f09b87bbc"
+-
+ [[package]]
+ name = "constant_time_eq"
+ version = "0.3.1"
+@@ -3893,17 +3852,6 @@ dependencies = [
+  "libm",
+ ]
+ 
+-[[package]]
+-name = "coreaudio-rs"
+-version = "0.12.1"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "34ca07354f6d0640333ef95f48d460a4bcf34812a7e7967f9b44c728a8f37c28"
+-dependencies = [
+- "bitflags 1.3.2",
+- "core-foundation-sys",
+- "coreaudio-sys",
+-]
+-
+ [[package]]
+ name = "coreaudio-rs"
+ version = "0.13.0"
+@@ -3918,15 +3866,6 @@ dependencies = [
+  "objc2-core-foundation",
+ ]
+ 
+-[[package]]
+-name = "coreaudio-sys"
+-version = "0.2.17"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "ceec7a6067e62d6f931a2baf6f3a751f4a892595bcec1461a3c94ef9949864b6"
+-dependencies = [
+- "bindgen 0.72.1",
+-]
+-
+ [[package]]
+ name = "cosmic-text"
+ version = "0.14.2"
+@@ -3957,7 +3896,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cbd307f43cc2a697e2d1f8bc7a1d824b5269e052209e28883e5bc04d095aaa3f"
+ dependencies = [
+  "alsa",
+- "coreaudio-rs 0.13.0",
++ "coreaudio-rs",
+  "dasp_sample",
+  "jni",
+  "js-sys",
+@@ -4408,68 +4347,6 @@ version = "1.2.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f27ae1dd37df86211c42e150270f82743308803d90a6f6e6651cd730d5e1732f"
+ 
+-[[package]]
+-name = "cxx"
+-version = "1.0.187"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "d8465678d499296e2cbf9d3acf14307458fd69b471a31b65b3c519efe8b5e187"
+-dependencies = [
+- "cc",
+- "cxx-build",
+- "cxxbridge-cmd",
+- "cxxbridge-flags",
+- "cxxbridge-macro",
+- "foldhash 0.2.0",
+- "link-cplusplus",
+-]
+-
+-[[package]]
+-name = "cxx-build"
+-version = "1.0.187"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "d74b6bcf49ebbd91f1b1875b706ea46545032a14003b5557b7dfa4bbeba6766e"
+-dependencies = [
+- "cc",
+- "codespan-reporting 0.13.0",
+- "indexmap 2.11.4",
+- "proc-macro2",
+- "quote",
+- "scratch",
+- "syn 2.0.106",
+-]
+-
+-[[package]]
+-name = "cxxbridge-cmd"
+-version = "1.0.187"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "94ca2ad69673c4b35585edfa379617ac364bccd0ba0adf319811ba3a74ffa48a"
+-dependencies = [
+- "clap",
+- "codespan-reporting 0.13.0",
+- "indexmap 2.11.4",
+- "proc-macro2",
+- "quote",
+- "syn 2.0.106",
+-]
+-
+-[[package]]
+-name = "cxxbridge-flags"
+-version = "1.0.187"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "d29b52102aa395386d77d322b3a0522f2035e716171c2c60aa87cc5e9466e523"
+-
+-[[package]]
+-name = "cxxbridge-macro"
+-version = "1.0.187"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "2a8ebf0b6138325af3ec73324cb3a48b64d57721f17291b151206782e61f66cd"
+-dependencies = [
+- "indexmap 2.11.4",
+- "proc-macro2",
+- "quote",
+- "syn 2.0.106",
+-]
+-
+ [[package]]
+ name = "dap"
+ version = "0.1.0"
+@@ -6254,12 +6131,6 @@ version = "0.1.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2"
+ 
+-[[package]]
+-name = "foldhash"
+-version = "0.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb"
+-
+ [[package]]
+ name = "font-types"
+ version = "0.10.0"
+@@ -6431,16 +6302,6 @@ dependencies = [
+  "windows-sys 0.59.0",
+ ]
+ 
+-[[package]]
+-name = "fs2"
+-version = "0.4.3"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "9564fc758e15025b46aa6643b1b77d047d1a56a1aea6e01002ac0c7026876213"
+-dependencies = [
+- "libc",
+- "winapi",
+-]
+-
+ [[package]]
+ name = "fs4"
+ version = "0.13.1"
+@@ -7507,7 +7368,7 @@ checksum = "9229cfe53dfd69f0609a49f65461bd93001ea1ef889cd5529dd176593f5338a1"
+ dependencies = [
+  "allocator-api2",
+  "equivalent",
+- "foldhash 0.1.5",
++ "foldhash",
+  "rayon",
+  "serde",
+ ]
+@@ -8453,15 +8314,6 @@ dependencies = [
+  "either",
+ ]
+ 
+-[[package]]
+-name = "itertools"
+-version = "0.11.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "b1c173a5686ce8bfa551b3563d0c2170bf24ca44da99c7ca4bfdab5418c3fe57"
+-dependencies = [
+- "either",
+-]
+-
+ [[package]]
+ name = "itertools"
+ version = "0.12.1"
+@@ -8627,21 +8479,6 @@ dependencies = [
+  "uuid-simd",
+ ]
+ 
+-[[package]]
+-name = "jsonwebtoken"
+-version = "9.3.1"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "5a87cc7a48537badeae96744432de36f4be2b4a34a05a5ef32e9dd8a1c169dde"
+-dependencies = [
+- "base64 0.22.1",
+- "js-sys",
+- "pem",
+- "ring",
+- "serde",
+- "serde_json",
+- "simple_asn1",
+-]
+-
+ [[package]]
+ name = "jupyter-protocol"
+ version = "0.6.0"
+@@ -9180,29 +9017,6 @@ dependencies = [
+  "vcpkg",
+ ]
+ 
+-[[package]]
+-name = "libwebrtc"
+-version = "0.3.10"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "cxx",
+- "jni",
+- "js-sys",
+- "lazy_static",
+- "livekit-protocol",
+- "livekit-runtime",
+- "log",
+- "parking_lot",
+- "serde",
+- "serde_json",
+- "thiserror 1.0.69",
+- "tokio",
+- "wasm-bindgen",
+- "wasm-bindgen-futures",
+- "web-sys",
+- "webrtc-sys",
+-]
+-
+ [[package]]
+ name = "libz-rs-sys"
+ version = "0.5.2"
+@@ -9238,15 +9052,6 @@ dependencies = [
+  "workspace",
+ ]
+ 
+-[[package]]
+-name = "link-cplusplus"
+-version = "1.0.12"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7f78c730aaa7d0b9336a299029ea49f9ee53b0ed06e9202e8cb7db9bae7b8c82"
+-dependencies = [
+- "cc",
+-]
+-
+ [[package]]
+ name = "linkify"
+ version = "0.10.0"
+@@ -9280,133 +9085,6 @@ version = "0.4.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f5e54036fe321fd421e10d732f155734c4e4afd610dd556d9a82833ab3ee0bed"
+ 
+-[[package]]
+-name = "livekit"
+-version = "0.7.8"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "chrono",
+- "futures-util",
+- "lazy_static",
+- "libloading",
+- "libwebrtc",
+- "livekit-api",
+- "livekit-protocol",
+- "livekit-runtime",
+- "log",
+- "parking_lot",
+- "prost 0.12.6",
+- "semver",
+- "serde",
+- "serde_json",
+- "thiserror 1.0.69",
+- "tokio",
+-]
+-
+-[[package]]
+-name = "livekit-api"
+-version = "0.4.2"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "futures-util",
+- "http 0.2.12",
+- "livekit-protocol",
+- "livekit-runtime",
+- "log",
+- "parking_lot",
+- "pbjson-types",
+- "prost 0.12.6",
+- "rand 0.9.2",
+- "reqwest 0.11.27",
+- "scopeguard",
+- "serde",
+- "sha2",
+- "thiserror 1.0.69",
+- "tokio",
+- "tokio-tungstenite 0.26.2",
+- "url",
+-]
+-
+-[[package]]
+-name = "livekit-protocol"
+-version = "0.3.9"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "futures-util",
+- "livekit-runtime",
+- "parking_lot",
+- "pbjson",
+- "pbjson-types",
+- "prost 0.12.6",
+- "prost-types 0.12.6",
+- "serde",
+- "thiserror 1.0.69",
+- "tokio",
+-]
+-
+-[[package]]
+-name = "livekit-runtime"
+-version = "0.4.0"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "tokio",
+- "tokio-stream",
+-]
+-
+-[[package]]
+-name = "livekit_api"
+-version = "0.1.0"
+-dependencies = [
+- "anyhow",
+- "async-trait",
+- "jsonwebtoken",
+- "log",
+- "prost 0.9.0",
+- "prost-build 0.9.0",
+- "prost-types 0.9.0",
+- "serde",
+- "zed-reqwest",
+-]
+-
+-[[package]]
+-name = "livekit_client"
+-version = "0.1.0"
+-dependencies = [
+- "anyhow",
+- "async-trait",
+- "audio",
+- "collections",
+- "core-foundation 0.10.0",
+- "core-video",
+- "coreaudio-rs 0.12.1",
+- "cpal",
+- "futures 0.3.31",
+- "gpui",
+- "gpui_tokio",
+- "http_client_tls",
+- "image",
+- "libwebrtc",
+- "livekit",
+- "livekit_api",
+- "log",
+- "nanoid",
+- "objc",
+- "parking_lot",
+- "postage",
+- "rodio",
+- "serde",
+- "serde_json",
+- "serde_urlencoded",
+- "settings",
+- "sha2",
+- "simplelog",
+- "smallvec",
+- "tokio-tungstenite 0.26.2",
+- "ui",
+- "util",
+- "zed-scap",
+-]
+-
+ [[package]]
+ name = "lmdb-master-sys"
+ version = "0.2.5"
+@@ -10135,12 +9813,6 @@ version = "0.8.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
+ 
+-[[package]]
+-name = "multimap"
+-version = "0.10.1"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "1d87ecb2933e8aeadb3e3a02b828fed80a7528047e68b4f424523a0981a3a084"
+-
+ [[package]]
+ name = "naga"
+ version = "25.0.1"
+@@ -10151,7 +9823,7 @@ dependencies = [
+  "bit-set 0.8.0",
+  "bitflags 2.9.4",
+  "cfg_aliases 0.2.1",
+- "codespan-reporting 0.12.0",
++ "codespan-reporting",
+  "half",
+  "hashbrown 0.15.5",
+  "hexf-parse",
+@@ -10957,7 +10629,7 @@ dependencies = [
+  "md-5",
+  "num",
+  "num-bigint-dig",
+- "pbkdf2 0.12.2",
++ "pbkdf2",
+  "rand 0.9.2",
+  "serde",
+  "sha2",
+@@ -11304,17 +10976,6 @@ version = "0.5.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "35ffd90b3f3b6477db7478016b9efb1b7e9d38eafd095f0542fe0ec2ea884a13"
+ 
+-[[package]]
+-name = "password-hash"
+-version = "0.4.2"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7676374caaee8a325c9e7a2ae557f216c5563a171d6997b0ef8a65af35147700"
+-dependencies = [
+- "base64ct",
+- "rand_core 0.6.4",
+- "subtle",
+-]
+-
+ [[package]]
+ name = "password-hash"
+ version = "0.5.0"
+@@ -11366,55 +11027,6 @@ dependencies = [
+  "util",
+ ]
+ 
+-[[package]]
+-name = "pbjson"
+-version = "0.6.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "1030c719b0ec2a2d25a5df729d6cff1acf3cc230bf766f4f97833591f7577b90"
+-dependencies = [
+- "base64 0.21.7",
+- "serde",
+-]
+-
+-[[package]]
+-name = "pbjson-build"
+-version = "0.6.2"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "2580e33f2292d34be285c5bc3dba5259542b083cfad6037b6d70345f24dcb735"
+-dependencies = [
+- "heck 0.4.1",
+- "itertools 0.11.0",
+- "prost 0.12.6",
+- "prost-types 0.12.6",
+-]
+-
+-[[package]]
+-name = "pbjson-types"
+-version = "0.6.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "18f596653ba4ac51bdecbb4ef6773bc7f56042dc13927910de1684ad3d32aa12"
+-dependencies = [
+- "bytes 1.10.1",
+- "chrono",
+- "pbjson",
+- "pbjson-build",
+- "prost 0.12.6",
+- "prost-build 0.12.6",
+- "serde",
+-]
+-
+-[[package]]
+-name = "pbkdf2"
+-version = "0.11.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "83a0692ec44e4cf1ef28ca317f14f8f07da2d95ec3fa01f86e4467b725e60917"
+-dependencies = [
+- "digest",
+- "hmac",
+- "password-hash 0.4.2",
+- "sha2",
+-]
+-
+ [[package]]
+ name = "pbkdf2"
+ version = "0.12.2"
+@@ -11431,16 +11043,6 @@ version = "0.8.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0008e816fcdaf229cdd540e9b6ca2dc4a10d65c31624abb546c6420a02846e61"
+ 
+-[[package]]
+-name = "pem"
+-version = "3.0.6"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "1d30c53c26bc5b31a98cd02d20f25a7c8567146caf63ed593a9d87b2775291be"
+-dependencies = [
+- "base64 0.22.1",
+- "serde_core",
+-]
+-
+ [[package]]
+ name = "pem-rfc7468"
+ version = "0.7.0"
+@@ -12674,7 +12276,7 @@ dependencies = [
+  "compact_str",
+  "either",
+  "flate2",
+- "foldhash 0.1.5",
++ "foldhash",
+  "hashbrown 0.15.5",
+  "indexmap 2.11.4",
+  "libc",
+@@ -13171,36 +12773,15 @@ dependencies = [
+  "itertools 0.10.5",
+  "lazy_static",
+  "log",
+- "multimap 0.8.3",
++ "multimap",
+  "petgraph",
+  "prost 0.9.0",
+- "prost-types 0.9.0",
++ "prost-types",
+  "regex",
+  "tempfile",
+  "which 4.4.2",
+ ]
+ 
+-[[package]]
+-name = "prost-build"
+-version = "0.12.6"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "22505a5c94da8e3b7c2996394d1c933236c4d743e81a410bcca4e6989fc066a4"
+-dependencies = [
+- "bytes 1.10.1",
+- "heck 0.5.0",
+- "itertools 0.12.1",
+- "log",
+- "multimap 0.10.1",
+- "once_cell",
+- "petgraph",
+- "prettyplease",
+- "prost 0.12.6",
+- "prost-types 0.12.6",
+- "regex",
+- "syn 2.0.106",
+- "tempfile",
+-]
+-
+ [[package]]
+ name = "prost-derive"
+ version = "0.9.0"
+@@ -13237,15 +12818,6 @@ dependencies = [
+  "prost 0.9.0",
+ ]
+ 
+-[[package]]
+-name = "prost-types"
+-version = "0.12.6"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "9091c90b0a32608e984ff2fa4091273cbdd755d54935c51d520887f4a1dbd5b0"
+-dependencies = [
+- "prost 0.12.6",
+-]
+-
+ [[package]]
+ name = "proto"
+ version = "0.1.0"
+@@ -13253,7 +12825,7 @@ dependencies = [
+  "anyhow",
+  "collections",
+  "prost 0.9.0",
+- "prost-build 0.9.0",
++ "prost-build",
+  "serde",
+  "typed-path",
+ ]
+@@ -14085,7 +13657,6 @@ dependencies = [
+  "http 0.2.12",
+  "http-body 0.4.6",
+  "hyper 0.14.32",
+- "hyper-rustls 0.24.2",
+  "hyper-tls",
+  "ipnet",
+  "js-sys",
+@@ -14095,8 +13666,6 @@ dependencies = [
+  "once_cell",
+  "percent-encoding",
+  "pin-project-lite",
+- "rustls 0.21.12",
+- "rustls-native-certs 0.6.3",
+  "rustls-pemfile 1.0.4",
+  "serde",
+  "serde_json",
+@@ -14105,7 +13674,6 @@ dependencies = [
+  "system-configuration 0.5.1",
+  "tokio",
+  "tokio-native-tls",
+- "tokio-rustls 0.24.1",
+  "tower-service",
+  "url",
+  "wasm-bindgen",
+@@ -14872,12 +14440,6 @@ version = "1.2.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
+ 
+-[[package]]
+-name = "scratch"
+-version = "1.0.9"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "d68f2ec51b097e4c1a75b681a8bec621909b5e91f15bb7b840c4f2f7b01148b2"
+-
+ [[package]]
+ name = "screencapturekit"
+ version = "0.2.8"
+@@ -14927,8 +14489,8 @@ version = "0.11.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0516a385866c09368f0b5bcd1caff3366aace790fcd46e2bb032697bb172fd1f"
+ dependencies = [
+- "password-hash 0.5.0",
+- "pbkdf2 0.12.2",
++ "password-hash",
++ "pbkdf2",
+  "salsa20",
+  "sha2",
+ ]
+@@ -15610,18 +15172,6 @@ version = "0.1.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e3a9fe34e3e7a50316060351f37187a3f546bce95496156754b601a5fa71b76e"
+ 
+-[[package]]
+-name = "simple_asn1"
+-version = "0.6.3"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "297f631f50729c8c99b84667867963997ec0b50f32b2a7dbcab828ef0541e8bb"
+-dependencies = [
+- "num-bigint",
+- "num-traits",
+- "thiserror 2.0.17",
+- "time",
+-]
+-
+ [[package]]
+ name = "simplecss"
+ version = "0.2.2"
+@@ -17597,21 +17147,6 @@ dependencies = [
+  "tungstenite 0.21.0",
+ ]
+ 
+-[[package]]
+-name = "tokio-tungstenite"
+-version = "0.26.2"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7a9daff607c6d2bf6c16fd681ccb7eecc83e4e2cdc1ca067ffaadfca5de7f084"
+-dependencies = [
+- "futures-util",
+- "log",
+- "rustls 0.23.33",
+- "rustls-pki-types",
+- "tokio",
+- "tokio-rustls 0.26.2",
+- "tungstenite 0.26.2",
+-]
+-
+ [[package]]
+ name = "tokio-util"
+ version = "0.7.16"
+@@ -18246,25 +17781,6 @@ dependencies = [
+  "utf-8",
+ ]
+ 
+-[[package]]
+-name = "tungstenite"
+-version = "0.26.2"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "4793cb5e56680ecbb1d843515b23b6de9a75eb04b66643e256a396d43be33c13"
+-dependencies = [
+- "bytes 1.10.1",
+- "data-encoding",
+- "http 1.3.1",
+- "httparse",
+- "log",
+- "rand 0.9.2",
+- "rustls 0.23.33",
+- "rustls-pki-types",
+- "sha1",
+- "thiserror 2.0.17",
+- "utf-8",
+-]
+-
+ [[package]]
+ name = "tungstenite"
+ version = "0.27.0"
+@@ -19616,32 +19132,6 @@ dependencies = [
+  "rustls-pki-types",
+ ]
+ 
+-[[package]]
+-name = "webrtc-sys"
+-version = "0.3.7"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "cc",
+- "cxx",
+- "cxx-build",
+- "glob",
+- "log",
+- "webrtc-sys-build",
+-]
+-
+-[[package]]
+-name = "webrtc-sys-build"
+-version = "0.3.6"
+-source = "git+https://github.com/zed-industries/livekit-rust-sdks?rev=5f04705ac3f356350ae31534ffbc476abc9ea83d#5f04705ac3f356350ae31534ffbc476abc9ea83d"
+-dependencies = [
+- "fs2",
+- "regex",
+- "reqwest 0.11.27",
+- "scratch",
+- "semver",
+- "zip 0.6.6",
+-]
+-
+ [[package]]
+ name = "weezl"
+ version = "0.1.10"
+@@ -21776,26 +21266,6 @@ dependencies = [
+  "zlog",
+ ]
+ 
+-[[package]]
+-name = "zip"
+-version = "0.6.6"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "760394e246e4c28189f19d488c058bf16f564016aefac5d32bb1f3b51d5e9261"
+-dependencies = [
+- "aes",
+- "byteorder",
+- "bzip2",
+- "constant_time_eq 0.1.5",
+- "crc32fast",
+- "crossbeam-utils",
+- "flate2",
+- "hmac",
+- "pbkdf2 0.11.0",
+- "sha1",
+- "time",
+- "zstd 0.11.2+zstd.1.5.2",
+-]
+-
+ [[package]]
+ name = "zip"
+ version = "1.1.4"
+diff --git a/Cargo.toml b/Cargo.toml
+index 369082ff16736f..d22fd4a83dbba4 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -100,8 +100,8 @@ members = [
+     "crates/language_tools",
+     "crates/languages",
+     "crates/line_ending_selector",
+-    "crates/livekit_api",
+-    "crates/livekit_client",
++    # "crates/livekit_api",
++    # "crates/livekit_client",
+     "crates/lmstudio",
+     "crates/lsp",
+     "crates/markdown",
+@@ -329,8 +329,8 @@ language_selector = { path = "crates/language_selector" }
+ language_tools = { path = "crates/language_tools" }
+ languages = { path = "crates/languages" }
+ line_ending_selector = { path = "crates/line_ending_selector" }
+-livekit_api = { path = "crates/livekit_api" }
+-livekit_client = { path = "crates/livekit_client" }
++# livekit_api = { path = "crates/livekit_api" }
++# livekit_client = { path = "crates/livekit_client" }
+ lmstudio = { path = "crates/lmstudio" }
+ lsp = { path = "crates/lsp" }
+ markdown = { path = "crates/markdown" }
+diff --git a/assets/settings/default.json b/assets/settings/default.json
+index f62cc1844732db..5f3c1be2601e9d 100644
+--- a/assets/settings/default.json
++++ b/assets/settings/default.json
+@@ -1156,17 +1156,17 @@
+   // Control what info is collected by Zed.
+   "telemetry": {
+     // Send debug info like crash reports.
+-    "diagnostics": true,
++    "diagnostics": false,
+     // Send anonymized usage data like what languages you're using Zed with.
+-    "metrics": true
++    "metrics": false
+   },
+   // Whether to disable all AI features in Zed.
+   //
+   // Default: false
+-  "disable_ai": false,
++  "disable_ai": true,
+   // Automatically update Zed. This setting may be ignored on Linux if
+   // installed through a package manager.
+-  "auto_update": true,
++  "auto_update": false,
+   // How to render LSP `textDocument/documentColor` colors in the editor.
+   //
+   // Possible values:
+diff --git a/crates/audio/Cargo.toml b/crates/audio/Cargo.toml
+index 2aee764007a791..89d7e819e8f141 100644
+--- a/crates/audio/Cargo.toml
++++ b/crates/audio/Cargo.toml
+@@ -27,6 +27,3 @@ settings.workspace = true
+ smol.workspace = true
+ thiserror.workspace = true
+ util.workspace = true
+-
+-[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))'.dependencies]
+-libwebrtc = { rev = "5f04705ac3f356350ae31534ffbc476abc9ea83d", git = "https://github.com/zed-industries/livekit-rust-sdks" }
+diff --git a/crates/audio/src/audio.rs b/crates/audio/src/audio.rs
+index 9ad5a36a374d87..513d7ffe12b265 100644
+--- a/crates/audio/src/audio.rs
++++ b/crates/audio/src/audio.rs
+@@ -6,7 +6,6 @@ use log::info;
+ #[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))]
+ mod non_windows_and_freebsd_deps {
+     pub(super) use gpui::AsyncApp;
+-    pub(super) use libwebrtc::native::apm;
+     pub(super) use parking_lot::Mutex;
+     pub(super) use rodio::cpal::Sample;
+     pub(super) use rodio::source::LimitSettings;
+@@ -83,7 +82,7 @@ pub struct Audio {
+     output_handle: Option<OutputStream>,
+     output_mixer: Option<Mixer>,
+     #[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))]
+-    pub echo_canceller: Arc<Mutex<apm::AudioProcessingModule>>,
++    pub echo_canceller: Arc<Mutex<()>>,
+     source_cache: HashMap<Sound, Buffered<Decoder<Cursor<Vec<u8>>>>>,
+     replays: replays::Replays,
+ }
+@@ -97,9 +96,7 @@ impl Default for Audio {
+                 all(target_os = "windows", target_env = "gnu"),
+                 target_os = "freebsd"
+             )))]
+-            echo_canceller: Arc::new(Mutex::new(apm::AudioProcessingModule::new(
+-                true, false, false, false,
+-            ))),
++            echo_canceller: Arc::new(Mutex::new(())),
+             source_cache: Default::default(),
+             replays: Default::default(),
+         }
+@@ -138,14 +135,6 @@ impl Audio {
+                 )))]
+                 let source = source.inspect_buffer::<BUFFER_SIZE, _>(move |buffer| {
+                     let mut buf: [i16; _] = buffer.map(|s| s.to_sample());
+-                    echo_canceller
+-                        .lock()
+-                        .process_reverse_stream(
+-                            &mut buf,
+-                            SAMPLE_RATE.get() as i32,
+-                            CHANNEL_COUNT.get().into(),
+-                        )
+-                        .expect("Audio input and output threads should not panic");
+                 });
+                 output_handle.mixer().add(source);
+             }
+@@ -186,22 +175,6 @@ impl Audio {
+             .limit(LimitSettings::live_performance())
+             .process_buffer::<BUFFER_SIZE, _>(move |buffer| {
+                 let mut int_buffer: [i16; _] = buffer.map(|s| s.to_sample());
+-                if voip_parts
+-                    .echo_canceller
+-                    .lock()
+-                    .process_stream(
+-                        &mut int_buffer,
+-                        SAMPLE_RATE.get() as i32,
+-                        CHANNEL_COUNT.get() as i32,
+-                    )
+-                    .context("livekit audio processor error")
+-                    .log_err()
+-                    .is_some()
+-                {
+-                    for (sample, processed) in buffer.iter_mut().zip(&int_buffer) {
+-                        *sample = (*processed).to_sample();
+-                    }
+-                }
+             })
+             .denoise()
+             .context("Could not set up denoiser")?
+@@ -296,7 +269,7 @@ impl Audio {
+ 
+ #[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))]
+ pub struct VoipParts {
+-    echo_canceller: Arc<Mutex<apm::AudioProcessingModule>>,
++    echo_canceller: Arc<Mutex<()>>,
+     replays: replays::Replays,
+     legacy_audio_compatible: bool,
+ }
+diff --git a/crates/call/Cargo.toml b/crates/call/Cargo.toml
+index ff034f914b0be4..c5e423ce381c98 100644
+--- a/crates/call/Cargo.toml
++++ b/crates/call/Cargo.toml
+@@ -17,7 +17,6 @@ test-support = [
+     "client/test-support",
+     "collections/test-support",
+     "gpui/test-support",
+-    "livekit_client/test-support",
+     "project/test-support",
+     "util/test-support"
+ ]
+@@ -40,7 +39,6 @@ settings.workspace = true
+ telemetry.workspace = true
+ util.workspace = true
+ gpui_tokio.workspace = true
+-livekit_client.workspace = true
+ 
+ [dev-dependencies]
+ client = { workspace = true, features = ["test-support"] }
+@@ -51,4 +49,3 @@ language = { workspace = true, features = ["test-support"] }
+ project = { workspace = true, features = ["test-support"] }
+ util = { workspace = true, features = ["test-support"] }
+ http_client = { workspace = true, features = ["test-support"] }
+-livekit_client = { workspace = true, features = ["test-support"] }
+diff --git a/crates/call/src/call_impl/mod.rs b/crates/call/src/call_impl/mod.rs
+index 156a80faba61d2..6393fc91d5f130 100644
+--- a/crates/call/src/call_impl/mod.rs
++++ b/crates/call/src/call_impl/mod.rs
+@@ -17,7 +17,6 @@ use room::Event;
+ use settings::Settings;
+ use std::sync::Arc;
+ 
+-pub use livekit_client::{RemoteVideoTrack, RemoteVideoTrackView, RemoteVideoTrackViewEvent};
+ pub use participant::ParticipantLocation;
+ pub use room::Room;
+ 
+diff --git a/crates/call/src/call_impl/participant.rs b/crates/call/src/call_impl/participant.rs
+index 6fb6a2eb79b537..090acf47bb8a05 100644
+--- a/crates/call/src/call_impl/participant.rs
++++ b/crates/call/src/call_impl/participant.rs
+@@ -2,13 +2,9 @@ use anyhow::{Context as _, Result};
+ use client::{ParticipantIndex, User, proto};
+ use collections::HashMap;
+ use gpui::WeakEntity;
+-use livekit_client::AudioStream;
+ use project::Project;
+ use std::sync::Arc;
+ 
+-pub use livekit_client::TrackSid;
+-pub use livekit_client::{RemoteAudioTrack, RemoteVideoTrack};
+-
+ #[derive(Copy, Clone, Debug, Eq, PartialEq)]
+ pub enum ParticipantLocation {
+     SharedProject { project_id: u64 },
+@@ -58,8 +54,8 @@ pub struct RemoteParticipant {
+     pub participant_index: ParticipantIndex,
+     pub muted: bool,
+     pub speaking: bool,
+-    pub video_tracks: HashMap<TrackSid, RemoteVideoTrack>,
+-    pub audio_tracks: HashMap<TrackSid, (RemoteAudioTrack, AudioStream)>,
++    pub video_tracks: HashMap<(), ()>,
++    pub audio_tracks: HashMap<(), ((), ())>,
+ }
+ 
+ impl RemoteParticipant {
+diff --git a/crates/call/src/call_impl/room.rs b/crates/call/src/call_impl/room.rs
+index e659d1cf05b228..ef67f8c3ece3bd 100644
+--- a/crates/call/src/call_impl/room.rs
++++ b/crates/call/src/call_impl/room.rs
+@@ -18,8 +18,6 @@ use gpui::{
+ };
+ use gpui_tokio::Tokio;
+ use language::LanguageRegistry;
+-use livekit::{LocalTrackPublication, ParticipantIdentity, RoomEvent};
+-use livekit_client::{self as livekit, AudioStream, TrackSid};
+ use postage::{sink::Sink, stream::Stream, watch};
+ use project::Project;
+ use settings::Settings as _;
+@@ -40,7 +38,7 @@ pub enum Event {
+         participant_id: proto::PeerId,
+     },
+     RemoteVideoTrackUnsubscribed {
+-        sid: TrackSid,
++        sid: (),
+     },
+     RemoteAudioTracksChanged {
+         participant_id: proto::PeerId,
+@@ -101,11 +99,7 @@ impl Room {
+     }
+ 
+     pub fn is_connected(&self, _: &App) -> bool {
+-        if let Some(live_kit) = self.live_kit.as_ref() {
+-            live_kit.room.connection_state() == livekit::ConnectionState::Connected
+-        } else {
+-            false
+-        }
++        false
+     }
+ 
+     fn new(
+@@ -674,409 +668,16 @@ impl Room {
+     }
+ 
+     fn start_room_connection(&self, mut room: proto::Room, cx: &mut Context<Self>) -> Task<()> {
+-        // Filter ourselves out from the room's participants.
+-        let local_participant_ix = room
+-            .participants
+-            .iter()
+-            .position(|participant| Some(participant.user_id) == self.client.user_id());
+-        let local_participant = local_participant_ix.map(|ix| room.participants.swap_remove(ix));
+-
+-        let pending_participant_user_ids = room
+-            .pending_participants
+-            .iter()
+-            .map(|p| p.user_id)
+-            .collect::<Vec<_>>();
+-
+-        let remote_participant_user_ids = room
+-            .participants
+-            .iter()
+-            .map(|p| p.user_id)
+-            .collect::<Vec<_>>();
+-
+-        let (remote_participants, pending_participants) =
+-            self.user_store.update(cx, move |user_store, cx| {
+-                (
+-                    user_store.get_users(remote_participant_user_ids, cx),
+-                    user_store.get_users(pending_participant_user_ids, cx),
+-                )
+-            });
+-        cx.spawn(async move |this, cx| {
+-            let (remote_participants, pending_participants) =
+-                futures::join!(remote_participants, pending_participants);
+-
+-            this.update(cx, |this, cx| {
+-                this.participant_user_ids.clear();
+-
+-                if let Some(participant) = local_participant {
+-                    let role = participant.role();
+-                    this.local_participant.projects = participant.projects;
+-                    if this.local_participant.role != role {
+-                        this.local_participant.role = role;
+-
+-                        if role == proto::ChannelRole::Guest {
+-                            for project in mem::take(&mut this.shared_projects) {
+-                                if let Some(project) = project.upgrade() {
+-                                    this.unshare_project(project, cx).log_err();
+-                                }
+-                            }
+-                            this.local_participant.projects.clear();
+-                            if let Some(livekit_room) = &mut this.live_kit {
+-                                livekit_room.stop_publishing(cx);
+-                            }
+-                        }
+-
+-                        this.joined_projects.retain(|project| {
+-                            if let Some(project) = project.upgrade() {
+-                                project.update(cx, |project, cx| project.set_role(role, cx));
+-                                true
+-                            } else {
+-                                false
+-                            }
+-                        });
+-                    }
+-                } else {
+-                    this.local_participant.projects.clear();
+-                }
+-
+-                let livekit_participants = this
+-                    .live_kit
+-                    .as_ref()
+-                    .map(|live_kit| live_kit.room.remote_participants());
+-
+-                if let Some(participants) = remote_participants.log_err() {
+-                    for (participant, user) in room.participants.into_iter().zip(participants) {
+-                        let Some(peer_id) = participant.peer_id else {
+-                            continue;
+-                        };
+-                        let participant_index = ParticipantIndex(participant.participant_index);
+-                        this.participant_user_ids.insert(participant.user_id);
+-
+-                        let old_projects = this
+-                            .remote_participants
+-                            .get(&participant.user_id)
+-                            .into_iter()
+-                            .flat_map(|existing| &existing.projects)
+-                            .map(|project| project.id)
+-                            .collect::<HashSet<_>>();
+-                        let new_projects = participant
+-                            .projects
+-                            .iter()
+-                            .map(|project| project.id)
+-                            .collect::<HashSet<_>>();
+-
+-                        for project in &participant.projects {
+-                            if !old_projects.contains(&project.id) {
+-                                cx.emit(Event::RemoteProjectShared {
+-                                    owner: user.clone(),
+-                                    project_id: project.id,
+-                                    worktree_root_names: project.worktree_root_names.clone(),
+-                                });
+-                            }
+-                        }
+-
+-                        for unshared_project_id in old_projects.difference(&new_projects) {
+-                            this.joined_projects.retain(|project| {
+-                                if let Some(project) = project.upgrade() {
+-                                    project.update(cx, |project, cx| {
+-                                        if project.remote_id() == Some(*unshared_project_id) {
+-                                            project.disconnected_from_host(cx);
+-                                            false
+-                                        } else {
+-                                            true
+-                                        }
+-                                    })
+-                                } else {
+-                                    false
+-                                }
+-                            });
+-                            cx.emit(Event::RemoteProjectUnshared {
+-                                project_id: *unshared_project_id,
+-                            });
+-                        }
+-
+-                        let role = participant.role();
+-                        let location = ParticipantLocation::from_proto(participant.location)
+-                            .unwrap_or(ParticipantLocation::External);
+-                        if let Some(remote_participant) =
+-                            this.remote_participants.get_mut(&participant.user_id)
+-                        {
+-                            remote_participant.peer_id = peer_id;
+-                            remote_participant.projects = participant.projects;
+-                            remote_participant.participant_index = participant_index;
+-                            if location != remote_participant.location
+-                                || role != remote_participant.role
+-                            {
+-                                remote_participant.location = location;
+-                                remote_participant.role = role;
+-                                cx.emit(Event::ParticipantLocationChanged {
+-                                    participant_id: peer_id,
+-                                });
+-                            }
+-                        } else {
+-                            this.remote_participants.insert(
+-                                participant.user_id,
+-                                RemoteParticipant {
+-                                    user: user.clone(),
+-                                    participant_index,
+-                                    peer_id,
+-                                    projects: participant.projects,
+-                                    location,
+-                                    role,
+-                                    muted: true,
+-                                    speaking: false,
+-                                    video_tracks: Default::default(),
+-                                    audio_tracks: Default::default(),
+-                                },
+-                            );
+-
+-                            // When joining a room start_room_connection gets
+-                            // called but we have already played the join sound.
+-                            // Dont play extra sounds over that.
+-                            if this.created.elapsed() > Duration::from_millis(100) {
+-                                if let proto::ChannelRole::Guest = role {
+-                                    Audio::play_sound(Sound::GuestJoined, cx);
+-                                } else {
+-                                    Audio::play_sound(Sound::Joined, cx);
+-                                }
+-                            }
+-
+-                            if let Some(livekit_participants) = &livekit_participants
+-                                && let Some(livekit_participant) = livekit_participants
+-                                    .get(&ParticipantIdentity(user.id.to_string()))
+-                            {
+-                                for publication in
+-                                    livekit_participant.track_publications().into_values()
+-                                {
+-                                    if let Some(track) = publication.track() {
+-                                        this.livekit_room_updated(
+-                                            RoomEvent::TrackSubscribed {
+-                                                track,
+-                                                publication,
+-                                                participant: livekit_participant.clone(),
+-                                            },
+-                                            cx,
+-                                        )
+-                                        .warn_on_err();
+-                                    }
+-                                }
+-                            }
+-                        }
+-                    }
+-
+-                    this.remote_participants.retain(|user_id, participant| {
+-                        if this.participant_user_ids.contains(user_id) {
+-                            true
+-                        } else {
+-                            for project in &participant.projects {
+-                                cx.emit(Event::RemoteProjectUnshared {
+-                                    project_id: project.id,
+-                                });
+-                            }
+-                            false
+-                        }
+-                    });
+-                }
+-
+-                if let Some(pending_participants) = pending_participants.log_err() {
+-                    this.pending_participants = pending_participants;
+-                    for participant in &this.pending_participants {
+-                        this.participant_user_ids.insert(participant.id);
+-                    }
+-                }
+-
+-                this.follows_by_leader_id_project_id.clear();
+-                for follower in room.followers {
+-                    let project_id = follower.project_id;
+-                    let (leader, follower) = match (follower.leader_id, follower.follower_id) {
+-                        (Some(leader), Some(follower)) => (leader, follower),
+-
+-                        _ => {
+-                            log::error!("Follower message {follower:?} missing some state");
+-                            continue;
+-                        }
+-                    };
+-
+-                    let list = this
+-                        .follows_by_leader_id_project_id
+-                        .entry((leader, project_id))
+-                        .or_default();
+-                    if !list.contains(&follower) {
+-                        list.push(follower);
+-                    }
+-                }
+-
+-                this.pending_room_update.take();
+-                if this.should_leave() {
+-                    log::info!("room is empty, leaving");
+-                    this.leave(cx).detach();
+-                }
+-
+-                this.user_store.update(cx, |user_store, cx| {
+-                    let participant_indices_by_user_id = this
+-                        .remote_participants
+-                        .iter()
+-                        .map(|(user_id, participant)| (*user_id, participant.participant_index))
+-                        .collect();
+-                    user_store.set_participant_indices(participant_indices_by_user_id, cx);
+-                });
+-
+-                this.check_invariants();
+-                this.room_update_completed_tx.try_send(Some(())).ok();
+-                cx.notify();
+-            })
+-            .ok();
+-        })
++        Task::ready(())
+     }
+ 
+-    fn livekit_room_updated(&mut self, event: RoomEvent, cx: &mut Context<Self>) -> Result<()> {
++    fn livekit_room_updated(&mut self, event: (), cx: &mut Context<Self>) -> Result<()> {
+         log::trace!(
+             "client {:?}. livekit event: {:?}",
+             self.client.user_id(),
+             &event
+         );
+ 
+-        match event {
+-            RoomEvent::TrackSubscribed {
+-                track,
+-                participant,
+-                publication,
+-            } => {
+-                let user_id = participant.identity().0.parse()?;
+-                let track_id = track.sid();
+-                let participant =
+-                    self.remote_participants
+-                        .get_mut(&user_id)
+-                        .with_context(|| {
+-                            format!(
+-                                "{:?} subscribed to track by unknown participant {user_id}",
+-                                self.client.user_id()
+-                            )
+-                        })?;
+-                if self.live_kit.as_ref().is_none_or(|kit| kit.deafened) && publication.is_audio() {
+-                    publication.set_enabled(false, cx);
+-                }
+-                match track {
+-                    livekit_client::RemoteTrack::Audio(track) => {
+-                        cx.emit(Event::RemoteAudioTracksChanged {
+-                            participant_id: participant.peer_id,
+-                        });
+-                        if let Some(live_kit) = self.live_kit.as_ref() {
+-                            let stream = live_kit.room.play_remote_audio_track(&track, cx)?;
+-                            participant.audio_tracks.insert(track_id, (track, stream));
+-                            participant.muted = publication.is_muted();
+-                        }
+-                    }
+-                    livekit_client::RemoteTrack::Video(track) => {
+-                        cx.emit(Event::RemoteVideoTracksChanged {
+-                            participant_id: participant.peer_id,
+-                        });
+-                        participant.video_tracks.insert(track_id, track);
+-                    }
+-                }
+-            }
+-
+-            RoomEvent::TrackUnsubscribed {
+-                track, participant, ..
+-            } => {
+-                let user_id = participant.identity().0.parse()?;
+-                let participant =
+-                    self.remote_participants
+-                        .get_mut(&user_id)
+-                        .with_context(|| {
+-                            format!(
+-                                "{:?}, unsubscribed from track by unknown participant {user_id}",
+-                                self.client.user_id()
+-                            )
+-                        })?;
+-                match track {
+-                    livekit_client::RemoteTrack::Audio(track) => {
+-                        participant.audio_tracks.remove(&track.sid());
+-                        participant.muted = true;
+-                        cx.emit(Event::RemoteAudioTracksChanged {
+-                            participant_id: participant.peer_id,
+-                        });
+-                    }
+-                    livekit_client::RemoteTrack::Video(track) => {
+-                        participant.video_tracks.remove(&track.sid());
+-                        cx.emit(Event::RemoteVideoTracksChanged {
+-                            participant_id: participant.peer_id,
+-                        });
+-                        cx.emit(Event::RemoteVideoTrackUnsubscribed { sid: track.sid() });
+-                    }
+-                }
+-            }
+-
+-            RoomEvent::ActiveSpeakersChanged { speakers } => {
+-                let mut speaker_ids = speakers
+-                    .into_iter()
+-                    .filter_map(|speaker| speaker.identity().0.parse().ok())
+-                    .collect::<Vec<u64>>();
+-                speaker_ids.sort_unstable();
+-                for (sid, participant) in &mut self.remote_participants {
+-                    participant.speaking = speaker_ids.binary_search(sid).is_ok();
+-                }
+-                if let Some(id) = self.client.user_id()
+-                    && let Some(room) = &mut self.live_kit
+-                {
+-                    room.speaking = speaker_ids.binary_search(&id).is_ok();
+-                }
+-            }
+-
+-            RoomEvent::TrackMuted {
+-                participant,
+-                publication,
+-            }
+-            | RoomEvent::TrackUnmuted {
+-                participant,
+-                publication,
+-            } => {
+-                let mut found = false;
+-                let user_id = participant.identity().0.parse()?;
+-                let track_id = publication.sid();
+-                if let Some(participant) = self.remote_participants.get_mut(&user_id) {
+-                    for (track, _) in participant.audio_tracks.values() {
+-                        if track.sid() == track_id {
+-                            found = true;
+-                            break;
+-                        }
+-                    }
+-                    if found {
+-                        participant.muted = publication.is_muted();
+-                    }
+-                }
+-            }
+-
+-            RoomEvent::LocalTrackUnpublished { publication, .. } => {
+-                log::info!("unpublished track {}", publication.sid());
+-                if let Some(room) = &mut self.live_kit {
+-                    if let LocalTrack::Published {
+-                        track_publication, ..
+-                    } = &room.microphone_track
+-                        && track_publication.sid() == publication.sid()
+-                    {
+-                        room.microphone_track = LocalTrack::None;
+-                    }
+-                    if let LocalTrack::Published {
+-                        track_publication, ..
+-                    } = &room.screen_track
+-                        && track_publication.sid() == publication.sid()
+-                    {
+-                        room.screen_track = LocalTrack::None;
+-                    }
+-                }
+-            }
+-
+-            RoomEvent::LocalTrackPublished { publication, .. } => {
+-                log::info!("published track {:?}", publication.sid());
+-            }
+-
+-            RoomEvent::Disconnected { reason } => {
+-                log::info!("disconnected from room: {reason:?}");
+-                self.leave(cx).detach_and_log_err(cx);
+-            }
+-            _ => {}
+-        }
+-
+         cx.notify();
+         Ok(())
+     }
+@@ -1323,77 +924,7 @@ impl Room {
+ 
+     #[track_caller]
+     pub fn share_microphone(&mut self, cx: &mut Context<Self>) -> Task<Result<()>> {
+-        if self.status.is_offline() {
+-            return Task::ready(Err(anyhow!("room is offline")));
+-        }
+-
+-        let (room, publish_id) = if let Some(live_kit) = self.live_kit.as_mut() {
+-            let publish_id = post_inc(&mut live_kit.next_publish_id);
+-            live_kit.microphone_track = LocalTrack::Pending { publish_id };
+-            cx.notify();
+-            (live_kit.room.clone(), publish_id)
+-        } else {
+-            return Task::ready(Err(anyhow!("live-kit was not initialized")));
+-        };
+-
+-        let is_staff = cx.is_staff();
+-        let user_name = self
+-            .user_store
+-            .read(cx)
+-            .current_user()
+-            .and_then(|user| user.name.clone())
+-            .unwrap_or_else(|| "unknown".to_string());
+-
+-        cx.spawn(async move |this, cx| {
+-            let publication = room
+-                .publish_local_microphone_track(user_name, is_staff, cx)
+-                .await;
+-            this.update(cx, |this, cx| {
+-                let live_kit = this
+-                    .live_kit
+-                    .as_mut()
+-                    .context("live-kit was not initialized")?;
+-
+-                let canceled = if let LocalTrack::Pending {
+-                    publish_id: cur_publish_id,
+-                } = &live_kit.microphone_track
+-                {
+-                    *cur_publish_id != publish_id
+-                } else {
+-                    true
+-                };
+-
+-                match publication {
+-                    Ok((publication, stream)) => {
+-                        if canceled {
+-                            cx.spawn(async move |_, cx| {
+-                                room.unpublish_local_track(publication.sid(), cx).await
+-                            })
+-                            .detach_and_log_err(cx)
+-                        } else {
+-                            if live_kit.muted_by_user || live_kit.deafened {
+-                                publication.mute(cx);
+-                            }
+-                            live_kit.microphone_track = LocalTrack::Published {
+-                                track_publication: publication,
+-                                _stream: Box::new(stream),
+-                            };
+-                            cx.notify();
+-                        }
+-                        Ok(())
+-                    }
+-                    Err(error) => {
+-                        if canceled {
+-                            Ok(())
+-                        } else {
+-                            live_kit.microphone_track = LocalTrack::None;
+-                            cx.notify();
+-                            Err(error)
+-                        }
+-                    }
+-                }
+-            })?
+-        })
++        Task::ready(Ok(()))
+     }
+ 
+     pub fn share_screen(
+@@ -1401,196 +932,25 @@ impl Room {
+         source: Rc<dyn ScreenCaptureSource>,
+         cx: &mut Context<Self>,
+     ) -> Task<Result<()>> {
+-        if self.status.is_offline() {
+-            return Task::ready(Err(anyhow!("room is offline")));
+-        }
+-        if self.is_sharing_screen() {
+-            return Task::ready(Err(anyhow!("screen was already shared")));
+-        }
+-
+-        let (participant, publish_id) = if let Some(live_kit) = self.live_kit.as_mut() {
+-            let publish_id = post_inc(&mut live_kit.next_publish_id);
+-            live_kit.screen_track = LocalTrack::Pending { publish_id };
+-            cx.notify();
+-            (live_kit.room.local_participant(), publish_id)
+-        } else {
+-            return Task::ready(Err(anyhow!("live-kit was not initialized")));
+-        };
+-
+-        cx.spawn(async move |this, cx| {
+-            let publication = participant.publish_screenshare_track(&*source, cx).await;
+-
+-            this.update(cx, |this, cx| {
+-                let live_kit = this
+-                    .live_kit
+-                    .as_mut()
+-                    .context("live-kit was not initialized")?;
+-
+-                let canceled = if let LocalTrack::Pending {
+-                    publish_id: cur_publish_id,
+-                } = &live_kit.screen_track
+-                {
+-                    *cur_publish_id != publish_id
+-                } else {
+-                    true
+-                };
+-
+-                match publication {
+-                    Ok((publication, stream)) => {
+-                        if canceled {
+-                            cx.spawn(async move |_, cx| {
+-                                participant.unpublish_track(publication.sid(), cx).await
+-                            })
+-                            .detach()
+-                        } else {
+-                            live_kit.screen_track = LocalTrack::Published {
+-                                track_publication: publication,
+-                                _stream: stream,
+-                            };
+-                            cx.notify();
+-                        }
+-
+-                        Audio::play_sound(Sound::StartScreenshare, cx);
+-                        Ok(())
+-                    }
+-                    Err(error) => {
+-                        if canceled {
+-                            Ok(())
+-                        } else {
+-                            live_kit.screen_track = LocalTrack::None;
+-                            cx.notify();
+-                            Err(error)
+-                        }
+-                    }
+-                }
+-            })?
+-        })
++        Task::ready(Ok(()))
+     }
+ 
+-    pub fn toggle_mute(&mut self, cx: &mut Context<Self>) {
+-        if let Some(live_kit) = self.live_kit.as_mut() {
+-            // When unmuting, undeafen if the user was deafened before.
+-            let was_deafened = live_kit.deafened;
+-            if live_kit.muted_by_user
+-                || live_kit.deafened
+-                || matches!(live_kit.microphone_track, LocalTrack::None)
+-            {
+-                live_kit.muted_by_user = false;
+-                live_kit.deafened = false;
+-            } else {
+-                live_kit.muted_by_user = true;
+-            }
+-            let muted = live_kit.muted_by_user;
+-            let should_undeafen = was_deafened && !live_kit.deafened;
++    pub fn toggle_mute(&mut self, cx: &mut Context<Self>) {}
+ 
+-            if let Some(task) = self.set_mute(muted, cx) {
+-                task.detach_and_log_err(cx);
+-            }
+-
+-            if should_undeafen {
+-                self.set_deafened(false, cx);
+-            }
+-        }
+-    }
+-
+-    pub fn toggle_deafen(&mut self, cx: &mut Context<Self>) {
+-        if let Some(live_kit) = self.live_kit.as_mut() {
+-            // When deafening, mute the microphone if it was not already muted.
+-            // When un-deafening, unmute the microphone, unless it was explicitly muted.
+-            let deafened = !live_kit.deafened;
+-            live_kit.deafened = deafened;
+-            let should_change_mute = !live_kit.muted_by_user;
+-
+-            self.set_deafened(deafened, cx);
+-
+-            if should_change_mute && let Some(task) = self.set_mute(deafened, cx) {
+-                task.detach_and_log_err(cx);
+-            }
+-        }
+-    }
++    pub fn toggle_deafen(&mut self, cx: &mut Context<Self>) {}
+ 
+     pub fn unshare_screen(&mut self, play_sound: bool, cx: &mut Context<Self>) -> Result<()> {
+-        anyhow::ensure!(!self.status.is_offline(), "room is offline");
+-
+-        let live_kit = self
+-            .live_kit
+-            .as_mut()
+-            .context("live-kit was not initialized")?;
+-        match mem::take(&mut live_kit.screen_track) {
+-            LocalTrack::None => anyhow::bail!("screen was not shared"),
+-            LocalTrack::Pending { .. } => {
+-                cx.notify();
+-                Ok(())
+-            }
+-            LocalTrack::Published {
+-                track_publication, ..
+-            } => {
+-                {
+-                    let local_participant = live_kit.room.local_participant();
+-                    let sid = track_publication.sid();
+-                    cx.spawn(async move |_, cx| local_participant.unpublish_track(sid, cx).await)
+-                        .detach_and_log_err(cx);
+-                    cx.notify();
+-                }
+-
+-                if play_sound {
+-                    Audio::play_sound(Sound::StopScreenshare, cx);
+-                }
+-
+-                Ok(())
+-            }
+-        }
++        Ok(())
+     }
+ 
+     fn set_deafened(&mut self, deafened: bool, cx: &mut Context<Self>) -> Option<()> {
+-        {
+-            let live_kit = self.live_kit.as_mut()?;
+-            cx.notify();
+-            for (_, participant) in live_kit.room.remote_participants() {
+-                for (_, publication) in participant.track_publications() {
+-                    if publication.is_audio() {
+-                        publication.set_enabled(!deafened, cx);
+-                    }
+-                }
+-            }
+-        }
+-
+         None
+     }
+ 
+     fn set_mute(&mut self, should_mute: bool, cx: &mut Context<Room>) -> Option<Task<Result<()>>> {
+-        let live_kit = self.live_kit.as_mut()?;
+         cx.notify();
+ 
+-        if should_mute {
+-            Audio::play_sound(Sound::Mute, cx);
+-        } else {
+-            Audio::play_sound(Sound::Unmute, cx);
+-        }
+-
+-        match &mut live_kit.microphone_track {
+-            LocalTrack::None => {
+-                if should_mute {
+-                    None
+-                } else {
+-                    Some(self.share_microphone(cx))
+-                }
+-            }
+-            LocalTrack::Pending { .. } => None,
+-            LocalTrack::Published {
+-                track_publication, ..
+-            } => {
+-                let guard = Tokio::handle(cx);
+-                if should_mute {
+-                    track_publication.mute(cx)
+-                } else {
+-                    track_publication.unmute(cx)
+-                }
+-                drop(guard);
+-
+-                None
+-            }
+-        }
++        None
+     }
+ }
+ 
+@@ -1598,54 +958,12 @@ fn spawn_room_connection(
+     livekit_connection_info: Option<proto::LiveKitConnectionInfo>,
+     cx: &mut Context<Room>,
+ ) {
+-    if let Some(connection_info) = livekit_connection_info {
+-        cx.spawn(async move |this, cx| {
+-            let (room, mut events) =
+-                livekit::Room::connect(connection_info.server_url, connection_info.token, cx)
+-                    .await?;
+-
+-            this.update(cx, |this, cx| {
+-                let _handle_updates = cx.spawn(async move |this, cx| {
+-                    while let Some(event) = events.next().await {
+-                        if this
+-                            .update(cx, |this, cx| {
+-                                this.livekit_room_updated(event, cx).warn_on_err();
+-                            })
+-                            .is_err()
+-                        {
+-                            break;
+-                        }
+-                    }
+-                });
+-
+-                let muted_by_user = Room::mute_on_join(cx);
+-                this.live_kit = Some(LiveKitRoom {
+-                    room: Rc::new(room),
+-                    screen_track: LocalTrack::None,
+-                    microphone_track: LocalTrack::None,
+-                    next_publish_id: 0,
+-                    muted_by_user,
+-                    deafened: false,
+-                    speaking: false,
+-                    _handle_updates,
+-                });
+-
+-                if !muted_by_user && this.can_use_microphone() {
+-                    this.share_microphone(cx)
+-                } else {
+-                    Task::ready(Ok(()))
+-                }
+-            })?
+-            .await
+-        })
+-        .detach_and_log_err(cx);
+-    }
+ }
+ 
+ struct LiveKitRoom {
+-    room: Rc<livekit::Room>,
++    room: Rc<()>,
+     screen_track: LocalTrack<dyn ScreenCaptureStream>,
+-    microphone_track: LocalTrack<AudioStream>,
++    microphone_track: LocalTrack<()>,
+     /// Tracks whether we're currently in a muted state due to auto-mute from deafening or manual mute performed by user.
+     muted_by_user: bool,
+     deafened: bool,
+@@ -1655,32 +973,7 @@ struct LiveKitRoom {
+ }
+ 
+ impl LiveKitRoom {
+-    fn stop_publishing(&mut self, cx: &mut Context<Room>) {
+-        let mut tracks_to_unpublish = Vec::new();
+-        if let LocalTrack::Published {
+-            track_publication, ..
+-        } = mem::replace(&mut self.microphone_track, LocalTrack::None)
+-        {
+-            tracks_to_unpublish.push(track_publication.sid());
+-            cx.notify();
+-        }
+-
+-        if let LocalTrack::Published {
+-            track_publication, ..
+-        } = mem::replace(&mut self.screen_track, LocalTrack::None)
+-        {
+-            tracks_to_unpublish.push(track_publication.sid());
+-            cx.notify();
+-        }
+-
+-        let participant = self.room.local_participant();
+-        cx.spawn(async move |_, cx| {
+-            for sid in tracks_to_unpublish {
+-                participant.unpublish_track(sid, cx).await.log_err();
+-            }
+-        })
+-        .detach();
+-    }
++    fn stop_publishing(&mut self, cx: &mut Context<Room>) {}
+ }
+ 
+ enum LocalTrack<Stream: ?Sized> {
+@@ -1689,7 +982,7 @@ enum LocalTrack<Stream: ?Sized> {
+         publish_id: usize,
+     },
+     Published {
+-        track_publication: LocalTrackPublication,
++        track_publication: (),
+         _stream: Box<Stream>,
+     },
+ }
+diff --git a/crates/collab/Cargo.toml b/crates/collab/Cargo.toml
+index c8467da7954b19..d4307340f34f79 100644
+--- a/crates/collab/Cargo.toml
++++ b/crates/collab/Cargo.toml
+@@ -36,7 +36,6 @@ futures.workspace = true
+ gpui.workspace = true
+ hex.workspace = true
+ http_client.workspace = true
+-livekit_api.workspace = true
+ log.workspace = true
+ nanoid.workspace = true
+ parking_lot.workspace = true
+@@ -103,7 +102,6 @@ hyper.workspace = true
+ indoc.workspace = true
+ language = { workspace = true, features = ["test-support"] }
+ language_model = { workspace = true, features = ["test-support"] }
+-livekit_client =  { workspace = true, features = ["test-support"] }
+ lsp = { workspace = true, features = ["test-support"] }
+ menu.workspace = true
+ multi_buffer = { workspace = true, features = ["test-support"] }
+diff --git a/crates/collab/src/lib.rs b/crates/collab/src/lib.rs
+index 14573e94b0b535..6aa1d5d0231882 100644
+--- a/crates/collab/src/lib.rs
++++ b/crates/collab/src/lib.rs
+@@ -236,7 +236,7 @@ impl ServiceMode {
+ 
+ pub struct AppState {
+     pub db: Arc<Database>,
+-    pub livekit_client: Option<Arc<dyn livekit_api::Client>>,
++    pub livekit_client: Option<Arc<()>>,
+     pub blob_store_client: Option<aws_sdk_s3::Client>,
+     pub executor: Executor,
+     pub kinesis_client: Option<::aws_sdk_kinesis::Client>,
+@@ -256,11 +256,7 @@ impl AppState {
+             .zip(config.livekit_key.as_ref())
+             .zip(config.livekit_secret.as_ref())
+         {
+-            Some(Arc::new(livekit_api::LiveKitClient::new(
+-                server.clone(),
+-                key.clone(),
+-                secret.clone(),
+-            )) as Arc<dyn livekit_api::Client>)
++            Some(Arc::new(()))
+         } else {
+             None
+         };
+diff --git a/crates/collab/src/rpc.rs b/crates/collab/src/rpc.rs
+index bfcab578f4b303..384f766b4d6cbc 100644
+--- a/crates/collab/src/rpc.rs
++++ b/crates/collab/src/rpc.rs
+@@ -611,12 +611,6 @@ impl Server {
+                                 }
+                             }
+                         }
+-
+-                        if let Some(live_kit) = livekit_client.as_ref()
+-                            && delete_livekit_room
+-                        {
+-                            live_kit.delete_room(livekit_room).await.trace_err();
+-                        }
+                     }
+                 }
+ 
+@@ -1377,20 +1371,7 @@ async fn create_room(
+ ) -> Result<()> {
+     let livekit_room = nanoid::nanoid!(30);
+ 
+-    let live_kit_connection_info = util::maybe!(async {
+-        let live_kit = session.app_state.livekit_client.as_ref();
+-        let live_kit = live_kit?;
+-        let user_id = session.user_id().to_string();
+-
+-        let token = live_kit.room_token(&livekit_room, &user_id).trace_err()?;
+-
+-        Some(proto::LiveKitConnectionInfo {
+-            server_url: live_kit.url().into(),
+-            token,
+-            can_publish: true,
+-        })
+-    })
+-    .await;
++    let live_kit_connection_info = None;
+ 
+     let room = session
+         .db()
+@@ -1447,22 +1428,7 @@ async fn join_room(
+             .trace_err();
+     }
+ 
+-    let live_kit_connection_info = if let Some(live_kit) = session.app_state.livekit_client.as_ref()
+-    {
+-        live_kit
+-            .room_token(
+-                &joined_room.room.livekit_room,
+-                &session.user_id().to_string(),
+-            )
+-            .trace_err()
+-            .map(|token| proto::LiveKitConnectionInfo {
+-                server_url: live_kit.url().into(),
+-                token,
+-                can_publish: true,
+-            })
+-    } else {
+-        None
+-    };
++    let live_kit_connection_info = None;
+ 
+     response.send(proto::JoinRoomResponse {
+         room: Some(joined_room.room),
+@@ -1689,23 +1655,6 @@ async fn set_room_participant_role(
+         (livekit_room, can_publish)
+     };
+ 
+-    if let Some(live_kit) = session.app_state.livekit_client.as_ref() {
+-        live_kit
+-            .update_participant(
+-                livekit_room.clone(),
+-                request.user_id.to_string(),
+-                livekit_api::proto::ParticipantPermission {
+-                    can_subscribe: true,
+-                    can_publish,
+-                    can_publish_data: can_publish,
+-                    hidden: false,
+-                    recorder: false,
+-                },
+-            )
+-            .await
+-            .trace_err();
+-    }
+-
+     response.send(proto::Ack {})?;
+     Ok(())
+ }
+@@ -3326,40 +3275,7 @@ async fn join_channel_internal(
+             .join_channel(channel_id, session.user_id(), session.connection_id)
+             .await?;
+ 
+-        let live_kit_connection_info =
+-            session
+-                .app_state
+-                .livekit_client
+-                .as_ref()
+-                .and_then(|live_kit| {
+-                    let (can_publish, token) = if role == ChannelRole::Guest {
+-                        (
+-                            false,
+-                            live_kit
+-                                .guest_token(
+-                                    &joined_room.room.livekit_room,
+-                                    &session.user_id().to_string(),
+-                                )
+-                                .trace_err()?,
+-                        )
+-                    } else {
+-                        (
+-                            true,
+-                            live_kit
+-                                .room_token(
+-                                    &joined_room.room.livekit_room,
+-                                    &session.user_id().to_string(),
+-                                )
+-                                .trace_err()?,
+-                        )
+-                    };
+-
+-                    Some(LiveKitConnectionInfo {
+-                        server_url: live_kit.url().into(),
+-                        token,
+-                        can_publish,
+-                    })
+-                });
++        let live_kit_connection_info = None;
+ 
+         response.send(proto::JoinRoomResponse {
+             room: Some(joined_room.room.clone()),
+@@ -4037,17 +3953,6 @@ async fn leave_room_for_session(session: &Session, connection_id: ConnectionId)
+         update_user_contacts(contact_user_id, session).await?;
+     }
+ 
+-    if let Some(live_kit) = session.app_state.livekit_client.as_ref() {
+-        live_kit
+-            .remove_participant(livekit_room.clone(), session.user_id().to_string())
+-            .await
+-            .trace_err();
+-
+-        if delete_livekit_room {
+-            live_kit.delete_room(livekit_room).await.trace_err();
+-        }
+-    }
+-
+     Ok(())
+ }
+ 
+diff --git a/crates/workspace/src/shared_screen.rs b/crates/workspace/src/shared_screen.rs
+index 3c009f613ea529..687ecb21233ae8 100644
+--- a/crates/workspace/src/shared_screen.rs
++++ b/crates/workspace/src/shared_screen.rs
+@@ -2,7 +2,7 @@ use crate::{
+     ItemNavHistory, WorkspaceId,
+     item::{Item, ItemEvent},
+ };
+-use call::{RemoteVideoTrack, RemoteVideoTrackView, Room};
++use call::Room;
+ use client::{User, proto::PeerId};
+ use gpui::{
+     AppContext as _, Entity, EventEmitter, FocusHandle, Focusable, InteractiveElement,
+@@ -19,34 +19,21 @@ pub struct SharedScreen {
+     pub peer_id: PeerId,
+     user: Arc<User>,
+     nav_history: Option<ItemNavHistory>,
+-    view: Entity<RemoteVideoTrackView>,
++    view: Entity<()>,
+     focus: FocusHandle,
+ }
+ 
+ impl SharedScreen {
+     pub fn new(
+-        track: RemoteVideoTrack,
++        track: (),
+         peer_id: PeerId,
+         user: Arc<User>,
+         room: Entity<Room>,
+         window: &mut Window,
+         cx: &mut Context<Self>,
+     ) -> Self {
+-        let my_sid = track.sid();
+-        cx.subscribe(&room, move |_, _, ev, cx| {
+-            if let call::room::Event::RemoteVideoTrackUnsubscribed { sid } = ev
+-                && sid == &my_sid
+-            {
+-                cx.emit(Event::Close)
+-            }
+-        })
+-        .detach();
+-
+-        let view = cx.new(|cx| RemoteVideoTrackView::new(track.clone(), window, cx));
+-        cx.subscribe(&view, |_, _, ev, cx| match ev {
+-            call::RemoteVideoTrackViewEvent::Close => cx.emit(Event::Close),
+-        })
+-        .detach();
++        let view = cx.new(|cx| ());
++
+         Self {
+             view,
+             peer_id,
+@@ -71,7 +58,6 @@ impl Render for SharedScreen {
+             .track_focus(&self.focus)
+             .key_context("SharedScreen")
+             .size_full()
+-            .child(self.view.clone())
+     }
+ }
+ 
+@@ -120,7 +106,7 @@ impl Item for SharedScreen {
+         cx: &mut Context<Self>,
+     ) -> Task<Option<Entity<Self>>> {
+         Task::ready(Some(cx.new(|cx| Self {
+-            view: self.view.update(cx, |view, cx| view.clone(window, cx)),
++            view: self.view.clone(),
+             peer_id: self.peer_id,
+             user: self.user.clone(),
+             nav_history: Default::default(),

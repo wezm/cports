@@ -1,17 +1,18 @@
 pkgname = "zed"
-pkgver = "0.194.0"
+pkgver = "0.211.6"
 pkgrel = 0
-_commit = "faa3bd31879a5906fccc1b77de4525108a27c687"
 # wasmtime
 archs = ["aarch64", "x86_64"]
 build_style = "cargo"
 prepare_after_patch = True
-make_build_args = ["--package", "zed", "--package", "cli"]
-make_build_env = {
-    "RELEASE_VERSION": pkgver,
-    "ZED_UPDATE_EXPLANATION": "Managed by system package manager",
-    "ZED_RELEASE_CHANNEL": "stable",
-}
+make_build_args = [
+    "--package",
+    "zed",
+    "--package",
+    "cli",
+    "--package",
+    "remote_server",
+]
 hostmakedepends = [
     "cargo-auditable",
     "cmake",
@@ -19,9 +20,10 @@ hostmakedepends = [
     "protobuf-protoc",
 ]
 makedepends = [
+    "alsa-lib-devel",
+    "curl-devel",
     "fontconfig-devel",
     "freetype-devel",
-    "curl-devel",
     "libgit2-devel",
     "libxkbcommon-devel",
     "rust-bindgen",
@@ -35,15 +37,23 @@ depends = ["nodejs"]
 pkgdesc = "Graphical text editor"
 license = "GPL-3.0-or-later AND AGPL-3.0-or-later AND Apache-2.0"
 url = "https://zed.dev"
-source = (
-    f"https://github.com/panekj/zed/archive/{_commit}.tar.gz"
-)
-sha256 = "cb3f2a2d6dee73007d92bfba987ba3d8c17a996d1351523ec52cbc303cbf209c"
+source = f"https://github.com/zed-industries/zed/archive/v{pkgver}.tar.gz"
+sha256 = "6ece34721641bc385a998a350cc2eca6540f62682104f35cfcea50af7754d392"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
-tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-z,nostart-stop-gc"]}
-# no
+tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}
+env = {
+    "RELEASE_VERSION": pkgver,
+    "ZED_UPDATE_EXPLANATION": "Managed by system package manager",
+    "ZED_RELEASE_CHANNEL": "stable",
+}
+# no, aws-lc-sys build fails
 options = ["!check", "!cross"]
+
+
+def init_build(self):
+    with open(self.cwd / "crates/zed/RELEASE_CHANNEL", "w") as cf:
+        cf.write(self.env["ZED_RELEASE_CHANNEL"])
 
 
 def install(self):
@@ -55,6 +65,10 @@ def install(self):
     self.install_bin(
         f"target/{self.profile().triplet}/release/cli",
         name="z",
+    )
+    self.install_bin(
+        f"target/{self.profile().triplet}/release/remote_server",
+        name="zed-server",
     )
     self.install_file(
         "crates/zed/resources/app-icon.png",
@@ -72,3 +86,10 @@ def install(self):
         name="dev.zed.Zed.desktop",
     )
     self.install_license("LICENSE-AGPL")
+
+
+@subpackage("zed-server")
+def _(self):
+    self.subdesc = "Zed remote server"
+
+    return ["usr/bin/zed-server"]
