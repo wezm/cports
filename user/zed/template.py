@@ -6,11 +6,6 @@ archs = ["aarch64", "x86_64"]
 build_style = "cargo"
 prepare_after_patch = True
 make_build_args = ["--package", "zed", "--package", "cli"]
-make_build_env = {
-    "RELEASE_VERSION": pkgver,
-    "ZED_UPDATE_EXPLANATION": "Managed by system package manager",
-    "ZED_RELEASE_CHANNEL": "stable",
-}
 hostmakedepends = [
     "cargo-auditable",
     "cmake",
@@ -40,8 +35,18 @@ sha256 = "6ece34721641bc385a998a350cc2eca6540f62682104f35cfcea50af7754d392"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
 tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}
-# no
+env = {
+    "RELEASE_VERSION": pkgver,
+    "ZED_UPDATE_EXPLANATION": "Managed by system package manager",
+    "ZED_RELEASE_CHANNEL": "stable",
+}
+# no, aws-lc-sys build fails
 options = ["!check", "!cross"]
+
+
+def init_build(self):
+    with open(self.cwd / "crates/zed/RELEASE_CHANNEL", "w") as cf:
+        cf.write(self.env["ZED_RELEASE_CHANNEL"])
 
 
 def install(self):
@@ -53,6 +58,10 @@ def install(self):
     self.install_bin(
         f"target/{self.profile().triplet}/release/cli",
         name="z",
+    )
+    self.install_bin(
+        f"target/{self.profile().triplet}/release/remote_server",
+        name="zed-server",
     )
     self.install_file(
         "crates/zed/resources/app-icon.png",
@@ -70,3 +79,10 @@ def install(self):
         name="dev.zed.Zed.desktop",
     )
     self.install_license("LICENSE-AGPL")
+
+
+@subpackage("zed-server")
+def _(self):
+    self.subdesc = "Zed remote server"
+
+    return ["usr/bin/zed-server"]

@@ -1,0 +1,384 @@
+diff --git a/crates/remote_server/Cargo.toml b/crates/remote_server/Cargo.toml
+index 5034b24e06..0bc0923915 100644
+--- a/crates/remote_server/Cargo.toml
++++ b/crates/remote_server/Cargo.toml
+@@ -68,11 +68,8 @@ thiserror.workspace = true
+ rayon.workspace = true
+ 
+ [target.'cfg(not(windows))'.dependencies]
+-crashes.workspace = true
+-crash-handler.workspace = true
+ fork.workspace = true
+ libc.workspace = true
+-minidumper.workspace = true
+ 
+ [dev-dependencies]
+ action_log.workspace = true
+diff --git a/crates/remote_server/src/main.rs b/crates/remote_server/src/main.rs
+index 368c7cb639..ecc8a61e55 100644
+--- a/crates/remote_server/src/main.rs
++++ b/crates/remote_server/src/main.rs
+@@ -36,11 +36,6 @@ fn main() -> anyhow::Result<()> {
+         return Ok(());
+     }
+ 
+-    if let Some(socket) = &cli.crash_handler {
+-        crashes::crash_server(socket.as_path());
+-        return Ok(());
+-    }
+-
+     if cli.printenv {
+         util::shell_env::print_env();
+         return Ok(());
+diff --git a/crates/remote_server/src/unix.rs b/crates/remote_server/src/unix.rs
+index d11fb4031e..8835bca036 100644
+--- a/crates/remote_server/src/unix.rs
++++ b/crates/remote_server/src/unix.rs
+@@ -347,15 +347,6 @@ pub fn execute_run(
+ 
+     let app = gpui::Application::headless();
+     let id = std::process::id().to_string();
+-    app.background_executor()
+-        .spawn(crashes::init(crashes::InitCrashHandler {
+-            session_id: id,
+-            zed_version: VERSION.to_owned(),
+-            binary: "zed-remote-server".to_string(),
+-            release_channel: release_channel::RELEASE_CHANNEL_NAME.clone(),
+-            commit_sha: option_env!("ZED_COMMIT_SHA").unwrap_or("no_sha").to_owned(),
+-        }))
+-        .detach();
+     let log_rx = init_logging_server(log_file)?;
+     log::info!(
+         "starting up. pid_file: {:?}, stdin_socket: {:?}, stdout_socket: {:?}, stderr_socket: {:?}",
+@@ -562,14 +553,6 @@ pub(crate) fn execute_proxy(
+     let server_paths = ServerPaths::new(&identifier)?;
+ 
+     let id = std::process::id().to_string();
+-    smol::spawn(crashes::init(crashes::InitCrashHandler {
+-        session_id: id,
+-        zed_version: VERSION.to_owned(),
+-        binary: "zed-remote-server".to_string(),
+-        release_channel: release_channel::RELEASE_CHANNEL_NAME.clone(),
+-        commit_sha: option_env!("ZED_COMMIT_SHA").unwrap_or("no_sha").to_owned(),
+-    }))
+-    .detach();
+ 
+     log::info!("starting proxy process. PID: {}", std::process::id());
+     smol::block_on(async {
+diff --git a/crates/zed/Cargo.toml b/crates/zed/Cargo.toml
+index aef5643f0c..81a3860360 100644
+--- a/crates/zed/Cargo.toml
++++ b/crates/zed/Cargo.toml
+@@ -43,7 +43,6 @@ collections.workspace = true
+ command_palette.workspace = true
+ component.workspace = true
+ copilot.workspace = true
+-crashes.workspace = true
+ dap_adapters.workspace = true
+ db.workspace = true
+ debug_adapter_extension.workspace = true
+diff --git a/crates/zed/src/main.rs b/crates/zed/src/main.rs
+index 07a6deb0a5..3966fb42cb 100644
+--- a/crates/zed/src/main.rs
++++ b/crates/zed/src/main.rs
+@@ -8,7 +8,6 @@ use cli::FORCE_CLI_MODE_ENV_VAR_NAME;
+ use client::{Client, ProxySettings, UserStore, parse_zed_link};
+ use collab_ui::channel_view::ChannelView;
+ use collections::HashMap;
+-use crashes::InitCrashHandler;
+ use db::kvp::{GLOBAL_KEY_VALUE_STORE, KEY_VALUE_STORE};
+ use editor::Editor;
+ use extension::ExtensionHostProxy;
+@@ -173,12 +172,6 @@ pub fn main() {
+         return;
+     }
+ 
+-    // `zed --crash-handler` Makes zed operate in minidump crash handler mode
+-    if let Some(socket) = &args.crash_handler {
+-        crashes::crash_server(socket.as_path());
+-        return;
+-    }
+-
+     // `zed --nc` Makes zed operate in nc/netcat mode for use with MCP
+     if let Some(socket) = &args.nc {
+         match nc::main(socket) {
+@@ -284,19 +277,6 @@ pub fn main() {
+     let session_id = Uuid::new_v4().to_string();
+     let session = app.background_executor().block(Session::new());
+ 
+-    app.background_executor()
+-        .spawn(crashes::init(InitCrashHandler {
+-            session_id: session_id.clone(),
+-            zed_version: app_version.to_string(),
+-            binary: "zed".to_string(),
+-            release_channel: release_channel::RELEASE_CHANNEL_NAME.clone(),
+-            commit_sha: app_commit_sha
+-                .as_ref()
+-                .map(|sha| sha.full())
+-                .unwrap_or_else(|| "no sha".to_owned()),
+-        }))
+-        .detach();
+-
+     let (open_listener, mut open_rx) = OpenListener::new();
+ 
+     let failed_single_instance_check = if *zed_env_vars::ZED_STATELESS
+@@ -541,11 +521,6 @@ pub fn main() {
+         auto_update::init(client.http_client(), cx);
+         dap_adapters::init(cx);
+         auto_update_ui::init(cx);
+-        reliability::init(
+-            client.http_client(),
+-            system_id.as_ref().map(|id| id.to_string()),
+-            cx,
+-        );
+         extension_host::init(
+             extension_host_proxy.clone(),
+             app_state.fs.clone(),
+diff --git a/crates/zed/src/reliability.rs b/crates/zed/src/reliability.rs
+index dcabe93aab..9e2f01368d 100644
+--- a/crates/zed/src/reliability.rs
++++ b/crates/zed/src/reliability.rs
+@@ -11,63 +11,6 @@ use smol::stream::StreamExt;
+ use std::{ffi::OsStr, fs, sync::Arc};
+ use util::ResultExt;
+ 
+-pub fn init(http_client: Arc<HttpClientWithUrl>, installation_id: Option<String>, cx: &mut App) {
+-    #[cfg(target_os = "macos")]
+-    monitor_main_thread_hangs(http_client.clone(), installation_id.clone(), cx);
+-
+-    if client::TelemetrySettings::get_global(cx).diagnostics {
+-        let client = http_client.clone();
+-        let id = installation_id.clone();
+-        cx.background_spawn(async move {
+-            upload_previous_minidumps(client, id).await.warn_on_err();
+-        })
+-        .detach()
+-    }
+-
+-    cx.observe_new(move |project: &mut Project, _, cx| {
+-        let http_client = http_client.clone();
+-        let installation_id = installation_id.clone();
+-
+-        let Some(remote_client) = project.remote_client() else {
+-            return;
+-        };
+-        remote_client.update(cx, |client, cx| {
+-            if !TelemetrySettings::get_global(cx).diagnostics {
+-                return;
+-            }
+-            let request = client.proto_client().request(proto::GetCrashFiles {});
+-            cx.background_spawn(async move {
+-                let GetCrashFilesResponse { crashes } = request.await?;
+-
+-                let Some(endpoint) = MINIDUMP_ENDPOINT.as_ref() else {
+-                    return Ok(());
+-                };
+-                for CrashReport {
+-                    metadata,
+-                    minidump_contents,
+-                } in crashes
+-                {
+-                    if let Some(metadata) = serde_json::from_str(&metadata).log_err() {
+-                        upload_minidump(
+-                            http_client.clone(),
+-                            endpoint,
+-                            minidump_contents,
+-                            &metadata,
+-                            installation_id.clone(),
+-                        )
+-                        .await
+-                        .log_err();
+-                    }
+-                }
+-
+-                anyhow::Ok(())
+-            })
+-            .detach_and_log_err(cx);
+-        })
+-    })
+-    .detach();
+-}
+-
+ #[cfg(target_os = "macos")]
+ pub fn monitor_main_thread_hangs(
+     http_client: Arc<HttpClientWithUrl>,
+@@ -272,158 +215,6 @@ pub fn monitor_main_thread_hangs(
+         .detach()
+ }
+ 
+-pub async fn upload_previous_minidumps(
+-    http: Arc<HttpClientWithUrl>,
+-    installation_id: Option<String>,
+-) -> anyhow::Result<()> {
+-    let Some(minidump_endpoint) = MINIDUMP_ENDPOINT.as_ref() else {
+-        log::warn!("Minidump endpoint not set");
+-        return Ok(());
+-    };
+-
+-    let mut children = smol::fs::read_dir(paths::logs_dir()).await?;
+-    while let Some(child) = children.next().await {
+-        let child = child?;
+-        let child_path = child.path();
+-        if child_path.extension() != Some(OsStr::new("dmp")) {
+-            continue;
+-        }
+-        let mut json_path = child_path.clone();
+-        json_path.set_extension("json");
+-        if let Ok(metadata) = serde_json::from_slice(&smol::fs::read(&json_path).await?)
+-            && upload_minidump(
+-                http.clone(),
+-                minidump_endpoint,
+-                smol::fs::read(&child_path)
+-                    .await
+-                    .context("Failed to read minidump")?,
+-                &metadata,
+-                installation_id.clone(),
+-            )
+-            .await
+-            .log_err()
+-            .is_some()
+-        {
+-            fs::remove_file(child_path).ok();
+-            fs::remove_file(json_path).ok();
+-        }
+-    }
+-    Ok(())
+-}
+-
+-async fn upload_minidump(
+-    http: Arc<HttpClientWithUrl>,
+-    endpoint: &str,
+-    minidump: Vec<u8>,
+-    metadata: &crashes::CrashInfo,
+-    installation_id: Option<String>,
+-) -> Result<()> {
+-    let mut form = Form::new()
+-        .part(
+-            "upload_file_minidump",
+-            Part::bytes(minidump)
+-                .file_name("minidump.dmp")
+-                .mime_str("application/octet-stream")?,
+-        )
+-        .text(
+-            "sentry[tags][channel]",
+-            metadata.init.release_channel.clone(),
+-        )
+-        .text("sentry[tags][version]", metadata.init.zed_version.clone())
+-        .text("sentry[tags][binary]", metadata.init.binary.clone())
+-        .text("sentry[release]", metadata.init.commit_sha.clone())
+-        .text("platform", "rust");
+-    let mut panic_message = "".to_owned();
+-    if let Some(panic_info) = metadata.panic.as_ref() {
+-        panic_message = panic_info.message.clone();
+-        form = form
+-            .text("sentry[logentry][formatted]", panic_info.message.clone())
+-            .text("span", panic_info.span.clone());
+-    }
+-    if let Some(minidump_error) = metadata.minidump_error.clone() {
+-        form = form.text("minidump_error", minidump_error);
+-    }
+-    if let Some(id) = installation_id.clone() {
+-        form = form.text("sentry[user][id]", id)
+-    }
+-
+-    ::telemetry::event!(
+-        "Minidump Uploaded",
+-        panic_message = panic_message,
+-        crashed_version = metadata.init.zed_version.clone(),
+-        commit_sha = metadata.init.commit_sha.clone(),
+-    );
+-
+-    let gpu_count = metadata.gpus.len();
+-    for (index, gpu) in metadata.gpus.iter().cloned().enumerate() {
+-        let system_specs::GpuInfo {
+-            device_name,
+-            device_pci_id,
+-            vendor_name,
+-            vendor_pci_id,
+-            driver_version,
+-            driver_name,
+-        } = gpu;
+-        let num = if gpu_count == 1 && metadata.active_gpu.is_none() {
+-            String::new()
+-        } else {
+-            index.to_string()
+-        };
+-        let name = format!("gpu{num}");
+-        let root = format!("sentry[contexts][{name}]");
+-        form = form
+-            .text(
+-                format!("{root}[Description]"),
+-                "A GPU found on the users system. May or may not be the GPU Zed is running on",
+-            )
+-            .text(format!("{root}[type]"), "gpu")
+-            .text(format!("{root}[name]"), device_name.unwrap_or(name))
+-            .text(format!("{root}[id]"), format!("{:#06x}", device_pci_id))
+-            .text(
+-                format!("{root}[vendor_id]"),
+-                format!("{:#06x}", vendor_pci_id),
+-            )
+-            .text_if_some(format!("{root}[vendor_name]"), vendor_name)
+-            .text_if_some(format!("{root}[driver_version]"), driver_version)
+-            .text_if_some(format!("{root}[driver_name]"), driver_name);
+-    }
+-    if let Some(active_gpu) = metadata.active_gpu.clone() {
+-        form = form
+-            .text(
+-                "sentry[contexts][Active_GPU][Description]",
+-                "The GPU Zed is running on",
+-            )
+-            .text("sentry[contexts][Active_GPU][type]", "gpu")
+-            .text("sentry[contexts][Active_GPU][name]", active_gpu.device_name)
+-            .text(
+-                "sentry[contexts][Active_GPU][driver_version]",
+-                active_gpu.driver_info,
+-            )
+-            .text(
+-                "sentry[contexts][Active_GPU][driver_name]",
+-                active_gpu.driver_name,
+-            )
+-            .text(
+-                "sentry[contexts][Active_GPU][is_software_emulated]",
+-                active_gpu.is_software_emulated.to_string(),
+-            );
+-    }
+-
+-    // TODO: feature-flag-context, and more of device-context like screen resolution, available ram, device model, etc
+-
+-    let mut response_text = String::new();
+-    let mut response = http.send_multipart_form(endpoint, form).await?;
+-    response
+-        .body_mut()
+-        .read_to_string(&mut response_text)
+-        .await?;
+-    if !response.status().is_success() {
+-        anyhow::bail!("failed to upload minidump: {response_text}");
+-    }
+-    log::info!("Uploaded minidump. event id: {response_text}");
+-    Ok(())
+-}
+-
+ trait FormExt {
+     fn text_if_some(
+         self,
+diff --git a/crates/zed/src/zed.rs b/crates/zed/src/zed.rs
+index 8a0afad608..5d99da55c8 100644
+--- a/crates/zed/src/zed.rs
++++ b/crates/zed/src/zed.rs
+@@ -370,16 +370,6 @@ pub fn initialize_workspace(
+         if let Some(specs) = window.gpu_specs() {
+             log::info!("Using GPU: {:?}", specs);
+             show_software_emulation_warning_if_needed(specs.clone(), window, cx);
+-            if let Some((crash_server, message)) = crashes::CRASH_HANDLER
+-                .get()
+-                .zip(bincode::serialize(&specs).ok())
+-                && let Err(err) = crash_server.send_message(3, message)
+-            {
+-                log::warn!(
+-                    "Failed to store active gpu info for crash reporting: {}",
+-                    err
+-                );
+-            }
+         }
+ 
+         let edit_prediction_menu_handle = PopoverMenuHandle::default();
