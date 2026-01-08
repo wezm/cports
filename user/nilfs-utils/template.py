@@ -1,5 +1,5 @@
 pkgname = "nilfs-utils"
-pkgver = "2.2.11"
+pkgver = "2.2.13"
 pkgrel = 0
 build_style = "gnu_configure"
 configure_args = ["--without-selinux"]
@@ -18,7 +18,7 @@ pkgdesc = "Userspace utilities for the NILFS filesystem"
 license = "GPL-2.0-or-later AND LGPL-2.1-or-later"
 url = "https://nilfs.sourceforge.io/en/index.html"
 source = f"https://github.com/nilfs-dev/nilfs-utils/archive/refs/tags/v{pkgver}.tar.gz"
-sha256 = "5172adef1f4a66add0e4e2e733aef82c5b1fc2405473bcd335e516814b5f634f"
+sha256 = "0e9fe51dfb1af0a7d196d1f862795f6aa903bcd061c16273ad557bc48b2db7e8"
 
 
 @subpackage("nilfs-utils-devel")
