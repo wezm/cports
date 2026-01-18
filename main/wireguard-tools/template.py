@@ -1,6 +1,6 @@
 pkgname = "wireguard-tools"
-pkgver = "1.0.20210914"
-pkgrel = 5
+pkgver = "1.0.20250521"
+pkgrel = 0
 build_style = "makefile"
 make_dir = "src"
 make_install_args = [
@@ -14,10 +14,8 @@ checkdepends = ["clang-analyzer", "perl"]
 pkgdesc = "Next generation secure network tunnel - tools for configuration"
 license = "GPL-2.0-only"
 url = "https://www.wireguard.com"
-# This source seems to be blocking cbuild from fetching the tarball
-# source = f"https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-{pkgver}.tar.xz"
-source = f"https://github.com/WireGuard/wireguard-tools/archive/refs/tags/v{pkgver}.tar.gz"
-sha256 = "acb8517eed8f352bbf0758a70573c665521a4300d0c4865afebd6b643738c640"
+source = f"https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-{pkgver}.tar.xz"
+sha256 = "61f520e7c1664ae9301fa36a2b8e90cf4680887a71f456c290d5d8b879f1e2e6"
 tool_flags = {
     "CFLAGS": ['-DRUNSTATEDIR="/run"'],
 }
