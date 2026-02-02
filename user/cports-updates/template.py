@@ -1,6 +1,6 @@
 pkgname = "cports-updates"
-pkgver = "0.1.0"
-pkgrel = 1
+pkgver = "0.2.1"
+pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
 makedepends = ["rust-std"]
@@ -9,7 +9,7 @@ pkgdesc = "Render cports-updates.txt"
 license = "MIT"
 url = "https://codeberg.org/wezm/cports-updates"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "a8f1a2c187cb7a89f757f57fc0a2793cb7911e1c4f5b1a9eaeb30b5f7e4935c7"
+sha256 = "98348e3d3d637618b028d2690be6ad83f8d93ade1908de881136d33d4dd80700"
 
 
 def post_install(self):
