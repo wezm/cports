@@ -1,16 +1,3 @@
-diff --git a/src.freebsd/coreutils/env/env.c b/src.freebsd/coreutils/env/env.c
-index 8258c6b..46a838a 100644
---- a/src.freebsd/coreutils/env/env.c
-+++ b/src.freebsd/coreutils/env/env.c
-@@ -85,7 +85,7 @@ main(int argc, char **argv)
- 	pw = NULL;
- 	want_clear = 0;
- 	term = '\n';
--	while ((ch = getopt(argc, argv, "0C:iP:S:u:v")) != -1)
-+	while ((ch = getopt(argc, argv, "+0C:iP:S:u:v")) != -1)
- 		switch(ch) {
- 		case '-':
- 		case 'i':
 diff --git a/src.freebsd/sed/main.c b/src.freebsd/sed/main.c
 index 1f84249..36c96ca 100644
 --- a/src.freebsd/sed/main.c
