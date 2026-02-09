@@ -1,0 +1,7 @@
+diff --git a/test/test-sysusers/unhappy-1.expected-err b/test/test-sysusers/unhappy-1.expected-err
+index 17da5bd..f6b1b3c 100644
+--- a/test/test-sysusers/unhappy-1.expected-err
++++ b/test/test-sysusers/unhappy-1.expected-err
+@@ -1 +1 @@
+- Failed to parse UID: '9999999999': Result not representable
++ Failed to parse UID: '9999999999': Numerical result out of range
