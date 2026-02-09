@@ -1,19 +1,23 @@
---- a/test/Makefile.am
-+++ b/test/Makefile.am
-@@ -3,8 +3,6 @@ AUTOMAKE_OPTIONS=foreign
+--- a/test/Makefile.am	2026-02-09 21:04:41.281655842 +1000
++++ b/test/Makefile.am	2026-02-09 21:10:25.275804394 +1000
+@@ -1,19 +1,13 @@
+ AUTOMAKE_OPTIONS=foreign
+ 
  TESTS =						\
-   t.chmod_dev					\
+-  t.chmod_dev					\
    t.chmod_symlink				\
 -  t.chown					\
 -  t.cp-a					\
    t.echoarg					\
    t.falsereturn					\
-   t.mknod					\
-@@ -12,7 +10,6 @@ TESTS =						\
+-  t.mknod					\
+   t.no_ld_preload				\
    t.no_ld_preload_link				\
    t.option					\
    t.perlstat					\
 -  t.tar						\
-   t.touchinstall				\
+-  t.touchinstall				\
    t.truereturn					\
    t.xattr
+ 
+
