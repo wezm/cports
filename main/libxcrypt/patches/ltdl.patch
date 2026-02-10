@@ -1,0 +1,18 @@
+diff --git a/configure.ac b/configure.ac
+index 94432b0..8fd4e4f 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -53,12 +53,7 @@ LT_INIT
+ 
+ # The test scripts need to know whether C global symbols have a
+ # leading underscore.
+-LT_SYS_SYMBOL_USCORE
+-if test x$sys_symbol_underscore = xno; then
+-  SYMBOL_PREFIX=
+-else
+-  SYMBOL_PREFIX=_
+-fi
++SYMBOL_PREFIX=_
+ AC_SUBST([SYMBOL_PREFIX])
+ 
+ # One of the test scripts needs to use -dD.
