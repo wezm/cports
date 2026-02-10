@@ -16,7 +16,12 @@ hostmakedepends = [
     "meson",
     "pkgconf",
 ]
-makedepends = ["flex-devel-static", "gettext-devel", "linux-headers"]
+makedepends = [
+    "flex-devel-static",
+    "gettext-devel",
+    "libxcrypt-devel",
+    "linux-headers",
+]
 checkdepends = ["linux-pam-base"]
 depends = ["linux-pam-base"]
 pkgdesc = "Pluggable Authentication Modules for Linux"
