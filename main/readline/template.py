@@ -2,8 +2,6 @@
 # there are APIs in readline that are not provided by libedit (usually
 # really bad ones) and sometimes we cannot just replace it
 pkgname = "readline"
-# use a git revision so we don't have to deal with the stupid patches
-_gitrev = "15970c431517a046099d8294c91d778b1da9b29d"
 pkgver = "8.3.001"
 pkgrel = 1
 build_style = "gnu_configure"
@@ -20,8 +18,8 @@ makedepends = ["ncurses-devel"]
 pkgdesc = "GNU Readline library"
 license = "GPL-3.0-or-later"
 url = "https://tiswww.cwru.edu/php/chet/readline/rltop.html"
-source = f"https://git.savannah.gnu.org/cgit/readline.git/snapshot/readline-{_gitrev}.tar.gz"
-sha256 = "cbf75f73fd1bbdfd75b3988c401d6769aad6057ac79241127a7b44a79d89ae0c"
+source = "$(GNU_SITE)/readline/readline-8.3.tar.gz"
+sha256 = "fe5383204467828cd495ee8d1d3c037a7eba1389c22bc6a041f627976f9061cc"
 
 
 def post_install(self):
