@@ -138,18 +138,28 @@ def _prepare():
     if not (paths.bldroot() / "usr" / "bin" / "sh").is_file():
         raise errors.CbuildException("bootstrap not installed, can't continue")
 
-    (paths.bldroot() / "etc" / "localtime").symlink_to(
-        "../usr/share/zoneinfo/UTC"
-    )
+    if not (paths.bldroot() / "etc" / "localtime").exists():
+        (paths.bldroot() / "etc" / "localtime").symlink_to(
+            "../usr/share/zoneinfo/UTC"
+        )
 
     _prepare_etc()
 
     # Create temporary files for the chroot
     if (paths.bldroot() / "usr/bin/sd-tmpfiles").is_file():
-        enter("sd-tmpfiles", "--create", fakeroot=True)
+        logger.get().out("running sd-tmpfiles")
+        ret = enter(
+            "sd-tmpfiles", "--create", fakeroot=True, capture_output=True
+        )
+        print(ret.stderr.decode())
+        print(ret.stdout.decode())
+        if ret.returncode != 0:
+            raise errors.CbuildException("sd-tmpfiles failed")
 
     if (paths.bldroot() / "usr/bin/update-ca-certificates").is_file():
-        enter("update-ca-certificates")
+        ret = enter("update-ca-certificates")
+        if ret.returncode != 0:
+            raise errors.CbuildException("update-ca-certificates failed")
 
     with open(sfpath, "w") as sf:
         sf.write(host_cpu() + "\n")
