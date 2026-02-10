@@ -1,0 +1,11 @@
+--- a/src.freebsd/miscutils/time/time.c.orig	2026-02-10 21:20:23.706683339 +1000
++++ b/src.freebsd/miscutils/time/time.c	2026-02-10 21:20:32.414041656 +1000
+@@ -76,7 +76,7 @@
+ 	decimal_point = localeconv()->decimal_point[0];
+ 
+ 	aflag = hflag = pflag = 0;
+-	while ((ch = getopt(argc, argv, "aho:p")) != -1)
++	while ((ch = getopt(argc, argv, "+aho:p")) != -1)
+ 		switch((char)ch) {
+ 		case 'a':
+ 			aflag = 1;
