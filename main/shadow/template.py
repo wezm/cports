@@ -19,7 +19,12 @@ configure_args = [
 configure_gen = []
 # out of tree is broken with libsubid
 make_dir = "."
-makedepends = ["acl-devel", "linux-pam-devel", "linux-headers"]
+makedepends = [
+    "acl-devel",
+    "libxcrypt-devel",
+    "linux-pam-devel",
+    "linux-headers",
+]
 depends = ["linux-pam", "base-shells"]
 # self-trigger
 triggers = ["/usr/share/shadow"]
