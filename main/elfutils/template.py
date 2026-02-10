@@ -19,7 +19,6 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "argp-standalone",
     "bzip2-devel",
     "chimerautils-devel",
     "curl-devel",
@@ -27,8 +26,6 @@ makedepends = [
     "libarchive-devel",
     "libmicrohttpd-devel",
     "linux-headers",
-    "musl-bsd-headers",
-    "musl-obstack-devel",
     "sqlite-devel",
     "xz-devel",
     "zlib-ng-compat-devel",
