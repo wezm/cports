@@ -3,7 +3,6 @@ pkgver = "3.8.2"
 pkgrel = 1
 build_style = "gnu_configure"
 configure_args = ["--disable-yacc"]
-make_check_args = ["-j1"]
 hostmakedepends = ["automake", "gettext-devel", "gm4", "perl", "texinfo"]
 makedepends = ["gettext-devel"]
 checkdepends = ["flex", "autoconf"]
