@@ -26,8 +26,7 @@ license = "BSD-2-Clause"
 url = "https://www.libarchive.org"
 source = f"https://github.com/libarchive/libarchive/releases/download/v{pkgver}/libarchive-{pkgver}.tar.gz"
 sha256 = "5f2d3c2fde8dc44583a61165549dc50ba8a37c5947c90fc02c8e5ce7f1cfb80d"
-# encoding failures on musl; harmless
-options = ["bootstrap", "!check"]
+options = ["bootstrap"]
 
 if self.stage > 0:
     configure_args += ["--with-openssl", "--with-zstd"]  # TODO: --with-iconv?
