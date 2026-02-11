@@ -8,6 +8,7 @@ packages*
 pkgstage*
 etc/keys
 etc/config.ini
+apk-tools-*.tar.gz
 void-*.tar.xz
 bootstrap.*
 !bootstrap.sh
