@@ -533,7 +533,6 @@ def _(self):
 @subpackage("libunwind")
 def _(self):
     self.subdesc = "libunwind"
-    self.compression = "deflate"
 
     return ["usr/lib/libunwind.so.*"]
 
@@ -560,7 +559,6 @@ def _(self):
 @subpackage("libcxx")
 def _(self):
     self.subdesc = "C++ standard library"
-    self.compression = "deflate"
 
     return ["usr/lib/libc++.so.*"]
 
@@ -605,7 +603,6 @@ def _(self):
 def _(self):
     self.subdesc = "low level C++ runtime"
     self.depends = [self.with_pkgver("libunwind")]
-    self.compression = "deflate"
 
     return ["usr/lib/libc++abi.so.*"]
 

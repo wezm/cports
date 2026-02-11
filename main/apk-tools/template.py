@@ -15,13 +15,12 @@ hostmakedepends = [
     "pkgconf",
     "scdoc",
 ]
-makedepends = ["openssl3-devel", "zlib-ng-compat-devel"]
+makedepends = ["openssl3-devel", "zlib-ng-compat-devel", "zstd-devel"]
 pkgdesc = "Alpine package manager"
 license = "GPL-2.0-only"
 url = "http://git.alpinelinux.org/cgit/apk-tools"
 source = f"https://gitlab.alpinelinux.org/alpine/apk-tools/-/archive/v{pkgver}/apk-tools-v{pkgver}.tar.gz"
 sha256 = "a45214cb2135fbb7cddbdb7a7daab6179300b42eb9040f6a6c6e06061c5dffca"
-compression = "deflate"
 options = ["bootstrap"]
 
 if self.stage > 0:
@@ -40,7 +39,6 @@ else:
     configure_args += [
         "-Dhelp=disabled",
         "-Ddocs=disabled",
-        "-Dzstd=false",
     ]
 
 
@@ -54,6 +52,7 @@ def init_configure(self):
     # and pkg-config's libdir is set to /usr/lib in this case, fool it
     # into giving out the correct paths to make meson happy
     self.env["PKG_CONFIG_ZLIB_LIBDIR"] = ldir
+    self.env["PKG_CONFIG_LIBZSTD_LIBDIR"] = ldir
     self.env["PKG_CONFIG_LIBCRYPTO_LIBDIR"] = ldir
     self.env["PKG_CONFIG_LIBSSL_LIBDIR"] = ldir
 

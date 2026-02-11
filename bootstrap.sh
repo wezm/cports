@@ -195,7 +195,7 @@ xbps-install -y python3 openssl git bubblewrap fakeroot
 echo ">> Installing build tools..."
 xbps-install -y base-devel clang lld libcxx-devel llvm-libunwind-devel \
                 cmake meson pkgconf bmake ninja byacc flex perl m4 \
-                zlib-devel openssl-devel
+                zlib-devel openssl-devel libzstd-devel
 
 # build apk-tools if needed
 if command -v apk > /dev/null; then
@@ -203,11 +203,11 @@ if command -v apk > /dev/null; then
 else
     echo ">> Building apk..."
     cd /apk-tools-v${APK_VER}
-    rm -rf build && mkdir build && cd build && meson setup .. --prefix=/usr
+    rm -rf build && mkdir build && cd build && meson setup -Ddefault_library=static -Dstatic=true .. --prefix=/usr
     ninja all && ninja install
 
     # these were only needed to build apk
-xbps-remove -y zlib-devel openssl-devel || exit 1
+    xbps-remove -y openssl-devel libzstd-devel zlib-devel
     xbps-remove -oy
 fi
 

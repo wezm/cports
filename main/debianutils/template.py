@@ -6,7 +6,6 @@ license = "GPL-2.0-or-later"
 url = "https://tracker.debian.org/pkg/debianutils"
 source = f"$(DEBIAN_SITE)/main/d/debianutils/debianutils_{pkgver}.tar.xz"
 sha256 = "79e524b7526dba2ec5c409d0ee52ebec135815cf5b2907375d444122e0594b69"
-compression = "deflate"
 hardening = ["vis", "cfi"]
 options = ["bootstrap"]
 

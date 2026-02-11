@@ -18,7 +18,6 @@ license = "GPL-2.0-or-later AND MPL-2.0"
 url = "https://gitlab.alpinelinux.org/alpine/ca-certificates"
 source = f"{url}/-/archive/{pkgver}/ca-certificates-{pkgver}.tar.gz"
 sha256 = "def9373067a7436da4d6ca47616c361818956529a4ca719eddf73d9576b3ff6e"
-compression = "deflate"
 # no tests
 options = ["!check"]
 

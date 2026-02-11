@@ -20,7 +20,6 @@ license = "BSD-3-Clause"
 url = "http://www.zstd.net"
 source = f"https://github.com/facebook/zstd/releases/download/v{pkgver}/zstd-{pkgver}.tar.gz"
 sha256 = "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3"
-compression = "deflate"
 hardening = ["!vis", "!cfi"]
 options = ["bootstrap"]
 
