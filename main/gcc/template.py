@@ -16,7 +16,6 @@ configure_args = [
     "--disable-cet",
     "--disable-fixed-point",
     "--disable-nls",
-    "--disable-libsanitizer",
     "--disable-libssp",
     "--disable-libstdcxx-pch",
     # we can't enable this yet as the compiler-rt builtins don't have quad yet
@@ -46,7 +45,6 @@ configure_args = [
     f"--with-pkgversion=Chimera {pkgver}",
     "--with-gnu-as",
     "--with-gnu-ld",
-    "--with-system-zlib",
     "--with-linker-hash-style=gnu",
     f"--with-gxx-include-dir=/usr/include/c++/{_bver}",
     "--with-gxx-libcxx-include-dir=/usr/include/c++/v1",
@@ -65,7 +63,6 @@ makedepends = [
     # "libcxx-devel-static",
     #  "libucontext-devel",
     # "libunwind-devel-static",
-    "zlib-ng-compat-devel",
     # "zstd-devel",
 ]
 depends = [
@@ -104,12 +101,28 @@ if self.stage == 0:
 
 if self.stage == 0:
     # Stop these being pulled in from the host
-    configure_args += ["--without-isl", "--without-zstd"]
+    configure_args += [
+        "--without-isl",
+        "--without-zstd",
+        "--disable-libsanitizer",
+    ]
 else:
-    # TODO: Gate zstd on stage/bootstrap
-    # "--with-system-zstd",
-    configure_args += ["--with-gmp", "--with-mpc", "--with-mpfr", "--with-isl"]
-    makedepends += ["gmp-devel", "mpc-devel", "mpfr-devel", "isl-devel"]
+    configure_args += [
+        "--with-gmp",
+        "--with-isl",
+        "--with-mpc",
+        "--with-mpfr",
+        "--with-system-zlib",
+        "--with-zstd",
+    ]
+    makedepends += [
+        "gmp-devel",
+        "isl-devel",
+        "mpc-devel",
+        "mpfr-devel",
+        "zlib-ng-compat-devel",
+        "zstd-devel",
+    ]
 
 # FIXME: This is None when bootstrapping
 # _trip = self.profile().triplet
