@@ -671,6 +671,7 @@ def enter(
     binpath=None,
     lldargs=None,
     term=False,
+    debug=False,
 ):
     defpath = []
     if binpath:
@@ -865,6 +866,13 @@ def enter(
 
     bcmd.append(cmd)
     bcmd += args
+
+    if debug:
+        print(
+            " ".join([f'{k}="{envs[k]}"' for k in envs.keys()])
+            + " "
+            + " ".join([str(arg) for arg in bcmd])
+        )
 
     try:
         return subprocess.run(
