@@ -4,6 +4,9 @@ pkgrel = 4
 build_style = "meson"
 configure_args = [
     "-Dgshadow=disabled",
+    # doesn't work with opt-level > 0 due to dangling pointer in tmpfiles
+    # https://github.com/chimera-linux/sd-tools/issues/5
+    "-Dc_args=-O0",
 ]
 hostmakedepends = ["meson", "pkgconf"]
 makedepends = [
