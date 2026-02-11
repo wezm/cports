@@ -9,7 +9,6 @@ configure_args = [
     "--mandir=/usr/share/man",
     "--infodir=/usr/share/info",
     "--without-debuginfod",
-    "--with-system-zlib",
     "--with-mmap",
     "--with-pic",
     "--disable-install-libbfd",
@@ -40,6 +39,7 @@ if self.stage == 0:
     ]
 else:
     configure_args += [
+        "--with-system-zlib",
         "--with-zstd",
     ]
     makedepends = [
