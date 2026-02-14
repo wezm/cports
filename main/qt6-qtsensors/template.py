@@ -1,6 +1,6 @@
 pkgname = "qt6-qtsensors"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
 hostmakedepends = ["cmake", "ninja", "pkgconf"]

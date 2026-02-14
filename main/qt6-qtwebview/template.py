@@ -1,6 +1,6 @@
 pkgname = "qt6-qtwebview"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 # hangs for 2 minutes then fails on initing gl
 make_check_args = ["-E", "(tst_qquickwebview)"]

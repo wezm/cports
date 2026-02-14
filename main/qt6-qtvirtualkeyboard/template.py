@@ -1,6 +1,6 @@
 pkgname = "qt6-qtvirtualkeyboard"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 # doesn't find own installed styles
 make_check_args = ["-E", "tst_styles"]

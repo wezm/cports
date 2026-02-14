@@ -1,6 +1,6 @@
 pkgname = "qt6-qtspeech"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 hostmakedepends = [
     "cmake",

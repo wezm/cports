@@ -1,6 +1,6 @@
 pkgname = "qt6-qttools"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 configure_args = [
     "-DQT_BUILD_TESTS=OFF",  # downloads gtest

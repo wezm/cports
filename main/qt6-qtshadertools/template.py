@@ -1,6 +1,6 @@
 pkgname = "qt6-qtshadertools"
 pkgver = "6.10.2"
-pkgrel = 1
+pkgrel = 0
 build_style = "cmake"
 configure_args = ["-DQT_BUILD_TESTS=ON"]
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}

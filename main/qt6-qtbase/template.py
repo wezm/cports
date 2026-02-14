@@ -2,7 +2,7 @@
 # rebuild qt6-qtbase-private-devel consumers on upgrades
 pkgname = "qt6-qtbase"
 pkgver = "6.10.2"
-pkgrel = 2
+pkgrel = 0
 build_style = "cmake"
 configure_args = [
     "-DBUILD_WITH_PCH=OFF",
