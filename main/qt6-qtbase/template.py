@@ -1,8 +1,8 @@
 # keep pkgver AND pkgrel in sync with qt6-qtwayland
 # rebuild qt6-qtbase-private-devel consumers on upgrades
 pkgname = "qt6-qtbase"
-pkgver = "6.10.1"
-pkgrel = 1
+pkgver = "6.10.2"
+pkgrel = 0
 build_style = "cmake"
 configure_args = [
     "-DBUILD_WITH_PCH=OFF",
@@ -75,7 +75,7 @@ license = (
 )
 url = "https://www.qt.io"
 source = f"https://download.qt.io/official_releases/qt/{pkgver[:-2]}/{pkgver}/submodules/qtbase-everywhere-src-{pkgver}.tar.xz"
-sha256 = "5a6226f7e23db51fdc3223121eba53f3f5447cf0cc4d6cb82a3a2df7a65d265d"
+sha256 = "aeb78d29291a2b5fd53cb55950f8f5065b4978c25fb1d77f627d695ab9adf21e"
 tool_flags = {"LDFLAGS": ["-Wl,-z,stack-size=0x200000"]}
 # FIXME
 hardening = ["!int"]
@@ -251,48 +251,6 @@ def _(self):
     ]
 
 
-def _libpkg(name, libname, desc, extra=[]):
-    @subpackage(f"qt6-qtbase-{name}")
-    def _(self):
-        self.subdesc = desc
-        return [f"usr/lib/libQt6{libname}.so.*", *extra]
-
-
-for _sp in [
-    ("opengl-widgets", "OpenGLWidgets", "OpenGL widgets"),
-    ("dbus", "DBus", "DBus"),
-    ("core", "Core", "Core"),
-    (
-        "printsupport",
-        "PrintSupport",
-        "Print support",
-        ["usr/lib/qt6/plugins/printsupport"],
-    ),
-    ("concurrent", "Concurrent", "Concurrency"),
-    ("widgets", "Widgets", "Widgets"),
-    (
-        "network",
-        "Network",
-        "Network",
-        [
-            "usr/lib/qt6/plugins/networkinformation",
-            "usr/lib/qt6/plugins/tls",
-        ],
-    ),
-    (
-        "sql",
-        "Sql",
-        "SQL",
-        [
-            "usr/lib/qt6/plugins/sqldrivers",
-        ],
-    ),
-    ("test", "Test", "Test"),
-    ("xml", "Xml", "XML"),
-]:
-    _libpkg(*_sp)
-
-
 @subpackage("qt6-qtbase-devel-static")
 def _(self):
     self.depends = []
@@ -339,3 +297,45 @@ def _(self):
             "usr/lib/*.prl",
         ]
     )
+
+
+def _libpkg(name, libname, desc, extra=[]):
+    @subpackage(f"qt6-qtbase-{name}")
+    def _(self):
+        self.subdesc = desc
+        return [f"usr/lib/libQt6{libname}.so.*", *extra]
+
+
+for _sp in [
+    ("opengl-widgets", "OpenGLWidgets", "OpenGL widgets"),
+    ("dbus", "DBus", "DBus"),
+    ("core", "Core", "Core"),
+    (
+        "printsupport",
+        "PrintSupport",
+        "Print support",
+        ["usr/lib/qt6/plugins/printsupport"],
+    ),
+    ("concurrent", "Concurrent", "Concurrency"),
+    ("widgets", "Widgets", "Widgets"),
+    (
+        "network",
+        "Network",
+        "Network",
+        [
+            "usr/lib/qt6/plugins/networkinformation",
+            "usr/lib/qt6/plugins/tls",
+        ],
+    ),
+    (
+        "sql",
+        "Sql",
+        "SQL",
+        [
+            "usr/lib/qt6/plugins/sqldrivers",
+        ],
+    ),
+    ("test", "Test", "Test"),
+    ("xml", "Xml", "XML"),
+]:
+    _libpkg(*_sp)
