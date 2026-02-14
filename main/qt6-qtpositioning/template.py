@@ -1,6 +1,6 @@
 pkgname = "qt6-qtpositioning"
 pkgver = "6.10.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_args = ["-E", "(module_includes)"]
 hostmakedepends = [

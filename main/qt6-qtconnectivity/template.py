@@ -1,6 +1,6 @@
 pkgname = "qt6-qtconnectivity"
 pkgver = "6.10.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # cmake import
 make_check_args = ["-E", "module_includes"]

@@ -1,6 +1,6 @@
 pkgname = "digikam"
 pkgver = "8.7.0"
-pkgrel = 7
+pkgrel = 8
 build_style = "cmake"
 configure_args = [
     "-DBUILD_TESTING=ON",

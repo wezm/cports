@@ -1,6 +1,6 @@
 pkgname = "qt6-qtcharts"
 pkgver = "6.10.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # module_includes: fails to find cmake imports
 # qbarseries: hangs and then fails
