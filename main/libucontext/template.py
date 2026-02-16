@@ -10,6 +10,7 @@ source = f"{url}/archive/refs/tags/libucontext-{pkgver}.tar.gz"
 sha256 = "4faf1838a15d61efe27ddac24fded2c290929eb3a1fefc72f952ae96d5bda006"
 # see common-trampoline.c (1.3.1) libucontext_trampoline comment
 options = ["!framepointer"]
+broken = "not needed with glibc"
 
 
 def post_install(self):

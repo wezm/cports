@@ -27,6 +27,7 @@ sha256 = [
 hardening = ["!scp"]
 # does not ship tests
 options = ["bootstrap", "!check", "!lto"]
+broken = "replaced by glibc"
 
 # whether to use musl's stock allocator
 # for now 32-bit targets until we patch out 64-bit atomics in arena
