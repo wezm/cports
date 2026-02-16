@@ -22,6 +22,10 @@ source = f"https://github.com/facebook/zstd/releases/download/v{pkgver}/zstd-{pk
 sha256 = "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3"
 hardening = ["!vis", "!cfi"]
 options = ["bootstrap"]
+if self.stage == 0:
+    # SONAME: libc.so.6 (unknown provider)
+    # SONAME: libc++.so.1 (unknown provider)
+    options += ["!scanrundeps"]
 
 
 def post_install(self):
@@ -34,6 +38,10 @@ def post_install(self):
 @subpackage("zstd-progs")
 def _(self):
     self.install_if = [self.parent]
+    if self.stage == 0:
+        # SONAME: libc.so.6 (unknown provider)
+        # SONAME: libc++.so.1 (unknown provider)
+        self.options += ["!scanrundeps"]
 
     return self.default_progs()
 

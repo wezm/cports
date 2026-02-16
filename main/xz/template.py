@@ -11,6 +11,9 @@ url = "https://tukaani.org/xz"
 source = f"https://github.com/tukaani-project/xz/releases/download/v{pkgver}/xz-{pkgver}.tar.gz"
 sha256 = "507825b599356c10dca1cd720c9d0d0c9d5400b9de300af00e4d1ea150795543"
 options = ["bootstrap"]
+if self.stage == 0:
+    # SONAME: libc.so.6 (unknown provider)
+    options += ["!scanrundeps"]
 
 if self.stage > 0:
     makedepends += ["linux-headers"]

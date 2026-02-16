@@ -12,6 +12,9 @@ url = "https://lz4.github.io/lz4"
 source = f"https://github.com/lz4/lz4/archive/v{pkgver}.tar.gz"
 sha256 = "537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b"
 options = ["bootstrap"]
+if self.stage == 0:
+    # SONAME: libc.so.6 (unknown provider)
+    options += ["!scanrundeps"]
 
 
 def init_configure(self):
