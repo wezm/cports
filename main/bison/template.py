@@ -13,7 +13,9 @@ url = "http://www.gnu.org/software/bison"
 source = f"$(GNU_SITE)/bison/bison-{pkgver}.tar.xz"
 sha256 = "9bba0214ccf7f1079c5d59210045227bcf619519840ebfa80cd3849cff5a5bf2"
 hardening = ["vis", "!cfi"]
-options = ["bootstrap"]
+# FIXME: (fails on master too)
+# 764: Leaked lookahead after nondeterministic parse syntax error: glr2.cc FAILED (glr-regression.at:1862)
+options = ["bootstrap", "!check"]
 
 
 def init_configure(self):
