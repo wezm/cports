@@ -1,5 +1,5 @@
 pkgname = "kparts"
-pkgver = "6.22.0"
+pkgver = "6.23.0"
 pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
@@ -19,7 +19,7 @@ license = (
 )
 url = "https://api.kde.org/frameworks/kparts/html"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kparts-{pkgver}.tar.xz"
-sha256 = "e302ee44891e98fda74872cf3acdde44eb56a625da76339b58f2f5518726230f"
+sha256 = "799e14c2b42f9f73f6dfb35d1faaed632f144171f090aba2f74d04605b9bcc12"
 hardening = ["vis"]
 
 

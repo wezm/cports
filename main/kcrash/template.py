@@ -1,5 +1,5 @@
 pkgname = "kcrash"
-pkgver = "6.22.0"
+pkgver = "6.23.0"
 pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
@@ -9,7 +9,7 @@ pkgdesc = "KDE Graceful handling of application crashes"
 license = "LGPL-2.1-or-later"
 url = "https://api.kde.org/frameworks/kcrash/html"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kcrash-{pkgver}.tar.xz"
-sha256 = "322d7ca0588c008746e997b398111328767b4bc87318e24a0ededa0c191e700e"
+sha256 = "8c3f38fe4066518c78949b779147e845a06eedc7dea8730d5b3a5b0518e6de90"
 hardening = ["vis"]
 # fails starting with 6.6
 options = ["!check"]
