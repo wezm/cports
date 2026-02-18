@@ -1304,7 +1304,14 @@ class Template(Package):
 
         # find whether the template dir has local modifications
         dval = git.call(["status", "-s", "--", self.template_path])
-        dirty = dval is not None and len(dval.strip()) != 0
+        if dval is None:
+            # should not happen, but anyway...
+            return
+
+        dval = dval.strip()
+        dirty = len(dval) != 0
+        # early guess so we can skip calling git log
+        untracked = dval.startswith(b"?")
 
         def _gitlog(fmt, tgt, pkg):
             bargs = ["log", "-n1", f"--format={fmt}"]
@@ -1318,7 +1325,10 @@ class Template(Package):
             return logv.strip().decode("ascii")
 
         # find the last revision modifying the template
-        grev = _gitlog("%H", self.template_path, True)
+        if not untracked:
+            grev = _gitlog("%H", self.template_path, True)
+        else:
+            grev = ""
 
         # 0 length means untracked in git
         if len(grev) != 40 and len(grev) != 0:
