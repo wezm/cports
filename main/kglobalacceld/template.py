@@ -5,7 +5,7 @@ build_style = "cmake"
 # XXX drop libexec
 configure_args = ["-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib"]
 # needs full init of kglobalaccel
-make_check_args = ["-E", "shortcutstest"]
+make_check_args = ["-E", "(shortcutstest|allowlisttest)"]
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
 hostmakedepends = ["cmake", "extra-cmake-modules", "ninja"]
 makedepends = [
