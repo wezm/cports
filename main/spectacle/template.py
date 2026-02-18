@@ -37,6 +37,7 @@ makedepends = [
     "xcb-util-devel",
     "zxing-cpp-devel",
 ]
+depends = ["tesseract"]
 pkgdesc = "KDE Screenshot capture utility"
 license = "GPL-2.0-or-later"
 url = "https://apps.kde.org/spectacle"
