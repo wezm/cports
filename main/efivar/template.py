@@ -6,6 +6,7 @@ make_build_target = "all"
 make_build_args = ["libdir=/usr/lib", "ERRORS="]
 make_install_args = ["libdir=/usr/lib"]
 make_check_target = "test"
+make_check_args = ["-j1"]
 hostmakedepends = ["mandoc", "pkgconf"]
 makedepends = ["linux-headers"]
 pkgdesc = "Tools and libraries to work with EFI variables"
