@@ -8,7 +8,6 @@ hostmakedepends = [
     "gettext-devel",
     "texinfo",
 ]
-checkdepends = ["musl-bsd-headers"]
 pkgdesc = "GNU find utilities"
 license = "GPL-3.0-or-later"
 url = "http://www.gnu.org/software/findutils"

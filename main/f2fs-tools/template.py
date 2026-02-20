@@ -6,7 +6,6 @@ make_dir = "."  # bad build system
 hostmakedepends = ["automake", "libtool", "pkgconf"]
 makedepends = [
     "linux-headers",
-    "musl-bsd-headers",
     "util-linux-blkid-devel",
     "util-linux-uuid-devel",
 ]

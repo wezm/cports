@@ -4,7 +4,6 @@ pkgrel = 0
 build_style = "gnu_configure"
 hostmakedepends = ["automake", "pkgconf", "slibtool"]
 makedepends = ["linux-headers"]
-checkdepends = ["musl-bsd-headers"]
 pkgdesc = "Minimalistic user-space library oriented to Netlink developers"
 license = "LGPL-2.1-or-later"
 url = "http://www.netfilter.org/projects/libmnl"

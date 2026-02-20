@@ -32,7 +32,6 @@ makedepends = [
     "glib-devel",
     "libical-devel",
     "linux-headers",
-    "musl-bsd-headers",
     "readline-devel",
     "udev-devel",
 ]
