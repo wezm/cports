@@ -1,0 +1,33 @@
+From 6157387c10be30efba713f7ad552846be33b3994 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Lukas=20D=C3=B6llerer?= <contact@lukas-doellerer.de>
+Date: Sun, 25 May 2025 16:21:24 +0200
+Subject: [PATCH] clang > 20.1.4 compat: unterminated strings
+
+-Wunterminated-string-initialization warns for c string literals that are written to a buffer too small to include a null terminator. This warning is also included in -Wextra which is enabled for wasi-libc and fails compilation due to -Werror.
+---
+ Makefile | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 8a4f1a4ac..f20a1a93e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -422,7 +422,8 @@ CFLAGS += -Wall -Wextra -Werror \
+   -Wno-missing-braces \
+   -Wno-ignored-pragmas \
+   -Wno-unused-but-set-variable \
+-  -Wno-unknown-warning-option
++  -Wno-unknown-warning-option \
++  -Wno-unterminated-string-initialization
+ 
+ # Configure support for threads.
+ ifeq ($(THREAD_MODEL), single)
+@@ -738,7 +739,7 @@ $(INCLUDE_DIRS): $(ALL_POSSIBLE_HEADERS)
+ 	touch $@
+ 
+ STARTUP_FILES := $(OBJDIR)/copy-startup-files.stamp
+-$(STARTUP_FILES): $(INCLUDE_DIRS) $(LIBC_BOTTOM_HALF_CRT_OBJS) 
++$(STARTUP_FILES): $(INCLUDE_DIRS) $(LIBC_BOTTOM_HALF_CRT_OBJS)
+ 	#
+ 	# Install the startup files (crt1.o, etc.).
+ 	#
