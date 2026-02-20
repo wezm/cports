@@ -20,7 +20,8 @@ configure_args = [
     "--with-dblib=none",
 ]
 hostmakedepends = ["pkgconf", "automake", "libtool"]
-pkgdesc = "Cyrus SASL"
+makedepends = ["libxcrypt-devel"]
+pkgdesc = "Cyrus Simple Authentication Service Layer"
 subdesc = "runtime library"
 license = "BSD-3-Clause-Attribution"
 url = "https://www.cyrusimap.org/sasl"

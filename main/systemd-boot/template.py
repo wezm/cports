@@ -120,6 +120,7 @@ makedepends = [
     "acl-devel",
     "kmod-devel",
     "libcap-devel",
+    "libxcrypt-devel",
     "linux-headers",
     "openssl3-devel",
     "tpm2-tss-devel",

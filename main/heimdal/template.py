@@ -38,6 +38,7 @@ makedepends = [
     "gettext-devel",
     "libcap-ng-devel",
     "libedit-devel",
+    "libxcrypt-devel",
     "linux-pam-devel",
     "ncurses-devel",
     "openldap-devel",
