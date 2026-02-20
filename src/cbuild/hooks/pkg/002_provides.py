@@ -157,7 +157,7 @@ def _matches_lib(soname, root):
         return False
 
     # versioned or unversioned soname
-    if re.match(r"^\w+(.*)+\.so(\.\d+)*$", soname):
+    if re.match(r"^\w+(.*)\.so(\.\d+)*$", soname):
         # versioned soname: match anywhere
         if re.search(r"\d+$", soname):
             return True
