@@ -13,7 +13,9 @@ def _lint_static(pkg):
     for v in (pkg.destdir / "usr/lib").rglob("*.a"):
         allow = not pkg.rparent.options["lto"] or pkg.options["ltostrip"]
         if not allow or pkg.options["splitstatic"]:
-            pkg.log_red("static libraries should be in the -static package")
+            pkg.log_red(
+                f"static libraries should be in the -static package: {v}"
+            )
             return False
         else:
             pkg.log_warn(
