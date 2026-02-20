@@ -10,6 +10,3 @@ source = f"$(GNU_SITE)/gperf/gperf-{pkgver}.tar.gz"
 sha256 = "fd87e0aba7e43ae054837afd6cd4db03a3f2693deb3619085e6ed9d8d9604ad8"
 # FIXME
 hardening = ["vis", "!cfi", "!int"]
-# FIXME tr: Invalid or incomplete multibyte or wide character
-# make[1]: *** [Makefile:109: check-lang-utf8] Error 1
-options = ["!check"]
