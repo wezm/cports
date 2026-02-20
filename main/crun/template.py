@@ -13,7 +13,6 @@ hostmakedepends = [
     "python",
 ]
 makedepends = [
-    "argp-standalone",
     "libcap-devel",
     "libseccomp-devel",
     # -static for test build from all target

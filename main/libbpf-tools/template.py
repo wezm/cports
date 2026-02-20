@@ -18,7 +18,6 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "argp-standalone",
     "libbpf-devel",
     "linux-headers",
 ]
@@ -31,7 +30,6 @@ tool_flags = {
     # see libbpf comment about bpf headers
     "CFLAGS": ["-I/usr/include/bpf/uapi"],
     "CXXFLAGS": ["-I/usr/include/bpf/uapi"],
-    "LDFLAGS": ["-largp"],
 }
 # check: no tests
 # distlicense: no actual bsd license in the folders, just headers

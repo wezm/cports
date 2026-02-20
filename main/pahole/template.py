@@ -12,11 +12,9 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "argp-standalone",
     "elfutils-devel",
     "libbpf-devel",
     "linux-headers",
-    "musl-obstack-devel",
     "zlib-ng-compat-devel",
 ]
 pkgdesc = "Debug information utilities"

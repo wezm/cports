@@ -10,7 +10,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "alsa-lib-devel",
-    "argp-standalone",
     "cairo-devel",
     "fftw-devel",
     "fltk-devel",
