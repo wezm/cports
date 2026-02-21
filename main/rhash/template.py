@@ -1,6 +1,6 @@
 pkgname = "rhash"
 pkgver = "1.4.6"
-pkgrel = 0
+pkgrel = 1
 build_style = "configure"
 configure_args = [
     "--prefix=/usr",

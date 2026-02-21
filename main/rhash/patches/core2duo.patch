@@ -1,0 +1,22 @@
+commit 24bc1031acbf2f539c6f2bfccb0ce3b424b84cca
+Author: q66 <q66@chimera-linux.org>
+Date:   Sat Feb 21 13:05:23 2026 +0100
+
+    prevent emission of popcntl instruction
+    
+    This is a part of SSE4.2 which is not in the x86_64 baseline
+    and requires Nehalem+ CPUs.
+
+diff --git a/librhash/byte_order.h b/librhash/byte_order.h
+index b4e44b1..a6cf173 100644
+--- a/librhash/byte_order.h
++++ b/librhash/byte_order.h
+@@ -132,7 +132,7 @@ unsigned rhash_ctz64(uint64_t);
+ #endif
+ 
+ /* rhash_popcount - count the number of 1-bits */
+-#if HAS_GNUC(3, 4) || HAS_CLANG_BUILTIN(__builtin_popcount)
++#if 0
+ # define rhash_popcount(x) __builtin_popcount(x)
+ #else
+ unsigned rhash_popcount(unsigned); /* define as function */
