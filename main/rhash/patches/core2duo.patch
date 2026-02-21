@@ -1,22 +1,62 @@
-commit 24bc1031acbf2f539c6f2bfccb0ce3b424b84cca
+commit 47324c910ee7c189ff2761ce87d1c89067fb5fb4
 Author: q66 <q66@chimera-linux.org>
-Date:   Sat Feb 21 13:05:23 2026 +0100
+Date:   Sat Feb 21 13:18:09 2026 +0100
 
-    prevent emission of popcntl instruction
+    don't apply -msse4 -msha globally
     
-    This is a part of SSE4.2 which is not in the x86_64 baseline
-    and requires Nehalem+ CPUs.
+    Only do it for the file that needs that and gets picked up via
+    cpuid at runtime.
+    
+    Also fix building shared library from objects instead of sources.
 
-diff --git a/librhash/byte_order.h b/librhash/byte_order.h
-index b4e44b1..a6cf173 100644
---- a/librhash/byte_order.h
-+++ b/librhash/byte_order.h
-@@ -132,7 +132,7 @@ unsigned rhash_ctz64(uint64_t);
- #endif
+diff --git a/configure b/configure
+index 37393d6..412df14 100755
+--- a/configure
++++ b/configure
+@@ -781,7 +781,6 @@ if test "$OPT_SHANI" = "auto"; then
+         "-msse4 -msha";
+     then
+       HAS_X86_SSE4_SHANI=yes
+-	  LIBRHASH_OPTFLAGS=$(join_params $LIBRHASH_OPTFLAGS -msse4 -msha)
+ 	  LIBRHASH_DEFINES=$(join_params $LIBRHASH_DEFINES -DRHASH_SSE4_SHANI)
+     fi
+   fi
+@@ -831,7 +830,6 @@ elif darwin; then
+   LIBRHASH_SH_CFLAGS="-fpic"
+   LIBRHASH_SH_LDFLAGS='-dynamiclib -Wl,-install_name,$(LIBDIR)/$@'
+ else
+-  LIBRHASH_SH_CFLAGS="-fpic"
+   LIBRHASH_SH_LDFLAGS="-shared -Wl${SHARED_VSCRIPT},-soname,\$(LIBRHASH_SO_MAJ)"
+   test -n "$SHARED_VSCRIPT" && LIBRHASH_EXPORTS_TARGET=$LIBRHASH_EXPORTS_FILE
+ fi
+@@ -1058,4 +1056,4 @@ if test -f "${MAN_PATH}.in"; then
+   SED_SYSCONFDIR=$(echo $INSTALL_SYSCONFDIR | sed -e 's/\([|\\&]\)/\\\1/g')
+   echo "Writing ${MAN_PATH}"
+   sed -e "s|@SYSCONFDIR@|$SED_SYSCONFDIR|" ${MAN_PATH}.in > ${MAN_PATH}
+-fi
+\ No newline at end of file
++fi
+diff --git a/librhash/Makefile b/librhash/Makefile
+index 8fb5213..b48911e 100644
+--- a/librhash/Makefile
++++ b/librhash/Makefile
+@@ -134,7 +134,7 @@ sha1.o: sha1.c byte_order.h ustd.h sha1.h
+ 	$(CC) -c $(CFLAGS) $< -o $@
  
- /* rhash_popcount - count the number of 1-bits */
--#if HAS_GNUC(3, 4) || HAS_CLANG_BUILTIN(__builtin_popcount)
-+#if 0
- # define rhash_popcount(x) __builtin_popcount(x)
- #else
- unsigned rhash_popcount(unsigned); /* define as function */
+ sha_ni.o: sha_ni.c sha_ni.h sha1.h ustd.h sha256.h byte_order.h
+-	$(CC) -c $(CFLAGS) $< -o $@
++	$(CC) -c $(CFLAGS) -msse4 -msha $< -o $@
+ 
+ sha256.o: sha256.c byte_order.h ustd.h sha256.h
+ 	$(CC) -c $(CFLAGS) $< -o $@
+@@ -189,8 +189,8 @@ $(LIBRHASH_SOLINK):
+ 	rm -f $(LIBRHASH_SOLINK)
+ 	ln -s $(LIBRHASH_SO_MAJ) $(LIBRHASH_SOLINK)
+ 
+-$(LIBRHASH_SHARED): $(SOURCES) $(EXPORTS_TARGET) $(SOLINK_TARGET)
+-	$(CC) $(SHARED_CFLAGS) $(VERSION_CFLAGS) $(SOURCES) $(SHARED_LDFLAGS) -o $@
++$(LIBRHASH_SHARED): $(OBJECTS) $(EXPORTS_TARGET) $(SOLINK_TARGET)
++	$(CC) $(SHARED_CFLAGS) $(VERSION_CFLAGS) $(OBJECTS) $(SHARED_LDFLAGS) -o $@
+ 
+ # build static library
+ $(LIBRHASH_STATIC): $(OBJECTS)
