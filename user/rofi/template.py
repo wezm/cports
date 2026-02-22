@@ -1,6 +1,6 @@
 pkgname = "rofi"
 pkgver = "1.7.9_p1"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 hostmakedepends = ["bison", "meson", "pkgconf"]
 makedepends = [
