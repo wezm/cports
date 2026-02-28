@@ -25,6 +25,9 @@ source = (
     f"$(GNOME_SITE)/geocode-glib/{pkgver[:-2]}/geocode-glib-{pkgver}.tar.xz"
 )
 sha256 = "2d9a6826d158470449a173871221596da0f83ebdcff98b90c7049089056a37aa"
+# requires installed locales:
+# setlocale (LC_ALL, "en_GB.UTF-8")' should not be NULL
+options = ["!check"]
 
 
 @subpackage("geocode-glib-devel")
