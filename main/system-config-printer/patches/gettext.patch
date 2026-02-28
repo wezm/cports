@@ -1,0 +1,13 @@
+--- a/configure.ac.orig	2026-02-27 22:31:21.570404744 +1000
++++ b/configure.ac	2026-02-27 22:31:29.397643507 +1000
+@@ -1,9 +1,9 @@
+ AC_INIT(system-config-printer, 1.5.18)
+ AC_CONFIG_SRCDIR(system-config-printer.py)
+ AM_INIT_AUTOMAKE([dist-xz dist-bzip2 subdir-objects 1.6])
++AM_GNU_GETTEXT([external])
+ AM_GNU_GETTEXT_VERSION(0.20)
+ AX_REQUIRE_DEFINED([AM_GNU_GETTEXT])
+-AM_GNU_GETTEXT([external])
+ AM_PATH_PYTHON([3])
+ PACKAGE="AC_PACKAGE_NAME"
+ VERSION="AC_PACKAGE_VERSION"
