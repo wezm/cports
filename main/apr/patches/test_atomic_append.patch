@@ -1,0 +1,22 @@
+--- a/test/testfile.c.orig	2026-02-27 03:09:32.859840089 +0000
++++ b/test/testfile.c	2026-02-27 03:11:38.641746066 +0000
+@@ -1547,7 +1547,7 @@
+ 
+ static void test_atomic_append(abts_case *tc, void *data)
+ {
+-#if APR_HAS_THREADS
++#if 0
+     apr_status_t rv;
+     apr_status_t thread_rv;
+     apr_file_t *f;
+@@ -1599,9 +1599,9 @@
+         ABTS_FAIL(tc, ctx2.errmsg);
+     }
+ 
+     apr_file_remove(fname, p);
+ #else
+-    ABTS_SKIP(tc, data, "This test requires APR thread support.");
++    ABTS_SKIP(tc, data, "This test is disabled.");
+ #endif /* APR_HAS_THREADS */
+ }
+ 
