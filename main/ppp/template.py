@@ -23,8 +23,6 @@ options = ["!check", "!distlicense"]
 
 
 def post_install(self):
-    self.install_file("include/linux/ppp_defs.h", "usr/include/net")
-
     # eliminate suid bits
     for f in (self.destdir / f"usr/lib/pppd/{pkgver}").glob("*.so"):
         f.chmod(0o755)
