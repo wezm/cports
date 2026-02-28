@@ -2,6 +2,7 @@ pkgname = "uchardet"
 pkgver = "0.0.8"
 pkgrel = 0
 build_style = "cmake"
+configure_args = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 pkgdesc = "Encoding detector library"
 license = "MPL-1.1"
