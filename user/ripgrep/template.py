@@ -2,8 +2,6 @@ pkgname = "ripgrep"
 pkgver = "15.1.0"
 pkgrel = 0
 build_style = "cargo"
-# we patch lockfile
-prepare_after_patch = True
 make_build_args = ["--features", "pcre2"]
 make_check_args = [*make_build_args]
 hostmakedepends = ["cargo-auditable", "pkgconf"]
