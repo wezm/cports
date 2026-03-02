@@ -14,8 +14,10 @@ checkdepends = ["clang-analyzer", "perl"]
 pkgdesc = "Next generation secure network tunnel - tools for configuration"
 license = "GPL-2.0-only"
 url = "https://www.wireguard.com"
-source = f"https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-{pkgver}.tar.xz"
-sha256 = "97ff31489217bb265b7ae850d3d0f335ab07d2652ba1feec88b734bc96bd05ac"
+# This source seems to be blocking cbuild from fetching the tarball
+# source = f"https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-{pkgver}.tar.xz"
+source = f"https://github.com/WireGuard/wireguard-tools/archive/refs/tags/v{pkgver}.tar.gz"
+sha256 = "acb8517eed8f352bbf0758a70573c665521a4300d0c4865afebd6b643738c640"
 tool_flags = {
     "CFLAGS": ['-DRUNSTATEDIR="/run"'],
 }
