@@ -3,6 +3,7 @@ pkgver = "1.11.2"
 pkgrel = 0
 build_style = "makefile"
 make_dir = "source"
+make_install_args = ['SUFFIX=""']
 make_use_env = True
 pkgdesc = "Library for resampling audio signals"
 license = "GPL-3.0-or-later"
