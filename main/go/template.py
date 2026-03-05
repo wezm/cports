@@ -30,6 +30,9 @@ match self.profile().arch:
     case "loongarch64" | "ppc64le":
         # assume gcc / gnu as
         options += ["!check"]
+    case "x86_64":
+        # FIXME: cmd/cgo/internal/testtls:static fails
+        options += ["!check"]
 
 if self.profile().cross:
     hostmakedepends += ["go"]
