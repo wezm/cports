@@ -2,7 +2,11 @@ pkgname = "yaml-cpp"
 pkgver = "0.8.0"
 pkgrel = 0
 build_style = "cmake"
-configure_args = ["-DYAML_CPP_BUILD_TESTS=ON", "-DYAML_BUILD_SHARED_LIBS=ON"]
+configure_args = [
+    "-DYAML_CPP_BUILD_TESTS=ON",
+    "-DYAML_BUILD_SHARED_LIBS=ON",
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 makedepends = ["gtest-devel"]
 pkgdesc = "C++ YAML parser and emitter"

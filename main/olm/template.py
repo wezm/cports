@@ -2,6 +2,7 @@ pkgname = "olm"
 pkgver = "3.2.16"
 pkgrel = 0
 build_style = "cmake"
+configure_args = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
 make_check_args = ["--test-dir", "tests"]
 hostmakedepends = [
     "cmake",

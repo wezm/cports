@@ -3,6 +3,7 @@ pkgver = "0.4.41"
 pkgrel = 0
 build_wrksrc = "Project/CMake"
 build_style = "cmake"
+configure_args = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
 hostmakedepends = ["pkgconf", "cmake", "ninja"]
 pkgdesc = "Shared library for libmediainfo and mediainfo"
 license = "Zlib"
