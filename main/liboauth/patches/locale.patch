@@ -1,0 +1,12 @@
+tries to set locale to en_US.UTF-8, which isn't generated
+--- a/tests/Makefile.am.orig	2026-03-07 16:10:02.587430827 +1000
++++ b/tests/Makefile.am	2026-03-07 16:10:13.828719521 +1000
+@@ -9,7 +9,7 @@
+ 
+ tcwiki_SOURCES = selftest_wiki.c commontest.c commontest.h
+ tcwiki_LDADD = $(MYLDADD)
+-tcwiki_CFLAGS = $(MYCFLAGS) @TEST_UNICODE@
++tcwiki_CFLAGS = $(MYCFLAGS)
+ 
+ tceran_SOURCES = selftest_eran.c commontest.c commontest.h
+ tceran_LDADD = $(MYLDADD)
