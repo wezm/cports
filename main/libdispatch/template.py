@@ -10,7 +10,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "linux-headers",
-    "musl-bsd-headers",
 ]
 pkgdesc = "Apple's concurrent threading library"
 license = "Apache-2.0"

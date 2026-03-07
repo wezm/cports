@@ -3,7 +3,6 @@ pkgver = "0.18"
 pkgrel = 0
 build_style = "makefile"
 makedepends = [
-    "musl-bsd-headers",
     "ncurses-devel",
     "sqlite-devel",
     "zlib-ng-compat-devel",

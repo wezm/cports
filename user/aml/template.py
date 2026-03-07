@@ -3,7 +3,6 @@ pkgver = "0.3.0"
 pkgrel = 0
 build_style = "meson"
 hostmakedepends = ["meson", "pkgconf"]
-makedepends = ["musl-bsd-headers"]
 pkgdesc = "Main loop library"
 license = "ISC"
 url = "https://github.com/any1/aml"

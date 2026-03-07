@@ -36,7 +36,6 @@ makedepends = [
     "libxtst-devel",
     "mesa-devel",
     "mesa-gbm-devel",
-    "musl-bsd-headers",
     "openh264-devel",
     "openssl3-devel",
     "opus-devel",

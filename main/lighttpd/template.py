@@ -18,7 +18,6 @@ makedepends = [
     "libdeflate-devel",
     "libxml2-devel",
     "lua5.4-devel",
-    "musl-bsd-headers",
     "openssl3-devel",
     "pcre2-devel",
     "sqlite-devel",

@@ -18,7 +18,6 @@ makedepends = [
     "libxpm-devel",
     "libxrandr-devel",
     "libxt-devel",
-    "musl-bsd-headers",
     "xtrans",
 ]
 pkgdesc = "X11 window manager"

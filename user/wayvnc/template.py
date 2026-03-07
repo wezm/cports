@@ -8,7 +8,6 @@ makedepends = [
     "libdrm-devel",
     "libxkbcommon-devel",
     "mesa-gbm-devel",
-    "musl-bsd-headers",
     "neatvnc-devel",
     "pixman-devel",
     "wayland-devel",

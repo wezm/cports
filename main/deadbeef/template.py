@@ -35,7 +35,6 @@ makedepends = [
     "libvorbis-devel",
     "libzip-devel",
     "mpg123-devel",
-    "musl-bsd-headers",
     "opusfile-devel",
     "pipewire-devel",
     "wavpack-devel",

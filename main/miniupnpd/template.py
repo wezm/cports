@@ -15,7 +15,6 @@ configure_args = [
 ]
 make_env = {"SBINDIR": "/usr/bin"}
 hostmakedepends = [
-    "musl-bsd-headers",
     "pkgconf",
 ]
 makedepends = [

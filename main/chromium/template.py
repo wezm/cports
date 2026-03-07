@@ -116,7 +116,6 @@ makedepends = [
     "libxslt-devel",
     "linux-headers",
     "minizip-devel",
-    "musl-bsd-headers",
     "nss-devel",
     "opus-devel",
     "pciutils-devel",

@@ -30,7 +30,6 @@ makedepends = [
     "libxml2-devel",
     "linux-headers",
     "lvm2-devel",
-    "musl-bsd-headers",
     "sqlite-devel",
     "util-linux-mount-devel",
 ]

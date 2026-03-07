@@ -9,7 +9,6 @@ makedepends = [
     "curl-devel",
     "libedit-devel",
     "lowdown-devel",
-    "musl-bsd-headers",
     "openssl3-devel",
 ]
 pkgdesc = "CLI tool for interacting with Git(Hub|Lab|Tea)"

@@ -11,7 +11,6 @@ hostmakedepends = [
 makedepends = [
     "libmd-devel",
     "linux-headers",
-    "musl-bsd-headers",
 ]
 pkgdesc = "Commonly used BSD functions not implemented by all libcs"
 license = "BSD-3-Clause"

@@ -10,7 +10,6 @@ hostmakedepends = ["pkgconf"]
 makedepends = [
     "glib-devel",
     "linux-headers",
-    "musl-bsd-headers",
     "sqlite-devel",
     "xxhash-devel",
 ]

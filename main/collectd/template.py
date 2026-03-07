@@ -27,7 +27,6 @@ makedepends = [
     "linux-headers",
     "lm-sensors-devel",
     "lua5.4-devel",
-    "musl-bsd-headers",
     "protobuf-c-devel",
     "rabbitmq-c-devel",
     "rrdtool-devel",

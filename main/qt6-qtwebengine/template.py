@@ -73,7 +73,6 @@ makedepends = [
     "libxshmfence-devel",
     "libxslt-devel",
     "minizip-devel",
-    "musl-bsd-headers",
     "nss-devel",
     "opus-devel",
     "pciutils-devel",
