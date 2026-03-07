@@ -1,5 +1,5 @@
 pkgname = "strace"
-pkgver = "6.17"
+pkgver = "6.19"
 pkgrel = 0
 build_style = "gnu_configure"
 configure_args = [
@@ -21,5 +21,5 @@ pkgdesc = "System call tracer"
 license = "LGPL-2.1-or-later"
 url = "https://strace.io"
 source = f"https://github.com/strace/strace/releases/download/v{pkgver}/strace-{pkgver}.tar.xz"
-sha256 = "0a7c7bedc7efc076f3242a0310af2ae63c292a36dd4236f079e88a93e98cb9c0"
+sha256 = "e076c851eec0972486ec842164fdc54547f9d17abd3d1449de8b120f5d299143"
 hardening = ["vis", "cfi"]
