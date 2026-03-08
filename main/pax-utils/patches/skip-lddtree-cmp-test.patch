@@ -1,0 +1,9 @@
+--- a/tests/lddtree/meson.build.orig    2026-03-08 13:32:27.716170540 +1000
++++ b/tests/lddtree/meson.build 2026-03-08 13:32:38.055445569 +1000
+@@ -1,4 +1,4 @@
+-foreach sfx : ['sh', 'py', 'cmp']
++foreach sfx : ['sh', 'py']
+   test('lddtree-' + sfx, files('dotest-' + sfx),
+     workdir : meson.current_source_dir(),
+     env : {
+

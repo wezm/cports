@@ -1,6 +1,6 @@
 pkgname = "pax-utils"
-pkgver = "1.3.8"
-pkgrel = 2
+pkgver = "1.3.10"
+pkgrel = 0
 build_style = "meson"
 configure_args = [
     "-Dlddtree_implementation=python",
@@ -21,9 +21,9 @@ checkdepends = [
 ]
 pkgdesc = "ELF related utils for ELF binaries"
 license = "GPL-2.0-only"
-url = "https://github.com/gentoo/pax-utils"
-source = f"https://dev.gentoo.org/~sam/distfiles/app-misc/pax-utils/pax-utils-{pkgver}.tar.xz"
-sha256 = "12a168d1aeae2626efdbde3979da88a60ca80bb38e1db565e95ee441ff1d5a0c"
+url = "https://wiki.gentoo.org/wiki/Hardened/PaX_Utilities"
+source = f"https://dev.gentoo.org/~floppym/dist/pax-utils-{pkgver}.tar.xz"
+sha256 = "2d308a923a846a0a816bf9c9fd05b5f38371e9dcfafbf976159a76f3e8e7d317"
 hardening = ["vis", "cfi"]
 # see below
 options = []
