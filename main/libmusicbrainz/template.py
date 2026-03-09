@@ -2,6 +2,7 @@ pkgname = "libmusicbrainz"
 pkgver = "5.1.0"
 pkgrel = 1
 build_style = "cmake"
+configure_args = ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 makedepends = ["neon-devel", "libxml2-devel"]
 pkgdesc = "MusicBrainz client library"
