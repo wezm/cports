@@ -1,6 +1,6 @@
 pkgname = "graphicsmagick"
-pkgver = "1.3.45"
-pkgrel = 2
+pkgver = "1.3.46"
+pkgrel = 0
 build_style = "gnu_configure"
 configure_args = [
     "--disable-static",
@@ -27,9 +27,9 @@ configure_args = [
 ]
 hostmakedepends = [
     "automake",
+    "libtool",
     "perl",
     "pkgconf",
-    "slibtool",
 ]
 makedepends = [
     "bzip2-devel",
@@ -52,7 +52,7 @@ pkgdesc = "Image processing system"
 license = "MIT"
 url = "http://www.graphicsmagick.org"
 source = f"$(SOURCEFORGE_SITE)/graphicsmagick/GraphicsMagick-{pkgver}.tar.xz"
-sha256 = "dcea5167414f7c805557de2d7a47a9b3147bcbf617b91f5f0f4afe5e6543026b"
+sha256 = "c7c706a505e9c6c3764156bb94a0c9644d79131785df15a89c9f8721d1abd061"
 
 if self.profile().arch in [
     "aarch64",
