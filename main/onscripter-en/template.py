@@ -28,3 +28,4 @@ source = f"https://github.com/Galladite27/ONScripter-EN/archive/refs/tags/{pkgve
 sha256 = "29d15582fafebbd7c06feb598af74871f1a346397752e970c867360b367d47b8"
 # cross: scuffed custom configure script
 options = ["!cross"]
+broken = "sdl1.2_ttf-devel doesn't build"
