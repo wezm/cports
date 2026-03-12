@@ -27,6 +27,7 @@ options = [
     "execstack",
     "foreignelf",  # vdso32
 ]
+broken = 'ERROR: modpost: "wcslen" [fs/smb/client/cifs.ko] undefined!'
 
 if self.current_target == "custom:generate-configs":
     hostmakedepends += ["base-cross", "ncurses-devel"]
