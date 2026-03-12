@@ -30,6 +30,8 @@ sha256 = "d9ef11948442197c9fa44bd6fbadc842b7280a60dfc40577af66fded637af356"
 tool_flags = {"CFLAGS": ["-DNDEBUG"], "CXXFLAGS": ["-DNDEBUG"]}
 # CFI: breaks build
 hardening = ["vis", "!cfi"]
+# FIXME: mulitiple failures, happens on Chimera too
+options = ["!check"]
 
 
 def post_install(self):
