@@ -16,6 +16,7 @@ sha256 = "acc04dde662491e3092565ecf9bde504c47dbb1bb0408366009b138fe7754cab"
 tool_flags = {"CFLAGS": ["-fcommon"]}
 # no license file, no tests
 options = ["!distlicense", "!check"]
+broken = "call to undeclared function 'bsd_signal'"
 
 
 def init_install(self):
