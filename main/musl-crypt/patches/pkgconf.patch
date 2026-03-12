@@ -1,0 +1,18 @@
+diff --git a/libcrypt.pc b/libcrypt.pc
+new file mode 100644
+index 00000000..79a519c2
+--- /dev/null
++++ b/libcrypt.pc
+@@ -0,0 +1,12 @@
++prefix=/usr
++exec_prefix=${prefix}
++
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include
++
++Name: musl-crypt
++Version: 1.2.5-pre1
++Description: libcrypt compatiblilty library extracted from musl libc
++Libs: -L${libdir} -lcrypt
++Cflags: -I${includedir}
++

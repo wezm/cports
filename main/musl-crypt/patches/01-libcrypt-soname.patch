@@ -1,0 +1,32 @@
+commit 3878346977b10e9fee48f2f2297f60aede15e64f
+Author: Wesley Moore <wes@wezm.net>
+Date:   Thu Mar 12 21:23:31 2026 +1000
+
+    Set SONAME in libcrypt.so
+
+diff --git a/Makefile b/Makefile
+index 3811a5b9..6aa1e507 100644
+--- a/Makefile
++++ b/Makefile
+@@ -72,7 +72,8 @@ STATIC_LIBS = lib/libc.a
+ SHARED_LIBS = lib/libc.so
+ TOOL_LIBS = lib/musl-gcc.specs
+ CRYPT_STATIC_LIB = lib/libcrypt.a
+-CRYPT_SHARED_LIB = lib/libcrypt.so
++CRYPT_SHARED_LIB = lib/libcrypt.so.2.0.0
++CRYPT_SONAME      = libcrypt.so.2
+ CRYPT_LIBS = $(CRYPT_STATIC_LIB) $(CRYPT_SHARED_LIB)
+ ALL_LIBS = $(CRT_LIBS) $(STATIC_LIBS) $(SHARED_LIBS) $(EMPTY_LIBS) $(TOOL_LIBS)
+ ALL_TOOLS = obj/musl-gcc
+@@ -176,9 +177,9 @@ lib/libc.a: $(AOBJS)
+ 	$(AR) rc $@ $(AOBJS)
+ 	$(RANLIB) $@
+ 
+-lib/libcrypt.so: $(CRYPT_LOBJS)
++$(CRYPT_SHARED_LIB): $(CRYPT_LOBJS)
+ 	$(CC) $(CFLAGS_ALL) $(LDFLAGS_ALL) -shared \
+-	-o $@ $(CRYPT_LOBJS)
++	-Wl,-soname,$(CRYPT_SONAME) -o $@ $(CRYPT_LOBJS)
+ 
+ lib/libcrypt.a: $(CRYPT_AOBJS)
+ 	rm -f $@
