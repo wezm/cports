@@ -3,6 +3,7 @@ pkgver = "0.1.24"
 pkgrel = 0
 build_style = "cargo"
 make_build_args = ["--workspace"]
+make_build_env = {"CXXSTDLIB": "c++"}
 make_check_args = [*make_build_args]
 hostmakedepends = ["cargo-auditable"]
 makedepends = ["rust-std"]
