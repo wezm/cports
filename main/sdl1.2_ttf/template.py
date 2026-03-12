@@ -15,6 +15,7 @@ source = (
     f"https://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-{pkgver}.tar.gz"
 )
 sha256 = "724cd895ecf4da319a3ef164892b72078bd92632a5d812111261cde248ebcdb7"
+broken = "ftbfs"
 
 
 @subpackage("sdl1.2_ttf-devel")
