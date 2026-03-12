@@ -2,6 +2,7 @@ pkgname = "libgrapheme"
 pkgver = "2.0.2"
 pkgrel = 1
 build_style = "makefile"
+make_install_args = ["LDCONFIG="]
 make_check_target = "test"
 hostmakedepends = ["pkgconf"]
 pkgdesc = "Unicode string library"
