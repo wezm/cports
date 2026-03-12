@@ -29,7 +29,6 @@ makedepends = [
     "libadwaita-devel",
     "libdex-devel",
     "libpanel-devel",
-    "libucontext-devel",
     "libunwind-nongnu-devel",
     "linux-headers",
     "polkit-devel",

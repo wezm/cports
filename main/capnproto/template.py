@@ -5,7 +5,6 @@ build_style = "cmake"
 configure_args = ["-DBUILD_SHARED_LIBS=ON"]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 makedepends = [
-    "libucontext-devel",
     "linux-headers",
     "openssl3-devel",
     "zlib-ng-compat-devel",

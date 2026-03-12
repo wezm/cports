@@ -16,7 +16,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "glib-devel",
-    "libucontext-devel",
     "liburing-devel",
     "linux-headers",
 ]

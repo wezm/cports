@@ -14,7 +14,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "hwloc-devel",
-    "libucontext-devel",
     "linux-headers",
 ]
 pkgdesc = "OneAPI Threading Building Blocks"
