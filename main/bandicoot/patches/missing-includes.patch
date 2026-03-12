@@ -1,0 +1,40 @@
+From 52376111f6d031e9884a553c3cef63e8cade7637 Mon Sep 17 00:00:00 2001
+From: l-pt <88390968+l-pt@users.noreply.github.com>
+Date: Wed, 5 Mar 2025 00:45:11 +0100
+Subject: [PATCH] add missing includes
+
+---
+ src/bandicoot.hh  | 1 +
+ src/bandicootd.cc | 2 ++
+ 2 files changed, 3 insertions(+)
+
+diff --git a/src/bandicoot.hh b/src/bandicoot.hh
+index b0b4de3..0eb334c 100644
+--- a/src/bandicoot.hh
++++ b/src/bandicoot.hh
+@@ -7,6 +7,7 @@
+ 
+ #include "config.hh"
+ 
++#include <cstdint>
+ #include <ctime>
+ 
+ #include <sys/resource.h>
+diff --git a/src/bandicootd.cc b/src/bandicootd.cc
+index 63f6bea..4e1bfce 100644
+--- a/src/bandicootd.cc
++++ b/src/bandicootd.cc
+@@ -21,11 +21,13 @@
+ 
+ #include "bandicoot.hh"
+ 
++#include <cerrno>
+ #include <cstdio>
+ #include <cstdlib>
+ #include <cstring>
+ #include <cstdint>
+ 
++#include <string>
+ #include <vector>
+ 
+ #include <err.h>
