@@ -13,6 +13,7 @@ configure_args = [
     "--enable-xattr-mappings",
     "--with-fuse=internal",
 ]
+make_install_args = ["LDCONFIG="]
 hostmakedepends = ["pkgconf", "automake", "libtool"]
 makedepends = [
     "gnutls-devel",
