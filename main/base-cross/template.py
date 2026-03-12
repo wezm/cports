@@ -13,6 +13,7 @@ pkgdesc = "Base metapackage for cross-compiling"
 license = "custom:meta"
 url = "https://chimera-linux.org"
 options = ["!cross"]
+broken = "cross-compilation is not implemented"
 
 _targetlist = [
     "aarch64",

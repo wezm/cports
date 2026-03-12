@@ -24,6 +24,7 @@ sha256 = [
 hardening = ["!scp"]
 # crosstoolchain
 options = ["!cross", "!check", "!lto", "brokenlinks", "empty"]
+broken = "cross-compilation is not implemented"
 
 _targetlist = [
     "aarch64",

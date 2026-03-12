@@ -53,6 +53,7 @@ sha256 = [
 ]
 # crosstoolchain
 options = ["!cross", "!check", "!lto", "empty"]
+broken = "cross-compilation is not implemented"
 
 cmake_dir = "compiler-rt"
 

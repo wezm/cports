@@ -13,7 +13,7 @@ source = f"$(SOURCEFORGE_SITE)/mingw-w64/mingw-w64-v{pkgver}.tar.bz2"
 sha256 = "5afe822af5c4edbf67daaf45eec61d538f49eef6b19524de64897c6b95828caf"
 # checks fail
 options = ["empty", "!check", "!lto"]
-
+broken = "cross-compilation is not implemented"
 _targets = ["x86_64", "i686", "aarch64", "armv7"]
 
 for _an in _targets:

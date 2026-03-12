@@ -13,7 +13,7 @@ depends = [
 pkgdesc = "Metapackage for Windows development"
 license = "custom:meta"
 url = "https://chimera-linux.org"
-
+broken = "cross-compilation is not implemented"
 _targets = ["x86_64", "i686", "armv7", "aarch64"]
 
 

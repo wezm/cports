@@ -13,6 +13,7 @@ options = [
     "!lintstatic",
     "brokenlinks",
 ]
+broken = "not currently used/incompatible"
 
 match self.profile().arch:
     case "aarch64":

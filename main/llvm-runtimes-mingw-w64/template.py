@@ -53,7 +53,7 @@ sha256 = "4633a23617fa31a3ea51242586ea7fb1da7140e426bd62fc164261fe036aa142"
 hardening = ["!scp"]
 # crosstoolchain
 options = ["!check", "empty", "!relr"]
-
+broken = "cross-compilation is not implemented"
 _targets = ["x86_64", "i686", "aarch64", "armv7"]
 
 

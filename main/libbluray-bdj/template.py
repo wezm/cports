@@ -17,6 +17,7 @@ license = "LGPL-2.1-or-later"
 url = "https://www.videolan.org/developers/libbluray.html"
 source = f"https://download.videolan.org/pub/videolan/libbluray/{pkgver}/libbluray-{pkgver}.tar.bz2"
 sha256 = "478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b"
+broken = "openjdk17-default unknown provider"
 
 
 def post_install(self):

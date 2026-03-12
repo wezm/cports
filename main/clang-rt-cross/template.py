@@ -53,7 +53,7 @@ source = f"https://github.com/llvm/llvm-project/releases/download/llvmorg-{pkgve
 sha256 = "4633a23617fa31a3ea51242586ea7fb1da7140e426bd62fc164261fe036aa142"
 # crosstoolchain
 options = ["!cross", "!check", "!lto", "empty"]
-
+broken = "cross-compilation is not implemented"
 cmake_dir = "compiler-rt"
 
 tool_flags = {
