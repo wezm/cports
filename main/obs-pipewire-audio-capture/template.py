@@ -10,6 +10,7 @@ hostmakedepends = [
 makedepends = [
     "obs-studio-devel",
     "pipewire-devel",
+    "simde",
 ]
 pkgdesc = "OBS plugin for capturing device and application audio using pipewire"
 license = "GPL-2.0-or-later"
