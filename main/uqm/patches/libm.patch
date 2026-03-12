@@ -1,0 +1,22 @@
+--- a/sc2/meson.build.orig	2026-03-09 22:11:35.635328747 +1000
++++ b/sc2/meson.build	2026-03-09 22:11:54.695838397 +1000
+@@ -1,15 +1,17 @@
+ project('uqm', 'c')
+ 
++compiler = meson.get_compiler('c')
++libm = compiler.find_library('m')
++
+ dependencies = [
+   dependency('libmikmod'),
+   dependency('libpng'),
+   dependency('sdl2'),
+   dependency('vorbisfile'),
+   dependency('zlib'),
++  libm,
+ ]
+ 
+-compiler = meson.get_compiler('c')
+-
+ conf_data = configuration_data()
+ conf_data.set('CONTENTDIR', get_option('prefix')/get_option('datadir')/'uqm')
+ 
