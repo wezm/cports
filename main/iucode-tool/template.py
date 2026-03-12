@@ -5,7 +5,6 @@ archs = ["x86_64"]
 build_style = "gnu_configure"
 configure_gen = ["./autogen.sh"]
 hostmakedepends = ["pkgconf", "automake", "libtool"]
-makedepends = ["argp-standalone"]
 pkgdesc = "Intel microcode manipulation utility"
 license = "GPL-2.0-or-later"
 url = "https://gitlab.com/iucode-tool/iucode-tool"
