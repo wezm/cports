@@ -1,10 +1,10 @@
 pkgname = "rust-bootstrap"
-pkgver = "1.92.0"
+pkgver = "1.93.0"
 pkgrel = 0
 # satisfy revdeps
 makedepends = ["zlib-ng-compat", "ncurses-libs", "zstd"]
 # overlapping files
-depends = ["!rust"]
+depends = ["!rust", "llvm-libgcc-devel"]
 pkgdesc = "Rust programming language bootstrap toolchain"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
@@ -19,39 +19,39 @@ options = ["!strip", "!splitstatic", "!lto"]
 
 match self.profile().arch:
     # case "aarch64":
-    #    sha256 = [
-    #        "2e9f12e49c9c2f00eabeb268077393c578674c274362046d09b39c784fb71511",
-    #        "c7bdf73ceadef99c18c5ef07c14047026d15fad9bd01b21222c6ac32745df8df",
-    #    ]
+    #     sha256 = [
+    #         "f525efe0f9fe418d976b1447ec5ff6c075f7d32756f8b7ede258e4384ecbada3",
+    #         "6cc88202832f6d003c191a45ede4196ef43cec05d763cec5cf69f33694e75a93",
+    #     ]
     # case "loongarch64":
-    #    sha256 = [
-    #        "47a0a0659e860ecfc0aa6d0ddc115c52ed8327fdc9b2120ab846e0842249a3ed",
-    #        "838c3cd7955367bfe6b809f207c94baa54e590f40055a26f6dda9f3fbdf7da8d",
-    #    ]
+    #     sha256 = [
+    #         "aa22a5d3dee1c2a0194cb3a04e32f6b0c3e5bbaa730e9f82dff716e7b2c836dd",
+    #         "bd6cd31f41f2ba03d2458ee95a0501f9cbef4a5e3aabac177cf0f2431c18522f",
+    #     ]
     # case "ppc64le":
-    #    sha256 = [
-    #        "d758bff94374f31fe9c3e0e67e760ac36c37b9cc384a089da2ecf59dfcc804ef",
-    #        "102fb780ff10f31fe53febf5262fc262841fffa3501302cbd639831e663a53a8",
-    #    ]
+    #     sha256 = [
+    #         "dfb4007a93577f52d8aaba559a4eb1d5a354d5c3d7c694dee6f30b0d6dae8c19",
+    #         "7a6a4bfcf425cfc3116260235545e1fe6c037a8fb6a3dc9c320f071c0595eb69",
+    #     ]
     # case "ppc64":
-    #    sha256 = [
-    #        "11dc0440df2aaefeeb32d7558aeeaa47bd7fc596f350864c66e03cf3121be026",
-    #        "0cc156a4afedfd5ac4db0fc450532f157d5d6140c8739482eaf2b295bd3109aa",
-    #    ]
+    #     sha256 = [
+    #         "61bee27932b6bad31edaa9806353d5bb1b1b88dd95d97986f4f6638963d4191e",
+    #         "0d58ef934ea8a4555cdd2d3f20781d7f3c71279b71b08ee0bcc350954858919d",
+    #     ]
     # case "ppc":
-    #    sha256 = [
-    #        "bae4d351550e3a20269a79968668918f423a79c3fc0488f90e8757e0c5713b78",
-    #        "adf29539d21dc1163cdc784c9ae3daf172b555dc6bb8498c49fabf37563c6f5a",
-    #    ]
+    #     sha256 = [
+    #         "58124a1a2ffd24b957132fd6a2e635aa4a0be010a21bf2ccd5516b1abc6ce012",
+    #         "72670f1e5849582c5cecb26613ef6ee7fc5c283ea1c5005244f2cea284b5fe96",
+    #     ]
     # case "riscv64":
-    #    sha256 = [
-    #        "f0b6c48217e674bc82a8e8f5f4396b6a32f9fd7c534d2ccc7e73c55e0cbd65bb",
-    #        "679d2991696b2c951bc3625965d4158daaf0c1dc13b8468e67818df2f64709ce",
-    #    ]
+    #     sha256 = [
+    #         "aaf905bf3c81c37e428ca2f66935d0d49f22d418159b20159bbccd1fac71ccff",
+    #         "a358010bbf48a1caf67da82e0ddc8135427e98c10400f10292f090ec1921874b",
+    #     ]
     case "x86_64":
         sha256 = [
-            "78b2dd9c6b1fcd2621fa81c611cf5e2d6950690775038b585c64f364422886e0",
-            "5f106805ed86ebf8df287039e53a45cf974391ef4d088c2760776b05b8e48b5d",
+            "00c6e6740ea6a795e33568cd7514855d58408a1180cd820284a7bbf7c46af715",
+            "a849a418d0f27e69573e41763c395e924a0b98c16fcdc55599c1c79c27c1c777",
         ]
     case _:
         broken = f"not yet built for {self.profile().arch}"
