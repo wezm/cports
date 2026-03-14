@@ -23,3 +23,5 @@ source = (
     f"https://github.com/melonDS-emu/melonDS/archive/refs/tags/{pkgver}.tar.gz"
 )
 sha256 = "52c6b99340b8bba8c52b11a2242591f05e838c34ddd9ec20dcf1a6039405434a"
+# /builddir/melonds-0.9.5/src/frontend/qt_sdl/main.cpp:47:10: fatal error: 'qpa/qplatformnativeinterface.h' file not found
+broken = "qpa/qplatformnativeinterface.h not found"
