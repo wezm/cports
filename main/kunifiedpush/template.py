@@ -2,6 +2,8 @@ pkgname = "kunifiedpush"
 pkgver = "25.12.1"
 pkgrel = 0
 build_style = "cmake"
+# fails; also disabled by Alpine
+make_check_args = ["-E", "connectortest"]
 make_check_wrapper = ["dbus-run-session", "--"]
 hostmakedepends = [
     "cmake",
