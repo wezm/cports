@@ -166,7 +166,7 @@ def _(self):
         "desktop-file-utils",
         "fprintd-meta",
         "iio-sensor-proxy-meta",  # tablet/convertible auto-rotate etc.
-        "maliit-keyboard",  # on-screen keyboard
+        # "maliit-keyboard",  # on-screen keyboard
         "power-profiles-daemon-meta",  # battery power saving
     ]
     self.options = ["empty"]
@@ -282,7 +282,7 @@ def _(self):
     self.subdesc = "devtools recommends package"
     self.install_if = [self.with_pkgver("plasma-desktop-meta")]
     self.depends = [
-        "heaptrack",
+        # "heaptrack",
         "kcachegrind",
         "massif-visualizer",
     ]
