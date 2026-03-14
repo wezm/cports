@@ -111,6 +111,7 @@ makedepends = [
     "acl-devel",
     "kmod-devel",
     "libcap-devel",
+    "libxcrypt-devel",
     "linux-headers",
     "util-linux-blkid-devel",
     "util-linux-mount-devel",
