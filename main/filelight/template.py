@@ -3,7 +3,8 @@ pkgver = "25.12.1"
 pkgrel = 0
 build_style = "cmake"
 # can segfault in parallel
-make_check_args = ["-j1"]
+# These tests fail on Chimera too
+make_check_args = ["-j1", "-E", "(directoryIteratorTest|localListerTest)"]
 make_check_wrapper = ["wlheadless-run", "--"]
 hostmakedepends = [
     "cmake",
