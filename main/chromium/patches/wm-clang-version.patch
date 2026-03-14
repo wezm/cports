@@ -1,0 +1,11 @@
+--- a/build/toolchain/toolchain.gni.orig	2026-03-13 21:14:18.930501750 +1000
++++ b/build/toolchain/toolchain.gni	2026-03-13 21:14:26.527734728 +1000
+@@ -41,7 +41,7 @@
+ }
+ 
+ declare_args() {
+-  clang_version = "22"
++  clang_version = "21"
+ }
+ 
+ # Extension for shared library files (including leading dot).

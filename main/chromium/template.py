@@ -101,7 +101,6 @@ makedepends = [
     "libpng-devel",
     "libpulse-devel",
     "libsecret-devel",
-    "libucontext-devel",
     "libusb-devel",
     "libva-devel",
     "libwebp-devel",
@@ -167,6 +166,12 @@ match self.profile().arch:
         # trap in add_label_offset() (assembler-ppc.cc)
         # also crashes on riscv64
         hardening += ["!int"]
+
+match self.profile().arch:
+    case "ppc64le":
+        broken = (
+            "main/chromium/patches/999-ppc64le-support.patch no longer applies"
+        )
 
 
 def post_patch(self):

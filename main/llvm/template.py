@@ -1,4 +1,5 @@
 pkgname = "llvm"
+# check chromium/patches/wm-clang-version.patch on major version bump
 pkgver = "21.1.8"
 pkgrel = 0
 build_style = "cmake"
