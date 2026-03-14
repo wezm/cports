@@ -29,6 +29,11 @@ tool_flags = {
         "-Wno-inconsistent-missing-override",
     ]
 }
+# CMake Error at /usr/lib64/cmake/Maliit6Plugins/Maliit6PluginsTargets.cmake:70 (set_target_properties):
+#   The link interface of target "Maliit::Plugins" contains:
+#     Qt6::GuiPrivate
+#   but the target was not found.
+broken = "Qt6::GuiPrivate not found"
 
 
 def post_install(self):
