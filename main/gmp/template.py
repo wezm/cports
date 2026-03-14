@@ -3,6 +3,7 @@ pkgver = "6.3.0"
 pkgrel = 1
 build_style = "gnu_configure"
 configure_args = ["--enable-cxx"]
+configure_env = {"ABI": "64"}
 configure_gen = []
 hostmakedepends = ["pkgconf"]
 makedepends = ["zlib-ng-compat-devel"]
