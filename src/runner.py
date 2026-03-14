@@ -744,6 +744,7 @@ def bootstrap(tgt):
             "flex",
             "perl",
             "m4",
+            "makeinfo",
         ]:
             if not shutil.which(prog):
                 sys.exit(f"Required bootstrap program not found: {prog}")
