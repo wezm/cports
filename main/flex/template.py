@@ -18,6 +18,7 @@ tool_flags = {
 }
 # dfa.c:epsclosure int overflow for ADD_STATE on snort3 sources
 hardening = ["!int"]
+options = ["bootstrap"]
 
 
 def post_patch(self):

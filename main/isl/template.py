@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://libisl.sourceforge.io"
 source = f"$(SOURCEFORGE_SITE)/libisl/isl-{pkgver}.tar.bz2"
 sha256 = "626335529331f7c89fec493de929e2e92fb3d8cc860fc7af554e0518ee0029ee"
+options = ["bootstrap"]
 
 
 def post_install(self):

@@ -88,7 +88,7 @@ source = f"$(GNU_SITE)/gcc/gcc-{pkgver}/gcc-{pkgver}.tar.xz"
 sha256 = "438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"
 hardening = ["!int", "!format", "!var-init"]
 # no tests to run
-options = ["!check", "!lto", "!relr", "!cross", "!scanshlibs"]
+options = ["bootstrap", "!check", "!lto", "!relr", "!cross", "!scanshlibs"]
 
 _trip = self.profile().triplet
 # we cannot use clang, gcc expects binutils
