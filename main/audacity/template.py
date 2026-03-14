@@ -59,7 +59,7 @@ pkgdesc = "Multitrack audio editor"
 license = "GPL-3.0-or-later"
 url = "https://www.audacityteam.org"
 source = f"https://github.com/audacity/audacity/releases/download/Audacity-{pkgver}/audacity-sources-{pkgver}.tar.gz"
-sha256 = "b33ad9f8b53e8ddf3ee0a6ba920ce9a2fd47915e329388729900ec6c0c49567f"
+sha256 = "f59e05a05a41c6d895b8d65d9afd90b0e2b453046ea4ac0be11981dca4a44c07"
 # vis breaks symbols
 hardening = []
 # check: dont care
