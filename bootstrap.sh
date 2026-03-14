@@ -71,9 +71,9 @@ TARNAME="void-${CARCH}-ROOTFS-${BASE_DATE}.tar.xz"
 # apk-tools
 
 # https://gitlab.alpinelinux.org/alpine/apk-tools/-/archive/v3.0.4/apk-tools-v3.0.4.tar.gz?ref_type=tags
-APK_VER="3.0.4"
+APK_VER="3.0.3"
 APK_URL="https://gitlab.alpinelinux.org/alpine/apk-tools/-/archive/v${APK_VER}/apk-tools-v${APK_VER}.tar.gz"
-APK_SHA256="e64bf295c8d24bd437831f74633cb9c162bd149d41cd9fbb9cf3bb2b1c56213c"
+APK_SHA256="a45214cb2135fbb7cddbdb7a7daab6179300b42eb9040f6a6c6e06061c5dffca"
 
 APK_TARNAME="apk-tools-${APK_VER}.tar.gz"
 
@@ -111,13 +111,6 @@ if [ -z "${BOOTSTRAP_ROOT}" -o ! -d "${BOOTSTRAP_ROOT}" ]; then
         exit 1
     fi
 
-    echo "${APK_SHA256} ${APK_TARNAME}" | sha256sum -c
-
-    if [ $? -ne 0 ]; then
-        echo "Failed to verify apk-tools tarball"
-        exit 1
-    fi
-
     if [ -z "${BOOTSTRAP_ROOT}" ]; then
         BOOTSTRAP_ROOT=$(mktemp -d "bootstrap.XXXXXXXXXX")
 
@@ -133,12 +126,27 @@ if [ -z "${BOOTSTRAP_ROOT}" -o ! -d "${BOOTSTRAP_ROOT}" ]; then
         fi
     fi
 
+    # FIXME: use pushd
     cd "${BOOTSTRAP_ROOT}"
 
     tar xf "../${TARNAME}"
 
     if [ $? -ne 0 ]; then
         echo "Failed to extract bootstrap root"
+        exit 1
+    fi
+
+    cd ..
+fi
+
+if [ -z "${BOOTSTRAP_ROOT}/apk-tools-v${APK_VER}" -o ! -d "${BOOTSTRAP_ROOT}/apk-tools-v${APK_VER}" ]; then
+    echo "${APK_SHA256} ${APK_TARNAME}" | sha256sum --check
+
+    # FIXME: use pushd
+    cd "${BOOTSTRAP_ROOT}"
+
+    if [ $? -ne 0 ]; then
+        echo "Failed to verify apk-tools tarball"
         exit 1
     fi
 
@@ -171,30 +179,40 @@ if [ -n "${BOOTSTRAP_REPO}" ]; then
 fi
 
 cat << EOF > "${BOOTSTRAP_ROOT}/bootstrap-inner.sh"
+#!/bin/sh
+
+set -e
+
 # update base
 echo ">> Updating base system..."
-xbps-install -y -S || exit 1
-xbps-install -yu xbps || exit 1
-xbps-install -Syu || exit 1
+xbps-install -y -S
+xbps-install -yu xbps
+xbps-install -Syu
 
 # install dependencies
 echo ">> Installing cbuild dependencies..."
-xbps-install -y python3 openssl git bubblewrap fakeroot || exit 1
+xbps-install -y python3 openssl git bubblewrap fakeroot
 echo ">> Installing build tools..."
 xbps-install -y base-devel clang lld libcxx-devel llvm-libunwind-devel \
                 cmake meson pkgconf bmake ninja byacc flex perl m4 \
-                zlib-devel openssl-devel || exit 1
+                zlib-devel openssl-devel
 
-# build apk-tools
-cd /apk-tools-v${APK_VER} || exit 1
-rm -rf build && mkdir build && cd build && meson setup .. --prefix=/usr || exit 1
-ninja all && ninja install || exit 1
+# build apk-tools if needed
+if command -v apk > /dev/null; then
+    true
+else
+    echo ">> Building apk..."
+    cd /apk-tools-v${APK_VER}
+    rm -rf build && mkdir build && cd build && meson setup .. --prefix=/usr
+    ninja all && ninja install
 
-# these were only needed to build apk
+    # these were only needed to build apk
 xbps-remove -y zlib-devel openssl-devel || exit 1
-xbps-remove -oy || exit 1
+    xbps-remove -oy
+fi
 
 cd /cports
+
 CBUILD_APK_PATH=/usr/bin/apk ./cbuild "\$@" source-bootstrap ${BOOTSTRAP_STAGE}
 EOF
 
