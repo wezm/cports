@@ -5,6 +5,7 @@ build_style = "meta"
 depends = [
     "apk-tools",
     "chimerautils",
+    "llvm-libgcc",
 ]
 pkgdesc = "Minimal set of packages suitable for containers"
 license = "custom:meta"
