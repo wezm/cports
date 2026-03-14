@@ -381,6 +381,7 @@ rootsbindir=/usr/bin
 def install(self):
     self.make.install()
 
+    # generate all locales
     if self.profile().cross:
         self.error("not yet implemented")
     else:
@@ -390,7 +391,7 @@ def install(self):
                 "../localedata",
                 f"DESTDIR={self.chroot_destdir}",
                 "objdir=../build",
-                "install-files-C.UTF-8/UTF-8",
+                "install-locale-files",
             ]
         )
 
@@ -454,6 +455,21 @@ def post_install(self):
     # wcurl https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-fhs-1.patch -o main/glibc/patches/fhs.patch
 
     self.uninstall("var/db/Makefile")
+
+
+@subpackage("glibc-locales")
+def _(self):
+    self.depends = [self.with_pkgver("glibc")]
+    self.pkgdesc = "Pregenerated locales"
+
+    # Take all locales, except C.UTF-8, which is installed by default
+    def takef():
+        locale_path = self.parent.destdir / "usr/lib/locale"
+        for f in locale_path.glob("*"):
+            if f.name != "C.utf8":
+                self.take(f"usr/lib/locale/{f.name}")
+
+    return takef
 
 
 @subpackage("glibc-devel")

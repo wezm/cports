@@ -214,7 +214,7 @@ def invoke(pkg):
             pkg.log_red(f"forbidden path '/usr/{d}'")
             lintfail = True
 
-    if pkg.pkgname != "glibc":
+    if pkg.pkgname != "glibc" and pkg.pkgname != "glibc-locales":
         for d in [
             "lib/locale",
         ]:
