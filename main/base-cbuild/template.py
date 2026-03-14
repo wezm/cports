@@ -9,6 +9,7 @@ url = "https://chimera-linux.org"
 # musl must be built first to provide shlibs for later packages during stage 0
 depends = [
     "glibc-devel",
+    "libstdc++-devel",
     "llvm",
     "clang",
     "lld",
