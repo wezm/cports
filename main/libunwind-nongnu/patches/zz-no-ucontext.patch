@@ -1,0 +1,10 @@
+--- a/src/unwind/libunwind-nongnu.pc.in.orig	2026-03-14 11:53:46.311072449 +1000
++++ b/src/unwind/libunwind-nongnu.pc.in	2026-03-14 11:53:53.789293678 +1000
+@@ -6,6 +6,6 @@
+ Name: libunwind
+ Description: libunwind base library
+ Version: @VERSION@
+-Libs: -L${libdir} -lunwind-nongnu -lucontext
++Libs: -L${libdir} -lunwind-nongnu
+ Libs.private: @LIBLZMA@ @LIBZ@
+ Cflags: -I${includedir}
