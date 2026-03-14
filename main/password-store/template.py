@@ -10,7 +10,7 @@ pkgdesc = "Console-based password manager"
 license = "GPL-2.0-or-later"
 url = "https://www.passwordstore.org"
 source = f"https://git.zx2c4.com/password-store/snapshot/password-store-{pkgver}.tar.xz"
-sha256 = "cfa9faf659f2ed6b38e7a7c3fb43e177d00edbacc6265e6e32215ff40e3793c0"
+sha256 = "4c2d0a8b99df8915a87099607a8d912fd05d30651b6f014745c14e4ca8dbbfb7"
 
 
 def build(self):
