@@ -1285,7 +1285,7 @@ index 69e0457..4bf6341 100644
  /* allow libcs like musl to deactivate this, glibc does not implement this. */
  #ifndef __UAPI_DEF_ETHHDR
 -#define __UAPI_DEF_ETHHDR		1
-+#define __UAPI_DEF_ETHHDR		0
++#define __UAPI_DEF_ETHHDR		1
  #endif
  
  #if __UAPI_DEF_ETHHDR
