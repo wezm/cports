@@ -39,3 +39,7 @@ source = f"$(KDE_SITE)/heaptrack/{pkgver}/heaptrack-{pkgver}.tar.xz"
 sha256 = "a278d9d8f91e8bfb8a1c2f5b73eecab47fd45d0693f5dbea637536413cec2ea5"
 # FIXME: weird failures
 options = ["!check"]
+# /usr/include/boost/type_traits/is_signed.hpp:37:25: error: in-class initializer for static data member is not a constant expression
+#    37 |    static const no_cv_t minus_one = (static_cast<no_cv_t>(-1));
+#       |                         ^           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+broken = "ftbfs"
