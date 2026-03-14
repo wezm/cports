@@ -24,6 +24,8 @@ tool_flags = {"CFLAGS": ["-fPIC"]}
 compression = "deflate"
 # sigh, carried over from zlib's old buildsystem
 options = ["bootstrap", "linkundefver"]
+if self.stage == 0:
+    options += ["!scanrundeps"]
 
 if self.profile().cross:
     configure_env["CHOST"] = self.profile().triplet
