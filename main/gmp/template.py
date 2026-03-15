@@ -13,11 +13,15 @@ url = "https://gmplib.org"
 source = f"{url}/download/gmp/gmp-{pkgver}.tar.xz"
 sha256 = "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898"
 options = ["bootstrap"]
+if self.stage == 0:
+    options += ["!scanrundeps"]
 
 
 @subpackage("gmp-gmpxx")
 def _(self):
     self.subdesc = "C++ support"
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
     # transitional
     self.provides = [self.with_pkgver("gmpxx")]
 

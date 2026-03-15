@@ -10,6 +10,8 @@ license = "LGPL-3.0-or-later"
 url = "https://www.mpfr.org"
 source = f"{url}/mpfr-{pkgver}/mpfr-{pkgver}.tar.xz"
 sha256 = "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01"
+if self.stage == 0:
+    options += ["!scanrundeps"]
 
 
 @subpackage("mpfr-devel")
