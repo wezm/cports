@@ -8,6 +8,7 @@ configure_args = [
     "-Dconfig-osx=false",
     "-Dconfig-sysconfig=false",
     "-Dcurl=false",
+    "-Drelease=true",
 ]
 hostmakedepends = [
     "bash",
