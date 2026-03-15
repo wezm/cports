@@ -1,0 +1,13 @@
+diff --git a/src.freebsd/coreutils/nl/nl.c b/src.freebsd/coreutils/nl/nl.c
+index 573e03e..05837e6 100644
+--- a/src.freebsd/coreutils/nl/nl.c
++++ b/src.freebsd/coreutils/nl/nl.c
+@@ -361,7 +361,7 @@ static void
+ parse_numbering(const char *argstr, int section)
+ {
+ 	int error;
+-	char errorbuf[NL_TEXTMAX];
++	char errorbuf[2048];
+ 
+ 	switch (argstr[0]) {
+ 	case 'a':
