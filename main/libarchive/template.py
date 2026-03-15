@@ -16,8 +16,8 @@ hostmakedepends = ["pkgconf"]
 makedepends = [
     "acl-devel",
     "bzip2-devel",
+    "libmd-devel",  # FIXME: stage 0 only
     "lz4-devel",
-    "musl-bsd-headers",
     "xz-devel",
     "zlib-ng-compat-devel",
 ]
@@ -30,10 +30,15 @@ sha256 = "5f2d3c2fde8dc44583a61165549dc50ba8a37c5947c90fc02c8e5ce7f1cfb80d"
 options = ["bootstrap", "!check"]
 
 if self.stage > 0:
-    configure_args += ["--with-openssl", "--with-zstd"]
+    configure_args += ["--with-openssl", "--with-zstd"]  # TODO: --with-iconv?
     makedepends += ["openssl3-devel", "zstd-devel"]
 else:
-    configure_args += ["--without-openssl", "--without-zstd"]
+    configure_args += [
+        "--without-openssl",
+        "--without-zstd",
+        "--without-iconv",
+        "--without-libb2",
+    ]
 
 
 def post_install(self):
