@@ -11,7 +11,8 @@ url = "https://git.2f30.org/fortify-headers"
 source = f"https://github.com/jvoisin/fortify-headers/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "26d81fc55b8ce3db22c7a697616392aeba928e921d975053a3f00221d1a33c08"
 tool_flags = {"CFLAGS": ["-Wno-macro-redefined"]}
-options = ["bootstrap"]
+# FIXME: /usr/include/unistd.h:226:10: fatal error: 'stddef.h' file not found
+options = ["bootstrap", "!check"]
 
 
 def build(self):
