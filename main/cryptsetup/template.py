@@ -19,6 +19,7 @@ makedepends = [
     "json-c-devel",
     "json-c-devel-static",
     "libatomic-chimera-devel-static",
+    "libunwind-devel-static",
     "linux-headers",
     "lvm2-devel",
     "lvm2-devel-static",
@@ -26,6 +27,10 @@ makedepends = [
     "openssl3-devel-static",
     "popt-devel",
     "popt-devel-static",
+    "udev-devel",
+    "udev-devel-static",
+    "util-linux-blkid-devel",
+    "util-linux-blkid-devel-static",
     "util-linux-uuid-devel",
     "util-linux-uuid-devel-static",
 ]
