@@ -57,6 +57,8 @@ sha256 = [
 ]
 # resistance is futile
 options = ["bootstrap", "!check", "!lto", "linkundefver", "empty"]
+if self.stage == 0:
+    options += ["!scanrundeps"]
 
 # currently built targets, includes the native target
 _targets = [
@@ -244,6 +246,8 @@ def install(self):
 def _(self):
     self.subdesc = "common files"
     self.options = ["!splitstatic"]
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
 
     return [
         "usr/lib/bfd-plugins",
@@ -256,6 +260,8 @@ def _gen_subp(an, native):
     def _(self):
         self.subdesc = an
         self.depends = [self.with_pkgver("binutils-common")]
+        if self.stage == 0:
+            self.options += ["!scanrundeps"]
 
         if native:
             # native binutils is last and takes all
