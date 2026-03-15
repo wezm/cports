@@ -92,30 +92,30 @@ def _get_archflags(prof, tmpl, hard, name):
     # the existing compiler-rt implementation (unstable abi and so on)
     #
     # that means we stick with local cfi for hidden symbols for now
-    if lto and hard["cfi"] and name != "FFLAGS":
-        sflags.append("-fsanitize=cfi")
-        if sanrt:
-            sflags.append("-fno-sanitize-trap=cfi")
+    # if lto and hard["cfi"] and name != "FFLAGS":
+    #     sflags.append("-fsanitize=cfi")
+    #     if sanrt:
+    #         sflags.append("-fno-sanitize-trap=cfi")
 
-    if tmpl.stage > 1 and hard["int"] and name != "FFLAGS":
-        sflags.append(
-            "-fsanitize=signed-integer-overflow,integer-divide-by-zero"
-        )
-        if not sanrt:
-            # ensure no runtime is relied upon
-            sflags.append(
-                "-fsanitize-trap=signed-integer-overflow,integer-divide-by-zero"
-            )
-        ubsan = True
+    # if  tmpl.stage > 1 and hard["int"] and name != "FFLAGS":
+    #     sflags.append(
+    #         "-fsanitize=signed-integer-overflow,integer-divide-by-zero"
+    #     )
+    #     if not sanrt:
+    #         # ensure no runtime is relied upon
+    #         sflags.append(
+    #             "-fsanitize-trap=signed-integer-overflow,integer-divide-by-zero"
+    #         )
+    #     ubsan = True
 
     if ubsan:
         sflags.append("-fno-sanitize-recover")
 
-    if lto:
-        if tmpl.options["ltofull"]:
-            sflags.append("-flto")
-        else:
-            sflags.append("-flto=thin")
+    # if lto:
+    #     if tmpl.options["ltofull"]:
+    #         sflags.append("-flto")
+    #     else:
+    #         sflags.append("-flto=thin")
 
     return sflags
 
