@@ -13,7 +13,6 @@ configure_args = [
     "-DLIBCXX_CXX_ABI=libcxxabi",
     "-DLIBCXX_USE_COMPILER_RT=ON",
     "-DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=OFF",
-    "-DLIBCXX_HAS_MUSL_LIBC=ON",
     "-DLIBCXX_HARDENING_MODE=fast",
     "-DLIBCXXABI_USE_LLVM_UNWINDER=ON",
     "-DLIBCXXABI_ENABLE_STATIC_UNWINDER=OFF",
@@ -42,7 +41,7 @@ hostmakedepends = [
     "python",
     "zlib-ng-compat-devel",
 ]
-makedepends = ["zlib-ng-compat-devel", "libatomic-chimera-devel"]
+makedepends = ["zlib-ng-compat-devel"]
 depends = [
     self.with_pkgver("llvm-libs"),
     self.with_pkgver("llvm-binutils"),
@@ -363,7 +362,7 @@ def _(self):
         self.with_pkgver("llvm-binutils"),
         "fortify-headers",
         "libatomic-chimera-devel",
-        "musl-devel",
+        "glibc-devel",
     ]
 
     return [
