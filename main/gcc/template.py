@@ -237,16 +237,43 @@ def post_install(self):
     )
     self.install_link(f"usr/lib/gcc/{_trip}/{_bver}", _mnver)
 
+
 @subpackage("gcc-libs")
 def _(self):
-    self.subdesc = "GCC libraries"
-    return [f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a", "usr/lib/libatomic.*", "usr/lib/libgcc_s.*"]
+    self.subdesc = "libraries"
+    if self.stage == 0:
+        # 0:14:15.524 =>   SONAME: libc.so.6 (unknown provider)
+        # 0:14:15.530 =>   SONAME: ld-linux-x86-64.so.2 (unknown provider)
+        self.options += ["!scanrundeps"]
+
+        # Why isn't it getting this automatically?
+        # SONAME: libgcc_s.so.1=0 (explicit)
+        # SONAME: libatomic.so.1 from usr/lib
+        # SONAME: libgcc_s.so.1 from usr/lib (skipped) <- why?
+
+        self.provides = [
+            "so:libgcc_s.so.1=0",
+        ]
+
+    return [
+        f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a",
+        "usr/lib/libatomic.*",
+        "usr/lib/libgcc_s.*",
+    ]
+
 
 @subpackage("libstdc++")
 def _(self):
     self.subdesc = "C++ standard library"
+    if self.stage == 0:
+        # 0:00:02.934 =>   SONAME: libm.so.6 (unknown provider)
+        # 0:00:02.940 =>   SONAME: libc.so.6 (unknown provider)
+        # 0:00:02.946 =>   SONAME: ld-linux-x86-64.so.2 (unknown provider)
+        self.options += ["!scanrundeps"]
+
     # TODO: self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
     return ["usr/lib/libstdc++*", "usr/lib/libsupc++.*"]
+
 
 @subpackage("libstdc++-devel")
 def _(self):
