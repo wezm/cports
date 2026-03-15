@@ -60,13 +60,13 @@ options = ["!check", "!lto", "linkundefver", "empty"]
 
 # currently built targets, includes the native target
 _targets = [
-    "aarch64",
-    "armv7",
-    "loongarch64",
-    "ppc64le",
-    "ppc64",
-    "ppc",
-    "riscv64",
+    # "aarch64",
+    # "armv7",
+    # "loongarch64",
+    # "ppc64le",
+    # "ppc64",
+    # "ppc",
+    # "riscv64",
     "x86_64",
 ]
 
