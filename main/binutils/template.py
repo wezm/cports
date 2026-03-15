@@ -56,7 +56,7 @@ sha256 = [
     "c165183819e41b25e708ea8d0938ae43125b946509016ee8550db3c09da9237b",
 ]
 # resistance is futile
-options = ["!check", "!lto", "linkundefver", "empty"]
+options = ["bootstrap", "!check", "!lto", "linkundefver", "empty"]
 
 # currently built targets, includes the native target
 _targets = [
