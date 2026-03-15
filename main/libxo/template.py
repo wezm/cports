@@ -5,7 +5,6 @@ build_style = "gnu_configure"
 configure_args = []
 configure_gen = []
 hostmakedepends = ["pkgconf"]
-makedepends = ["musl-bsd-headers"]
 pkgdesc = "Library for generating text, XML, JSON, and HTML output"
 license = "BSD-2-Clause"
 url = "https://github.com/Juniper/libxo"
