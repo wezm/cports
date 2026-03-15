@@ -34,7 +34,8 @@ configure_args = [
     "--enable-default-pie",
     "--enable-default-ssp",
     # more languages later
-    "--enable-languages=c,c++,objc,fortran",
+    # "--enable-languages=c,c++,objc,fortran",
+    "--enable-languages=c,c++",
     "--enable-linker-build-id",
     "--with-matchpd-partitions=32",
     "--enable-plugins",
@@ -50,11 +51,11 @@ configure_args = [
     "--with-mpc",
     "--with-mpfr",
     "--with-system-zlib",
-    "--with-system-zstd",
+    # "--with-system-zstd",
     "--with-linker-hash-style=gnu",
     f"--with-gxx-include-dir=/usr/include/c++/{_bver}",
     "--with-gxx-libcxx-include-dir=/usr/include/c++/v1",
-    "libat_cv_have_ifunc=no",
+    # "libat_cv_have_ifunc=no",
 ]
 configure_gen = []
 hostmakedepends = [
@@ -68,18 +69,19 @@ hostmakedepends = [
 makedepends = [
     "gmp-devel",
     "isl-devel",
-    "libcxx-devel-static",
-    "libucontext-devel",
-    "libunwind-devel-static",
+    # "libcxx-devel-static",
+    #  "libucontext-devel",
+    # "libunwind-devel-static",
     "mpc-devel",
     "mpfr-devel",
     "zlib-ng-compat-devel",
-    "zstd-devel",
+    # "zstd-devel",
 ]
+# TODO: Gate ztd on stage/bootstrap
 depends = [
     f"binutils-{self.profile().arch}",
-    f"clang-rt-devel~{_clangver}",
-    f"libcxx-devel~{_clangver}",
+    #  f"clang-rt-devel~{_clangver}",
+    #  f"libcxx-devel~{_clangver}",
 ]
 pkgdesc = "GNU Compiler Collection"
 license = "GPL-3.0-or-later"
@@ -89,8 +91,16 @@ sha256 = "438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"
 hardening = ["!int", "!format", "!var-init"]
 # no tests to run
 options = ["bootstrap", "!check", "!lto", "!relr", "!cross", "!scanshlibs"]
+if self.stage == 0:
+    options += ["!scanrundeps"]
 
-_trip = self.profile().triplet
+# FIXME: This is None when bootstrapping
+# _trip = self.profile().triplet
+
+# when bootstrapping, this will check the actual profile
+with self.profile(self.profile().arch) as _pf:
+    _trip = _pf.triplet
+
 # we cannot use clang, gcc expects binutils
 tools = {"AS": "as", "LD": "ld.bfd", "OBJDUMP": "gobjdump"}
 # give the build the builtins library in all cases that use LDFLAGS
@@ -102,21 +112,21 @@ nopie_files = [
     f"usr/lib/gcc/{_trip}/{_mnver}/plugin/*",
 ]
 # skip those
-broken_symlinks = [
-    f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
-]
+#  broken_symlinks = [
+#      f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
+#  ]
 
 # not all archs have gcc-bootstrap and on some using the regular host
 # clang to bootstrap is fine, but where we can bootstrap with gcc, do
 # so in order to avoid trouble
 _use_bootstrap = False
 
-match self.profile().arch:
-    case (
-        "aarch64" | "armv7" | "ppc64le" | "ppc64" | "ppc" | "riscv64" | "x86_64"
-    ):
-        _use_bootstrap = True
-        hostmakedepends += ["gcc-bootstrap"]
+#  match self.profile().arch:
+#      case (
+#          "aarch64" | "armv7" | "ppc64le" | "ppc64" | "ppc" | "riscv64" | "x86_64"
+#      ):
+#          _use_bootstrap = True
+#          hostmakedepends += ["gcc-bootstrap"]
 
 match self.profile().arch:
     case "aarch64":
@@ -192,25 +202,27 @@ def init_configure(self):
 def post_install(self):
     # version symlink
     self.rename(f"usr/lib/gcc/{_trip}/{_bver}", f"{_mnver}")
+    # FIXME: 0:13:22.113 =>   FileNotFoundError (/home/wmoore/Projects/cports/bldroot-stage0/destdir/gcc-15.1.0/gcc/usr/lib/gcc/None): [Errno 2] No such file or directory: '/home/wmoore/Projects/cports/bldroot-stage0/destdir/gcc-15.1.0/gcc/usr/lib/gcc/None'
+
     # link the runtime and nuke libgcc
-    self.install_link(
-        f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
-        f"../../../clang/{_clangver}/lib/{_trip}/libclang_rt.builtins.a",
-    )
-    self.uninstall(f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a", glob=True)
+    #  self.install_link(
+    #      f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
+    #      f"../../../clang/{_clangver}/lib/{_trip}/libclang_rt.builtins.a",
+    #  )
+    # self.uninstall(f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a", glob=True)
     # nuke libstdc++; this build is not compatible with chimera
-    self.uninstall("usr/include/c++")
-    self.uninstall("usr/lib/libstdc++*", glob=True)
-    self.uninstall("usr/lib/libsupc++.*", glob=True)
-    self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
+    # self.uninstall("usr/include/c++")
+    # self.uninstall("usr/lib/libstdc++*", glob=True)
+    # self.uninstall("usr/lib/libsupc++.*", glob=True)
+    # self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
     # other stuff we don't want
-    self.uninstall("usr/lib/libatomic.*", glob=True)
-    self.uninstall("usr/lib/libgcc_s.*", glob=True)
+    # self.uninstall("usr/lib/libatomic.*", glob=True)
+    # self.uninstall("usr/lib/libgcc_s.*", glob=True)
     # provided by clang
     self.uninstall("usr/bin/c++")
     self.uninstall(f"usr/bin/{_trip}-c++")
     # hardlinks
-    for f in ["g++", "gcc", "gcc-ar", "gcc-nm", "gcc-ranlib", "gfortran"]:
+    for f in ["g++", "gcc", "gcc-ar", "gcc-nm", "gcc-ranlib"]:  # , "gfortran"]:
         self.uninstall(f"usr/bin/{_trip}-{f}")
         self.install_link(f"usr/bin/{_trip}-{f}", f)
     self.uninstall(f"usr/bin/{_trip}-gcc")
@@ -226,53 +238,53 @@ def post_install(self):
     self.install_link(f"usr/lib/gcc/{_trip}/{_bver}", _mnver)
 
 
-@subpackage("gcc-fortran")
-def _(self):
-    self.subdesc = "Fortran frontend"
-    self.depends = [self.parent]
-    self.nopie_files = [
-        "usr/bin/gfortran",
-        f"usr/lib/gcc/{_trip}/{_mnver}/f951",
-    ]
-    return [
-        "usr/bin/gfortran",
-        "usr/bin/*-gfortran",
-        "usr/lib/libgfortran.spec",
-        "usr/lib/libgfortran.a",
-        "usr/lib/libgfortran.so",
-        f"usr/lib/gcc/{_trip}/{_mnver}/f951",
-        f"usr/lib/gcc/{_trip}/{_mnver}/libcaf_single.a",
-        f"usr/lib/gcc/{_trip}/{_mnver}/finclude",
-        "usr/share/info/gfortran.info",
-        "usr/share/man/man1/gfortran.1",
-    ]
+#  @subpackage("gcc-fortran")
+#  def _(self):
+#      self.subdesc = "Fortran frontend"
+#      self.depends = [self.parent]
+#      self.nopie_files = [
+#          "usr/bin/gfortran",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/f951",
+#      ]
+#      return [
+#          "usr/bin/gfortran",
+#          "usr/bin/*-gfortran",
+#          "usr/lib/libgfortran.spec",
+#          "usr/lib/libgfortran.a",
+#          "usr/lib/libgfortran.so",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/f951",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/libcaf_single.a",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/finclude",
+#          "usr/share/info/gfortran.info",
+#          "usr/share/man/man1/gfortran.1",
+#      ]
 
 
-@subpackage("gcc-objc")
-def _(self):
-    self.subdesc = "Objective-C"
-    self.depends = [self.parent]
-    self.nopie_files = [
-        f"usr/lib/gcc/{_trip}/{_mnver}/cc1obj",
-    ]
-    return [
-        "usr/lib/libobjc.a",
-        "usr/lib/libobjc.so",
-        f"usr/lib/gcc/{_trip}/{_mnver}/include/objc",
-        f"usr/lib/gcc/{_trip}/{_mnver}/cc1obj",
-    ]
+#  @subpackage("gcc-objc")
+#  def _(self):
+#      self.subdesc = "Objective-C"
+#      self.depends = [self.parent]
+#      self.nopie_files = [
+#          f"usr/lib/gcc/{_trip}/{_mnver}/cc1obj",
+#      ]
+#      return [
+#          "usr/lib/libobjc.a",
+#          "usr/lib/libobjc.so",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/include/objc",
+#          f"usr/lib/gcc/{_trip}/{_mnver}/cc1obj",
+#      ]
 
 
-@subpackage("gcc-fortran-libs")
-def _(self):
-    self.subdesc = "Fortran runtime library"
-    return ["usr/lib/libgfortran.so.*"]
+#  @subpackage("gcc-fortran-libs")
+#  def _(self):
+#      self.subdesc = "Fortran runtime library"
+#      return ["usr/lib/libgfortran.so.*"]
 
 
-@subpackage("gcc-objc-libs")
-def _(self):
-    self.subdesc = "Objective-C runtime library"
-    return ["usr/lib/libobjc.so.*"]
+#  @subpackage("gcc-objc-libs")
+#  def _(self):
+#      self.subdesc = "Objective-C runtime library"
+#      return ["usr/lib/libobjc.so.*"]
 
 
 @subpackage("gcc-gomp-devel")
@@ -290,6 +302,8 @@ def _(self):
 @subpackage("gcc-gomp-libs")
 def _(self):
     self.subdesc = "OpenMP runtime"
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
     return ["usr/lib/libgomp.so.*"]
 
 
@@ -307,4 +321,6 @@ def _(self):
 @subpackage("gcc-itm-libs")
 def _(self):
     self.subdesc = "transactional memory library"
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
     return ["usr/lib/libitm.so.*"]
