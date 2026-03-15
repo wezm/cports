@@ -74,11 +74,18 @@ _llvmgen = pkgver[0 : pkgver.find(".")]
 
 cmake_dir = "llvm"
 
-tool_flags = {
-    "CFLAGS": ["-fPIC"],
-    "CXXFLAGS": ["-fPIC"],
-    "LDFLAGS": [],
-}
+if self.stage > 0:
+    tool_flags = {
+        "CFLAGS": ["-fPIC"],
+        "CXXFLAGS": ["-fPIC"],
+        "LDFLAGS": [],
+    }
+else:
+    tool_flags = {
+        "CFLAGS": ["-rtlib=compiler-rt", "-fPIC"],
+        "CXXFLAGS": ["-rtlib=compiler-rt", "-fPIC"],
+        "LDFLAGS": ["-fuse-ld=lld"],
+    }
 
 _enabled_projects = ["clang", "clang-tools-extra", "lld"]
 _enabled_runtimes = ["compiler-rt", "libcxx", "libcxxabi", "libunwind"]
