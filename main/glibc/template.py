@@ -98,6 +98,23 @@ rootsbindir=/usr/bin
         )
 
 
+def install(self):
+    self.make.install()
+
+    if self.profile().cross:
+        self.error("not yet implemented")
+    else:
+        self.make.invoke(
+            [
+                "-C",
+                "../localedata",
+                f"DESTDIR={self.chroot_destdir}",
+                "objdir=../build",
+                "install-files-C.UTF-8/UTF-8",
+            ]
+        )
+
+
 def post_install(self):
     # hardlink detected (usr/libexec/getconf/POSIX_V7_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
     # hardlink detected (usr/libexec/getconf/POSIX_V6_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
