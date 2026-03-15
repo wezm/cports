@@ -24,17 +24,17 @@ configure_args = [
     "--disable-werror",
     "--with-gd=no",
 ]
-make_cmd = "gmake"
 # These auxiliary programs are missing or incompatible versions: msgfmt makeinfo
-# FIXME: binutils
 hostmakedepends = [
-    "binutils-x86_64",
-    "gmake",
-    "gawk",
+    "binutils",
     "bison",
-    "python",
+    "gawk",
     "gcc",
-]  # FIXME: needs makeinfo if docs
+    "gmake",
+    "gsed",
+    "python",
+    "texinfo",
+]
 makedepends = ["linux-headers"]
 pkgdesc = "GNU libc"
 # maintainer = "Wesley Moore <wes@wezm.net>"
@@ -47,12 +47,14 @@ sha256 = "d1775e32e4628e64ef930f435b67bb63af7599acb6be2b335b9f19f16509f17f"
 tools = {
     "CC": "gcc",
     "CXX": "g++",
+    "CPP": "cpp",
     "AS": "as",
     "LD": "ld.bfd",
     "OBJDUMP": "gobjdump",
+    "SED": "sed",
 }
 # resistance is futile
-options = ["bootstrap", "!check", "!lto"]  # TODO: check
+options = ["bootstrap", "!check", "!lto"]
 
 configure_gen = []
 
@@ -80,23 +82,64 @@ rootsbindir=/usr/bin
 
 
 def post_install(self):
+    # hardlink detected (usr/libexec/getconf/POSIX_V7_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
+    # hardlink detected (usr/libexec/getconf/POSIX_V6_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
+    # hardlink detected (usr/bin/getconf, previously usr/libexec/getconf/XBS5_LP64_OFF64)
+
     # fix up hardlinks
-    self.rm(self.destdir / "usr/libexec/getconf/POSIX_V7_LP64_OFF64")
+    self.uninstall("usr/libexec/getconf/POSIX_V6_LP64_OFF64")
     self.install_link(
-        "POSIX_V6_LP64_OFF64", "usr/libexec/getconf/POSIX_V7_LP64_OFF64"
+        "usr/libexec/getconf/POSIX_V6_LP64_OFF64", "XBS5_LP64_OFF64"
     )
 
-    self.rm(self.destdir / "usr/libexec/getconf/XBS5_LP64_OFF64")
+    self.uninstall("usr/libexec/getconf/POSIX_V7_LP64_OFF64")
     self.install_link(
-        "POSIX_V6_LP64_OFF64", "usr/libexec/getconf/XBS5_LP64_OFF64"
+        "usr/libexec/getconf/POSIX_V7_LP64_OFF64", "XBS5_LP64_OFF64"
     )
 
-    self.rm(self.destdir / "usr/bin/getconf")
-    self.install_link(
-        "../libexec/getconf/POSIX_V6_LP64_OFF64", "usr/bin/getconf"
-    )
+    self.uninstall("usr/bin/getconf")
+    self.install_link("usr/bin/getconf", "../libexec/getconf/XBS5_LP64_OFF64")
 
     #  self.install_link("lib", "usr/lib64")
+
+    # Violates `/var` lint
+    # TODO: Replace functionality with?
+    # https://salsa.debian.org/debian/nss-updatedb
+
+    # Debian splits this out as libnss-db:
+
+    # dpkg -L libnss-db
+    #  /.
+    #  /etc
+    #  /etc/default
+    #  /etc/default/libnss-db
+    #  /usr
+    #  /usr/bin
+    #  /usr/bin/makedb
+    #  /usr/lib
+    #  /usr/lib/x86_64-linux-gnu
+    #  /usr/lib/x86_64-linux-gnu/libnss_db-2.2.3.so
+    #  /usr/share
+    #  /usr/share/doc
+    #  /usr/share/doc/libnss-db
+    #  /usr/share/doc/libnss-db/NEWS.gz
+    #  /usr/share/doc/libnss-db/README
+    #  /usr/share/doc/libnss-db/changelog.Debian.gz
+    #  /usr/share/doc/libnss-db/copyright
+    #  /usr/share/man
+    #  /usr/share/man/man1
+    #  /usr/share/man/man1/makedb.1.gz
+    #  /var
+    #  /var/lib
+    #  /var/lib/misc
+    #  /var/lib/misc/Makefile
+    #  /usr/lib/x86_64-linux-gnu/libnss_db.so.2
+
+    # Note they also patch it so that it gets put in /var/lib/misc/Makefile
+    # LFS has this patch:
+    # wcurl https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-fhs-1.patch -o main/glibc/patches/fhs.patch
+
+    self.uninstall("var/db/Makefile")
 
 
 @subpackage("glibc-devel")
