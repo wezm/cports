@@ -231,7 +231,7 @@ index b19a69f..13e4f93 100644
 -#define LIBASAN_SPEC "%{static-libasan:" LD_STATIC_OPTION \
 -		     "} -lasan %{static-libasan:" LD_DYNAMIC_OPTION "}" \
 +#define LIBASAN_SPEC "%{static-libasan:" LD_STATIC_OPTION "}" \
-+		     " %{!static-libasan:%{!fuse-ld=gold:--push-state }--no-as-needed}" \
++		     " %{!static-libasan:%{!fuse-ld=gold:--push-state} --no-as-needed}" \
 +		     " -lasan " \
 +		     " %{static-libasan:" LD_DYNAMIC_OPTION "}" \
 +		     " %{!static-libasan:%{fuse-ld=gold:--as-needed;:--pop-state}}" \
@@ -245,7 +245,7 @@ index b19a69f..13e4f93 100644
 -#define LIBTSAN_SPEC "%{static-libtsan:" LD_STATIC_OPTION \
 -		     "} -ltsan %{static-libtsan:" LD_DYNAMIC_OPTION "}" \
 +#define LIBTSAN_SPEC "%{static-libtsan:" LD_STATIC_OPTION "}" \
-+		     " %{!static-libtsan:%{!fuse-ld=gold:--push-state }--no-as-needed}" \
++		     " %{!static-libtsan:%{!fuse-ld=gold:--push-state} --no-as-needed}" \
 +		     " -ltsan " \
 +		     " %{static-libtsan:" LD_DYNAMIC_OPTION "}" \
 +		     " %{!static-libtsan:%{fuse-ld=gold:--as-needed;:--pop-state}}" \
@@ -259,7 +259,7 @@ index b19a69f..13e4f93 100644
 -#define LIBLSAN_SPEC "%{static-liblsan:" LD_STATIC_OPTION \
 -		     "} -llsan %{static-liblsan:" LD_DYNAMIC_OPTION "}" \
 +#define LIBLSAN_SPEC "%{static-liblsan:" LD_STATIC_OPTION "}" \
-+		     " %{!static-liblsan:%{!fuse-ld=gold:--push-state }--no-as-needed}" \
++		     " %{!static-liblsan:%{!fuse-ld=gold:--push-state} --no-as-needed}" \
 +		     " -llsan " \
 +		     " %{static-liblsan:" LD_DYNAMIC_OPTION "}" \
 +		     " %{!static-liblsan:%{fuse-ld=gold:--as-needed;:--pop-state}}" \
@@ -273,7 +273,7 @@ index b19a69f..13e4f93 100644
 -#define LIBUBSAN_SPEC "%{static-libubsan:" LD_STATIC_OPTION \
 -		     "} -lubsan %{static-libubsan:" LD_DYNAMIC_OPTION "}" \
 +#define LIBUBSAN_SPEC "%{static-libubsan:" LD_STATIC_OPTION "}" \
-+		     " %{!static-libubsan:%{!fuse-ld=gold:--push-state }--no-as-needed}" \
++		     " %{!static-libubsan:%{!fuse-ld=gold:--push-state} --no-as-needed}" \
 +		     " -lubsan " \
 +		     " %{static-libubsan:" LD_DYNAMIC_OPTION "}" \
 +		     " %{!static-libubsan:%{fuse-ld=gold:--as-needed;:--pop-state}}" \
