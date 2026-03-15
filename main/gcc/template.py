@@ -61,9 +61,9 @@ hostmakedepends = [
 ]
 makedepends = [
     # "libcxx-devel-static",
-    #  "libucontext-devel",
+    # "libucontext-devel",
     # "libunwind-devel-static",
-    # "zstd-devel",
+    "zstd-devel",
 ]
 depends = [
     f"binutils-{self.profile().arch}",
@@ -130,6 +130,7 @@ else:
 # when bootstrapping, this will check the actual profile
 with self.profile(self.profile().arch) as _pf:
     _trip = _pf.triplet
+
 
 # we cannot use clang, gcc expects binutils
 tools = {"AS": "as", "LD": "ld.bfd", "OBJDUMP": "gobjdump"}
@@ -209,9 +210,15 @@ match self.profile().arch:
 
 
 def init_configure(self):
-    cfl = self.get_cflags(shell=True)
-    cxfl = self.get_cxxflags(shell=True)
-    ldfl = self.get_ldflags(shell=True)
+    if self.stage > 0:
+        cfl = self.get_cflags(shell=True)
+        cxfl = self.get_cxxflags(shell=True)
+        ldfl = self.get_ldflags(shell=True)
+    else:
+        # TODO: Nice way to do this
+        cfl = self.get_cflags(shell=True).replace("-rtlib=compiler-rt", "")
+        cxfl = cfl
+        ldfl = self.get_ldflags(shell=True).replace("-fuse-ld=lld", "")
     self.env["AWK"] = "gawk"
     self.env["CFLAGS_FOR_TARGET"] = cfl
     self.env["CXXFLAGS_FOR_TARGET"] = cxfl
@@ -246,7 +253,7 @@ def post_install(self):
     # self.uninstall("usr/lib/libsupc++.*", glob=True)
     # self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
     # other stuff we don't want
-    # self.uninstall("usr/lib/libatomic.*", glob=True)
+    self.uninstall("usr/lib/libatomic.*", glob=True)
     # self.uninstall("usr/lib/libgcc_s.*", glob=True)
     # provided by clang
     self.uninstall("usr/bin/c++")
@@ -287,7 +294,6 @@ def _(self):
 
     return [
         f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a",
-        "usr/lib/libatomic.*",
         "usr/lib/libgcc_s.*",
     ]
 
