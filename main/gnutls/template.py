@@ -45,8 +45,6 @@ license = "LGPL-2.1-or-later"
 url = "https://gnutls.org"
 source = f"https://www.gnupg.org/ftp/gcrypt/gnutls/v{'.'.join(pkgver.split('.')[0:2])}/gnutls-{pkgver}.tar.xz"
 sha256 = "db7fab7cce791e7727ebbef2334301c821d79a550ec55c9ef096b610b03eb6b7"
-# FIXME: sanity-lib.sh: gnutls-cli-debug links to other crypto library (libcrypto.so.3)
-options = ["!check"]
 
 
 def post_install(self):
