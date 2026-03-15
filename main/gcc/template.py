@@ -284,6 +284,45 @@ def _(self):
     return ["usr/include/c++"]
 
 
+@subpackage("gcc-gomp-devel")
+def _(self):
+    self.subdesc = "OpenMP develpment files"
+    return [
+        f"usr/lib/gcc/{_trip}/{_mnver}/include/omp.h",
+        "usr/lib/libgomp.so",
+        "usr/lib/libgomp.a",
+        "usr/lib/libgomp.spec",
+        "usr/share/info/libgomp.info",
+    ]
+
+
+@subpackage("gcc-gomp-libs")
+def _(self):
+    self.subdesc = "OpenMP runtime"
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
+    return ["usr/lib/libgomp.so.*"]
+
+
+@subpackage("gcc-itm-devel")
+def _(self):
+    self.subdesc = "transactional memory lib development files"
+    return [
+        "usr/lib/libitm.so",
+        "usr/lib/libitm.a",
+        "usr/lib/libitm.spec",
+        "usr/share/info/libitm.info",
+    ]
+
+
+@subpackage("gcc-itm-libs")
+def _(self):
+    self.subdesc = "transactional memory library"
+    if self.stage == 0:
+        self.options += ["!scanrundeps"]
+    return ["usr/lib/libitm.so.*"]
+
+
 #  @subpackage("gcc-fortran")
 #  def _(self):
 #      self.subdesc = "Fortran frontend"
@@ -331,42 +370,3 @@ def _(self):
 #  def _(self):
 #      self.subdesc = "Objective-C runtime library"
 #      return ["usr/lib/libobjc.so.*"]
-
-
-@subpackage("gcc-gomp-devel")
-def _(self):
-    self.subdesc = "OpenMP develpment files"
-    return [
-        f"usr/lib/gcc/{_trip}/{_mnver}/include/omp.h",
-        "usr/lib/libgomp.so",
-        "usr/lib/libgomp.a",
-        "usr/lib/libgomp.spec",
-        "usr/share/info/libgomp.info",
-    ]
-
-
-@subpackage("gcc-gomp-libs")
-def _(self):
-    self.subdesc = "OpenMP runtime"
-    if self.stage == 0:
-        self.options += ["!scanrundeps"]
-    return ["usr/lib/libgomp.so.*"]
-
-
-@subpackage("gcc-itm-devel")
-def _(self):
-    self.subdesc = "transactional memory lib development files"
-    return [
-        "usr/lib/libitm.so",
-        "usr/lib/libitm.a",
-        "usr/lib/libitm.spec",
-        "usr/share/info/libitm.info",
-    ]
-
-
-@subpackage("gcc-itm-libs")
-def _(self):
-    self.subdesc = "transactional memory library"
-    if self.stage == 0:
-        self.options += ["!scanrundeps"]
-    return ["usr/lib/libitm.so.*"]
