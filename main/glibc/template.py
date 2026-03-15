@@ -1,5 +1,8 @@
-_trip = "x86_64-pc-linux-gnu"
-pkgname = f"glibc"
+# when bootstrapping, this will check the actual profile
+with self.profile(self.profile().arch) as _pf:
+    _trip = _pf.triplet
+
+pkgname = "glibc"
 pkgver = "2.42"
 pkgrel = 0
 build_style = "gnu_configure"
@@ -51,7 +54,7 @@ tools = {
     "CPP": "cpp",
     "AS": "as",
     "LD": "ld.bfd",
-    "OBJDUMP": "objdump",  # TODO: gobjdump
+    "OBJDUMP": "objdump",  # TODO: gobjdump?
 }
 # resistance is futile
 options = ["bootstrap", "!check", "!lto"]  # TODO: check
@@ -81,6 +84,21 @@ if self.stage > 0:
     depends += ["base-files"]
     # This ensures that /etc/hosts is present, whicih is necessary for some
     # tests to pass in stage 2.
+
+
+def init_configure(self):
+    if self.stage > 0:
+        cfl = self.get_cflags(shell=True)
+        cxfl = self.get_cxxflags(shell=True)
+        ldfl = self.get_ldflags(shell=True)
+    else:
+        # TODO: Nice way to do this
+        cfl = self.get_cflags(shell=True).replace("-rtlib=compiler-rt", "")
+        cxfl = cfl
+        ldfl = self.get_ldflags(shell=True).replace("-fuse-ld=lld", "")
+    self.env["CFLAGS"] = cfl
+    self.env["CXXFLAGS"] = cxfl
+    self.env["LDFLAGS"] = ldfl
 
 
 def pre_configure(self):
