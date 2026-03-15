@@ -70,7 +70,7 @@ def post_configure(self):
         extra_args=[
             "-Dc_link_args=-static-pie",
             "-Ddefault_library=static",
-            "-Dprefer_static=true",
+            "-Dstatic=true",
             "-Ddocs=disabled",
             *configure_args,
         ],
