@@ -189,7 +189,6 @@ def invoke(pkg):
         "lib64",
         "local",
         "lib/installed-tests",
-        "lib/locale",
         "lib/systemd/system",
         "lib/systemd/user",
         "libexec/installed-tests",
@@ -212,6 +211,14 @@ def invoke(pkg):
         if (pkg.destdir / "usr" / d).exists():
             pkg.log_red(f"forbidden path '/usr/{d}'")
             lintfail = True
+
+    if pkg.pkgname != "glibc":
+        for d in [
+            "lib/locale",
+        ]:
+            if (pkg.destdir / "usr" / d).exists():
+                pkg.log_red(f"forbidden path '/usr/{d}'")
+                lintfail = True
 
     if (
         pkg.options["lintpixmaps"]
