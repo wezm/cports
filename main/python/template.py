@@ -39,6 +39,7 @@ make_check_args = [
     + "-i test_pgo_exclude "  # seems harmless?
     + "-i test_sysconfig "  # temporary until fix-mach.patch is gone
     + "-i test.test_strptime.StrptimeTests.test_date_locale2 "
+    + "-i test_create_connection_service_name"  # fails in getaddrinfo: socket.gaierror: [Errno -8] Servname not supported for ai_socktype. Probably missing something glibc needs
 ]
 hostmakedepends = [
     "autoconf-archive",

@@ -20,10 +20,10 @@
 +            if os.path.isabs(name):
 +                return name
 +            # special case for libm, libcrypt and libpthread and musl
-+            if name in ['m', 'crypt', 'pthread']:
-+                name = 'c'
-+            elif name in ['libm.so', 'libcrypt.so', 'libpthread.so']:
-+                name = 'libc.so'
++            # if name in ['m', 'crypt', 'pthread']:
++            #     name = 'c'
++            # elif name in ['libm.so', 'libcrypt.so', 'libpthread.so']:
++            #     name = 'libc.so'
 +            # search in standard locations (musl order)
 +            paths = ['/lib', '/usr/local/lib', '/usr/lib']
 +            if 'LD_LIBRARY_PATH' in os.environ:
