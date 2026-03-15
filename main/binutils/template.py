@@ -35,13 +35,13 @@ hostmakedepends = [
     "pkgconf",
     "texinfo",
 ]
-makedepends = [
-    "jansson-devel",
-    "linux-headers",
-    "llvm-devel",
-    "zlib-ng-compat-devel",
-    "zstd-devel",
-]
+if self.stage > 0:
+    makedepends = [
+        "jansson-devel",
+        "linux-headers",
+        "zlib-ng-compat-devel",
+        "zstd-devel",
+    ]
 # binutils is a metapackage pointing to the current target binutils
 depends = [self.with_pkgver(f"binutils-{self.profile().arch}")]
 pkgdesc = "GNU binutils"
