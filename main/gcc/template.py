@@ -92,6 +92,9 @@ hardening = ["!int", "!format", "!var-init"]
 # no tests to run
 options = ["bootstrap", "!check", "!lto", "!relr", "!cross", "!scanshlibs"]
 if self.stage == 0:
+    # SONAME: libc.so.6 (unknown provider)
+    # SONAME: ld-linux-x86-64.so.2 (unknown provider)
+    # SONAME: libm.so.6 (unknown provider)
     options += ["!scanrundeps"]
 
 # FIXME: This is None when bootstrapping

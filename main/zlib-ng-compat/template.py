@@ -25,6 +25,7 @@ compression = "deflate"
 # sigh, carried over from zlib's old buildsystem
 options = ["bootstrap", "linkundefver"]
 if self.stage == 0:
+    # SONAME: libc.so.6 (unknown provider)
     options += ["!scanrundeps"]
 
 if self.profile().cross:
