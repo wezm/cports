@@ -77,12 +77,14 @@ _targets = [
     # "riscv64",
     "x86_64",
 ]
+_gold_plugin = False  # TODO: Build when stage > 2
 
 
 def post_extract(self):
-    self.cp(
-        self.sources_path / f"gold-plugin-{_llvmver}.cpp", "gold-plugin.cpp"
-    )
+    if self.stage > 0:
+        self.cp(
+            self.sources_path / f"gold-plugin-{_llvmver}.cpp", "gold-plugin.cpp"
+        )
 
 
 # configure for one target
@@ -136,18 +138,19 @@ def build(self):
             s.check()
             self.make.build(wrksrc=f"build-{tgtn}")
 
-    compiler.CXX(self).invoke(
-        ["gold-plugin.cpp"],
-        "LLVMgold.so",
-        flags=[
-            "-Iinclude",
-            "-shared",
-            "-fvisibility=hidden",
-            "-fPIC",
-            "-lLLVM",
-            "-Wl,--no-undefined",
-        ],
-    )
+    if _gold_plugin:
+        compiler.CXX(self).invoke(
+            ["gold-plugin.cpp"],
+            "LLVMgold.so",
+            flags=[
+                "-Iinclude",
+                "-shared",
+                "-fvisibility=hidden",
+                "-fPIC",
+                "-lLLVM",
+                "-Wl,--no-undefined",
+            ],
+        )
 
 
 def install(self):
@@ -180,8 +183,9 @@ def install(self):
     self.make.install(wrksrc=f"build-{self.profile().arch}")
 
     # lto plugin
-    self.install_file("LLVMgold.so", "usr/lib", mode=0o755)
-    self.install_link("usr/lib/bfd-plugins/LLVMgold.so", "../LLVMgold.so")
+    if _gold_plugin:
+        self.install_file("LLVMgold.so", "usr/lib", mode=0o755)
+        self.install_link("usr/lib/bfd-plugins/LLVMgold.so", "../LLVMgold.so")
 
     for m in ["dlltool", "windres", "windmc"]:
         self.uninstall(f"usr/share/man/man1/{m}.1")
@@ -227,18 +231,12 @@ def install(self):
             if p == "as":
                 f.symlink_to(tf.name)
         # rename native version
-
-        # This breaks things later because core/template uses un-prefixed versions.
-        # If you point the build at the prefixed versions then the bootstrap fails
-        # because the stage 0 host has to have prefixed versions. So, for now
-        # disable the renaming.
-        # TODO: Work out how to resolve this when LLVM is brought back into the mix.
-        #  self.rename(f"usr/bin/{p}", f"g{p}")
-        #  self.rename(f"usr/share/man/man1/{p}.1", f"g{p}.1")
+        self.rename(f"usr/bin/{p}", f"g{p}")
+        self.rename(f"usr/share/man/man1/{p}.1", f"g{p}.1")
 
     # gas can be symlinked to as though, as nothing else provides it
-    #  self.install_link("usr/bin/as", "gas")
-    #  self.install_link("usr/share/man/man1/as.1", "gas.1")
+    self.install_link("usr/bin/as", "gas")
+    self.install_link("usr/share/man/man1/as.1", "gas.1")
 
     # FIXME: This is None when bootstraping
     # tgt = self.profile()
@@ -264,10 +262,13 @@ def _(self):
     if self.stage == 0:
         self.options += ["!scanrundeps"]
 
-    return [
+    take = [
         "usr/lib/bfd-plugins",
-        "usr/lib/LLVMgold.so",
     ]
+    if _gold_plugin:
+        take.append("usr/lib/LLVMgold.so")
+
+    return take
 
 
 def _gen_subp(an, native):
