@@ -36,6 +36,7 @@ hostmakedepends = [
     "texinfo",
 ]
 makedepends = ["linux-headers"]
+depends = []
 pkgdesc = "GNU libc"
 # maintainer = "Wesley Moore <wes@wezm.net>"
 license = "GPL-3.0-or-later"
@@ -64,6 +65,22 @@ configure_gen = []
 
 #  if self.stage > 0:
 #      configure_args += ["--enable-systemtap"]
+
+if self.stage > 0:
+    # have base-files extract first in normal installations
+    #
+    # don't do this for stage 0 though, because otherwise base-files will
+    # get installed as a makedepend and subsequently removed as an autodep,
+    # which will nuke the base symlinks handled by initial initdb, as the
+    # stage0 bldroot is not a complete chroot and relies on the external
+    # state we give it during first setup
+    #
+    # but this only really matters for "real" systems, so in stage 0 we can
+    # just avoid the dependency and work around the whole issue
+    #
+    depends += ["base-files"]
+    # This ensures that /etc/hosts is present, whicih is necessary for some
+    # tests to pass in stage 2.
 
 
 def pre_configure(self):
