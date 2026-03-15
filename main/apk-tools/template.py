@@ -68,7 +68,6 @@ def post_configure(self):
         self,
         "build-static",
         extra_args=[
-            "-Dc_link_args=-static-pie",
             "-Ddefault_library=static",
             "-Dstatic=true",
             "-Ddocs=disabled",
