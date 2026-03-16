@@ -7,8 +7,8 @@ make_check_args = ["-j1"]
 hostmakedepends = ["automake", "slibtool", "pkgconf"]
 makedepends = [
     "libexpat-devel",
-    "libxcrypt-devel",
     "linux-headers",
+    "musl-crypt-devel",
     "util-linux-uuid-devel",
 ]
 pkgdesc = "Apache Portable Runtime"

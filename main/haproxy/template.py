@@ -31,6 +31,7 @@ makedepends = [
     "dinit-chimera",
     "linux-headers",
     "lua5.4-devel",
+    "musl-crypt-devel",
     "openssl3-devel",
     "pcre2-devel",
     "zlib-ng-compat-devel",

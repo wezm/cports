@@ -4,7 +4,7 @@ pkgrel = 0
 hostmakedepends = ["pkgconf", "scons"]
 makedepends = [
     "apr-util-devel",
-    "libxcrypt-devel",
+    "musl-crypt-devel",
     "openssl3-devel",
     "zlib-ng-compat-devel",
 ]
@@ -20,6 +20,8 @@ options = ["!cross"]
 def build(self):
     self.do(
         "scons",
+        "CC=" + self.get_tool("CC"),
+        "LD=" + self.get_tool("CC"),
         "CFLAGS=" + self.get_cflags(shell=True),
         "LINKFLAGS=" + self.get_ldflags(shell=True),
         "PREFIX=/usr",

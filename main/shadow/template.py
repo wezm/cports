@@ -21,9 +21,7 @@ configure_gen = []
 make_dir = "."
 makedepends = [
     "acl-devel",
-    "libxcrypt-devel",
     "linux-pam-devel",
-    "linux-headers",
 ]
 depends = ["linux-pam", "base-shells"]
 # self-trigger

@@ -21,6 +21,7 @@ makedepends = [
     "gettext-devel",
     "libxcrypt-devel",
     "linux-headers",
+    "musl-crypt-devel",
 ]
 checkdepends = ["linux-pam-base"]
 depends = ["linux-pam-base"]

@@ -18,6 +18,7 @@ hostmakedepends = ["automake"]
 makedepends = [
     "linux-headers",
     "linux-pam-devel",
+    "musl-crypt-devel",
     "ncurses-devel",
 ]
 pkgdesc = "GNU screen"

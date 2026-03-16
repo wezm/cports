@@ -63,6 +63,7 @@ hostmakedepends = [
     "libxml2-devel",
     "libxslt-devel",
     "linux-headers",
+    "musl-crypt-devel",
     "openssl3-devel",
     "pcre2-devel",
     "perl",
@@ -86,7 +87,8 @@ source = [
 source_paths = [".", "nginx-tests"]
 sha256 = [
     "c6b5c6b086c0df9d3ca3ff5e084c1d0ef909e6038279c71c1c3e985f576ff76a",
-    "9056dca56c96922c7d3fc6100c183d8262d6faa46685a817e611ade2479d676a",
+    # tests archive is not stable, and checksum can change
+    "39f079f7f6d3735295e1951b2ab84f94fc18d777f86cb55d3e2dbf25148c861c",
 ]
 file_modes = {
     # must be present in main package

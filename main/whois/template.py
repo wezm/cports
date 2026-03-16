@@ -15,6 +15,7 @@ hostmakedepends = [
 ]
 makedepends = [
     "libidn2-devel",
+    "musl-crypt-devel",
 ]
 pkgdesc = "Intelligent WHOIS Client"
 license = "GPL-2.0-or-later"
