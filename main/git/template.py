@@ -46,14 +46,10 @@ LDFLAGS = {self.get_ldflags(shell=True)}
 USE_LIBPCRE2 = Yes
 USE_ASCIIDOCTOR = Yes
 NO_INSTALL_HARDLINKS = Yes
-ICONV_OMITS_BOM = Yes
-NO_REGEX = Yes
 INSTALLDIRS = vendor
 INSTALL_SYMLINKS = 1
 perllibdir = /usr/share/perl5/vendor_perl
 PYTHON_PATH = /usr/bin/python
-DEFAULT_TEST_TARGET=prove
-GIT_PROVE_OPTS=--jobs={self.make_jobs}
 HOST_CPU = {self.profile().arch}
 """
         )
@@ -74,7 +70,10 @@ def check(self):
     self.do(
         "make",
         "all",
-        env={"GIT_SKIP_TESTS": "t5000.75 t5303.5 t5303.7 t5303.11"},
+        env={
+            "GIT_SKIP_TESTS": "t5000.75 t5303.5 t5303.7 t5303.11",
+            "GIT_TEST_OPTS": "--verbose-log",
+        },
         wrksrc="t",
     )
     self.do("make", "-C", "contrib/diff-highlight", "test")
