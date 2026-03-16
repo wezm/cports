@@ -33,6 +33,7 @@ source = f"https://ftp.osuosl.org/pub/deluge/source/{pkgver[:-2]}/deluge-{pkgver
 sha256 = "b9ba272b5ba42aaf1c694e6c29628ab816cc1a700a37bac08aacb52571606acd"
 # unpackaged checkdepends
 options = ["!check"]
+broken = "python-rencode fails to build"
 
 
 def post_install(self):
