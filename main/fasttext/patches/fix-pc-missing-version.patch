@@ -1,0 +1,11 @@
+--- a/CMakeLists.txt.orig	2026-03-08 10:11:03.365400548 +1000
++++ b/CMakeLists.txt	2026-03-08 10:11:31.377420462 +1000
+@@ -7,7 +7,7 @@
+ #
+ 
+ cmake_minimum_required(VERSION 2.8.9)
+-project(fasttext)
++project(fasttext VERSION 0.9.2)
+ 
+ # The version number.
+ set (fasttext_VERSION_MAJOR 0)

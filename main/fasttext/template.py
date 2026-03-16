@@ -2,7 +2,10 @@ pkgname = "fasttext"
 pkgver = "0.9.2"
 pkgrel = 1
 build_style = "cmake"
-configure_args = [f"-DPROJECT_VERSION={pkgver}"]
+configure_args = [
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+    f"-DPROJECT_VERSION={pkgver}",
+]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
 pkgdesc = "Library for fast text representation and classification"
 license = "MIT"
