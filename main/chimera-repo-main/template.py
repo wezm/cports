@@ -18,14 +18,15 @@ url = "https://chimera-linux.org"
 
 
 def install(self):
+    # TODO: Get our own keys for this
+    #  self.install_file(
+    #      *self.find(
+    #          self.files_path, f"{self.profile().arch}@chimera-linux.org-*.pub"
+    #      ),
+    #      "usr/lib/apk/keys",
+    #  )
     self.install_file(
-        *self.find(
-            self.files_path, f"{self.profile().arch}@chimera-linux.org-*.pub"
-        ),
-        "usr/lib/apk/keys",
-    )
-    self.install_file(
-        self.files_path / "q66@chimera-linux.org-61a1913b.rsa.pub",
+        self.files_path / "wes@wezm.net-65ab175a.rsa.pub",
         "usr/lib/apk/keys",
     )
     self.install_file(
