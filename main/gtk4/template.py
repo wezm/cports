@@ -96,7 +96,8 @@ sha256 = "5e8240edecafaff2b8baf4663bdceaa668ef10a207bee4d7f90e010e10bddc5c"
 # an externally modified file reloads; happens always
 hardening = ["!int"]
 # check: most of them crash presently
-options = ["!cross", "!check"]
+# lto: causes loading of internal gtk.css to fail, which ends up as a fatal error
+options = ["!cross", "!check", "!lto"]
 
 
 def post_install(self):
