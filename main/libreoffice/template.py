@@ -1,5 +1,5 @@
 pkgname = "libreoffice"
-pkgver = "26.2.0.2"
+pkgver = "26.2.0.3"
 pkgrel = 0
 # riscv64: no handling of libcxxabi + likely too slow
 archs = ["x86_64", "ppc64le", "ppc64", "aarch64"]
@@ -44,7 +44,7 @@ configure_args = [
     "--without-system-fast-float",
     "--without-system-libcmis",
     "--without-system-libeot",
-    "--without-system-libzmf",
+    "--with-system-libzmf",
     "--without-system-libstaroffice",
     "--without-system-dragonbox",
     "--without-system-frozen",
@@ -142,6 +142,7 @@ makedepends = [
     "libxml2-devel",
     "libxslt-devel",
     "libxt-devel",
+    "libzmf-devel",
     "md4c-devel",
     "mdds",
     "mythes-devel",
@@ -190,7 +191,6 @@ source = [
     f"{_aurl}/libcmis-0.6.2.tar.xz",
     f"{_aurl}/libeot-0.01.tar.bz2",
     f"{_aurl}/libstaroffice-0.0.7.tar.xz",
-    f"{_aurl}/libzmf-0.0.2.tar.xz",
     f"{_aurl}/pdfium-7471.tar.bz2",
     f"{_eurl}/officeotron-0.8.5.jar",
     f"{_eurl}/odfvalidator-0.9.0-RC2-SNAPSHOT-jar-with-dependencies-2726ab578664434a545f8379a01a9faffac0ae73.jar",
@@ -214,10 +214,10 @@ source = [
     f"{_aurl}/y-crdt-0.23.5.tar.gz",
 ]
 sha256 = [
-    "1e12460692a850cf86daaf048b84bc98fee3987529dd46f4994146f0dbfa130b",
-    "80888662b5260be4d80d706cf22a8a62785fc2f86586ffb172587bdbadc9604b",
-    "423c28488a010e8a8330a0359da6cc0820fd1a24b5679d8f329759a949b5c156",
-    "23cf2cfa4bd2eebc182cfc38abff1fb3c648f5632ee85fcf40b0aef2a1f6ac97",
+    "5b80ec8ed6726479e0f033c08c38f9df36fa20b15c575378d75ba0c373f15416",
+    "e2f4e131d137955362548893a70b65331c578f740c1808a55d6685c9b614f600",
+    "fa04daee947b2ddc5c3c67d39f603d34c0c13adc316d191866fe2ddd7ce9a30e",
+    "036acca4e7d44c1bd9f5272381bae95b173dd12ffa6e492a4a140cee28053064",
     "65599965d82c0e60332601d511dacb0241e796cabfa5550c72bb80c4bf89e8ad",
     "75823776fb51a9c526af904f1503a7afaaab900fba83eda64f8a41073724c870",
     "7d2797fe9f79a77009721e3f14fa4a1dec17a6d706bdc93f85f1f01d124fab66",
@@ -229,7 +229,6 @@ sha256 = [
     "1b5c2d7258ff93eb5f9958ff0e4dfd7332dc75a071bb717dde2217a26602a644",
     "cf5091fa8e7dcdbe667335eb90a2cfdd0a3fe8f8c7c8d1ece44d9d055736a06a",
     "f94fb0ad8216f97127bedef163a45886b43c62deac5e5b0f5e628e234220c8db",
-    "27051a30cb057fdb5d5de65a1f165c7153dc76e27fe62251cbb86639eb2caf22",
     "7144b0fa78fd408997e7b84ffd3c257db602e392a1bb1584828d80e60b6b27c5",
     "0c2a4227394ac78147387f1c1ff1063e87f2151ffc91f1eb97bb17c2650fa708",
     "d55495ab3a86544650587de2a72180ddf8bfc6376d14ddfa923992dbc86a06e0",
