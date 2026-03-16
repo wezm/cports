@@ -16,7 +16,7 @@ hostmakedepends = [
     "polkit",
     "vala",
 ]
-makedepends = ["polkit-devel", "elogind-devel", "dbus-devel"]
+makedepends = ["polkit-devel", "elogind-devel", "dbus-devel", "libxcrypt-devel"]
 checkdepends = ["python-dbus"]
 pkgdesc = "D-Bus service for accessing user accounts"
 license = "GPL-3.0-or-later"

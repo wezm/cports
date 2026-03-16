@@ -5,7 +5,12 @@ build_style = "gnu_configure"
 configure_args = ["--with-installbuilddir=/usr/lib/apr/build-1"]
 make_check_args = ["-j1"]
 hostmakedepends = ["automake", "slibtool", "pkgconf"]
-makedepends = ["libexpat-devel", "util-linux-uuid-devel", "linux-headers"]
+makedepends = [
+    "libexpat-devel",
+    "libxcrypt-devel",
+    "linux-headers",
+    "util-linux-uuid-devel",
+]
 pkgdesc = "Apache Portable Runtime"
 license = "Apache-2.0"
 url = "https://apr.apache.org"

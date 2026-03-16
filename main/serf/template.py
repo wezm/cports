@@ -2,7 +2,12 @@ pkgname = "serf"
 pkgver = "1.3.10"
 pkgrel = 0
 hostmakedepends = ["pkgconf", "scons"]
-makedepends = ["apr-util-devel", "openssl3-devel", "zlib-ng-compat-devel"]
+makedepends = [
+    "apr-util-devel",
+    "libxcrypt-devel",
+    "openssl3-devel",
+    "zlib-ng-compat-devel",
+]
 pkgdesc = "Asynchronous HTTP client library"
 license = "Apache-2.0"
 url = "https://serf.apache.org"
