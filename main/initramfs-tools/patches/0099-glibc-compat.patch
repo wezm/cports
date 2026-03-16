@@ -1,0 +1,25 @@
+commit 04e80777a69af93e517f6fc3cc85a236d7c8b992
+Author: Wesley Moore <wes@wezm.net>
+Date:   Tue Feb 24 21:45:56 2026 +1000
+
+    glibc compat
+
+diff --git a/hook-functions b/hook-functions
+index 1f8c276..9e07ad6 100644
+--- a/hook-functions
++++ b/hook-functions
+@@ -261,9 +261,11 @@ copy_exec() {
+ 
+ 	# Copy the dependant libraries
+ 	for x in $(env -u LD_PRELOAD ldd "${src}" 2>/dev/null | awk '{print $3}'); do
+-		# XXX: when running ldd on a .solib, the libc.so dependency is resolved
+-		# as `ldd` and not the ld-musl loader, so this loop would copy `ldd` and fail
+-		if [ "$x" = "ldd" ]; then continue; fi
++		# These are copied manually; plus ld ends up linked to itself
++		# /usr/lib/libc.so.6
++		# /usr/lib64/ld-linux-x86-64.so.2
++		if [ "$(basename "$x")" = "libc.so.6" ]; then continue; fi
++		if [ "$(basename "$x")" = "ld-linux-x86-64.so.2" ]; then continue; fi
+ 		copy_file binary "${x}" || {
+ 			ret=$?
+ 			[ ${ret} = 1 ] || return $((ret - 1))

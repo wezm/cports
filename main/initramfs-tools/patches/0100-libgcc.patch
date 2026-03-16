@@ -1,0 +1,19 @@
+diff --git a/hook-functions b/hook-functions
+index 9e07ad6..b9831e7 100644
+--- a/hook-functions
++++ b/hook-functions
+@@ -266,6 +266,14 @@ copy_exec() {
+ 		# /usr/lib64/ld-linux-x86-64.so.2
+ 		if [ "$(basename "$x")" = "libc.so.6" ]; then continue; fi
+ 		if [ "$(basename "$x")" = "ld-linux-x86-64.so.2" ]; then continue; fi
++
++		# Handle common dlopen() dependency (Debian bug #950254)
++		case "${x}" in
++		*/libpthread.so.*)
++			copy_libgcc || return
++			;;
++		esac
++
+ 		copy_file binary "${x}" || {
+ 			ret=$?
+ 			[ ${ret} = 1 ] || return $((ret - 1))

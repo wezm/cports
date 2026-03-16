@@ -22,10 +22,10 @@ KLIBC_TOOLS="
  cpio dmesg halt losetup minips mount nuke poweroff reboot umount
 "
 
-# copy musl first
-LDSO_ARCH=$(/usr/lib/libc.so 2>&1 | head -n1 | sed 's/musl libc (\(.*\))/\1/')
+# copy libc first
 cp -an /usr/lib/libc.so "${DESTDIR}/usr/lib"
-ln -sf /usr/lib/libc.so "${DESTDIR}/usr/lib/ld-musl-${LDSO_ARCH}.so.1"
+cp -an /usr/lib/libc.so.6 "${DESTDIR}/usr/lib"
+cp -an /usr/lib/ld-linux-*.so.*  "${DESTDIR}/usr/lib"
 
 for kt in ${KINIT_TOOLS}; do
     copy_exec /usr/lib/kinit-standalone/${kt} /usr/bin/${kt}
