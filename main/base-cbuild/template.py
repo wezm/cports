@@ -11,6 +11,8 @@ depends = [
     "glibc-devel",
     "libstdc++-devel",
     "llvm",
+    # for glibc. adding it directly creates a cycle
+    "llvm-libgcc",
     "clang",
     "lld",
     "ncurses",
