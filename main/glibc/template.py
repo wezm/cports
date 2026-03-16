@@ -39,7 +39,8 @@ hostmakedepends = [
     "texinfo",
 ]
 makedepends = ["linux-headers"]
-depends = []
+# glibc dlopens libgcc_s in some cases
+depends = ["gcc-libs"]
 provides = [
     # /usr/lib/gconv
     # ...not sure this is the right approach.
@@ -319,7 +320,7 @@ options = ["bootstrap", "!check", "!lto"]  # TODO: check
 # work around:
 # objdump -f /builddir/glibc-2.42/build/format.lds.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > /builddir/glibc-2.42/build/format.lds
 # sed: 1: "s/.*file format \(.*\)/ ...": invalid command code T
-exec_wrappers = [("/usr/bin/gsed", "sed")]
+# exec_wrappers = [("/usr/bin/gsed", "sed")]
 
 configure_gen = []
 

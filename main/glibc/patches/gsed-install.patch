@@ -1,0 +1,11 @@
+--- a/Makerules.orig	2026-02-28 12:06:42.909742268 +0000
++++ b/Makerules	2026-02-28 12:06:59.756210549 +0000
+@@ -998,7 +998,7 @@
+ 			    $(common-objpfx)config.h $(..)Makerules
+ 	$(LINK.o) -shared -nostdlib -nostartfiles \
+ 		  -x assembler /dev/null -o $@.so
+-	$(OBJDUMP) -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
++	$(OBJDUMP) -f $@.so | gsed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
+ 	rm -f $@.so
+ common-generated += format.lds
+ 
