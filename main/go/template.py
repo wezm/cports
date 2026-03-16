@@ -5,14 +5,13 @@ hostmakedepends = ["bash"]
 checkdepends = [
     "libatomic-chimera-devel-static",
     "libunwind-devel-static",
-    "musl-devel-static",
 ]
 pkgdesc = "Go programming language"
 license = "BSD-3-Clause"
 url = "https://go.dev"
 source = f"{url}/dl/go{pkgver}.src.tar.gz"
 sha256 = "160043b7f17b6d60b50369436917fda8d5034640ba39ae2431c6b95a889cc98c"
-env = {}
+env = {"LSAN_OPTIONS": "verbosity=1:log_threads=1"}
 # see below
 options = [
     "!strip",
@@ -110,6 +109,9 @@ def check(self):
     self.do(
         "./run.bash",
         "-no-rebuild",
+        # LSAN tests are broken on glibc 2.42 https://github.com/golang/go/issues/74476
+        "-run",
+        "!cmd/cgo/internal/testsanitizers",
         env={
             "GO_TEST_TIMEOUT_SCALE": "5",
             # each shard spawns its own jobs too, so cap this to 1/4 of the
