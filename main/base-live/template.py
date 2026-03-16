@@ -7,6 +7,7 @@ depends = [
     "firmware-linux-soc",
     "lvm2",
     "lvm2-dm",
+    "lvm2-udev",
 ]
 pkgdesc = "Packages to be included in official live images"
 license = "custom:meta"
