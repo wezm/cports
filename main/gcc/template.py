@@ -124,13 +124,11 @@ else:
         "zstd-devel",
     ]
 
-# FIXME: This is None when bootstrapping
-# _trip = self.profile().triplet
-
 # when bootstrapping, this will check the actual profile
 with self.profile(self.profile().arch) as _pf:
     _trip = _pf.triplet
 
+configure_args += [f"--build={_trip}"]
 
 # we cannot use clang, gcc expects binutils
 tools = {"AS": "as", "LD": "ld.bfd", "OBJDUMP": "gobjdump"}
@@ -143,9 +141,9 @@ nopie_files = [
     f"usr/lib/gcc/{_trip}/{_mnver}/plugin/*",
 ]
 # skip those
-#  broken_symlinks = [
-#      f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
-#  ]
+broken_symlinks = [
+    f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
+]
 
 # not all archs have gcc-bootstrap and on some using the regular host
 # clang to bootstrap is fine, but where we can bootstrap with gcc, do
@@ -239,13 +237,12 @@ def init_configure(self):
 def post_install(self):
     # version symlink
     self.rename(f"usr/lib/gcc/{_trip}/{_bver}", f"{_mnver}")
-    # FIXME: 0:13:22.113 =>   FileNotFoundError (/home/wmoore/Projects/cports/bldroot-stage0/destdir/gcc-15.1.0/gcc/usr/lib/gcc/None): [Errno 2] No such file or directory: '/home/wmoore/Projects/cports/bldroot-stage0/destdir/gcc-15.1.0/gcc/usr/lib/gcc/None'
 
     # link the runtime and nuke libgcc
-    #  self.install_link(
-    #      f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
-    #      f"../../../clang/{_clangver}/lib/{_trip}/libclang_rt.builtins.a",
-    #  )
+    self.install_link(
+        f"usr/lib/gcc/{_trip}/{_mnver}/libclang_rt.builtins.a",
+        f"../../../clang/{_clangver}/lib/{_trip}/libclang_rt.builtins.a",
+    )
     # self.uninstall(f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a", glob=True)
     # nuke libstdc++; this build is not compatible with chimera
     # self.uninstall("usr/include/c++")
@@ -289,7 +286,8 @@ def _(self):
         # SONAME: libgcc_s.so.1 from usr/lib (skipped) <- why?
 
         self.provides = [
-            "so:libgcc_s.so.1=0",
+            # FIXME =0
+            f"so:libgcc_s.so.1=0",
         ]
 
     return [
