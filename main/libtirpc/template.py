@@ -10,7 +10,6 @@ hostmakedepends = [
 makedepends = [
     "heimdal-devel",
     "linux-headers",
-    "musl-bsd-headers",
 ]
 pkgdesc = "Transport Independent RPC library"
 license = "BSD-3-Clause"

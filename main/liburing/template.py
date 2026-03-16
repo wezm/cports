@@ -8,7 +8,7 @@ hostmakedepends = [
     "bash",
     "pkgconf",
 ]
-makedepends = ["linux-headers", "musl-bsd-headers"]
+makedepends = ["linux-headers"]
 pkgdesc = "Linux kernel io_uring access library"
 license = "LGPL-2.1-or-later OR MIT"
 url = "https://github.com/axboe/liburing"
