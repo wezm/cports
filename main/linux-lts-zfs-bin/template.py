@@ -11,7 +11,6 @@ pkgdesc = f"OpenZFS modules for kernel {_kernver}"
 license = "CDDL-1.0"
 url = "https://openzfs.github.io/openzfs-docs"
 options = ["!cross"]
-broken = "tries to use gcc to build"
 
 
 def init_configure(self):
