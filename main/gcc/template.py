@@ -251,7 +251,7 @@ def post_install(self):
     # self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
     # other stuff we don't want
     self.uninstall("usr/lib/libatomic.*", glob=True)
-    # self.uninstall("usr/lib/libgcc_s.*", glob=True)
+    self.uninstall("usr/lib/libgcc_s.*", glob=True)
     # provided by clang
     self.uninstall("usr/bin/c++")
     self.uninstall(f"usr/bin/{_trip}-c++")
@@ -280,19 +280,8 @@ def _(self):
         # 0:14:15.530 =>   SONAME: ld-linux-x86-64.so.2 (unknown provider)
         self.options += ["!scanrundeps"]
 
-        # Why isn't it getting this automatically?
-        # SONAME: libgcc_s.so.1=0 (explicit)
-        # SONAME: libatomic.so.1 from usr/lib
-        # SONAME: libgcc_s.so.1 from usr/lib (skipped) <- why?
-
-        self.provides = [
-            # FIXME =0
-            f"so:libgcc_s.so.1=0",
-        ]
-
     return [
         f"usr/lib/gcc/{_trip}/{_mnver}/libgcc*.a",
-        "usr/lib/libgcc_s.*",
     ]
 
 
