@@ -25,14 +25,14 @@ source = f"$(PYPI_SITE)/p/pexpect/pexpect-{pkgver}.tar.gz"
 sha256 = "ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f"
 
 
-def post_extract(self):
+def post_patch(self):
     # can't deal with escapes
     self.rm("tests/test_replwrap.py")
 
-    if self.profile().arch == "armv7":
-        # doesn't find a match when searching with regex and windowsize
-        # see https://github.com/pexpect/pexpect/issues/816
-        self.rm("tests/test_performance.py")
+    # doesn't find a match when searching with regex and windowsize
+    # see https://github.com/pexpect/pexpect/issues/816
+    # was tagged as armv7 specific, but it happening in an x86_64 VM too
+    self.rm("tests/test_performance.py")
 
 
 def post_install(self):
