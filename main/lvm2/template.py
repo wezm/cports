@@ -44,7 +44,6 @@ makedepends = [
     "libedit-devel-static",
     "libunwind-devel-static",
     "linux-headers",
-    "musl-devel-static",
     "ncurses-devel",
     "ncurses-devel-static",
     "udev-devel",

@@ -37,7 +37,6 @@ makedepends = [
     "libunwind-devel-static",
     "liburing-devel-static",
     "linux-headers",
-    "musl-devel-static",
     "pcre2-devel",
     "pcre2-devel-static",
     "zlib-ng-compat-devel",

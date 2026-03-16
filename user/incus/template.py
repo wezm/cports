@@ -19,7 +19,6 @@ makedepends = [
     "libuv-devel",
     "linux-headers",
     "lxc-devel",
-    "musl-devel-static",
     "raft-devel",
     "sqlite-devel",
     "udev-devel",

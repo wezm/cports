@@ -19,7 +19,6 @@ makedepends = [
     "libseccomp-devel",
     "libunwind-devel",
     "libunwind-devel-static",
-    "musl-devel-static",
     "openssl3-devel",
 ]
 depends = ["ugetopt", "xz", "wget2"]

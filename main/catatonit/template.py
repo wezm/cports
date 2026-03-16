@@ -10,7 +10,6 @@ hostmakedepends = [
 makedepends = [
     "libatomic-chimera-devel-static",
     "libunwind-devel-static",
-    "musl-devel-static",
 ]
 pkgdesc = "Init for containers"
 license = "GPL-2.0-or-later"
