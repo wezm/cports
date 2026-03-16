@@ -38,9 +38,13 @@ hostmakedepends = [
     "python",
     "texinfo",
 ]
-makedepends = ["linux-headers"]
+makedepends = [
+    "linux-headers",
+    "gcc-libs",  # for libgcc.a
+]
 # glibc dlopens libgcc_s in some cases
-depends = ["gcc-libs"]
+# depends = ["so:libgcc_s.so.1!llvm-libgcc"] # creates a cycle
+depends = []
 provides = [
     # /usr/lib/gconv
     # ...not sure this is the right approach.
@@ -340,7 +344,7 @@ if self.stage > 0:
     # just avoid the dependency and work around the whole issue
     #
     depends += ["base-files"]
-    # This ensures that /etc/hosts is present, whicih is necessary for some
+    # This ensures that /etc/hosts is present, which is necessary for some
     # tests to pass in stage 2.
 
 
