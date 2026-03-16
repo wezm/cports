@@ -59,31 +59,3 @@ Fix tests to pass on musl and also avoid extra dependencies (e.g. ncurses, mpc, 
  #include <netdb.h>
  #include <math.h>
  #include <tgmath.h>
---- a/test-suite/test/sysdep/ffi_lib_c.lua
-+++ b/test-suite/test/sysdep/ffi_lib_c.lua
-@@ -7,6 +7,9 @@
- int rmdir(const char *name);
- int errno;
- 
-+// musl libc
-+int *__errno_location(void);
-+
- // Windows
- unsigned int GetSystemDirectoryA(char *buf, unsigned int sz);
- char *CharUpperA(char *str);
-@@ -62,11 +65,11 @@
-   ffi.C._fmode = ffi.C._O_TEXT
- else
-   assert(ffi.C.rmdir("/tmp/does_not_exist") == -1)
--  assert(ffi.C.errno == 2)
-+  assert(ffi.C.__errno_location()[0] == 2)
- 
--  ffi.C.errno = 17
--  assert(ffi.C.errno == 17)
--  ffi.C.errno = 0
-+  ffi.C.__errno_location()[0] = 17
-+  assert(ffi.C.__errno_location()[0] == 17)
-+  ffi.C.__errno_location()[0] = 0
- end
- 
- do
