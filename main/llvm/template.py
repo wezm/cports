@@ -33,6 +33,21 @@ configure_args = [
     "-DLIBUNWIND_USE_COMPILER_RT=ON",
     "-DMLIR_INSTALL_AGGREGATE_OBJECTS=OFF",
 ]
+_libgcc_args = [
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DCOMPILER_RT_BUILD_CTX_PROFILE=OFF",
+    "-DCOMPILER_RT_BUILD_GWP_ASAN=OFF",
+    "-DCOMPILER_RT_BUILD_LIBFUZZER=OFF",
+    "-DCOMPILER_RT_BUILD_MEMPROF=OFF",
+    "-DCOMPILER_RT_BUILD_ORC=OFF",
+    "-DCOMPILER_RT_BUILD_PROFILE=OFF",
+    "-DCOMPILER_RT_BUILD_SANITIZERS=OFF",
+    "-DCOMPILER_RT_BUILD_XRAY=OFF",
+    "-DLIBCXX_HARDENING_MODE=fast",
+    "-DLIBUNWIND_SHARED_OUTPUT_NAME=gcc_s",
+    "-DLLVM_ENABLE_RUNTIMES=llvm-libgcc",
+    "-DLLVM_LIBGCC_EXPLICIT_OPT_IN=ON",
+]
 hostmakedepends = [
     "cmake",
     "ninja",
@@ -105,12 +120,15 @@ if self.stage > 0:
         if not self.profile().cross:
             hostmakedepends += ["llvm-bootstrap"]
             # set all the stuff that matters
-            configure_args += [
+            _tools = [
                 "-DCMAKE_AR=/usr/lib/llvm-bootstrap/bin/llvm-ar",
                 "-DCMAKE_NM=/usr/lib/llvm-bootstrap/bin/llvm-nm",
                 "-DCMAKE_RANLIB=/usr/lib/llvm-bootstrap/bin/llvm-ranlib",
                 "-DLLVM_USE_LINKER=/usr/lib/llvm-bootstrap/bin/ld.lld",
             ]
+            configure_args += _tools
+            _libgcc_args += _tools
+
             # not fun but stuff used during build may be using symbols from
             # a newer version of libcxx so we need to point it to bootstrap
             tool_flags["LDFLAGS"] += [
@@ -141,6 +159,7 @@ else:
 # from stage 2 only, pointless to build before
 _enable_mlir = self.stage >= 2
 _enable_flang = _enable_mlir and self.profile().wordsize == 64
+_enable_flang = False  # speed up build for now
 
 if _enable_mlir:
     _enabled_projects += ["mlir"]
@@ -227,6 +246,27 @@ exec /usr/bin/ccache /usr/lib/llvm-bootstrap/bin/{f} "$@"
         ],
     )
 
+    # llvm-libgcc
+    self.log("configuring llvm-libgcc")
+    cmake.configure(
+        self,
+        build_dir="build-libgcc",
+        cmake_dir="runtimes",
+        extra_args=[
+            *_libgcc_args,
+            "-DLLVM_TARGET_ARCH=" + _arch,
+            "-DLLVM_HOST_TRIPLE=" + trip,
+            "-DLLVM_DEFAULT_TARGET_TRIPLE=" + trip,
+        ],
+    )
+
+
+def post_build(self):
+    from cbuild.util import cmake
+
+    self.log("building llvm-libgcc")
+    cmake.build(self, "build-libgcc")
+
 
 def post_install(self):
     from cbuild.util import python
@@ -270,6 +310,13 @@ def post_install(self):
     # FIXME: make it build for cross so we get consistent packages
     if _enable_mlir and not self.profile().cross:
         self.install_bin("build/bin/mlir-src-sharder")
+
+    # llvm-libgcc
+    self.install_file(
+        "build-libgcc/llvm-libgcc/gcc_s.ver", "usr/share/llvm-libgcc"
+    )
+    self.install_lib("build-libgcc/lib/libgcc_s.so.1.0", name="libgcc_s.so.1")
+    self.install_link("usr/lib/libgcc_s.so", "libgcc_s.so.1")
 
 
 @subpackage("clang-tools-extra-static")
@@ -671,6 +718,25 @@ def _(self):
     self.subdesc = "linker plugins"
 
     return ["usr/lib/libLTO.so.*"]
+
+
+@subpackage("llvm-libgcc")
+def _(self):
+    self.subdesc = "libgcc_s replacement"
+    self.replaces = ["gcc-libs"]
+
+    return ["usr/lib/libgcc_s.so.1"]
+
+
+@subpackage("llvm-libgcc-devel")
+def _(self):
+    self.subdesc = "libgcc_s replacement development files"
+    self.replaces = ["gcc-libs"]
+
+    return [
+        "usr/lib/libgcc_s.so",
+        "usr/share/llvm-libgcc",
+    ]
 
 
 @subpackage("llvm-devel-static")
