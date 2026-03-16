@@ -24,7 +24,7 @@ makedepends = [
     "zlib-ng-compat-devel",
     "zstd-devel",
 ]
-depends = [self.with_pkgver("rust-std"), "clang", "musl-devel"]
+depends = [self.with_pkgver("rust-std"), "clang", "glibc-devel"]
 pkgdesc = "Rust programming language"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
