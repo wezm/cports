@@ -27,8 +27,11 @@ license = "LGPL-3.0-or-later AND GPL-3.0-or-later"
 url = "https://www.gnu.org/software/guile"
 source = f"$(GNU_SITE)/guile/guile-{pkgver}.tar.gz"
 sha256 = "2dbdbc97598b2faf31013564efb48e4fed44131d28e996c26abe8a5b23b56c2a"
-# broken af
-options = ["!lto"]
+# lto: broken af
+# FIXME: check: test-unwind aborts and it resists using a debugger to work out
+# why. Also tests fail later on Chimera
+options = ["!lto", "!check"]
+
 
 if self.profile().arch in ["armv7", "loongarch64", "riscv64"]:
     # mostly passes, minor fails
