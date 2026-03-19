@@ -28,7 +28,7 @@ jobs:
 
     runs-on: ${{ matrix.runner }}
     container:
-      image: wezm/casuarina-ci:20260319-1
+      image: wezm/casuarina-ci:20260319
     if: "!contains(forgejo.event.pull_request.title, '[ci skip]') && !contains(forgejo.event.pull_request.body, '[ci skip]')"
 
     env:

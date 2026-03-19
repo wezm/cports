@@ -7,8 +7,18 @@
 
 FROM debian:13-slim
 
-ARG REV=1
+ARG UUID=2000
+ARG UGID=2000
+ARG USER=cbuild
+ARG REV=2
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -y python3-pip ca-certificates openssl git bubblewrap curl nodejs && \
     python3 -m pip install ruff --break-system-packages
+
+RUN groupadd --gid ${UGID} ${USER} && \
+    useradd --uid ${UUID} --gid ${USER} --home-dir /home/${USER} ${USER}
+
+WORKDIR /home/${USER}
+
+USER cbuild
