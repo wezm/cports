@@ -1,0 +1,28 @@
+name: 'Treeless Checkout'
+description: 'Check out a repository with --filter=tree:0'
+author: classabbyamp
+branding:
+  icon: download-cloud
+  color: purple
+inputs:
+  ref:
+    description: 'Ref to checkout (SHA, branch, tag)'
+    required: false
+    default: ${{ forgejo.ref }}
+  repository:
+    description: 'Repository name'
+    required: false
+    default: ${{ forgejo.repository }}
+  server_url:
+    description: 'Forgejo server url'
+    required: false
+    default: ${{ forgejo.server_url }}
+runs:
+  using: "composite"
+  steps:
+    - run: $FORGEJO_ACTION_PATH/checkout.sh
+      shell: bash
+      env:
+        FORGEJO_REF: ${{ inputs.ref }}
+        REPOSITORY: ${{ inputs.repository }}
+        SERVER_URL: ${{ inputs.server_url }}

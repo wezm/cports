@@ -32,7 +32,7 @@ jobs:
       image: wezm/casuarina-ci:20260319
     steps:
       - name: Checkout
-        uses: https://codeberg.org/wezm/treeless-checkout-action@v1.0.3
+        uses: ./.ci/treeless-checkout-action
 
       - name: Set up cbuild configuration
         run: sh .ci/setup-cbuild.sh

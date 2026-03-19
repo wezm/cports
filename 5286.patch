@@ -1,0 +1,46 @@
+From 159497ef5bd3f0221dba9e08ee9c068525c7a254 Mon Sep 17 00:00:00 2001
+From: nune <gigirassy@protonmail.com>
+Date: Tue, 17 Mar 2026 15:19:10 -0400
+Subject: [PATCH] user/forgejo-runner: new package
+
+---
+ user/forgejo-runner/template.py | 20 ++++++++++++++++++++
+ user/forgejo-runner/update.py   |  2 ++
+ 2 files changed, 22 insertions(+)
+ create mode 100644 user/forgejo-runner/template.py
+ create mode 100644 user/forgejo-runner/update.py
+
+diff --git a/user/forgejo-runner/template.py b/user/forgejo-runner/template.py
+new file mode 100644
+index 0000000000..0a9e109c51
+--- /dev/null
++++ b/user/forgejo-runner/template.py
+@@ -0,0 +1,20 @@
++pkgname = "forgejo-runner"
++pkgver = "12.7.2"
++pkgrel = 0
++build_style = "go"
++hostmakedepends = ["go"]
++pkgdesc = "Task runner for Forgejo"
++license = "GPL-3.0-only"
++url = "https://code.forgejo.org/forgejo/runner"
++source = f"{url}/archive/v{pkgver}.tar.gz"
++sha256 = "8085a66ad64cdd19c35af82d4f59b033dbf3f4b1302b6d2ec785a3059520d799"
++# check: needs network access
++options = ["!check"]
++
++
++def install(self):
++    self.install_bin("build/runner", name="forgejo-runner")
++
++
++def post_install(self):
++    self.install_license("LICENSE")
+diff --git a/user/forgejo-runner/update.py b/user/forgejo-runner/update.py
+new file mode 100644
+index 0000000000..34a959aa4c
+--- /dev/null
++++ b/user/forgejo-runner/update.py
+@@ -0,0 +1,2 @@
++url = "https://code.forgejo.org/forgejo/runner/info/refs"
++pattern = r"refs/tags/v([0-9.]+)(?!^)"
