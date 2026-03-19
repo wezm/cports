@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: ./.ci/treeless-checkout-action
+        uses: https://codeberg.org/wezm/treeless-checkout-action@v1.0.4
 
       - name: Restore cbuild cache
         id: cache-cbuild
