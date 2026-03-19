@@ -3,6 +3,7 @@
 set -e
 
 APK_URL="https://repo.chimera-linux.org/apk/latest"
+APK_REPO="https://au.mirror.7bit.org/cobblestone/current/"
 APK_ARCH=$(uname -m)
 APK_FILE="apk-${APK_ARCH}.static"
 
@@ -18,6 +19,7 @@ echo "=> Setting up cbuild configuration..."
 cat << EOF > etc/config.ini
 [apk]
 command = $(pwd)/${APK_FILE}
+repo = ${APK_REPO}
 [build]
 ccache = yes
 # they will not be packaged, but we can still CI them (no public artifacts)
@@ -25,7 +27,7 @@ allow_restricted = yes
 EOF
 
 echo "=> Generating cbuild key..."
-python3.12 cbuild keygen
+python3 cbuild keygen
 
 echo "=> Setting up ccache configuration..."
 mkdir -p cbuild_cache/ccache

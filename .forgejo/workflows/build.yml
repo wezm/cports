@@ -3,13 +3,13 @@ name: Build packages
 on:
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - 'main/**'
       - 'user/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ forgejo.workflow }}-${{ forgejo.ref }}
   cancel-in-progress: true
 
 env:
@@ -22,17 +22,20 @@ jobs:
 
     strategy:
         matrix:
-            runner: [ubuntu-24.04, ubuntu-24.04-arm]
+            runner: [casuarina-x86]
+            # runner: [casuarina-x86, casuarina-arm]
         fail-fast: false
 
     runs-on: ${{ matrix.runner }}
-    if: "!contains(github.event.pull_request.title, '[ci skip]') && !contains(github.event.pull_request.body, '[ci skip]')"
+    container:
+      image: wezm/casuarina-ci:20260319-1
+    if: "!contains(forgejo.event.pull_request.title, '[ci skip]') && !contains(forgejo.event.pull_request.body, '[ci skip]')"
 
     env:
       update_check: |-
         ${{
-          ( !contains(github.event.pull_request.title, '[update skip]')
-          && !contains(github.event.pull_request.body, '[update skip]') )
+          ( !contains(forgejo.event.pull_request.title, '[update skip]')
+          && !contains(forgejo.event.pull_request.body, '[update skip]') )
           && '--update-check'
           || ''
         }}
@@ -41,17 +44,6 @@ jobs:
       - name: Checkout
         uses: classabbyamp/treeless-checkout-action@v1
 
-      - name: Disable apparmor
-        run: |
-          sudo sysctl kernel.apparmor_restrict_unprivileged_unconfined=0
-          sudo sysctl kernel.apparmor_restrict_unprivileged_userns=0
-
-      - name: Install dependencies
-        run: |
-          sudo rm -f /var/lib/man-db/auto-update
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends python3 ca-certificates openssl git bubblewrap wget
-
       - name: Restore cbuild cache
         id: cache-cbuild
         uses: actions/cache/restore@v4
@@ -59,7 +51,7 @@ jobs:
           path: |
             ./cbuild_cache
             ./sources
-          key: ${{ runner.os }}-${{ runner.arch }}-cbuild-ci-cache-${{ github.run_id }}
+          key: ${{ runner.os }}-${{ runner.arch }}-cbuild-ci-cache-${{ forgejo.run_id }}
           # checks prefix of cache stored below and grabs the one from the latest run_id that is
           # always saved. we do this because things like source fetch / dependencies don't care
           # about success.
@@ -70,7 +62,7 @@ jobs:
         run: sh .ci/setup-cbuild.sh
 
       - name: Build and test packages
-        run: python3.12 cbuild -W ${{ env.update_check }} -t bulk-pkg 'git:master..+!\[ci skip\]'
+        run: python3 cbuild -W ${{ env.update_check }} -t bulk-pkg 'git:main..+!\[ci skip\]'
 
       - name: Save cbuild cache
         uses: actions/cache/save@v4
@@ -79,4 +71,4 @@ jobs:
           path: |
             ./cbuild_cache
             ./sources
-          key: ${{ runner.os }}-${{ runner.arch }}-cbuild-ci-cache-${{ github.run_id }}
+          key: ${{ runner.os }}-${{ runner.arch }}-cbuild-ci-cache-${{ forgejo.run_id }}

@@ -1,0 +1,41 @@
+name: Lint tree and check format
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'main/**'
+      - 'user/**'
+      - 'src/**'
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'main/**'
+      - 'user/**'
+      - 'src/**'
+
+concurrency:
+  group: ${{ forgejo.workflow }}-${{ forgejo.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: 1
+
+jobs:
+  lint:
+    name: Lint tree and check format
+    runs-on: casuarina-x86
+    container:
+      image: wezm/casuarina-ci:20260319-1
+    steps:
+      - name: Checkout
+        uses: classabbyamp/treeless-checkout-action@v1
+
+      - name: Set up cbuild configuration
+        run: sh .ci/setup-cbuild.sh
+
+      - name: Run checks and lints
+        run: sh .ci/lint.sh
