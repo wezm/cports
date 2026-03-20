@@ -21,6 +21,7 @@ cat << EOF > etc/config.ini
 command = $(pwd)/${APK_FILE}
 repo = ${APK_REPO}
 [build]
+jobs = 8
 ccache = yes
 # they will not be packaged, but we can still CI them (no public artifacts)
 allow_restricted = yes
