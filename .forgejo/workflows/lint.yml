@@ -29,7 +29,7 @@ jobs:
     name: Lint tree and check format
     runs-on: casuarina-x86
     container:
-      image: wezm/casuarina-ci:20260319
+      image: wezm/casuarina-ci:20260320
     steps:
       - name: Checkout
         uses: https://codeberg.org/wezm/treeless-checkout-action@v1.0.4

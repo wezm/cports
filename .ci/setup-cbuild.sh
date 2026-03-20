@@ -2,23 +2,11 @@
 
 set -e
 
-APK_URL="https://repo.chimera-linux.org/apk/latest"
 APK_REPO="https://au.mirror.7bit.org/cobblestone/current/"
-APK_ARCH=$(uname -m)
-APK_FILE="apk-${APK_ARCH}.static"
-
-echo "=> Getting apk-tools..."
-curl --parallel -LO "${APK_URL}/${APK_FILE}" -LO "${APK_URL}/sha256sums.txt"
-chmod +x "${APK_FILE}"
-
-echo "=> Checking apk-tools..."
-grep "${APK_FILE}" sha256sums.txt|sha256sum --check
-rm -f sha256sums.txt || :
 
 echo "=> Setting up cbuild configuration..."
 cat << EOF > etc/config.ini
 [apk]
-command = $(pwd)/${APK_FILE}
 repo = ${APK_REPO}
 [build]
 jobs = 8
