@@ -2,11 +2,10 @@ pkgname = "numbat"
 pkgver = "1.23.0"
 pkgrel = 0
 build_style = "cargo"
-prepare_after_patch = True
 # Tries to access network
 make_check_args = ["--", "--skip=examples_can_be_parsed_and_interpreted"]
 hostmakedepends = ["cargo-auditable", "pkgconf"]
-makedepends = ["rust-std", "openssl3-devel"]
+makedepends = ["rust-std"]
 depends = ["tzdb"]
 pkgdesc = "High-precision scientific calculator"
 license = "MIT OR Apache-2.0"
