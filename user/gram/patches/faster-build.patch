@@ -1,0 +1,12 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 746bd59fb..224f27a53 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -713,7 +713,6 @@ ui_input = { codegen-units = 1 }
+ [profile.release]
+ debug = "limited"
+ lto = "thin"
+-codegen-units = 1
+ 
+ [profile.release.package]
+ gram = { codegen-units = 16 }

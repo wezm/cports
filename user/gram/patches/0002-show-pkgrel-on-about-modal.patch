@@ -1,0 +1,13 @@
+diff --git a/crates/gram/src/gram.rs b/crates/gram/src/gram.rs
+index 312710c03..469098f10 100644
+--- a/crates/gram/src/gram.rs
++++ b/crates/gram/src/gram.rs
+@@ -1063,7 +1063,7 @@ impl AboutWindow {
+         fn new(cx: &mut Context<Self>) -> Self {
+             let version = match option_env!("GRAM_COMMIT_NAME") {
+                 Some(commit_name) => commit_name,
+-                None => env!("CARGO_PKG_VERSION"),
++                None => env!("RELEASE_VERSION"),
+             };
+ 
+             let debug = if cfg!(debug_assertions) {
