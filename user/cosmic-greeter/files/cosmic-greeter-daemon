@@ -1,0 +1,8 @@
+# deinit service for cosmic-greeter-daemon
+
+type = process
+command = /usr/bin/cosmic-greeter-daemon
+smooth-recovery = true
+depends-on: login.target
+depends-on: dbus
+
