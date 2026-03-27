@@ -1,0 +1,11 @@
+pkgname = "pop-icon-theme"
+pkgver = "3.5.1"
+pkgrel = 0
+build_style = "meson"
+hostmakedepends = ["meson"]
+depends = ["adwaita-icon-theme"]
+pkgdesc = "System76 Pop icon theme"
+license = "CC-BY-SA-4.0"
+url = "https://github.com/pop-os/icon-theme"
+source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
+sha256 = "92e73f252e5e9c8a1124623a7d421410ef43c798a4a992955e6eb4f666f5c8a0"
