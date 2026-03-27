@@ -1,0 +1,8 @@
+--- cosmic-greeter.toml	2026-04-27 16:00:49.413837747 +1000
++++ cosmic-greeter.toml	2026-04-27 16:00:51.112877463 +1000
+@@ -6,4 +6,4 @@
+ 
+ [default_session]
+ command = "cosmic-greeter-start"
+-user = "cosmic-greeter"
++user = "_cosmic-greeter"
