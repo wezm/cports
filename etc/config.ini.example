@@ -13,7 +13,7 @@
 # static apk from inside of it is used always
 command = apk
 # the repository mirror to use
-repo = https://repo.chimera-linux.org/current
+repo = https://repo.casuarina.org/current
 
 # options related to building packages
 [build]

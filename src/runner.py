@@ -10,7 +10,7 @@ cmdline = None
 parser = None
 
 opt_apkcmd = "apk"
-opt_apkrepo = "https://repo.chimera-linux.org/current"
+opt_apkrepo = "https://repo.casuarina.org/current"
 opt_bwcmd = "bwrap"
 opt_cflags = "-O2"
 opt_cxxflags = "-O2"
