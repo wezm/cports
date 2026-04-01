@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "fccbd8c0ef7fd473275f835b3fca9275fb27a0c196cdcdff1f6d14ab12ed3a53"
 # crosstoolchain
 options = ["!cross", "!check", "!lto", "brokenlinks", "empty"]
+broken = "cross-compilation not implemented"
 
 _targetlist = [
     "aarch64",
