@@ -19,7 +19,6 @@ hostmakedepends = [
 makedepends = [
     "flex-devel-static",
     "gettext-devel",
-    "libxcrypt-devel",
     "linux-headers",
     "musl-crypt-devel",
 ]
