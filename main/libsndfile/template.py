@@ -17,6 +17,9 @@ license = "LGPL-2.1-or-later"
 url = "https://libsndfile.github.io/libsndfile"
 source = f"https://github.com/libsndfile/libsndfile/releases/download/{pkgver}/libsndfile-{pkgver}.tar.xz"
 sha256 = "3799ca9924d3125038880367bf1468e53a1b7e3686a934f098b7e1d286cdb80e"
+# check: sdlcomp_test_short fails with opus version 1.6
+# https://github.com/libsndfile/libsndfile/issues/1107
+options = ["!check"]
 
 
 @subpackage("libsndfile-progs")
