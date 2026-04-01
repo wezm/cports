@@ -22,6 +22,7 @@ make_dir = "."
 makedepends = [
     "acl-devel",
     "linux-pam-devel",
+    "musl-crypt-devel",
 ]
 depends = ["linux-pam", "base-shells"]
 # self-trigger
