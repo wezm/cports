@@ -9,6 +9,7 @@ make_check_target = "test"
 make_check_env = {"PERL_BUILD_PACKAGING": "1"}
 makedepends = ["zlib-ng-compat-devel", "bzip2-devel", "musl-crypt-devel"]
 checkdepends = ["perl-AnyEvent", "perl-Test-Pod", "procps"]
+depends = ["musl-crypt-devel"]
 pkgdesc = "Practical Extraction and Report Language"
 license = "Artistic-1.0-Perl OR GPL-1.0-or-later"
 url = "https://www.perl.org"
