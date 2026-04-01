@@ -17,6 +17,7 @@ license = "GPL-3.0-or-later"
 url = "http://www.gnu.org/software/gawk"
 source = f"$(GNU_SITE)/gawk/gawk-{pkgver}.tar.xz"
 sha256 = "f8c3486509de705192138b00ef2c00bbbdd0e84c30d5c07d23fc73a9dc4cc9cc"
+# check: needs locales, but adding them creates a cycle with glibc
 options = ["bootstrap", "!check"]
 
 
