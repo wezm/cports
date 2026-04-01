@@ -81,10 +81,10 @@ _gold_plugin = False  # TODO: Build when stage > 2
 
 
 def post_extract(self):
-    if self.stage > 0:
-        self.cp(
-            self.sources_path / f"gold-plugin-{_llvmver}.cpp", "gold-plugin.cpp"
-        )
+    # we patch this, so it needs to be present
+    self.cp(
+        self.sources_path / f"gold-plugin-{_llvmver}.cpp", "gold-plugin.cpp"
+    )
 
 
 # configure for one target
