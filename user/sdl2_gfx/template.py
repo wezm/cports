@@ -10,6 +10,7 @@ license = "Zlib"
 url = "https://www.ferzkopp.net/wordpress/2016/01/02/sdl_gfx-sdl2_gfx"
 source = f"http://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-{pkgver}.tar.gz"
 sha256 = "63e0e01addedc9df2f85b93a248f06e8a04affa014a835c2ea34bfe34e576262"
+tool_flags = {"LDFLAGS": ["-lm"]}
 
 
 def post_install(self):
