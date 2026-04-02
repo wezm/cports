@@ -1,7 +1,10 @@
 pkgname = "forgejo-runner"
 pkgver = "12.7.3"
-pkgrel = 0
+pkgrel = 1
 build_style = "go"
+make_build_args = [
+    f"-ldflags=-X code.forgejo.org/forgejo/runner/v12/internal/pkg/ver.version={pkgver}"
+]
 hostmakedepends = ["go"]
 pkgdesc = "Task runner for Forgejo"
 license = "GPL-3.0-only"
