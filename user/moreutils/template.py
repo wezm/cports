@@ -19,3 +19,4 @@ sha256 = "f2bf46d410ba567cc8d01507e94916994e48742722e690dc498fab59f5250132"
 hardening = ["vis", "cfi"]
 # no tests defined
 options = ["!check"]
+broken = "fails fetch: incomplete file, fetch attempts exceeded"
