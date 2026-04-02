@@ -13,6 +13,7 @@ sha256 = [
     "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a",
 ]
 options = ["empty"]
+broken = "404: Not Found"
 
 
 def install(self):
