@@ -6,8 +6,8 @@ make_build_args = ["all", "extra"]
 make_install_args = ["install-extra"]
 make_use_env = True
 makedepends = [
-    "parted-devel",
     "linux-headers",
+    "parted-devel",
     "udev-devel",
 ]
 pkgdesc = "Flash devices tester"
