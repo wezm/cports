@@ -34,6 +34,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "cd6fd76eeea506e47352c454edd1d8184ba48c702cae0d407c1e4c73431d3334"
 # depends on pytestsalt
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def install(self):

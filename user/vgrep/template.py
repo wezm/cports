@@ -9,6 +9,7 @@ license = "GPL-3.0-or-later"
 url = "https://github.com/vrothberg/vgrep"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "325b28bd5e8da316e319361f2dd8e3cc74fcd55724fc8ad4b2a73c21b2903bd8"
+restricted = "disabled until requested"
 
 
 def post_build(self):

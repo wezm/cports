@@ -9,6 +9,7 @@ source = f"https://mbsd.evolvis.org/MirOS/dist/mir/mksh/mksh-R{pkgver}.tgz"
 sha256 = "77ae1665a337f1c48c61d6b961db3e52119b38e58884d1c89684af31f87bc506"
 tool_flags = {"CFLAGS": ['-DMKSHRC_PATH="/usr/share/mksh/mkshrc"']}
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def build(self):

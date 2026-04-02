@@ -10,6 +10,7 @@ license = "AGPL-3.0-or-later"
 url = "https://github.com/ReimuNotMoe/ydotool"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "ba075a43aa6ead51940e892ecffa4d0b8b40c241e4e2bc4bd9bd26b61fde23bd"
+restricted = "disabled until requested"
 
 
 def post_install(self):

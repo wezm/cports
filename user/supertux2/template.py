@@ -32,3 +32,4 @@ source = f"https://github.com/SuperTux/supertux/releases/download/v{pkgver}/Supe
 sha256 = "f7940e6009c40226eb34ebab8ffb0e3a894892d891a07b35d0e5762dd41c79f6"
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"

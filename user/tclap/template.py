@@ -11,6 +11,7 @@ source = (
     f"https://downloads.sourceforge.net/sourceforge/tclap/tclap-{pkgver}.tar.gz"
 )
 sha256 = "bb649f76dae35e8d0dcba4b52acfd4e062d787e6a81b43f7a4b01275153165a6"
+restricted = "disabled until requested"
 
 
 def post_install(self):

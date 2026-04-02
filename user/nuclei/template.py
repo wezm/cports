@@ -14,6 +14,7 @@ source = f"{url}/archive/8aa427a6ea8d5e1faf4f109ccc94156431018582.tar.gz"
 sha256 = "a5a97b4953f053c08d8ecdd7bdb50bb45aa98b8204fc00a7dcb788befa85a24f"
 # Nuclei tests requires network connection
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

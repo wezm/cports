@@ -74,6 +74,7 @@ sha256 = "91fe6f20339884e37a7c47bfba42fb1cd397512c9ed5ad423de369f047cd8b5c"
 hardening = ["!int"]
 # cba to deal with cross patching nonsense
 options = ["!cross"]
+restricted = "disabled until requested"
 
 _gallium_drivers = ["swrast"]
 _dri_drivers = []

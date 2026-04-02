@@ -10,6 +10,7 @@ license = "MIT"
 url = "https://github.com/LouisBrunner/avahi2dns"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "ec2df093342d6fdd324db34a677086b80690e9f91f143a5be7783552c5c598b9"
+restricted = "disabled until requested"
 
 
 def post_install(self):

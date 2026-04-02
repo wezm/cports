@@ -40,6 +40,7 @@ license = "MIT"
 url = "https://pypi.org/project/dbus-fast"
 source = f"https://github.com/Bluetooth-Devices/dbus-fast/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "deba7a7f1e719b14dee61fbcb306d15f2e511a25e07acfc8ce3c07d266b1f494"
+restricted = "disabled until requested"
 
 
 def post_prepare(self):

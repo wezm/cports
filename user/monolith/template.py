@@ -12,6 +12,7 @@ license = "CC0-1.0"
 url = "https://github.com/Y2Z/monolith"
 source = f"{url}/archive/v{pkgver}/monolith-{pkgver}.tar.gz"
 sha256 = "1afafc94ba693597f591206938e998fcf2c78fd6695e7dfd8c19e91061f7b44a"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

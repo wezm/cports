@@ -27,3 +27,4 @@ source = f"https://github.com/Yoshimi/yoshimi/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "f9676ee9a37a21e736f3a215dfd8098b428a156d74f681c354505b5e3e9a3bdc"
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"

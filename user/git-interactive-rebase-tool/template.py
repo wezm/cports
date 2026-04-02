@@ -11,6 +11,7 @@ license = "GPL-3.0-or-later"
 url = "https://github.com/MitMaro/git-interactive-rebase-tool"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "0b1ba68a1ba1548f44209ce1228d17d6d5768d72ffa991909771df8e9d42d70d"
+restricted = "disabled until requested"
 
 
 def post_extract(self):

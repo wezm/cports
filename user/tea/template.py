@@ -12,6 +12,7 @@ license = "MIT"
 url = "https://gitea.com/gitea/tea"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "1da6b6d2534bd6ffb0931400014bbdef26242cf4d35d4ba44c24928811825805"
+restricted = "disabled until requested"
 
 
 def post_install(self):

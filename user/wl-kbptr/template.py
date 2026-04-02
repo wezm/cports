@@ -19,6 +19,7 @@ url = "https://github.com/moverest/wl-kbptr"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "e3655f5305987dbac389a25e64c2f5a028c1651db70ea757024c4efa55c24338"
 hardening = ["vis", "!cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

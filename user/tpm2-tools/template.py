@@ -19,6 +19,7 @@ source = f"{url}/releases/download/{pkgver}/tpm2-tools-{pkgver}.tar.gz"
 sha256 = "3810d36b5079256f4f2f7ce552e22213d43b1031c131538df8a2dbc3c570983a"
 # symlinks tpm2 to tpm2_completion.bash
 options = ["!lto", "!lintcomp"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

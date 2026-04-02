@@ -13,3 +13,4 @@ source = f"$(CPAN_SITE)/Test/Test-Pod-Coverage-{pkgver}.tar.gz"
 sha256 = "48c9cca9f7d99eee741176445b431adf09c029e1aa57c4703c9f46f7601d40d4"
 # needs self for tests
 options = ["!check"]
+restricted = "disabled until requested"

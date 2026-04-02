@@ -23,6 +23,7 @@ source = f"$(PYPI_SITE)/p/pyzmq/pyzmq-{pkgver}.tar.gz"
 sha256 = "ac0765e3d44455adb6ddbf4417dcce460fc40a05978c08efdf2948072f6db540"
 # couldn't make it work
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

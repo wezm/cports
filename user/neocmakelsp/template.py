@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://neocmakelsp.github.io"
 source = f"https://github.com/neocmakelsp/neocmakelsp/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "084f4e8605e0834c3ca85abd7460801dc22454f45f68557340d02642a4be3c72"
+restricted = "disabled until requested"
 
 
 def post_install(self):

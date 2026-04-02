@@ -7,6 +7,7 @@ license = "LGPL-3.0-or-later"
 url = "https://opentabletdriver.net"
 source = f"https://github.com/OpenTabletDriver/OpenTabletDriver/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "1602f3291bad333be56671933e5ba6fb17144432729c10b2a0b40626e8c9dd28"
+restricted = "disabled until requested"
 
 
 def build(self):

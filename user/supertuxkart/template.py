@@ -28,6 +28,7 @@ source = f"https://github.com/supertuxkart/stk-code/releases/download/{pkgver}/S
 sha256 = "33cf8841e4ff4082d80b9248014295bbbea61d14683e86dff100e3ab8f7b27cb"
 # breaks bullet
 hardening = ["!int"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

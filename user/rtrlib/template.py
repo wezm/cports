@@ -12,6 +12,7 @@ license = "MIT"
 url = "https://github.com/rtrlib/rtrlib"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "8cc99343dc3ea8908cd9710ba1f72a1ddce591bf80bfd7d656dbc4568f560ada"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -16,6 +16,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "b4f24768c994dd62c95d7243cef4dc2354b47976fa8fbbda3889aeade8e39d69"
 # lots of tests need network
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

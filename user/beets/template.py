@@ -49,6 +49,7 @@ license = "MIT"
 url = "https://beets.io"
 source = f"$(PYPI_SITE)/b/beets/beets-{pkgver}.tar.gz"
 sha256 = "7f12cce3d5c3bfd68144407e86ae7fbaada6dc41676a49ab42027e156bdcfb73"
+restricted = "disabled until requested"
 
 
 def init_check(self):

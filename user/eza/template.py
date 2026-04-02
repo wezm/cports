@@ -15,6 +15,7 @@ source = (
     f"https://github.com/eza-community/eza/archive/refs/tags/v{pkgver}.tar.gz"
 )
 sha256 = "9fbcad518b8a2095206ac385329ca62d216bf9fdc652dde2d082fcb37c309635"
+restricted = "disabled until requested"
 
 
 def post_install(self):

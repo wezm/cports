@@ -18,6 +18,7 @@ url = "https://gnucobol.sourceforge.io"
 source = f"$(GNU_SITE)/gnucobol/gnucobol-{pkgver}.tar.xz"
 sha256 = "3bb48af46ced4779facf41fdc2ee60e4ccb86eaa99d010b36685315df39c2ee2"
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 @subpackage("gnucobol-static")

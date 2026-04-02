@@ -12,6 +12,7 @@ license = "ISC"
 url = "https://github.com/jart/blink"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "2649793e1ebf12027f5e240a773f452434cefd9494744a858cd8bff8792dba68"
+restricted = "disabled until requested"
 
 
 def post_install(self):

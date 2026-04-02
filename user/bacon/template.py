@@ -9,6 +9,7 @@ license = "AGPL-3.0-only"
 url = "https://dystroy.org/bacon"
 source = f"https://github.com/Canop/bacon/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "2c49ca02687391d425f2cc9a19cae8227338def2d689d55ff5970cb70fd2b7f6"
+restricted = "disabled until requested"
 
 
 def post_install(self):

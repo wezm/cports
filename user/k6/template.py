@@ -10,6 +10,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "3a6948ebfe9bc5fc19dfd0f7ec7d39737c8d702c35cfc457ad53da179e9dcb90"
 # k6 tests requires network connection
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

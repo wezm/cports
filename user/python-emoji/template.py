@@ -14,6 +14,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/carpedm20/emoji"
 source = f"$(PYPI_SITE)/e/emoji/emoji-{pkgver}.tar.gz"
 sha256 = "eae4ab7d86456a70a00a985125a03263a5eac54cd55e51d7e184b1ed3b6757e4"
+restricted = "disabled until requested"
 
 
 def post_install(self):

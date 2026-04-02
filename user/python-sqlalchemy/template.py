@@ -18,6 +18,7 @@ source = f"$(PYPI_SITE)/S/SQLAlchemy/SQLAlchemy-{pkgver}.tar.gz"
 sha256 = "c1b88cc8b02b6a5f0efb0345a03672d4c897dc7d92585176f88c67346f565ea8"
 # too long with broken selection of backends on some
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

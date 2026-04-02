@@ -25,6 +25,7 @@ url = "https://github.com/nvbn/thefuck"
 # pypi tarball missing tests
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "76cbb014473672d1c384922857f8fbc1f6f7774f74f784149ad88751854ecfdf"
+restricted = "disabled until requested"
 
 
 def post_install(self):

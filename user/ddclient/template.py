@@ -18,6 +18,7 @@ source = (
     f"https://github.com/ddclient/ddclient/archive/refs/tags/v{pkgver}.tar.gz"
 )
 sha256 = "4b37c99ac0011102d7db62f1ece7ff899b06df3d4b172e312703931a3c593c93"
+restricted = "disabled until requested"
 
 
 def post_install(self):

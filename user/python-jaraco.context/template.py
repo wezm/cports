@@ -19,6 +19,7 @@ license = "MIT"
 url = "https://github.com/jaraco/jaraco.context"
 source = f"$(PYPI_SITE)/j/jaraco.context/jaraco_context-{pkgver}.tar.gz"
 sha256 = "9bae4ea555cf0b14938dc0aee7c9f32ed303aa20a3b73e7dc80111628792d1b3"
+restricted = "disabled until requested"
 
 
 def post_install(self):

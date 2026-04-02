@@ -16,6 +16,7 @@ license = "MIT"
 url = "https://github.com/negrel/wooz"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "ebd62375eb74ea238663052d4540ea36479f794efd271801e4ec7f260d06aa47"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -10,6 +10,7 @@ license = "GPL-2.0-or-later"
 url = "https://www.xiph.org/ao"
 source = f"https://github.com/xiph/libao/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "df8a6d0e238feeccb26a783e778716fb41a801536fe7b6fce068e313c0e2bf4d"
+restricted = "disabled until requested"
 
 
 @subpackage("libao-devel")

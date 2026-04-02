@@ -21,6 +21,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "ade0b67392fe5cfbd3a84c502c1e76bc2edb66e3c7e1d0ccbe2e62421f699674"
 # usr/share/zsh/site-functions/_udiskie-canonical_paths has no matching command
 options = ["!lintcomp"]
+restricted = "disabled until requested"
 
 
 def pre_check(self):

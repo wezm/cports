@@ -17,6 +17,7 @@ source = f"https://github.com/caddyserver/caddy/archive/v{pkgver}.tar.gz"
 sha256 = "ee12f7b5f97308708de5067deebb3d3322fc24f6d54f906a47a0a4e8db799122"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

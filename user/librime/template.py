@@ -17,6 +17,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/rime/librime"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "b2b29c3551eec6b45af1ba8fd3fcffb99e2b7451aa974c1c9ce107e69ce3ea68"
+restricted = "disabled until requested"
 
 
 def post_install(self):

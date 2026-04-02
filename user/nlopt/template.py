@@ -8,6 +8,7 @@ license = "MIT"
 url = "https://nlopt.readthedocs.io"
 source = f"https://github.com/stevengj/nlopt/archive/v{pkgver}.tar.gz"
 sha256 = "506f83a9e778ad4f204446e99509cb2bdf5539de8beccc260a014bd560237be1"
+restricted = "disabled until requested"
 
 
 def post_install(self):

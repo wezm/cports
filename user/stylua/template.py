@@ -15,6 +15,7 @@ license = "MPL-2.0"
 url = "https://github.com/JohnnyMorganz/StyLua"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "e63130a0bc26d0825f99afcfb4d969516ab34dd1b397087bf564095766a16c2a"
+restricted = "disabled until requested"
 
 
 def install(self):

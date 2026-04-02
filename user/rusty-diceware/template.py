@@ -11,6 +11,7 @@ license = "AGPL-3.0-only"
 url = "https://gitlab.com/yuvallanger/rusty-diceware"
 source = f"{url}/-/archive/diceware-v{pkgver}/rusty-diceware-diceware-v{pkgver}.tar.gz"
 sha256 = "a3301f585149af8818d10972238656b9586a3fd78a6842150aec6d0ae8e4dbe8"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

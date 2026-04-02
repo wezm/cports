@@ -27,3 +27,4 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "6111555224a277b3698b465c24cef758c2cb7ef101ad22f0308ecd56ccd6c1e7"
 # cfi: SIGILL when trying to take a screenshot
 hardening = ["vis", "!cfi"]
+restricted = "disabled until requested"

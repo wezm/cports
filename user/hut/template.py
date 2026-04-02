@@ -11,6 +11,7 @@ source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "5975f940740dd816057ab3cf20cebde3ece3250891952a566f8555f73fb67b21"
 # completions are generated with built artifact
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

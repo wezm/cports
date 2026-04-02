@@ -10,6 +10,7 @@ license = "MIT"
 url = "https://github.com/stijnfrishert/liblsdj"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "74688fca65aa044fb4c8d1211ef013ef7d4fd2ead22b4b075defb0a644e26617"
+restricted = "disabled until requested"
 
 
 def check(self):

@@ -12,6 +12,7 @@ source = f"https://github.com/DNSCrypt/dnscrypt-proxy/archive/refs/tags/{pkgver}
 sha256 = "95fe29ed03dad0cdd34d47316ecb15c25f7ef5fab21d9ec52cbfc4743bcf5198"
 # no tests included
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_extract(self):

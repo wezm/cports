@@ -10,6 +10,7 @@ license = "GPL-2.0-or-later"
 url = "https://stunnel.org"
 source = f"{url}/downloads/stunnel-{pkgver}.tar.gz"
 sha256 = "cda37eb4d0fb1e129718ed27ad77b5735e899394ce040bb2be28bbb937fd79e1"
+restricted = "disabled until requested"
 
 
 def post_install(self):

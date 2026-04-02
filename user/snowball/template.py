@@ -16,6 +16,7 @@ env = {"LD_LIBRARY_PATH": "./"}
 # snowball is run during compilation giving error
 # /bin/sh: ./snowball: Exec format error
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def install(self):

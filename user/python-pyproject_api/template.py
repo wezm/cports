@@ -15,6 +15,7 @@ license = "MIT"
 url = "https://pypi.org/project/pyproject-api"
 source = f"$(PYPI_SITE)/p/pyproject_api/pyproject_api-{pkgver}.tar.gz"
 sha256 = "40c6f2d82eebdc4afee61c773ed208c04c19db4c4a60d97f8d7be3ebc0bbb330"
+restricted = "disabled until requested"
 
 
 def post_install(self):

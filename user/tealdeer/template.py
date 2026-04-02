@@ -24,6 +24,7 @@ license = "MIT"
 url = "https://github.com/tealdeer-rs/tealdeer"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "8b9ea7ef8dd594d6fb8b452733b0c883a68153cec266b23564ce185bdf22fcfa"
+restricted = "disabled until requested"
 
 
 def install(self):

@@ -8,6 +8,7 @@ license = "ISC"
 url = "https://github.com/any1/aml"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "cba1ca1689d4031faf37bb7a184559106b6d2f462ae8890a9fa16e3022ca1eb0"
+restricted = "disabled until requested"
 
 
 def post_install(self):

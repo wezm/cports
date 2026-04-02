@@ -18,6 +18,7 @@ source = f"https://codeberg.org/superseriousbusiness/gotosocial/archive/v{pkgver
 sha256 = "a4fc7f0bcf7cb78c4ea814121967abf2a6b39d809e34e2fc7f95182f8654f25f"
 # flaky
 options = ["!check"]
+restricted = "disabled until requested"
 
 match self.profile().arch:
     case "aarch64" | "x86_64":

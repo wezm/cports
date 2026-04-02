@@ -24,3 +24,4 @@ url = "https://megatools.megous.com"
 source = f"{url}/builds/megatools-{pkgver}.tar.gz"
 sha256 = "51f78a03748a64b1066ce28a2ca75d98dbef5f00fe9789dc894827f9a913b362"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"

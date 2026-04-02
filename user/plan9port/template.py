@@ -17,6 +17,7 @@ url = "https://9fans.github.io/plan9port"
 source = f"https://github.com/9fans/plan9port/archive/{_commit}.tar.gz"
 sha256 = "9ba310d37a771e76037ac13bc5841f3d36916d9c0df6bb8749912b329314cd56"
 options = ["!cross", "!lintstatic"]
+restricted = "disabled until requested"
 
 
 def configure(self):

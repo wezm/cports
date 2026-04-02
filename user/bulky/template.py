@@ -17,6 +17,7 @@ source = f"https://github.com/linuxmint/bulky/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "f3edbe183be3e5e341e5cc64e9a85d87b47a83a1701902426e4ff1c22995534f"
 # Test script requires write access to the cbuild container's root
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def install(self):

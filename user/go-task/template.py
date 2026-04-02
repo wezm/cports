@@ -13,6 +13,7 @@ source = f"https://github.com/go-task/task/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "6b3b74dbfff7493a157b8edcbac5ee4703a2711031bfa49a9b5bfef419bf81f3"
 # conditionally disabled check
 options = []
+restricted = "disabled until requested"
 
 # test suite expects amd64
 if self.profile().arch != "x86_64":

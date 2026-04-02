@@ -15,6 +15,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "9f4227c5eb94011cc32601e8f2acbf6651ab7ee632cda2e5e05e242207a07d73"
 # TODO
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

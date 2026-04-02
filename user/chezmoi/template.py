@@ -15,6 +15,7 @@ source = f"https://github.com/twpayne/chezmoi/archive/v{pkgver}.tar.gz"
 sha256 = "c256309dda65501bd4aefc3c44f6368c60c12fc305f5392a86bce001454c72c6"
 # may be disabled
 options = []
+restricted = "disabled until requested"
 
 if self.profile().arch in ["riscv64"]:
     # times out

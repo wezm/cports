@@ -10,6 +10,7 @@ license = "MIT"
 url = "https://github.com/tvrzna/emptty"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "fae7c04afeeb9ef3dcbb9bca67e9a2fa940e99a91872ebc0775e10253972c7f3"
+restricted = "disabled until requested"
 
 
 def post_install(self):

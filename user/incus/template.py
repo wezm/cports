@@ -47,6 +47,7 @@ source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "19bcceaab1fad128ae1b91de4f4a3526ec77097de4df0cff057832d6fccb2404"
 # fail to link because of post_build overrides
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

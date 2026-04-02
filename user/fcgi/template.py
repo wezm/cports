@@ -8,6 +8,7 @@ license = "custom:fcgi"
 url = "https://github.com/FastCGI-Archives/fcgi2"
 source = f"{url}/archive/{pkgver}.tar.gz"
 sha256 = "c0e0d9cc7d1e456d7278c974e2826f593ef5ca555783eba81e7e9c1a07ae0ecc"
+restricted = "disabled until requested"
 
 
 def post_install(self):

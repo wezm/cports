@@ -52,6 +52,7 @@ tool_flags = {"LDFLAGS": ["-Wl,-z,stack-size=0x200000"]}
 hardening = ["!int"]
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_extract(self):

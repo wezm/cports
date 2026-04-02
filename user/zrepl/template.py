@@ -13,6 +13,7 @@ sha256 = "33f5c42b423bb0c38ecab909d3a641a3218a6baae97e5c70ebf70b2b9b346017"
 # check: needs to run zfs command
 # cross: generates completions with built binary
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

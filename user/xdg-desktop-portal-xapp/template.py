@@ -13,6 +13,7 @@ url = "https://projects.linuxmint.com/xapps"
 source = f"https://github.com/linuxmint/xdg-desktop-portal-xapp/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "7bd4d0439218d00d9fe55c308292b1dc70716cb8464970fe8d2245769a7dd18a"
 hardening = ["vis"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

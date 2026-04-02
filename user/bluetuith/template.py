@@ -12,6 +12,7 @@ license = "MIT"
 url = "https://github.com/darkhz/bluetuith"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "7e4e83fc0ed34b7ffa7d6035363c5380adfb4116136354e32149beb9dcb50bc9"
+restricted = "disabled until requested"
 
 
 def post_install(self):

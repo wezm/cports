@@ -64,6 +64,7 @@ sha256 = [
 tool_flags = {"CXXFLAGS": [], "CFLAGS": []}
 # crashes
 hardening = ["!int"]
+restricted = "disabled until requested"
 
 if self.profile().endian == "big":
     broken = "tdesktop deosn't work on this anyway etc."

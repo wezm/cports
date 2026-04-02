@@ -11,6 +11,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/xtensor-stack/xsimd"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "edd8cd3d548c185adc70321c53c36df41abe64c1fe2c67bc6d93c3ecda82447a"
+restricted = "disabled until requested"
 
 
 if self.profile().cross:

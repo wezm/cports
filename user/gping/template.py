@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://github.com/orf/gping"
 source = f"{url}/archive/refs/tags/gping-v{pkgver}.tar.gz"
 sha256 = "0df965111429d5fcef832a4ff23b452a1ec8f683d51ed31ce9b10902c0a18a9c"
+restricted = "disabled until requested"
 
 
 def install(self):

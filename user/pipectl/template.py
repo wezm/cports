@@ -12,3 +12,4 @@ sha256 = "8addbcfac652ddfe88fc47ed10855dc5da3ae3cd3421be9d3ad3a5fb9f9227fd"
 hardening = ["vis", "cfi"]
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"

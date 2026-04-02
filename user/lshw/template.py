@@ -30,6 +30,7 @@ source = f"https://www.ezix.org/software/files/lshw-B.{pkgver}.tar.gz"
 sha256 = "06d9cf122422220e5dc94e8ea5b01816a69bb6b59368f63d7f21fff31fc6922a"
 # no tests available
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 @subpackage("lshw-gtk")

@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "49d67d920391978684dc32b75e553a2abbd46c775365c0fb4b232d22c0ed653a"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

@@ -21,6 +21,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "3ffb8ea9a0fa5194051499d96bfde957621fcd490ef7ed95effc699029d7ad3b"
 # vis breaks symbols
 hardening = ["!vis", "!cfi"]
+restricted = "disabled until requested"
 
 
 @subpackage("jose-devel")

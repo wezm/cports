@@ -51,6 +51,7 @@ license = "GPL-3.0-or-later"
 url = "https://gajim.org"
 source = f"{url}/downloads/{pkgver[: pkgver.rfind('.')]}/gajim-{pkgver}.tar.gz"
 sha256 = "5f34ac3d420bc0519c5c98dda4136b34f5333775a04d253f93eb9bcbeb898d48"
+restricted = "disabled until requested"
 
 
 def post_build(self):

@@ -32,6 +32,7 @@ sha256 = [
 ]
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

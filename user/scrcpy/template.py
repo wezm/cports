@@ -29,6 +29,7 @@ sha256 = [
     "87fcd360a6bb6ca070ffd217bd33b33fb808b0a1572b464da51dde3fd3f6f60e",
     "7e70323ba7f259649dd4acce97ac4fefbae8102b2c6d91e2e7be613fd5354be0",
 ]
+restricted = "disabled until requested"
 
 
 def post_install(self):

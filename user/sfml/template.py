@@ -28,6 +28,7 @@ license = "Zlib"
 url = "https://www.sfml-dev.org"
 source = f"https://github.com/SFML/SFML/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "0034e05f95509e5d3fb81b1625713e06da7b068f210288ce3fd67106f8f46995"
+restricted = "disabled until requested"
 
 
 @subpackage("sfml-devel")

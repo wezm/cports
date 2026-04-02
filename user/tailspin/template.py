@@ -10,6 +10,7 @@ license = "MIT"
 url = "https://github.com/bensadeh/tailspin"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "e9d7cefb865585bb048a2ccbfcc1f900ae344134d71132a7c48ee0d5af09cdaf"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

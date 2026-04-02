@@ -21,6 +21,7 @@ license = "Zlib"
 url = "https://pwmt.org/projects/girara"
 source = f"{url}/download/girara-{pkgver}.tar.xz"
 sha256 = "342eca8108bd05a2275e3eacb18107fa3170fa89a12c77e541a5f111f7bba56d"
+restricted = "disabled until requested"
 
 
 def post_install(self):

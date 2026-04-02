@@ -27,6 +27,7 @@ url = "https://github.com/latchset/tang"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "0bbaeaa6cde36ccc11102b9dc82dcd707f60ebd290d3930c8a1e4e55a50a7da9"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

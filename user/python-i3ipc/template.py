@@ -21,6 +21,7 @@ source = f"$(PYPI_SITE)/i/i3ipc/i3ipc-{pkgver}.tar.gz"
 sha256 = "e880d7d7147959ead5cb34764f08b97b41385b36eb8256e8af1ce163dbcccce8"
 # test suite requires i3
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

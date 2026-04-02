@@ -16,6 +16,7 @@ sha256 = "c6ffbc34a511ac00d072219bda30699e51f2f4eb483cbae9e32e981d49e8b380"
 hardening = ["vis", "cfi"]
 # ptrace_scope shenanigans prevent this on hardened hosts
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

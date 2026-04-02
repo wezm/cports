@@ -13,6 +13,7 @@ tool_flags = {"LDFLAGS": ["-lfts"]}
 hardening = ["vis", "cfi"]
 # it does not have any tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

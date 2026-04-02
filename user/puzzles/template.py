@@ -21,6 +21,7 @@ url = "https://www.chiark.greenend.org.uk/~sgtatham/puzzles"
 source = f"https://git.tartarus.org/?p=simon/puzzles.git;a=snapshot;h={_gitrev};sf=tgz>puzzles-{pkgver}.tar.gz"
 sha256 = "a22bf8a61122661a081ded70cc5970f36d3dcc8d4ec443acf53d2e9d56df7496"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

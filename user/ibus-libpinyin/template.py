@@ -29,3 +29,4 @@ url = "https://github.com/libpinyin/ibus-libpinyin"
 source = f"{url}/releases/download/{pkgver}/ibus-libpinyin-{pkgver}.tar.gz"
 sha256 = "cc652d48e68b8b03afc5e9e08509676aee89f9d492b9a3897cd028bcc800ce31"
 exec_wrappers = [("/usr/bin/gsed", "sed")]
+restricted = "disabled until requested"

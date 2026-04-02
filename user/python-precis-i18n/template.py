@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://github.com/byllyfish/precis_i18n"
 source = f"$(PYPI_SITE)/p/precis_i18n/precis_i18n-{pkgver}.tar.gz"
 sha256 = "78ef37bff7a8f8374aa65040aac1cedcd60bf97bf4a8113ee713cf72300517b9"
+restricted = "disabled until requested"
 
 
 def post_install(self):

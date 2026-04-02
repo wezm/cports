@@ -20,6 +20,7 @@ license = "BSD-3-Clause"
 url = "https://kiwisolver.readthedocs.io"
 source = f"https://github.com/nucleic/kiwi/releases/download/{pkgver}/kiwisolver-{pkgver}.tar.gz"
 sha256 = "c3b22c26c6fd6811b0ae8363b95ca8ce4ea3c202d3d0975b2914310ceb1bcc4d"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -10,6 +10,7 @@ source = f"https://github.com/arminbiere/cadical/archive/refs/tags/rel-{pkgver}.
 sha256 = "abfe890aa4ccda7b8449c7ad41acb113cfb8e7e8fbf5e49369075f9b00d70465"
 # cross: tries to run compiled executable
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def install(self):

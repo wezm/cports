@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://github.com/pallets-eco/croniter"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "5b13012a70272e484f4644669ddae75e84a5597c41b44a5f628337e7c6acf329"
+restricted = "disabled until requested"
 
 
 def post_install(self):

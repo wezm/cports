@@ -14,6 +14,7 @@ hardening = ["!int"]
 # no tests
 options = ["!check"]
 exec_wrappers = [("/usr/bin/gm4", "m4")]
+restricted = "disabled until requested"
 
 
 def init_install(self):

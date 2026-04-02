@@ -11,6 +11,7 @@ license = "MIT"
 url = "https://github.com/intel/intel-vaapi-driver"
 source = f"{url}/releases/download/{pkgver}/intel-vaapi-driver-{pkgver}.tar.bz2"
 sha256 = "0081fce08eb3a83f7d99c3b853c8fdfa0af437b8f5b0fb7c66faeb83bcbe0c19"
+restricted = "disabled until requested"
 
 
 def post_install(self):

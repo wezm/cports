@@ -10,6 +10,7 @@ license = "GPL-3.0-or-later"
 url = "https://git.sr.ht/~gpanders/ijq"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "11ac7f233bac6dd8fa97399c90bcf4ffb311367eb31a95ddcf5f36708561a0f0"
+restricted = "disabled until requested"
 
 
 def post_build(self):

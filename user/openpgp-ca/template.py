@@ -18,3 +18,4 @@ source = f"https://gitlab.com/openpgp-ca/openpgp-ca/-/archive/openpgp-ca/v{pkgve
 sha256 = "f923593ef73c906656b816b0884482bf6442f6a3db377ab2f5681e8d18916a73"
 # Test suite requires gpg-agent set up and running
 options = ["!check"]
+restricted = "disabled until requested"

@@ -26,3 +26,4 @@ source = (
 sha256 = "9392a75bfe9faf14f1e9e5c1a29bfef9d5d8552529c870bdd026915f965230f2"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"

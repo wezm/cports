@@ -11,6 +11,7 @@ source = f"https://github.com/kubernetes-sigs/kind/archive/refs/tags/v{pkgver}.t
 sha256 = "f4aaa1f572f9965eea3f7513d166f545f41b61ab5efeed953048bdcb13c51032"
 # cross: uses host binary to generate completions
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

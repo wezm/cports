@@ -21,6 +21,7 @@ sha256 = "b88cc9163d0c652aaf39a99991d974ddba1c3a9711db8f1b5838af2a14731014"
 options = ["linkundefver", "!lto"]
 # format.ld needs gnu syntax
 exec_wrappers = [("/usr/bin/gsed", "sed")]
+restricted = "disabled until requested"
 
 
 def post_install(self):

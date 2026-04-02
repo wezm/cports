@@ -19,6 +19,7 @@ source = f"{url}/archive/{_gitrev}.tar.gz"
 sha256 = "a3d17fc7b3c6b6808f3128239ea894790747295e868836334588e42a659318f4"
 hardening = ["!int", "!format"]
 options = ["!lto"]
+restricted = "disabled until requested"
 
 tool_flags = {
     "CXXFLAGS": [

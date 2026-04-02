@@ -30,3 +30,4 @@ source = f"https://github.com/plougher/squashfs-tools/archive/refs/tags/{pkgver}
 sha256 = "94201754b36121a9f022a190c75f718441df15402df32c2b520ca331a107511c"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"

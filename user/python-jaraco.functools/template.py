@@ -20,6 +20,7 @@ license = "MIT"
 url = "https://github.com/jaraco/jaraco.functools"
 source = f"$(PYPI_SITE)/j/jaraco_functools/jaraco_functools-{pkgver}.tar.gz"
 sha256 = "70f7e0e2ae076498e212562325e805204fc092d7b4c17e0e86c959e249701a9d"
+restricted = "disabled until requested"
 
 
 def post_install(self):

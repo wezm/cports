@@ -20,6 +20,7 @@ license = "ISC"
 url = "https://github.com/maximbaz/wluma"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "98bad2ddea87eae15b81d32a452e19b638b9afea14361d67473c45226c6cf0ea"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -17,6 +17,7 @@ source = f"https://github.com/samschott/desktop-notifier/archive/refs/tags/v{pkg
 sha256 = "8953ff5e6cb1415e8d770cd84f4b35d912d2f935711c59abc3a0317925a5dbe4"
 # no org.freedesktop.Notifications in chroot
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -15,6 +15,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "a2ba09811919e4b285d17e4cdaf7ed5aeb9a8567eda11119557436d59711632e"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 if self.profile().arch == "ppc64le":
     broken = "segfaults in tests"

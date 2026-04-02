@@ -53,6 +53,7 @@ license = "Apache-2.0"
 url = "https://www.tornadoweb.org"
 source = f"$(PYPI_SITE)/t/tornado/tornado-{pkgver}.tar.gz"
 sha256 = "ab53c8f9a0fa351e2c0741284e06c7a45da86afb544133201c5cc8578eb076a0"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -42,6 +42,7 @@ file_xattrs = {
         "security.capability": "cap_sys_nice+ep",
     },
 }
+restricted = "disabled until requested"
 
 
 def post_install(self):

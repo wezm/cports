@@ -15,6 +15,7 @@ license = "MIT"
 url = "https://github.com/jaraco/jaraco.classes"
 source = f"$(PYPI_SITE)/j/jaraco.classes/jaraco.classes-{pkgver}.tar.gz"
 sha256 = "47a024b51d0239c0dd8c8540c6c7f484be3b8fcf0b2d85c13825780d3b3f3acd"
+restricted = "disabled until requested"
 
 
 def post_install(self):

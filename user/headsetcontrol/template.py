@@ -15,6 +15,7 @@ url = "https://github.com/Sapd/HeadsetControl"
 # source = f"{url}/archive/refs/tags/3.1.0.tar.gz"
 source = f"{url}/archive/6fe0cec4f8baeae5e6441489df02c395e39c6ae2.tar.gz"
 sha256 = "9ee16cd2b54bd6630fd3cb34f5b25bd1004205babc9a2dfea7bb839980952183"
+restricted = "disabled until requested"
 
 
 def post_install(self):

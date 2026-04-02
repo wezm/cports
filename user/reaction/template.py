@@ -10,6 +10,7 @@ url = "https://reaction.ppom.me"
 source = f"https://framagit.org/ppom/reaction/-/archive/v{pkgver}/reaction-v{pkgver}.tar.gz"
 sha256 = "e2b1c6927a1fa4da10e2e356aeafa00bbcbf7a4228355f944bb96d79532d3bf0"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomicu64"

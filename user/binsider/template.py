@@ -13,6 +13,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://binsider.dev"
 source = f"https://github.com/orhun/binsider/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "a3bc10379677b19656436924f478798f205b371bc703feab938c1b2512f39500"
+restricted = "disabled until requested"
 
 
 def post_install(self):

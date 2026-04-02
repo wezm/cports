@@ -10,3 +10,4 @@ url = "https://pdfgrep.org"
 source = f"https://pdfgrep.org/download/pdfgrep-{pkgver}.tar.gz"
 sha256 = "0661e531e4c0ef097959aa1c9773796585db39c72c84a02ff87d2c3637c620cb"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"

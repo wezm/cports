@@ -9,6 +9,7 @@ license = "Apache-2.0"
 url = "https://github.com/Enter-tainer/typstyle"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "c20a07b9535dc34c0099f744f435ebfb53668b92f05e59b115fd264ecb9f7187"
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

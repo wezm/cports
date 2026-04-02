@@ -10,6 +10,7 @@ license = "MIT"
 url = "https://github.com/ayoisaiah/f2"
 source = f"https://github.com/ayoisaiah/f2/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "69e60baeb8e15644088713d7b2fb1e7d23131a92ef5fa61ed4c2c18160078ff1"
+restricted = "disabled until requested"
 
 
 def post_install(self):

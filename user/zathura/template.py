@@ -27,6 +27,7 @@ license = "Zlib"
 url = "https://pwmt.org/projects/zathura"
 source = f"{url}/download/zathura-{pkgver}.tar.xz"
 sha256 = "cd162cac1d8f399a7b193db3c968513d6cb016631e892b5b1e7bdb0992151dc2"
+restricted = "disabled until requested"
 
 
 def post_install(self):

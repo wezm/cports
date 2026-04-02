@@ -17,6 +17,7 @@ license = "LGPL-3.0-only"
 url = "https://yggdrasil-network.github.io"
 source = f"https://github.com/yggdrasil-network/yggdrasil-go/archive/v{pkgver}.tar.gz"
 sha256 = "e19a3c3121d6a5e9abdc9f4d42decbd62ed97ccbe301c842f2d30ac1eba9c4c2"
+restricted = "disabled until requested"
 
 
 def pre_build(self):

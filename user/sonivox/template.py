@@ -14,6 +14,7 @@ license = "Apache-2.0"
 url = "https://github.com/pedrolcl/sonivox"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "8e9adf39a5e60c5b9ce4d1b79c83680cfab97d6e8eec6ffb6a3d0bad41413531"
+restricted = "disabled until requested"
 
 
 @subpackage("sonivox-devel")

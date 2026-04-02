@@ -21,6 +21,7 @@ license = "GPL-3.0-or-later"
 url = "https://gitlab.gnome.org/World/warp"
 source = f"{url}/-/archive/v{pkgver}/warp-{pkgver}.tar.gz"
 sha256 = "3b553c2f5a6331e4edaf8747d7b5e782400731e889e16dfdd2019147e5a3e61c"
+restricted = "disabled until requested"
 
 
 def post_prepare(self):

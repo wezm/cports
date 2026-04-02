@@ -25,6 +25,7 @@ license = "GPL-3.0-only"
 url = "https://github.com/LGFae/swww"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "ec903cc75deb007a7f842deac851d4d2fadb6361d7491e98e900d4858f2c8eb7"
+restricted = "disabled until requested"
 
 if self.profile().arch in ["loongarch64"]:
     broken = "cannot find value `MADV_SOFT_OFFLINE` in module `c`"

@@ -10,6 +10,7 @@ url = "https://www.chiark.greenend.org.uk/~sgtatham/halibut"
 source = f"{url}/halibut-{pkgver}/halibut-{pkgver}.tar.gz"
 sha256 = "aaa0f7696f17f74f42d97d0880aa088f5d68ed3079f3ed15d13b6e74909d3132"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

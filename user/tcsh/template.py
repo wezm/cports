@@ -10,6 +10,7 @@ license = "BSD-2-Clause"
 url = "https://astron.com/pub/tcsh"
 source = f"{url}/tcsh-{pkgver}.tar.gz"
 sha256 = "4208cf4630fb64d91d81987f854f9570a5a0e8a001a92827def37d0ed8f37364"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://github.com/max-niederman/ttyper"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "f7e4ff2f803483b17f35aa0c02977326a0546a95f5b465b4dd34ff17e45b4021"
+restricted = "disabled until requested"
 
 
 def post_install(self):

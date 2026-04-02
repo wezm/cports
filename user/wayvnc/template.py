@@ -18,6 +18,7 @@ url = "https://github.com/any1/wayvnc"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "aaaca02d36e54ec6ecf457dc266251946d895ac91521fbabb3470c3c09b3753c"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

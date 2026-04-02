@@ -22,3 +22,4 @@ source = f"https://github.com/BambooTracker/BambooTracker/releases/download/v{pk
 sha256 = "28cf80b7e96526085b533f2fc9b59dd16216e07d26cd84445da60a36a9e6f443"
 # crashes instantly with default stack size
 tool_flags = {"LDFLAGS": ["-Wl,-z,stack-size=0x200000"]}
+restricted = "disabled until requested"

@@ -21,6 +21,7 @@ source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "64b0fcc7960b2ea37a4e5c162aed604337541142c65a5674146b29c706e08671"
 # too long
 options = ["!check"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

@@ -8,3 +8,4 @@ pkgdesc = "Plasma-vault gocryptfs backend"
 license = "custom:meta"
 url = "https://chimera-linux.org"
 options = ["empty"]
+restricted = "disabled until requested"

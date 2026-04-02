@@ -7,6 +7,7 @@ license = "GPL-3.0-only"
 url = "https://github.com/TheLocehiliosan/yadm"
 source = f"{url}/archive/{pkgver}.tar.gz"
 sha256 = "2a15ed91238dd2f15db9905eb56702272c079ad9c37c505dfee69c6b5e9054b6"
+restricted = "disabled until requested"
 
 
 def install(self):

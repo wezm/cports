@@ -26,6 +26,7 @@ source = (
 sha256 = "c1e4d622e9d4f3081dbdb438b403e50557be7284a41d9a21316414405848ba62"
 # check: too many tests depend on matplotlib, circular dependency
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

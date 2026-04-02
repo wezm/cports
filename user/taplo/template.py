@@ -25,6 +25,7 @@ source = f"https://github.com/tamasfe/taplo/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "c2f7b3234fc62000689a476b462784db4d1bb2be6edcc186654b211f691efaf8"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

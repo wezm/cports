@@ -20,6 +20,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "039d554569117c665e1b4336c427747a118cca781ddbffaf701c4b5f01c7f3e1"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

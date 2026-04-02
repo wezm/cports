@@ -15,6 +15,7 @@ source = (
 sha256 = "760566567a1302db795a9657d1723bdf0b2a7edd111f8e2d1e1780d9cdbeaff7"
 # generates completions with host bins
 options = ["!cross"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

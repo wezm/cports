@@ -12,3 +12,4 @@ source = (
 )
 sha256 = "85513871e105a182eb92f80ba9563ac37cb8a48bcfa98d30e1197e74c42ff15a"
 env = {"CGO_ENABLED": "1"}
+restricted = "disabled until requested"

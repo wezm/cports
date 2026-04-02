@@ -15,6 +15,7 @@ source = f"https://github.com/sxyazi/yazi/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "17839410a2865dc6ddb40da4b034dbf2729602fc325d07ad4df7dbc354c94c9e"
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

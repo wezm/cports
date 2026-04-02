@@ -8,6 +8,7 @@ license = "MIT"
 url = "https://github.com/direnv/direnv"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "4142fbb661f3218913fac08d327c415e87b3e66bd0953185294ff8f3228ead24"
+restricted = "disabled until requested"
 
 
 def post_install(self):

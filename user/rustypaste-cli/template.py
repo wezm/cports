@@ -15,6 +15,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "d12b8acb028a92fc6d16347ce3c4b3fa89c86cb902a4a291c116077cc41b1e92"
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

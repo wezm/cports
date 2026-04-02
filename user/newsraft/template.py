@@ -15,6 +15,7 @@ url = "https://codeberg.org/newsraft/newsraft"
 source = f"{url}/archive/newsraft-{pkgver}.tar.gz"
 sha256 = "6a87c8a9b8556650d18443baf827cf930aa4a5c5361a36397b95f275e28d540d"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

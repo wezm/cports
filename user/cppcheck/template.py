@@ -37,6 +37,7 @@ sha256 = "e37c94e190cdddc65682649b02b72939761585bddd8ada595f922e190a26a2be"
 # TestSymbolDatabase::enum14 test failed
 # (0x7FFFFFFFFFFFFFFF + 1 cause signed overflow)
 hardening = ["!int"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

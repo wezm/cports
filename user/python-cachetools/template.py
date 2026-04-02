@@ -13,6 +13,7 @@ license = "MIT"
 url = "https://github.com/tkem/cachetools"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "2d5ddb99ac024a693d729bbbcf86a6a811686813fe1ed9c3f83f6385beda063e"
+restricted = "disabled until requested"
 
 
 def post_install(self):

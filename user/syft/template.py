@@ -15,6 +15,7 @@ sha256 = "527ed2a704f655a61194658263249aad38b65b0034087cd9cff153e238267bfc"
 # Test suite depends on docker
 # generates manpages/completions with host bins
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

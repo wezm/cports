@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "d7aaaccfce974d9a47db2db1b78aa2d8f458d919970a1710256f9b4dbfb09ff0"
 # Checks don't work with our cargo config overrides
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -11,6 +11,7 @@ license = "GPL-3.0-or-later"
 url = "https://www.cs.kent.ac.uk/people/staff/djb/pgn-extract"
 source = f"{url}/pgn-extract-{pkgver.replace('.', '-')}.tgz"
 sha256 = "c024a2d64abaedc873bd4e70b19d3ffdbbfa4dd054e6856b4a4262238af10eaa"
+restricted = "disabled until requested"
 
 
 def post_extract(self):

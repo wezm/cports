@@ -24,6 +24,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "4b4e4f7f86eb3f55116faec42ebd87e04c3e424d82715ecd967ed39540dca5ef"
 # introspection
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 @subpackage("granite-devel")

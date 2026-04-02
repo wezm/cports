@@ -39,6 +39,7 @@ source = (
 sha256 = "5a5e84588f88e96f3419168216d20729251bb75f2ab1cceace54619fc71ae09c"
 # Tests require the "dogtail" Python module
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 @subpackage("xreader-devel")

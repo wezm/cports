@@ -18,6 +18,7 @@ tools = {"ASPP": "cc -c", "AS": "cc -c"}
 hardening = ["!int"]
 # may be disabled
 options = ["!cross", "!lintstatic"]
+restricted = "disabled until requested"
 
 
 if self.profile().arch in ["ppc64le", "ppc64"]:

@@ -18,6 +18,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "6fd5e0eaa40ff349959d1cee2872eee90ae32065cc5df9714b1066981535acde"
 # 11/16 tests fail with exit code 1 & "Error: Can't open display: (null)" even under xvfb
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 @subpackage("python-pyclip-wayland")

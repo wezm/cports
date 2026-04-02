@@ -10,6 +10,7 @@ license = "MPL-2.0"
 url = "https://github.com/Kampfkarren/selene"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "61c66d7e40d8d00fe8364a2696c7f87bcb976d838bd681fd802d427c7675a872"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

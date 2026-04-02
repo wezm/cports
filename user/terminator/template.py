@@ -41,3 +41,4 @@ hardening = ["vis"]
 # testsuite fails within container and xvfb
 # FIXME lintpixmaps
 options = ["!check", "!lintpixmaps"]
+restricted = "disabled until requested"

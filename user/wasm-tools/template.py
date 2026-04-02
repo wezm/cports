@@ -16,6 +16,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "ff3769834160b5bf1733daeeae14e6d74df85edcf49f300601927ef574790f9b"
 # needs checked out submodules and whatever
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

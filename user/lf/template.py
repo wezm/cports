@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://github.com/gokcehan/lf"
 source = f"{url}/archive/refs/tags/r{pkgver}.tar.gz"
 sha256 = "55c556d53b5541d5f8691f1309a0166a7a0d8e06cb051c3030c2cd7d8abc6789"
+restricted = "disabled until requested"
 
 
 def post_install(self):

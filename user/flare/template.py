@@ -36,6 +36,7 @@ sha256 = [
     "79f3a0e35e53b28810eb30abb832a6463b99ef00530441a06f42010db78fd74d",
     "4e142d8f2bed05d2a085dae24f8b29929a21e0c6fb28d8515e9110a8c5507974",
 ]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

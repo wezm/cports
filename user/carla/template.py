@@ -25,6 +25,7 @@ tool_flags = {"LDFLAGS": ["-lfts"]}
 file_modes = {"+usr/share/carla/resources": ("root", "root", 0o755, True)}
 # check: no proper test suite
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def configure(self):

@@ -41,6 +41,7 @@ license = "GPL-3.0-or-later"
 url = "https://gitlab.freedesktop.org/mstoeckl/waypipe"
 source = f"https://gitlab.freedesktop.org/mstoeckl/waypipe/-/archive/v{pkgver}/waypipe-v{pkgver}.tar.bz2"
 sha256 = "2718a83818c750d9c75cbe9f1c05a4ef45a3f48bc64304bbdf92f5b5bc264977"
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "some u64 nonsense in vulkan code"

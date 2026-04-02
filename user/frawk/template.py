@@ -18,6 +18,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "7ec5d93f3a9ee3c4bafc7db790ea471a568e94de657fbb74d7a3b641bf3e68e6"
 # check may be off
 options = []
+restricted = "disabled until requested"
 
 if self.profile().arch in ["riscv64"]:
     # cranelift tests

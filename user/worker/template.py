@@ -22,3 +22,4 @@ hardening = ["cfi", "vis"]
 # no tests
 # FIXME lintpixmaps
 options = ["!check", "!lintpixmaps"]
+restricted = "disabled until requested"

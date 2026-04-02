@@ -7,6 +7,7 @@ license = "MIT"
 url = "https://github.com/zlin/wgetpaste"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "097b77440460365976f8f66e99b0150c8a9527307f6ecade1db6b60a0bfad781"
+restricted = "disabled until requested"
 
 
 def install(self):

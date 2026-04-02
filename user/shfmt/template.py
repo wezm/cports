@@ -10,6 +10,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/mvdan/sh"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "efef583999befd358fae57858affa4eb9dc8a415f39f69d0ebab3a9f473d7dd3"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -11,6 +11,7 @@ source = f"https://github.com/derailed/k9s/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "4a438b4bc480c05ba6f78a1573ee7e1dad7956ef3e30912ae22c744cea031f96"
 # cross: generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

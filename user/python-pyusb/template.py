@@ -15,6 +15,7 @@ source = f"$(PYPI_SITE)/p/pyusb/pyusb-{pkgver}.tar.gz"
 sha256 = "3af070b607467c1c164f49d5b0caabe8ac78dbed9298d703a8dbf9df4052d17e"
 # no pytests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

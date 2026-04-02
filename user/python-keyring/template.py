@@ -19,6 +19,7 @@ license = "MIT"
 url = "https://github.com/jaraco/keyring"
 source = f"$(PYPI_SITE)/k/keyring/keyring-{pkgver}.tar.gz"
 sha256 = "0b39998aa941431eb3d9b0d4b2460bc773b9df6fed7621c2dfb291a7e0187a66"
+restricted = "disabled until requested"
 
 
 def post_install(self):

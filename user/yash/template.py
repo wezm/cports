@@ -22,6 +22,7 @@ license = "GPL-2.0-only"
 url = "https://github.com/magicant/yash"
 source = f"{url}/releases/download/{pkgver}/yash-{pkgver}.tar.xz"
 sha256 = "cc152f65221916c508e3ec013edda40028d1f77a9ca3dcf2489ee825fd746f75"
+restricted = "disabled until requested"
 
 
 def post_install(self):

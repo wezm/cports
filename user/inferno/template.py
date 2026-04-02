@@ -11,3 +11,4 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "46a04074f40bd51cbb0eac0761d28e84152e947372ce79f923974b52b75e3ec2"
 # some tests need an actual git checkout of a submodule (not tarball) and i cbf
 options = ["!check"]
+restricted = "disabled until requested"

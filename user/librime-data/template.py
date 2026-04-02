@@ -47,3 +47,4 @@ sha256 = [
 ]
 # No tests are available.
 options = ["!check"]
+restricted = "disabled until requested"

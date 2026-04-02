@@ -20,6 +20,7 @@ source = f"$(PYPI_SITE)/p/protobuf/protobuf-{pkgver}.tar.gz"
 sha256 = "5da0f41edaf117bde316404bad1a486cb4ededf8e4a54891296f648e8e076620"
 # meeeeh
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

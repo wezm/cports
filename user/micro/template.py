@@ -12,6 +12,7 @@ license = "MIT"
 url = "https://micro-editor.github.io"
 source = f"https://github.com/zyedidia/micro/archive/v{pkgver}.tar.gz"
 sha256 = "612c775321c268c8f9e1767505ff378bca9b9ab66f5c41b69ecb2464ecf15084"
+restricted = "disabled until requested"
 
 
 def pre_build(self):

@@ -13,6 +13,7 @@ license = "MIT"
 url = "https://github.com/more-itertools/more-itertools"
 source = f"$(PYPI_SITE)/m/more-itertools/more_itertools-{pkgver}.tar.gz"
 sha256 = "f638ddf8a1a0d134181275fb5d58b086ead7c6a72429ad725c67503f13ba30bd"
+restricted = "disabled until requested"
 
 
 def post_install(self):

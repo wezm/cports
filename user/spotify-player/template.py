@@ -27,6 +27,7 @@ license = "MIT"
 url = "https://github.com/aome510/spotify-player"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "b09ae88647758003eb7c666d3c2f60e1ff7624a14f9e8244332afe2b46167c4f"
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

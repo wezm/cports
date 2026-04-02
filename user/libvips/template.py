@@ -37,6 +37,7 @@ source = f"https://github.com/libvips/libvips/releases/download/v{pkgver}/vips-{
 sha256 = "57ea0ec4f30ea04748c9e8eec5415e7c9ac7cafe6822e4788fc110376a1d224a"
 # broken
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 if self.profile().arch == "riscv64":

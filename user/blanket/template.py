@@ -21,6 +21,7 @@ license = "GPL-3.0-or-later"
 url = "https://apps.gnome.org/Blanket"
 source = f"https://github.com/rafaelmardojai/blanket/archive/{pkgver}/blanket-{pkgver}.tar.gz"
 sha256 = "46bc401182a738d9b4986b7491dfe330127117a511c24b81309b49ed5b9e6e83"
+restricted = "disabled until requested"
 
 
 def post_install(self):

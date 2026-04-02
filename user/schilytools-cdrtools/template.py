@@ -43,6 +43,7 @@ file_xattrs = {
 hardening = ["!int"]
 # no tests
 options = ["!check", "!lto"]
+restricted = "disabled until requested"
 
 # todo: make build system suck less ass, respect flags, ..
 

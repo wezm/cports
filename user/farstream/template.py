@@ -27,3 +27,4 @@ sha256 = "cb7d112433cf7c2e37a8ec918fb24f0ea5cb293cfa1002488e431de26482f47b"
 tool_flags = {"CFLAGS": ["-Wno-deprecated-declarations"]}
 # XXX: failing tests
 options = ["!check"]
+restricted = "disabled until requested"

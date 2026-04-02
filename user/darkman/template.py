@@ -18,6 +18,7 @@ source = f"{url}/-/archive/v{pkgver}/darkman-v{pkgver}.tar.gz"
 sha256 = "103bbb079e0827d0b5000701cc92356ce058f20a606248ca2426eb37343029b9"
 # builds completions with generated binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

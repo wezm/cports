@@ -10,6 +10,7 @@ license = "BSD-2-Clause"
 url = "https://github.com/walles/moor"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "389a1454ce7deedc43d9a17bce48d044ff6a71ac8ef497ea3e347f3f6bfe3d63"
+restricted = "disabled until requested"
 
 
 def install(self):

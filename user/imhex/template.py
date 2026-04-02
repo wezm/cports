@@ -60,6 +60,7 @@ sha256 = [
 ]
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "uses int128"

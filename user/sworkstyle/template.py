@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://github.com/Lyr-7D1h/swayest_workstyle"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "dc6bb5b63a568a0c19e4477e06a683ddcf208213af92f47ae7fda175b6f77fb9"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

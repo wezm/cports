@@ -10,6 +10,7 @@ url = "https://gitlab.com/saalen/ansifilter"
 source = f"{url}/-/archive/{pkgver}/ansifilter-{pkgver}.tar.gz"
 sha256 = "cf5b95564d95d398e78071f147ee3cbf850e6dc8226a86ecff2de4356f19ff66"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 @subpackage("ansifilter-gui")

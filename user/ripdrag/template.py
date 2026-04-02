@@ -12,6 +12,7 @@ license = "GPL-3.0-only"
 url = "https://github.com/nik012003/ripdrag"
 source = [f"{url}/archive/refs/tags/v{pkgver}.tar.gz"]
 sha256 = ["269234abfc3977828e5fdcf0a915df00a130f03d3d7efde897d875607be19ada"]
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

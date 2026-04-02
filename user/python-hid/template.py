@@ -15,6 +15,7 @@ source = f"$(PYPI_SITE)/h/hid/hid-{pkgver}.tar.gz"
 sha256 = "5ca129a7b9434ace5e3e429c1092a16792feffaf067a46b666e9c586872cdcfe"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

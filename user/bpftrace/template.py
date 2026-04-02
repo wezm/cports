@@ -38,3 +38,4 @@ sha256 = "493265e0687312e6825ef07a6fcbc5327b5ca207c25f2b4738ca1461f90485ac"
 # bpftrace/bpftrace-aotrt binaries need keeping BEGIN/END_trigger syms
 # just skip strip for now until we can plumb through --keep-symbol to objcopy
 options = ["!strip"]
+restricted = "disabled until requested"

@@ -20,6 +20,7 @@ source = f"https://github.com/linrunner/TLP/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "65515f7652064a1be2940c031e045b762924bb1dbd94f5e58e3b765113cf5210"
 # no tests, symlinked commands
 options = ["!check", "!lintcomp"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

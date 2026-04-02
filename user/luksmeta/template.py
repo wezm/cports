@@ -21,6 +21,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "6d688bc37cdae3b2d11d1ad6ba1882954d5588103b396c5f30962a417b59b3a2"
 # vis breaks symbols
 hardening = ["!vis", "!cfi"]
+restricted = "disabled until requested"
 
 
 @subpackage("luksmeta-devel")

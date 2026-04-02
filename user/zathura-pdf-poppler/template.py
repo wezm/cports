@@ -15,6 +15,7 @@ license = "Zlib"
 url = "https://pwmt.org/projects/zathura-pdf-poppler"
 source = f"{url}/download/zathura-pdf-poppler-{pkgver}.tar.xz"
 sha256 = "e9c35542d5c8de9c5b3a4b83e7dc86cd82bfac90319f472127bacf6651bce77f"
+restricted = "disabled until requested"
 
 
 def post_install(self):

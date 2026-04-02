@@ -21,6 +21,7 @@ source = (
 sha256 = "6d766bc52c49782e3ca8ba7130f1cab95c69e42ff3c15eec2b0ac823ab7a36b3"
 # needs rebuild with non-release to use bin from debug/
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_extract(self):

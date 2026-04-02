@@ -24,6 +24,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "16320b90cadd7a8ba7498b89d6142e47dcffcc8ea8ace04b28f8793d2c313ddf"
 # check: no meaningful tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

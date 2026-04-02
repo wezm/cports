@@ -25,6 +25,7 @@ license = "GPL-3.0-or-later"
 url = "https://drumstick.sourceforge.io"
 source = f"$(SOURCEFORGE_SITE)/drumstick/drumstick-{pkgver}.tar.gz"
 sha256 = "92f5fc2a94b8c9067200897fd14027f707bf0103871ea942e388f9afe95e0f34"
+restricted = "disabled until requested"
 
 
 @subpackage("drumstick-devel")

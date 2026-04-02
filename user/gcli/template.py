@@ -16,6 +16,7 @@ license = "BSD-2-Clause"
 url = "https://herrhotzenplotz.de/gcli"
 source = f"{url}/releases/gcli-{pkgver}/gcli-{pkgver}.tar.xz"
 sha256 = "bce0f45e3354b9d7d2128d65209d1bf067ea9ed41937f3b14fd41d18bf40b738"
+restricted = "disabled until requested"
 
 
 def post_install(self):

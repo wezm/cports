@@ -39,6 +39,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "0ba38f0438337a799e98e1ab41ca30670cc8c13eb5f1f628b4680d46e2ef0013"
 # cfi causes some tests to fail
 hardening = ["vis", "!cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

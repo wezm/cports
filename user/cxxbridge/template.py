@@ -10,6 +10,7 @@ license = "MIT OR Apache-2.0"
 url = "https://github.com/dtolnay/cxx"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "4a8e771cb8dcc6588c25270ad4e6b2668f238434d42ae8bc8ee6c6da0ac165e7"
+restricted = "disabled until requested"
 
 
 def post_install(self):

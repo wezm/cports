@@ -22,6 +22,7 @@ source = f"https://github.com/love2d/love/releases/download/{pkgver}/love-{pkgve
 sha256 = "066e0843f71aa9fd28b8eaf27d41abb74bfaef7556153ac2e3cf08eafc874c39"
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"
 
 if self.profile().endian == "big":
     broken = "not implemented"

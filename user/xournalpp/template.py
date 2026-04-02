@@ -31,3 +31,4 @@ tool_flags = {
     "CXXFLAGS": ["-DNDEBUG"],
     "LDFLAGS": ["-Wl,-z,stack-size=0x200000"],
 }
+restricted = "disabled until requested"

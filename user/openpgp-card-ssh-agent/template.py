@@ -10,6 +10,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://codeberg.org/openpgp-card/ssh-agent"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "b210f0d55e070b0e1024cc1d3a1317afb663929411b05443ec0ce79afd0c0a6a"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -25,6 +25,7 @@ source = f"https://hashcat.net/files/hashcat-{pkgver}.tar.gz"
 sha256 = "b25e1077bcf34908cc8f18c1a69a2ec98b047b2cbcf0f51144dcf3ba1e0b7b2a"
 # check: no obvious test suite
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 if self.profile().endian == "big":

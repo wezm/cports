@@ -17,6 +17,7 @@ source = f"https://github.com/o2sh/onefetch/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "ff43255d7c138c448cfdd1abacb01c6abe0c3e3886024e98ff077b28d4dc0ddc"
 # cross: generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

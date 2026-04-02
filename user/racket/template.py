@@ -29,6 +29,7 @@ source = f"https://download.racket-lang.org/installers/{pkgver}/racket-{pkgver}-
 sha256 = "b5590b763b816e82330738e75b287f2dc466d53128d0c43da69a017f1715b7e1"
 # no tests, cross requires chezscheme version to match exactly
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 # same as main/chez-scheme
 match self.profile().arch:

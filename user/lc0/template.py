@@ -24,6 +24,7 @@ sha256 = [
     "96d82279d1c65ba41ed136977cdbb5c2fab2a30212982f65ab679b425056e9e7",
 ]
 tool_flags = {"CXXFLAGS": []}
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "fails static assertions"

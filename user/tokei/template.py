@@ -11,6 +11,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://github.com/XAMPPRocky/tokei"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "81ef14ab8eaa70a68249a299f26f26eba22f342fb8e22fca463b08080f436e50"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):

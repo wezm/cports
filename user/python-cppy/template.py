@@ -19,6 +19,7 @@ license = "BSD-3-Clause"
 url = "https://cppy.readthedocs.io"
 source = f"$(PYPI_SITE)/c/cppy/cppy-{pkgver}.tar.gz"
 sha256 = "55b5307c11874f242ea135396f398cb67a5bbde4fab3e3c3294ea5fce43a6d68"
+restricted = "disabled until requested"
 
 
 def post_install(self):

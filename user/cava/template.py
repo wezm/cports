@@ -30,6 +30,7 @@ license = "MIT"
 url = "https://github.com/karlstav/cava"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "b1ce6653659a138cbaebf0ef2643a1569525559c597162e90bf9304ac8781398"
+restricted = "disabled until requested"
 
 
 def post_install(self):

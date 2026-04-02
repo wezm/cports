@@ -21,6 +21,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "e7ff370d682563b71c2da0ad3162ecdb17db988cb2d2b5c1708405d31e63e816"
 # check may be disabled
 options = []
+restricted = "disabled until requested"
 
 # err: while opening file: /tmp/badger/000003.vlog err: cannot allocate memory
 if self.profile().wordsize == 32:

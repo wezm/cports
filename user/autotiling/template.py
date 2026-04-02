@@ -16,6 +16,7 @@ source = f"$(PYPI_SITE)/a/autotiling/autotiling-{pkgver}.tar.gz"
 sha256 = "b286671106c8d68f0ae1f89e2cd49739ec944313423296763bb0bf7a14347027"
 # No test suite
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

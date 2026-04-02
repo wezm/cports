@@ -15,6 +15,7 @@ source = (
 sha256 = "4bff7819756f52f6e4592f03f205104d1ca431088d9452aed5042f89a36f9873"
 # Tests require itself to be installed
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

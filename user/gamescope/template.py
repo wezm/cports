@@ -90,6 +90,7 @@ file_xattrs = {
 }
 # sus
 options = ["!cross"]
+restricted = "disabled until requested"
 
 tool_flags = {"CXXFLAGS": ["-DRTLD_DEEPBIND=0"]}
 

@@ -20,6 +20,7 @@ sha256 = "044bdd7c18c88f79e7a0352c92e8071968fe8460cec749b06653ded57a693d51"
 tool_flags = {"CFLAGS": ["-Dloff_t=off_t"]}
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

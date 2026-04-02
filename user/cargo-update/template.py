@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://github.com/nabijaczleweli/cargo-update"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "cfa56d6c5fb2d7d1536efb4765031731fe70bf1a8246757a7a9d6a4a046e640f"
+restricted = "disabled until requested"
 
 
 def install(self):

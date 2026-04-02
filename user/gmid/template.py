@@ -22,6 +22,7 @@ url = "https://gmid.omarpolo.com"
 source = f"https://ftp.omarpolo.com/gmid-{pkgver}.tar.gz"
 sha256 = "9eb0fe4272616e71ef28adb1a10808adb58db01626acc39fddebf58e0a0ac4bf"
 tool_flags = {"CFLAGS": ["-Wno-deprecated-declarations"]}
+restricted = "disabled until requested"
 
 
 def post_install(self):

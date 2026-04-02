@@ -36,3 +36,4 @@ sha256 = "a78e55a0df62b7f98566676d0ab9041aad89b2384bb5c6f3a96302a5cf49968d"
 env = {"autosetup_tclsh": "tclsh"}
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"

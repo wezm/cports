@@ -12,6 +12,7 @@ source = f"https://github.com/pdfcpu/pdfcpu/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "16e6e4fbcf809f9d737d8931c267220e5e4cb00fbce793eeaa4501193b954c55"
 # check may be disabled
 options = []
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     # invalid RSA public exponent

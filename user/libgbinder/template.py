@@ -12,6 +12,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/mer-hybris/libgbinder"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "31e40d30b5624352681a0eb4e155708679b0349e084913e419f5b3c2c668ac76"
+restricted = "disabled until requested"
 
 
 def post_build(self):

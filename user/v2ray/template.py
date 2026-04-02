@@ -14,6 +14,7 @@ source = (
 sha256 = "c67caa2d73f35a9562ecaeb5184733c943c9dafb47e8f1cfeacb892a9247e9b5"
 # check: needs network access
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def install(self):

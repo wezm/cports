@@ -22,3 +22,4 @@ tool_flags = {"CFLAGS": ["-std=c23"]}
 hardening = ["vis", "cfi"]
 # no test suite exists
 options = ["!check"]
+restricted = "disabled until requested"

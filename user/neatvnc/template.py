@@ -18,6 +18,7 @@ license = "ISC"
 url = "https://github.com/any1/neatvnc"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "8150a30bfbd350b046680650b52afcce5ae44d328cb396fb571c6f9b99811357"
+restricted = "disabled until requested"
 
 
 def post_install(self):

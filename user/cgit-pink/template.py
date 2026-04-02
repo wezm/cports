@@ -17,6 +17,7 @@ sha256 = [
     "f1246c6c81305800c24e7eee2b224319ab5e57b1ddb07b4883aea845f29046d5",
     "c8162c6b8b8f1c5db706ab01b4ee29e31061182135dc27c4860224aaec1b3500",
 ]
+restricted = "disabled until requested"
 
 
 def pre_configure(self):

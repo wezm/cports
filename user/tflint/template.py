@@ -10,3 +10,4 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "9b45910e897fd2028d748387abc781f13c57127bacde97b083aed2198c7b105d"
 # Tests requires network connection
 options = ["!check"]
+restricted = "disabled until requested"

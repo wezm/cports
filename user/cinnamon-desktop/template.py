@@ -30,6 +30,7 @@ url = "https://projects.linuxmint.com/cinnamon"
 source = f"https://github.com/linuxmint/cinnamon-desktop/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "f11d063c7ecb86b98803e9a22ade0655d979b334f6c90fdd1cc6f50bbe6e9992"
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 @subpackage("cinnamon-desktop-devel")

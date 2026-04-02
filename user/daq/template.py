@@ -12,6 +12,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "60ad9405c1c6b75955e0784511b173570a601491ccdb6399da53ca811c446a96"
 # check requires wrapper on glibc function __vsnprintf_chk
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 @subpackage("daq-devel")

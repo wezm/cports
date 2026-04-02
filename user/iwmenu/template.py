@@ -12,6 +12,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "9537bf39032a229558e34f7e98700bb0f1924d818aa4bc55ee92c7ddf4bd73b9"
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "atomic64 shenanigans"

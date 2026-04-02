@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "0f7a023e3fc0fad8822aa94e52d0c70ece5f0bf1ed4b4fa56d5f12d739bd82d4"
 # check may be disabled
 options = []
+restricted = "disabled until requested"
 
 
 if self.profile().arch in ["loongarch64"]:

@@ -42,6 +42,7 @@ license = "Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND CC0-1.0 
 url = "https://rspamd.com"
 source = f"https://github.com/rspamd/rspamd/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "ac9123f38174f1909856f4d7c104b0cf600ee1ad51958b486dfde1275af7c01a"
+restricted = "disabled until requested"
 
 
 match self.profile().arch:

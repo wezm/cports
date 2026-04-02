@@ -8,6 +8,7 @@ license = "MIT"
 url = "https://github.com/leo-arch/fnf"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "13aa1c1bddfa6be4f458af3e077ed0c1bbd91400d89cf670c1a10cafd525c8f5"
+restricted = "disabled until requested"
 
 
 def post_install(self):

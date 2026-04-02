@@ -23,6 +23,7 @@ source = f"{url}/ipset-{pkgver}.tar.bz2"
 sha256 = "fbe3424dff222c1cb5e5c34d38b64524b2217ce80226c14fdcbb13b29ea36112"
 # requires modifying actual ipsets for tests
 options = ["linkundefver", "!check"]
+restricted = "disabled until requested"
 
 
 @subpackage("ipset-devel")

@@ -13,6 +13,7 @@ source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "dc1fdbd1910b356d239afc2cffdd181faa47b8a82cf3251281c99cd3d612b4cf"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

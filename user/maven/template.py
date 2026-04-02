@@ -18,6 +18,7 @@ sha256 = [
     "eb6333567ff68f46c510ffe2a18028f47d67003991a82a1bd1acd8500303fdf0",
     "fa2c9948729296c23afd18fd01a90f62cdda09a46191b54a8bc3764c2eee812e",
 ]
+restricted = "disabled until requested"
 
 
 def prepare(self):

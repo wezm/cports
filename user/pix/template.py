@@ -29,6 +29,7 @@ license = "GPL-2.0-or-later"
 url = "https://projects.linuxmint.com/xapps"
 source = f"https://github.com/linuxmint/pix/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "6bb240ebc8b058aa3e165d6e128dbced3248e561860ab50b7f958a4b20c5ec29"
+restricted = "disabled until requested"
 
 
 @subpackage("pix-devel")

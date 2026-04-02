@@ -13,6 +13,7 @@ source = (
 sha256 = "756b341dc86553ce8df583d55e6d01517bf52721a556713a4fb6056c0f823f3b"
 # needs kernel docs to exist
 options = ["!check"]
+restricted = "disabled until requested"
 
 if self.profile().arch in ["loongarch64"]:
     broken = "outdated nix crate, can't update"

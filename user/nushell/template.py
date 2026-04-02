@@ -31,6 +31,7 @@ _plugins = [
     "query",
     "inc",
 ]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     # TODO: probably fixable

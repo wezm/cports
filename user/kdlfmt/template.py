@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "56dfb8f20050fddfbf2b0c1afb42911de97c97687c4d6c118dad643caf82cabd"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

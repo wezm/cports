@@ -13,6 +13,7 @@ sha256 = "3b30d5a1183b829590cc020d8ab87f22d288e98dc3fdf12feb7159536beaa950"
 hardening = ["vis", "cfi"]
 # There are no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

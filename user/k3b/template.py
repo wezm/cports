@@ -56,6 +56,7 @@ license = "GPL-2.0-only"
 url = "https://apps.kde.org/k3b"
 source = f"$(KDE_SITE)/release-service/{pkgver}/src/k3b-{pkgver}.tar.xz"
 sha256 = "51bd81e998667a07c125030c865b6bdc8fc3156bc6b03945398c5f1083109634"
+restricted = "disabled until requested"
 
 if self.profile().arch in ["aarch64", "ppc64le", "x86_64"]:
     makedepends += ["qt6-qtwebengine-devel"]

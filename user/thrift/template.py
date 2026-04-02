@@ -47,6 +47,7 @@ license = "Apache-2.0"
 url = "https://thrift.apache.org"
 source = f"https://github.com/apache/thrift/archive/v{pkgver}.tar.gz"
 sha256 = "c4649c5879dd56c88f1e7a1c03e0fbfcc3b2a2872fb81616bffba5aa8a225a37"
+restricted = "disabled until requested"
 
 
 @subpackage("thrift-devel")

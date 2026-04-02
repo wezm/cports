@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://github.com/doy/rbw"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "660cfa4c727711665bef060046c28dd3924ca1e490fdc058d90d35372b2d2cf6"
+restricted = "disabled until requested"
 
 
 def post_build(self):

@@ -104,6 +104,7 @@ sha256 = [
 # for some reason only -lz-ng is passed but the normal symbols are used
 tool_flags = {"LDFLAGS": ["-lz"]}
 hardening = ["!int"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

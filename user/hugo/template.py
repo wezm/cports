@@ -15,6 +15,7 @@ sha256 = "c471db355c547ff8982102704783f49514fd572831f15396646e468556e1e43a"
 # tests require network access
 # manpages and completions are generated with the resulting binary so no cross
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

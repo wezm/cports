@@ -24,6 +24,7 @@ source = f"$(PYPI_SITE)/t/tempora/tempora-{pkgver}.tar.gz"
 sha256 = "1e9606e65a3f2063460961d68515dee07bdaca0859305a8d3e6604168175fef1"
 # fixtures aren't applied
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

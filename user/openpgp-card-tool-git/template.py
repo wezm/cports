@@ -16,6 +16,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://codeberg.org/openpgp-card/tool-git"
 source = f"{url}/archive/v{pkgver}.tar.gz"
 sha256 = "fc0f3ba974a5020f844580781cc52c342a9ff93ab877a3a7e2a281d0d2899737"
+restricted = "disabled until requested"
 
 
 def post_install(self):

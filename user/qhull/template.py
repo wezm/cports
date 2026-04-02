@@ -16,6 +16,7 @@ license = "custom:qhull"
 url = "http://www.qhull.org"
 source = f"https://github.com/qhull/qhull/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "59356b229b768e6e2b09a701448bfa222c37b797a84f87f864f97462d8dbc7c5"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -20,3 +20,4 @@ url = "https://github.com/tavianator/bfs"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "7a2ccafc87803b6c42009019e0786cb1307f492c2d61d2fcb0be5dcfdd0049da"
 hardening = ["cfi", "vis"]
+restricted = "disabled until requested"

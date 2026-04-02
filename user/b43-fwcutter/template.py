@@ -9,6 +9,7 @@ source = f"https://bues.ch/b43/fwcutter/b43-fwcutter-{pkgver}.tar.bz2"
 sha256 = "d6ea85310df6ae08e7f7e46d8b975e17fc867145ee249307413cfbe15d7121ce"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def install(self):

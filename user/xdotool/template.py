@@ -26,6 +26,7 @@ sha256 = "96f0facfde6d78eacad35b91b0f46fecd0b35e474c03e00e30da3fdd345f9ada"
 # uses a ruby module (minitest) that used to be bundled and is no more
 options = ["!check"]
 exec_wrappers = [("/usr/bin/ugetopt", "getopt")]
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -17,6 +17,7 @@ url = "https://www.telescope-browser.org"
 source = f"https://ftp.telescope-browser.org/telescope-{pkgver}.tar.gz"
 sha256 = "0b56fc56958d4b4c2ecc7dc971d4f7c156ca827d5bd97b70dcb541cf9e423927"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

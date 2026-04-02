@@ -11,6 +11,7 @@ source = f"$(PYPI_SITE)/h/hjson/hjson-{pkgver}.tar.gz"
 sha256 = "55af475a27cf83a7969c808399d7bccdec8fb836a07ddbd574587593b9cdcf75"
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

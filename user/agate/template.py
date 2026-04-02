@@ -10,6 +10,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://github.com/mbrubeck/agate"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "c5e98b4a93c24776b914983c9dc1c1e653fc443430106cd517cf586433b191a8"
+restricted = "disabled until requested"
 
 
 def install(self):

@@ -12,6 +12,7 @@ sha256 = "2d0cf264ac77f8c25386a636e2b3a09a23dec555568cc9a5b2927f84322f544e"
 env = {"HELIX_DEFAULT_RUNTIME": "/usr/lib/helix/runtime"}
 # FIXME lintpixmaps
 options = ["!lintpixmaps"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

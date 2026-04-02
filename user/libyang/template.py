@@ -10,6 +10,7 @@ license = "BSD-3-Clause"
 url = "https://github.com/CESNET/libyang"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "77a0aaaeb3df720aeb70d6896e32e2c2be099d48df73e3cfb52567051af3e44b"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -7,6 +7,7 @@ license = "MIT"
 url = "https://github.com/ValveSoftware/steam-devices"
 source = f"{url}/archive/{_commit}.tar.gz"
 sha256 = "2e508acb093d1428f32c3f6b0bc836cc4a20ceef4afc92b6cdb7cf631400fd36"
+restricted = "disabled until requested"
 
 
 def install(self):

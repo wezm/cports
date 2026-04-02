@@ -22,6 +22,7 @@ license = "GPL-2.0-or-later AND BSD-3-Clause"
 url = "https://umineko-project.org"
 source = f"https://github.com/z-erica/onscripter-ru/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "3f7b5349b2634da9da1d123b22b986e01ca4a2cd2f6242df1d689bc239746d9a"
+restricted = "disabled until requested"
 
 
 def post_install(self):

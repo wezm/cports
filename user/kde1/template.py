@@ -9,6 +9,7 @@ depends = [
 pkgdesc = "KDE 1.x historical version"
 license = "custom:meta"
 url = "https://kde.org"
+restricted = "disabled until requested"
 
 
 @subpackage("kde1-apps")

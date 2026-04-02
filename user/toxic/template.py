@@ -34,3 +34,4 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "4969f0a72e40e0ed296cfff5a5bcd58b999ace52759327c29f23866c96d64f00"
 # toxic has no tests
 options = ["!check"]
+restricted = "disabled until requested"

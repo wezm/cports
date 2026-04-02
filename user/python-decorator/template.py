@@ -14,6 +14,7 @@ license = "BSD-2-Clause"
 url = "https://github.com/micheles/decorator"
 source = f"$(PYPI_SITE)/d/decorator/decorator-{pkgver}.tar.gz"
 sha256 = "65f266143752f734b0a7cc83c46f4618af75b8c5911b00ccb61d0ac9b6da0360"
+restricted = "disabled until requested"
 
 
 def check(self):

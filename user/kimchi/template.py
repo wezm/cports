@@ -18,6 +18,7 @@ file_xattrs = {
 }
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def pre_build(self):

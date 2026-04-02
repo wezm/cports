@@ -14,3 +14,4 @@ source = f"https://ftp.gnu.org/gnu/aspell/dict/fr/aspell-fr-{_ver}.tar.bz2"
 sha256 = "f9421047519d2af9a7a466e4336f6e6ea55206b356cd33c8bd18cb626bf2ce91"
 # Makefile has no check target
 options = ["!check"]
+restricted = "disabled until requested"

@@ -14,6 +14,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "d44cc1158f60623d1bcd245f811957a162092c8f5e725489438de12e5500ae49"
 # check: needs network namespaces
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def check(self):

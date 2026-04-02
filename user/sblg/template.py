@@ -14,6 +14,7 @@ url = "https://kristaps.bsd.lv/sblg"
 source = f"https://github.com/kristapsdz/sblg/archive/refs/tags/VERSION_{pkgver.replace('.', '_')}.tar.gz"
 sha256 = "f5db8c1fed5276aa90e58eea53c3cbe5e81f123057240191a8fc86a8404627d3"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

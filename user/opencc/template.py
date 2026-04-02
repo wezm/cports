@@ -18,6 +18,7 @@ license = "Apache-2.0"
 url = "https://github.com/BYVoid/OpenCC"
 source = f"{url}/archive/refs/tags/ver.{pkgver}.tar.gz"
 sha256 = "ad4bcd8d87219a240a236d4a55c9decd2132a9436697d2882ead85c8939b0a99"
+restricted = "disabled until requested"
 
 if self.profile().arch == "ppc64":
     # FIXME: hangs

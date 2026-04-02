@@ -40,6 +40,7 @@ source = f"https://github.com/godotengine/godot/releases/download/{pkgver}-stabl
 sha256 = "ddbd6527cdb3ddb02910b383301a5c9117b1c33c777ef1c86d1b1eea43dcb651"
 # cross: nah
 options = ["!cross"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "SafeNumeric seemingly unimplemented"

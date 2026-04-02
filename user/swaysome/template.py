@@ -11,6 +11,7 @@ source = f"{url}/-/archive/{pkgver}/swaysome-{pkgver}.tar.gz"
 sha256 = "fb3c23bb1a07e9b4f1c6510287086228f0e0aaee4e63690b0b197725a24a4891"
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def install(self):

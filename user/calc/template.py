@@ -12,6 +12,7 @@ license = "LGPL-2.1-only"
 url = "http://www.isthe.com/chongo/tech/comp/calc"
 source = f"https://github.com/lcn2/calc/releases/download/v{pkgver}/calc-{pkgver}.tar.bz2"
 sha256 = "633df610a5f5d2f69ad377e320afc85009052b4acc245f0586cbf932a179e2d6"
+restricted = "disabled until requested"
 
 
 def init_build(self):

@@ -15,6 +15,7 @@ source = (
 sha256 = "72e598d2e0b947e8bc46706021c511f169b7e7634a734c326e492e0f30725c35"
 # generates completions with host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

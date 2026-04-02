@@ -11,6 +11,7 @@ license = "MIT"
 url = "https://github.com/jesseduffield/lazydocker"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "f8299de3c1a86b81ff70e2ae46859fc83f2b69e324ec5a16dd599e8c49fb4451"
+restricted = "disabled until requested"
 
 
 def post_install(self):

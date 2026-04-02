@@ -19,6 +19,7 @@ sha256 = "2914dbbe1ebc88c7d93ad88e220aa57dabc43d216e11f06221c01edf3cc10732"
 tool_flags = {"CFLAGS": ["-DNDEBUG", "-D_LARGEFILE64_SOURCE"]}
 # there is no make check
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

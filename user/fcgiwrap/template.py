@@ -22,6 +22,7 @@ sha256 = [
 hardening = ["vis", "cfi"]
 # fcgiwrap has no checks
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

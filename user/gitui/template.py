@@ -22,6 +22,7 @@ url = "https://github.com/extrawurst/gitui"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "55a85f4a3ce97712b618575aa80f3c15ea4004d554e8899669910d7fb4ff6e4b"
 env = {"GITUI_RELEASE": "1"}
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

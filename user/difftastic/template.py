@@ -16,6 +16,7 @@ source = (
     f"https://github.com/Wilfred/difftastic/archive/refs/tags/{pkgver}.tar.gz"
 )
 sha256 = "59462f69e2cedfdc1bee4fd0da48fe9a7ae635cdb6818c1a300b31c0b146d4b8"
+restricted = "disabled until requested"
 
 
 def post_install(self):

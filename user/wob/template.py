@@ -18,6 +18,7 @@ url = "https://github.com/francma/wob"
 source = f"{url}/archive/{pkgver}.tar.gz"
 sha256 = "8a5850beec72b5b19be631a6eb21315a20082bf9135447080f9e9045f143938b"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

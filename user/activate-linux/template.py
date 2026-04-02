@@ -25,3 +25,4 @@ sha256 = "cf892c90a57bf6026f777715207aa7066fc7c4940da39d62a6c24b51a726786d"
 hardening = ["vis", "cfi"]
 # No test suite
 options = ["!check"]
+restricted = "disabled until requested"

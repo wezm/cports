@@ -19,6 +19,7 @@ license = "Apache-2.0 OR MIT"
 url = "https://github.com/Byron/gitoxide"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "22da356497d22eabb598233cfba61db3674e234792df1def55212ea7d2793e5d"
+restricted = "disabled until requested"
 
 
 def post_install(self):

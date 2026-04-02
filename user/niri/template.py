@@ -36,6 +36,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "9a9a58dbe12e065776cc80424f22c89489f2662e881152ceae46e68bb8677d8c"
 # cross: generates completions using host binary
 options = ["!cross"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "weird pipewire api stuff"

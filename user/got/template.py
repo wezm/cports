@@ -33,6 +33,7 @@ env = {"GOT_RELEASE": "Yes"}
 hardening = ["vis", "cfi"]
 # tests require pre-installing got/tog in pre_check and running ssh locally
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

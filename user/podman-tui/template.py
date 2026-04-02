@@ -26,6 +26,7 @@ license = "Apache-2.0"
 url = "https://github.com/containers/podman-tui"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "7a0e89d71a18527f01be061c8d449823770cff768b6d716cef96b979f3672de7"
+restricted = "disabled until requested"
 
 
 def post_extract(self):

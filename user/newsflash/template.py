@@ -23,6 +23,7 @@ license = "GPL-3.0-or-later"
 url = "https://gitlab.com/news-flash/news_flash_gtk"
 source = f"{url}/-/archive/v.{pkgver}/news_flash_gtk-v.{pkgver}.tar.gz"
 sha256 = "a3c4e9d11c48d43692eb2b76b11ff1481c8712bb76f5a73bcdcf183d7ac11a4e"
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

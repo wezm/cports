@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://dystroy.org/broot"
 source = f"https://github.com/Canop/broot/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "3049d055f37bfdc3b2057a3e2186cfdb58b596e1586b6b129698b350a80cfda3"
+restricted = "disabled until requested"
 
 
 def install(self):

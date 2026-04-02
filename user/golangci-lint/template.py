@@ -13,6 +13,7 @@ sha256 = "e34fdc0efa6dc7a8b71ceba372a5714bcab24eda2c519518b3141a8e4448c78f"
 # cross: generates completions with host binary
 # some tests fail because of chroot and some need network
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

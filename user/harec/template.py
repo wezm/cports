@@ -20,6 +20,7 @@ tool_flags = {
     "CFLAGS": ["-std=c11", "-D_XOPEN_SOURCE=700", "-Iinclude"],
 }
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
 
 
 def pre_build(self):

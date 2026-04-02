@@ -19,6 +19,7 @@ license = "MIT OR Apache-2.0"
 url = "https://www.ada-url.com"
 source = f"https://github.com/ada-url/ada/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "75565e2d4cc8e3ce2dd7927f5c75cc5ebbd3b620468cb0226501dae68d8fe1cd"
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -25,6 +25,7 @@ sha256 = "36e20553b05aa10069ea3a422bbd98df936f5ca505eae9d61b98ff7ee0b7a279"
 # check: some tests require network
 # cross: generates manpages/completions with host bins
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_build(self):

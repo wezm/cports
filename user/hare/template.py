@@ -26,6 +26,7 @@ url = "https://harelang.org"
 source = f"https://git.sr.ht/~sircmpwn/hare/archive/{pkgver}.tar.gz"
 sha256 = "d0baf74f4e20a3a875ddd8e2b299032ada4e5de17d8413053cad0f709446348e"
 tools = {"AS": f"{self.profile().triplet}-as"}
+restricted = "disabled until requested"
 
 match self.profile().arch:
     case "x86_64":

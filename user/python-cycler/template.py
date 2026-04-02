@@ -15,6 +15,7 @@ source = (
     f"https://github.com/matplotlib/cycler/archive/refs/tags/v{pkgver}.tar.gz"
 )
 sha256 = "e83c1956b154ceb252c32e079ac7a95860a76c9ce894858dd082cc881008cae0"
+restricted = "disabled until requested"
 
 
 def post_install(self):

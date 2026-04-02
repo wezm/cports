@@ -27,6 +27,7 @@ license = "GPL-3.0-only"
 url = "https://github.com/marhkb/pods"
 source = f"https://github.com/marhkb/pods/releases/download/v{pkgver}/pods-v{pkgver}.tar.xz"
 sha256 = "8afd0df06fafa1c96a0144d864ce74c330b3bb90a3074f66a7d6e1c78538e823"
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

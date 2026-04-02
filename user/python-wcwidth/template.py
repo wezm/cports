@@ -14,6 +14,7 @@ license = "MIT"
 url = "https://github.com/jquast/wcwidth"
 source = f"$(PYPI_SITE)/w/wcwidth/wcwidth-{pkgver}.tar.gz"
 sha256 = "4d478375d31bc5395a3c55c40ccdf3354688364cd61c4f6adacaa9215d0b3605"
+restricted = "disabled until requested"
 
 
 def post_install(self):

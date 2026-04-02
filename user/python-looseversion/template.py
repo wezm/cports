@@ -17,3 +17,4 @@ source = f"$(PYPI_SITE)/l/looseversion/looseversion-{pkgver}.tar.gz"
 sha256 = "ebde65f3f6bb9531a81016c6fef3eb95a61181adc47b7f949e9c0ea47911669e"
 # couldn't make it to work
 options = ["!check"]
+restricted = "disabled until requested"

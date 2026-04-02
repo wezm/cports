@@ -7,6 +7,7 @@ license = "GPL-3.0-or-later"
 url = "https://github.com/pystardust/ani-cli"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "bf9a61baa70cbbe9028084982b2661c7a0d69823d82534b818abf49e2139d120"
+restricted = "disabled until requested"
 
 
 def install(self):

@@ -14,6 +14,7 @@ sha256 = "b36f5851100bb3493a7c2957b58acd0e163a7781431c386ccd3b3de9318c6223"
 tool_flags = {"LDFLAGS": ["-Wl,-z,stack-size=0x200000"]}
 # no tests
 options = ["!check"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "argparser compiletime constant stuff"

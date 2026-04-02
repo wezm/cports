@@ -18,6 +18,7 @@ license = "MPL-2.0"
 url = "https://zeromq.org"
 source = f"https://github.com/zeromq/libzmq/releases/download/v{pkgver}/zeromq-{pkgver}.tar.gz"
 sha256 = "6653ef5910f17954861fe72332e68b03ca6e4d9c7160eb3a8de5a5a913bfab43"
+restricted = "disabled until requested"
 
 
 @subpackage("libzmq-devel")

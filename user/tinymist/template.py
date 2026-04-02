@@ -14,6 +14,7 @@ source = f"https://github.com/Myriad-Dreamin/tinymist/archive/refs/tags/v{pkgver
 sha256 = "215c08d8a10ff51e15711f0684eafc85d119dc98db57f4f47ec7bf5987ea681e"
 # check: takes forever
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"

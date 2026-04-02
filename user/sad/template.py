@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://github.com/ms-jpq/sad"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "a67902b9edb287861668ee3e39482c17b41c60e244ece62b3f8016250286294f"
+restricted = "disabled until requested"
 
 
 def post_install(self):

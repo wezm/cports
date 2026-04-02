@@ -16,3 +16,4 @@ sha256 = "fce51c768a9babfc871e1896409a17be7017460730a796b36b502dbaac0ed2b9"
 hardening = ["vis", "cfi"]
 # dunno how to run these
 options = ["!check"]
+restricted = "disabled until requested"

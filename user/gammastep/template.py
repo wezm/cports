@@ -28,6 +28,7 @@ license = "GPL-3.0-or-later"
 url = "https://gitlab.com/chinstrap/gammastep"
 source = f"{url}/-/archive/v{pkgver}/gammastep-v{pkgver}.tar.gz"
 sha256 = "e16026b8f21d5e02cfe7cd2f738c80f150c1f06a098e5e47e0fc088244a763bd"
+restricted = "disabled until requested"
 
 
 def post_install(self):

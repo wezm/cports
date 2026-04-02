@@ -58,6 +58,7 @@ hardening = ["!int"]
 # bundled stuff
 options = ["!cross", "!scanshlibs"]
 exec_wrappers = [("/usr/bin/clang-cpp", "cpp")]
+restricted = "disabled until requested"
 
 
 if self.profile().arch in ["ppc64le", "ppc64", "ppc"]:

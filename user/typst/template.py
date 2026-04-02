@@ -17,6 +17,7 @@ source = f"https://github.com/typst/typst/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "70a56445020ca05efc571c7b07a1a9f52eb93842d420518693c077ae74e54142"
 # takes forever
 options = ["!check"]
+restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "atomic64 shenanigans"

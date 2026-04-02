@@ -16,6 +16,7 @@ url = "https://gitlab.gnome.org/GNOME/libgnomekbd"
 source = f"$(GNOME_SITE)/libgnomekbd/{pkgver[:-2]}/libgnomekbd-{pkgver}.tar.xz"
 sha256 = "22dc59566d73c0065350f5a97340e62ecc7b08c4df19183804bb8be24c8fe870"
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 @subpackage("libgnomekbd-devel")

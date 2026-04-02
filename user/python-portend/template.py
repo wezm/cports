@@ -15,6 +15,7 @@ license = "MIT"
 url = "https://github.com/jaraco/portend"
 source = f"$(PYPI_SITE)/p/portend/portend-{pkgver}.tar.gz"
 sha256 = "5250a352c19c959d767cac878b829d93e5dc7625a5143399a2a00dc6628ffb72"
+restricted = "disabled until requested"
 
 
 def post_install(self):
