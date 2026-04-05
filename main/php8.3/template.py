@@ -1,7 +1,7 @@
 pkgname = "php8.3"
 pkgver = "8.3.30"
 _majver = pkgver[0 : pkgver.rfind(".")]
-pkgrel = 0
+pkgrel = 1
 _apiver = "20230831"
 build_style = "gnu_configure"
 configure_args = [
@@ -154,6 +154,8 @@ def post_patch(self):
         "ext/iconv/tests/iconv_mime_encode.phpt",
         "ext/opcache/tests/issue0115.phpt",
         "ext/opcache/tests/issue0149.phpt",
+        "ext/openssl/tests/sni_server.phpt",
+        "ext/openssl/tests/sni_server_key_cert.phpt",
         "ext/pcntl/tests/pcntl_setpriority_error_linux.phpt",
         "ext/soap/tests/bug73037.phpt",
         "ext/soap/tests/server009.phpt",
@@ -185,15 +187,6 @@ def post_patch(self):
     ]
 
     match self.profile().arch:
-        case "aarch64":
-            # all related to chunked encoding?
-            failing_tests += [
-                "ext/soap/tests/bug47021.phpt",
-                "ext/standard/tests/filters/chunked_001.phpt",
-                "ext/standard/tests/http/bug47021.phpt",
-                "ext/standard/tests/http/bug80256.phpt",
-            ]
-
         case "ppc64le":
             # all related to fibers?
             failing_tests += [
@@ -276,6 +269,33 @@ def _(self):
     ]
 
 
+@subpackage(f"php{_majver}-pear")
+def _(self):
+    self.pkgdesc = f"PHP{_majver} Extension and Application Repository"
+    self.depends = [self.parent, f"{pkgname}-xml"]
+    self.install_if = [self.parent]
+
+    return [
+        f"etc/php{_majver}/pear.conf",
+        f"usr/bin/pear{_majver}",
+        f"usr/bin/peardev{_majver}",
+        f"usr/bin/pecl{_majver}",
+        f"usr/share/php{_majver}/pear",
+    ]
+
+
+@subpackage(f"php{_majver}-devel")
+def _(self):
+    self.depends += [self.parent]
+
+    return self.default_devel(
+        extra=[
+            f"usr/bin/phpize{_majver}",
+            f"usr/lib/php{_majver}/build",
+        ]
+    )
+
+
 def _extension(extn, iif):
     @subpackage(f"php{_majver}-{extn}")
     def _(self):
@@ -339,30 +359,3 @@ for _extn, _iif in [
     ("zlib", False),
 ]:
     _extension(_extn, _iif)
-
-
-@subpackage(f"php{_majver}-pear")
-def _(self):
-    self.pkgdesc = f"PHP{_majver} Extension and Application Repository"
-    self.depends = [self.parent, f"{pkgname}-xml"]
-    self.install_if = [self.parent]
-
-    return [
-        f"etc/php{_majver}/pear.conf",
-        f"usr/bin/pear{_majver}",
-        f"usr/bin/peardev{_majver}",
-        f"usr/bin/pecl{_majver}",
-        f"usr/share/php{_majver}/pear",
-    ]
-
-
-@subpackage(f"php{_majver}-devel")
-def _(self):
-    self.depends += [self.parent]
-
-    return self.default_devel(
-        extra=[
-            f"usr/bin/phpize{_majver}",
-            f"usr/lib/php{_majver}/build",
-        ]
-    )
