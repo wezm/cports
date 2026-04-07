@@ -19,7 +19,7 @@ index 7c40294..34ac492 100644
  
  # If no mirror is specified then use this one
 -DEFAULT_MIRROR = "https://alpine.global.ssl.fastly.net/alpine"
-+DEFAULT_MIRROR = "https://au.mirror.7bit.org/cobblestone"
++DEFAULT_MIRROR = "https://repo.casuarina.org"
  
  
  REPOSITORIES_TEMPLATE = """\
@@ -235,7 +235,7 @@ index 136db6e..4979eb8 100644
                    "type": "string",
 -                  "default": "https://alpine.global.ssl.fastly.net/alpine",
 -                  "description": "The base URL of an Alpine repository, or mirror, to download official packages from. If not specified then it defaults to ``https://alpine.global.ssl.fastly.net/alpine``."
-+                  "default": "https://au.mirror.7bit.org/cobblestone",
++                  "default": "https://repo.casuarina.org",
 +                  "description": "The base URL of a Chimera repository"
                  },
 -                "community_enabled": {
