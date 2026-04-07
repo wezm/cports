@@ -1,6 +1,6 @@
 pkgname = "chimera-repo-main"
 pkgver = "0.3"
-pkgrel = 1
+pkgrel = 2
 archs = [
     "x86_64",
 ]
