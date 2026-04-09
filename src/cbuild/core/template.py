@@ -367,6 +367,7 @@ default_options = {
     "execstack": (False, False),
     "foreignelf": (False, False),
     "parallel": (True, True),
+    "allowopt": (False, True),
     "eepy": (False, True),
     "debug": (True, True),
     "strip": (True, False),

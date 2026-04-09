@@ -164,6 +164,7 @@ def invoke(pkg):
     allowpaths = {
         "boot": True,
         "etc": True,
+        "opt": pkg.options["allowopt"],
         "usr": True,
     }
 
@@ -172,7 +173,7 @@ def invoke(pkg):
     for f in pkg.destdir.glob("*"):
         dirempty = False
         rf = f.relative_to(pkg.destdir)
-        if f.name not in allowpaths:
+        if not allowpaths[f.name]:
             pkg.log_red(f"forbidden directory '{rf}'")
             lintfail = True
             continue

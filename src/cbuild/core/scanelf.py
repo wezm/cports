@@ -305,7 +305,9 @@ def scan(pkg, somap):
                 elf_foreign.append(fpath)
         # deny files in bad paths
         fparts = fpath.parts
-        if fparts[0] != "usr" or fparts[1] == "include" or fparts[1] == "share":
+        if fparts[0] != "opt" and (
+            fparts[0] != "usr" or fparts[1] == "include" or fparts[1] == "share"
+        ):
             elf_badpath.append(fpath)
         # expand
         mtype, etype, is_static, interp, textrel, xstk, needed, soname = scanned
