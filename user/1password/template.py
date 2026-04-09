@@ -1,6 +1,6 @@
 pkgname = "1password"
 pkgver = "8.12.8"
-pkgrel = 0
+pkgrel = 1
 archs = ["x86_64"]
 depends = ["hicolor-icon-theme", "gtk+3", "xdg-utils", "zlib-ng-compat"]
 pkgdesc = "Password manager"
@@ -9,6 +9,9 @@ url = "https://1password.com"
 source = f"https://downloads.1password.com/linux/tar/stable/x86_64/1password-{pkgver}.x64.tar.gz"
 source_paths = ["1password"]
 sha256 = "58c0296af6064784d7d7f831f328f3688d121dfd42102f80cbd9c0cb108e2ecd"
+file_modes = {
+    "opt/1Password/1Password-BrowserSupport": ("root", "onepassword", 0o2755),
+}
 options = ["!distlicense", "!scanrundeps", "!scanshlibs", "allowopt"]
 restricted = "proprietary"
 
