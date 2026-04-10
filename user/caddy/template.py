@@ -1,7 +1,8 @@
 pkgname = "caddy"
 pkgver = "2.11.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "go"
+prepare_after_patch = True
 make_build_args = [
     f"-ldflags=-X github.com/caddyserver/caddy/v2.CustomVersion=v{pkgver}",
     "./cmd/caddy",
