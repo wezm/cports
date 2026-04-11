@@ -4,10 +4,10 @@
 # Imported from Void Linux
 #
 version="1.0"
-distributor_id="Chimera"
-description="Chimera Linux"
+distributor_id="Casuarina"
+description="Casuarina Linux"
 release="rolling"
-codename="chimera"
+codename="casuarina"
 options=""
 short=0
 
