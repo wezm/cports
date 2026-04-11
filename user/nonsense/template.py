@@ -1,7 +1,7 @@
 pkgname = "nonsense"
-pkgver = "0.1.2_git20250421"
+pkgver = "0.1.2_git20250531"
 pkgrel = 0
-_gitrev = "ce975fa"
+_gitrev = "9d34ed8"
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
 makedepends = [
@@ -11,7 +11,7 @@ pkgdesc = "Nonsense web application"
 license = "custom:none"
 url = "https://forge.wezm.net/wezm/home.wezm.net"
 source = f"https://forge.wezm.net/wezm/home.wezm.net/archive/{_gitrev}.tar.gz>nonsense-{pkgver}.tar.gz"
-sha256 = "fb0d00de554d50bf2e07ed9e8466c68158f55724c016b39fed94c872b95d6315"
+sha256 = "394c2961d90fb145d31942083ed90d27bcec00b107cca02521bf0959f930aaa4"
 
 
 def post_install(self):
