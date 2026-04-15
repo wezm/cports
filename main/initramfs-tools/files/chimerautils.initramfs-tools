@@ -23,7 +23,6 @@ KLIBC_TOOLS="
 "
 
 # copy libc first
-cp -an /usr/lib/libc.so "${DESTDIR}/usr/lib"
 cp -an /usr/lib/libc.so.6 "${DESTDIR}/usr/lib"
 cp -an /usr/lib/ld-linux-*.so.*  "${DESTDIR}/usr/lib"
 
