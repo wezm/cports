@@ -1,14 +1,14 @@
 pkgname = "rust-bootstrap"
-pkgver = "1.93.0"
+pkgver = "1.94.1"
 pkgrel = 0
 # satisfy revdeps
 makedepends = ["zlib-ng-compat", "ncurses-libs", "zstd"]
 # overlapping files
-depends = ["!rust", "llvm-libgcc-devel"]
+depends = ["!rust"]
 pkgdesc = "Rust programming language bootstrap toolchain"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
-_urlb = "https://static.rust-lang.org/dist"
+_urlb = "https://repo.casuarina.org/distfiles"
 _triplet = self.profile().triplet
 source = [
     f"{_urlb}/rustc-{pkgver}-{_triplet}.tar.xz",
@@ -50,8 +50,8 @@ match self.profile().arch:
     #     ]
     case "x86_64":
         sha256 = [
-            "00c6e6740ea6a795e33568cd7514855d58408a1180cd820284a7bbf7c46af715",
-            "a849a418d0f27e69573e41763c395e924a0b98c16fcdc55599c1c79c27c1c777",
+            "f3249287403b295f8d916f18e7a64f7df4bac9ec3d8aa1345be367127bb8ca9f",
+            "409745050ddea6e2ed6a40f79720db525b935bca92e66ae6dd378e1181c10d27",
         ]
     case _:
         broken = f"not yet built for {self.profile().arch}"
@@ -60,15 +60,15 @@ match self.profile().arch:
 def install(self):
     for d in self.cwd.iterdir():
         self.do(
-            "/bin/sh",
             self.chroot_cwd / d.name / "install.sh",
             "--prefix=/usr",
             f"--destdir={self.chroot_destdir}",
             wrksrc=d.name,
         )
     # remove rust copies of llvm tools
-    self.uninstall(f"usr/lib/rustlib/{_triplet}/bin")
+    trip = self.profile().triplet
+    self.uninstall(f"usr/lib/rustlib/{trip}/bin")
     # whatever
     self.uninstall("usr/etc")
     # licenses
-    self.install_license(f"rustc-{pkgver}-{_triplet}/LICENSE-MIT")
+    self.install_license(f"rustc-{pkgver}-{trip}/LICENSE-MIT")
