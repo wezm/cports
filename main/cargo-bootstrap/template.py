@@ -1,5 +1,5 @@
 pkgname = "cargo-bootstrap"
-pkgver = "1.93.0"
+pkgver = "1.94.0"
 pkgrel = 0
 # satisfy runtime dependencies
 hostmakedepends = ["curl"]
@@ -9,7 +9,7 @@ depends = ["!cargo"]
 pkgdesc = "Bootstrap binaries of Rust package manager"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
-source = f"https://static.rust-lang.org/dist/rust-{pkgver}-{self.profile().triplet}.tar.xz"
+source = f"https://repo.casuarina.org/distfiles/cargo-{pkgver}-{self.profile().triplet}.tar.xz"
 options = ["!strip"]
 
 match self.profile().arch:
@@ -39,13 +39,13 @@ match self.profile().arch:
     #    )
     case "x86_64":
         sha256 = (
-            "b9d9f01a96a2542852ccfddd82194276ba1c86bc76353309ff636b737fc0a772"
+            "61977682b8f8a02c92e4a78c0d6595b44615092e2760f82d832764f3bb32cec7"
         )
     case _:
         broken = f"not yet built for {self.profile().arch}"
 
 
 def install(self):
-    self.install_bin("cargo/bin/cargo")
+    self.install_bin("cargo")
     self.install_license("LICENSE-MIT")
-    self.install_license("cargo/share/doc/cargo/LICENSE-THIRD-PARTY")
+    self.install_license("LICENSE-THIRD-PARTY")
