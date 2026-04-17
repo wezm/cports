@@ -25,7 +25,6 @@ def get_environment(pkg, jobs=None, cache=False):
         "CARGO_BUILD_JOBS": str(jobs),
         "CARGO_PROFILE_RELEASE_PANIC": "abort",
         "CARGO_PROFILE_RELEASE_STRIP": "false",
-        "CARGO_PROFILE_RELEASE_CODEGEN_UNITS": "1",
         "CARGO_REGISTRIES_CRATES_IO_PROTOCOL": "sparse",
         "CARGO_HOME": "/cbuild_cache/cargo" if cache else "/tmp",
         # gettext-rs
