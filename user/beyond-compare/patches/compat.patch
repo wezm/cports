@@ -1,0 +1,196 @@
+--- a/install.sh	2026-04-18 20:26:42.449304859 +1000
++++ b/install.sh	2026-04-18 20:34:49.504011539 +1000
+@@ -60,21 +60,9 @@
+ 	shift
+ done
+ 
+-########################################
+-# Query for architecture and then distill
+-# it down to i386 or amd64
+-########################################
+-MACH=`uname -m`
+-NUM=`expr match "$MACH" 'i[0-9]86'`
+-if [[ $NUM -ge 4 ]]; then
+-	MACH_ARCH=i386
+-	LIB_ARCH=i386-linux-gnu
+-	LDCONFIG_ARCH=""
+-else
+-	MACH_ARCH=amd64
+-	LIB_ARCH=x86_64-linux-gnu
+-	LDCONFIG_ARCH="x86-64"
+-fi
++MACH_ARCH=amd64
++LIB_ARCH=x86_64-linux-gnu
++LDCONFIG_ARCH="x86-64"
+ 
+ ########################################
+ # Installation
+@@ -98,20 +86,6 @@
+ 
+ BC_BIN=${PREFIX}/bin
+ BC_LIB=${PREFIX}/lib/${BC}
+-##
+-# if /lib64 exists and is a link then we are on a 64bit system
+-# that places 32bit libs in /lib32 and /usr/lib32 and 64bit in lib64
+-##
+-APP_ARCH=`/usr/bin/file BCompare | /usr/bin/grep "32-bit"`
+-if [ "$APP_ARCH" = "" ]; then
+-	ARCH_LIB='lib64'
+-else
+-	ARCH_LIB='lib32'
+-fi
+-
+-if [ -h /lib64 ]; then
+-	BC_LIB=${PREFIX}/${ARCH_LIB}/${BC}
+-fi
+ if [ "$RPM_ARCH" = "" ]; then
+ 	BC_PACKAGE_TYPE=archive
+ else
+@@ -121,11 +95,11 @@
+ ##
+ # insert these variables in the other scripts
+ ##
+-sed -i "s|^\(BC_LIB=\).*|\1$BC_LIB|" bcompare.sh
+-sed -i "s|^\(BC_PACKAGE_TYPE=\).*|\1$BC_PACKAGE_TYPE|" bcompare.sh
+-sed -i "s|^\(BC_LIB=\).*|\1$BC_LIB|" uninstall.sh
+-sed -i "s|^\(BC_BIN=\).*|\1$BC_BIN|" uninstall.sh
+-sed -i "s|^\(PREFIX=\).*|\1$PREFIX|" uninstall.sh
++sed -i '' "s|^\(BC_LIB=\).*|\1/usr/lib/$BC|" bcompare.sh
++sed -i '' "s|^\(BC_PACKAGE_TYPE=\).*|\1$BC_PACKAGE_TYPE|" bcompare.sh
++sed -i '' "s|^\(BC_LIB=\).*|\1$BC_LIB|" uninstall.sh
++sed -i '' "s|^\(BC_BIN=\).*|\1$BC_BIN|" uninstall.sh
++sed -i '' "s|^\(PREFIX=\).*|\1$PREFIX|" uninstall.sh
+ 
+ 
+ ##
+@@ -161,130 +135,3 @@
+ elif [ -f BC5Key.txt ]; then
+ 	install -m 644 BC5Key.txt $BC_LIB
+ fi
+-
+-##
+-# Need to create link to libbz2.so.1.0.  Executable is built on machine with
+-# libbz2.so soname = libbz2.so.1.0.  RPM's are installed with machines with
+-# libbz2.so soname = libbz2.so.1. Making link here solves problem.
+-##
+-libbz2so=`ldconfig -p | awk -F" " '$1=="libbz2.so.1" && $2~/'${LDCONFIG_ARCH}'/ {print $NF}'`
+-if [ "$libbz2so" != "" ]; then
+-  ln -s $libbz2so ${BC_LIB}/libbz2.so.1.0
+-fi
+-
+-
+-##
+-# Create desktop entry and place Context Menu extensions, if root
+-##
+-if [ $(id -u) = "0" ]; then
+-	cp bcompare.desktop /usr/share/applications
+-	cp bcompare.xml /usr/share/mime/packages
+-	update-mime-database /usr/share/mime &> /dev/null
+-	if [ -f /usr/share/applications/mimeinfo.cache ]; then
+-		echo "application/beyond.compare.snapshot=bcompare.desktop" >> \
+-			/usr/share/applications/mimeinfo.cache
+-	fi
+-	cp $BCICON /usr/share/pixmaps
+-	cp $BC_CONTEXT_FULL /usr/share/pixmaps
+-	cp $BC_CONTEXT_HALF /usr/share/pixmaps
+-	echo "rm -f /usr/share/applications/bcompare.desktop" >> uninstall.sh
+-	echo "rm -f /usr/share/mime/packages/bcompare.xml" >> uninstall.sh
+-	echo "update-mime-database /usr/share/mime &> /dev/null" >> uninstall.sh
+-	echo "rm -f /usr/share/pixmaps/$BCICON" >> uninstall.sh
+-	echo "rm -f /usr/share/pixmaps/$BC_CONTEXT_FULL" >> uninstall.sh
+-	echo "rm -f /usr/share/pixmaps/$BC_CONTEXT_HALF" >> uninstall.sh
+-
+-	##
+-	# Remove existing scripts before installing new
+-	##
+-	for i in /home/* /root; do
+-		if [ -d "\$i/.gnome2/nautilus-scripts" ]; then
+-			rm -f "\$i/.gnome2/nautilus-scripts/compare"
+-			rm -f "\$i/.gnome2/nautilus-scripts/compare_to_selected"
+-			rm -f "\$i/.gnome2/nautilus-scripts/select_for_compare"
+-		fi
+-		if [ -d "\$i/.local/share/kservices5/ServiceMenus" ]; then
+-			rm -f "\$i/.local/share/kservices5/ServiceMenus/beyondcompare.desktop"
+-			rm -f "\$i/.local/share/kservices5/ServiceMenus/beyondcompare_compare.desktop"
+-			rm -f "\$i/.local/share/kservices5/ServiceMenus/beyondcompare_more.desktop"
+-			rm -f "\$i/.local/share/kservices5/ServiceMenus/beyondcompare_select.desktop"
+-		fi
+-		if [ -d "\$i/.kde4/share/kde4/services/ServiceMenus" ]; then
+-			rm -f "\$i/.kde4/share/kde4/services/ServiceMenus/beyondcompare.desktop"
+-			rm -f "\$i/.kde4/share/kde4/services/ServiceMenus/beyondcompare_compare.desktop"
+-			rm -f "\$i/.kde4/share/kde4/services/ServiceMenus/beyondcompare_more.desktop"
+-			rm -f "\$i/.kde4/share/kde4/services/ServiceMenus/beyondcompare_select.desktop"
+-		fi
+-		if [ -d "\$i/.kde/share/kde4/services/ServiceMenus" ]; then
+-			rm -f "\$i/.kde/share/kde4/services/ServiceMenus/beyondcompare.desktop"
+-			rm -f "\$i/.kde/share/kde4/services/ServiceMenus/beyondcompare_compare.desktop"
+-			rm -f "\$i/.kde/share/kde4/services/ServiceMenus/beyondcompare_more.desktop"
+-			rm -f "\$i/.kde/share/kde4/services/ServiceMenus/beyondcompare_select.desktop"
+-		fi
+-		if [ -d "\$i/.kde/share/apps/konqueror/servicemenus" ]; then
+-			rm -f "\$i/.kde/share/apps/konqueror/servicemenus/beyondcompare.desktop"
+-			rm -f "\$i/.kde/share/apps/konqueror/servicemenus/beyondcompare_compare.desktop"
+-			rm -f "\$i/.kde/share/apps/konqueror/servicemenus/beyondcompare_more.desktop"
+-			rm -f "\$i/.kde/share/apps/konqueror/servicemenus/beyondcompare_select.desktop"
+-		fi
+-	done
+-
+-	##
+-	# Now install appropriate ContextMenu Extension or wait and let bcompare.sh
+-	# install scripts on KDE 3.5
+-	##
+-	for EXT_LIB in /usr/lib /usr/lib64
+-	do
+-		if [ -d "$EXT_LIB/$LIB_ARCH/qt6/plugins/kf6/kfileitemaction" ]; then
+-			cp $BC_LIB/ext/bcompare_ext_kde6.$MACH_ARCH.so \
+-				$EXT_LIB/$LIB_ARCH/qt6/plugins/kf6/kfileitemaction/bcompare_ext_kde6.so
+-			echo "rm -f $EXT_LIB/x86_64-linux-gnu/qt6/plugins/kf6/kfileitemaction/bcompare_ext_kde6.so" >> uninstall.sh
+-		elif [ -d "$EXT_LIB/$LIB_ARCH/qt5/plugins/kf5/kfileitemaction" ]; then
+-			cp $BC_LIB/ext/bcompare_ext_kde5.$MACH_ARCH.so \
+-				$EXT_LIB/$LIB_ARCH/qt5/plugins/kf5/kfileitemaction/bcompare_ext_kde5.so
+-			echo "rm -f $EXT_LIB/x86_64-linux-gnu/qt5/plugins/kf5/kfileitemaction/bcompare_ext_kde5.so" >> uninstall.sh
+-		fi
+-	done
+-
+-	for EXT_LIB in /usr/lib/$LIB_ARCH /usr/lib /usr/lib64/$LIB_ARCH /usr/lib64
+-	do
+-		for FILE_MANAGER_NAME in nautilus caja nemo
+-		do 
+-			for EXT_VER in extensions-4 extensions-3.0 extensions-2.0 extensions-1.0
+-			do
+-				if [ -d "$EXT_LIB/$FILE_MANAGER_NAME/$EXT_VER" ]; then
+-					if [ "${EXT_VER}" = "extensions-4" ]; then
+-						cp $BC_LIB/ext/bcompare-ext-$FILE_MANAGER_NAME.$MACH_ARCH.so.ext4 \
+-							$EXT_LIB/$FILE_MANAGER_NAME/$EXT_VER/bcompare-ext-$FILE_MANAGER_NAME.so
+-					else
+-						cp $BC_LIB/ext/bcompare-ext-$FILE_MANAGER_NAME.$MACH_ARCH.so \
+-							$EXT_LIB/$FILE_MANAGER_NAME/$EXT_VER/bcompare-ext-$FILE_MANAGER_NAME.so
+-					fi
+-					echo "rm -f $EXT_LIB/$FILE_MANAGER_NAME/$EXT_VER/bcompare-ext-$FILE_MANAGER_NAME.so" >> uninstall.sh
+-				fi
+-			done
+-		done
+-
+-		for EXT_VER in thunarx-3 thunarx-2
+-		do
+-			if [ -d "$EXT_LIB/$EXT_VER" ]; then
+-				cp $BC_LIB/ext/bcompare-ext-$EXT_VER.$MACH_ARCH.so \
+-				$EXT_LIB/$EXT_VER/bcompare-ext-thunarx.so
+-				echo "rm -f $EXT_LIB/$EXT_VER/bcompare-ext-thunarx.so" >> uninstall.sh
+-			fi
+-		done
+-	done
+-fi
+-
+-cp uninstall.sh	$BC_LIB
+-
+-which bcompare &> /dev/null
+-if [ $? != "0" ]; then
+-	export PATH=$BC_BIN:$PATH
+-	echo "======================================"
+-	echo "Please place the following in your .bashrc or .cshrc (etc.)"
+-	echo "export PATH=$BC_BIN:\$PATH"
+-	echo "======================================"
+-	echo "Executable is $BC_BIN/bcompare"
+-fi
+-

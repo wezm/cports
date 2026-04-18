@@ -1,0 +1,11 @@
+--- a/bcompare.sh	2026-04-18 20:59:27.757527557 +1000
++++ b/bcompare.sh	2026-04-18 20:59:43.403711661 +1000
+@@ -42,7 +42,7 @@
+ 	ARGS=$ARGS" \"$1\""
+ 	shift 1
+ done
+-/bin/bash -c "exec -a $0 $EXEC $ARGS > /dev/null 2>&1" $0
++/bin/sh -c "exec $EXEC $ARGS > /dev/null 2>&1" $0
+ 
+ ########################################
+ # set exit code / wait on existing instance
