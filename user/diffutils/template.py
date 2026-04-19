@@ -6,6 +6,7 @@ configure_args = ["--program-prefix=g"]
 # broken autoreconf
 configure_gen = []
 hostmakedepends = [
+    "automake",
     "gettext-devel",
     "texinfo",
 ]
@@ -15,4 +16,3 @@ url = "https://www.gnu.org/software/diffutils"
 source = f"$(GNU_SITE)/diffutils/diffutils-{pkgver}.tar.xz"
 sha256 = "7c8b7f9fc8609141fdea9cece85249d308624391ff61dedaf528fcb337727dfd"
 hardening = ["vis", "cfi"]
-restricted = "disabled until requested"

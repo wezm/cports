@@ -1,0 +1,11 @@
+Patch source https://lists.gnu.org/r/bug-gnulib/2026-03/msg00004.html
+--- a/m4/float_h.m4	2026-04-19 15:57:08.209556634 +1000
++++ b/m4/float_h.m4	2026-04-19 15:57:54.652639645 +1000
+@@ -63,6 +63,7 @@
+        [AC_LANG_PROGRAM(
+           [[#include <float.h>
+             int x[] = { FLT_DECIMAL_DIG, DBL_DECIMAL_DIG, LDBL_DECIMAL_DIG };
++            int y[] = { FLT_IS_IEC_60559, DBL_IS_IEC_60559, LDBL_IS_IEC_60559 };
+             float maxf = FLT_NORM_MAX;
+             double maxd = DBL_NORM_MAX;
+             long double maxl = LDBL_NORM_MAX;
