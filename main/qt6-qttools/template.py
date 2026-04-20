@@ -1,6 +1,6 @@
 pkgname = "qt6-qttools"
-pkgver = "6.10.2"
-pkgrel = 1
+pkgver = "6.11.0"
+pkgrel = 0
 build_style = "cmake"
 configure_args = [
     "-DQT_BUILD_TESTS=OFF",  # downloads gtest
@@ -31,7 +31,7 @@ license = (
 )
 url = "https://www.qt.io"
 source = f"https://download.qt.io/official_releases/qt/{pkgver[:-2]}/{pkgver}/submodules/qttools-everywhere-src-{pkgver}.tar.xz"
-sha256 = "1e3d2c07c1fd76d2425c6eaeeaa62ffaff5f79210c4e1a5bc2a6a9db668d5b24"
+sha256 = "cfb1993d7a10848965b01b9cf33a54b8a4ba4e5e3a6d28d59483e73f10d9fc76"
 # FIXME
 hardening = ["!int"]
 # TODO
@@ -42,16 +42,6 @@ def post_install(self):
     # hardlink
     self.uninstall("usr/lib/qt6/bin/qtdiag")
     self.install_link("usr/lib/qt6/bin/qtdiag", "qtdiag6")
-
-    # link publicbindir utils to usr/bin, like qmake6
-    # used outside of cmake
-    self.install_dir("usr/bin")
-    with open(
-        self.cwd / self.make_dir / "user_facing_tool_links.txt", "r"
-    ) as f:
-        for line in f.readlines():
-            a, b = line.split()
-            self.install_link(b, a.replace("../../lib", "../lib"))
 
 
 @subpackage("qt6-qttools-qdbus")

@@ -1,12 +1,12 @@
 pkgname = "qt6-qtwebengine"
-pkgver = "6.10.2"
+pkgver = "6.11.0"
 pkgrel = 0
-# latest from https://github.com/qt/qtwebengine-chromium/commits/134-based
+# latest from https://github.com/qt/qtwebengine-chromium/commits/140-based
 # check CHROMIUM_VERSION on qt majors
 # note that like half the chromium patches are probably unneeded but
 # they are taken directly from chromium patches/ for that major for
 # ease of maintenance
-_qtwebengine_gitrev = "a77d79333c255cb0c8bc8bc183b8a6a11d07c429"
+_qtwebengine_gitrev = "bbe587c8fb8d1acfc18284c0d4b39a582dc68da9"
 archs = ["aarch64", "ppc64le", "x86_64"]
 build_style = "cmake"
 configure_args = [
@@ -98,8 +98,8 @@ source = [
 ]
 source_paths = [".", "3rdparty-chromium"]
 sha256 = [
-    "856eddf292a69a88618567deea67711b4ec720e69bcb575ed7bb539c9023961e",
-    "b9a6c4bed6c3450448a4bd49078fe67b7b0618124220f7920d5268994cf465ad",
+    "63b921c8b2dd59152ced9a796676010166df044588ee00ef9429dc2fd2146736",
+    "70d7f5c66ac08ea98cb2c1cfda405dfc3b6e00caeda12c020516f86467b3c09c",
 ]
 debug_level = 1  # defatten, especially with LTO
 tool_flags = {
@@ -126,6 +126,11 @@ def post_extract(self):
 
 
 def post_install(self):
+    self.uninstall("usr/bin")  # broken symlink to webprocess? don't need it
+    # added in 6.11, not needed
+    self.uninstall("usr/lib/cmake/Qt6/FindBindgen.cmake")
+    # also not needed and actually breaks corrosion
+    self.uninstall("usr/lib/cmake/Qt6/FindRust.cmake")
     self.uninstall("usr/lib/qt6/bin/testbrowser")
     self.uninstall("usr/tests")
 
