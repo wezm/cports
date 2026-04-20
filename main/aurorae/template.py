@@ -1,5 +1,5 @@
 pkgname = "aurorae"
-pkgver = "6.6.1"
+pkgver = "6.6.4"
 pkgrel = 0
 build_style = "cmake"
 # XXX drop libexec
@@ -24,7 +24,7 @@ pkgdesc = "Themeable window decoration for KWin"
 license = "GPL-2.0-or-later"
 url = "https://develop.kde.org/docs/plasma/aurorae"
 source = f"$(KDE_SITE)/plasma/{pkgver}/aurorae-{pkgver}.tar.xz"
-sha256 = "8d7fc30f43cf8d9aa336f40935fffbfbdb2339ef6307f474222cb1101407d4de"
+sha256 = "f7dbc82de06a53dd2c3ff54ae542351485cd5b27e071fada5bb7fc87911054f3"
 
 
 @subpackage("aurorae-devel")
