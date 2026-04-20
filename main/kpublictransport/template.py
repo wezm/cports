@@ -1,5 +1,5 @@
 pkgname = "kpublictransport"
-pkgver = "25.12.2"
+pkgver = "26.04.0"
 pkgrel = 0
 build_style = "cmake"
 # at least updatetest & cachetest flaky when parallel
@@ -26,7 +26,7 @@ url = "https://api.kde.org/kdepim/kpublictransport/html"
 source = (
     f"$(KDE_SITE)/release-service/{pkgver}/src/kpublictransport-{pkgver}.tar.xz"
 )
-sha256 = "1438289d423cf70059c8e72939d8a51a0c054f046e28bf30a060959d3ddef43b"
+sha256 = "e4aad868410e97a6c2c34a8255888405ee272607bb3e4ae6fffeb0c92d98702b"
 
 
 @subpackage("kpublictransport-devel")

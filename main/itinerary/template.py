@@ -1,9 +1,13 @@
 pkgname = "itinerary"
-pkgver = "25.12.2"
-pkgrel = 2
+pkgver = "26.04.0"
+pkgrel = 0
 build_style = "cmake"
 # fails with no output
-make_check_args = ["-E", "itinerary-self-test"]
+# reservationonlinepostprocessortest needs network
+make_check_args = [
+    "-E",
+    "(itinerary-self-test|reservationonlinepostprocessortest)",
+]
 hostmakedepends = [
     "cmake",
     "extra-cmake-modules",
@@ -57,4 +61,4 @@ pkgdesc = "KDE digital travel assistant"
 license = "LGPL-2.0-or-later"
 url = "https://apps.kde.org/itinerary"
 source = f"$(KDE_SITE)/release-service/{pkgver}/src/itinerary-{pkgver}.tar.xz"
-sha256 = "b803c7a0bdbe3575961572a5c9310f8ab06f393fa794480a236b9542cc3c32bc"
+sha256 = "f3545b99fbd155ea67a39323d60cd1d00d4fc0d30c63348bf74c5e38d0630433"

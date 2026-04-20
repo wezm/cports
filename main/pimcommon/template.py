@@ -1,5 +1,5 @@
 pkgname = "pimcommon"
-pkgver = "25.12.2"
+pkgver = "26.04.0"
 pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
@@ -43,7 +43,7 @@ pkgdesc = "KDE PIM common library"
 license = "LGPL-2.0-or-later AND GPL-3.0-only"
 url = "https://api.kde.org/kdepim/pimcommon/html"
 source = f"$(KDE_SITE)/release-service/{pkgver}/src/pimcommon-{pkgver}.tar.xz"
-sha256 = "7da324710ea6077fa247ec04db666c172352ba0e61f1df9aa07ab7109ac5290b"
+sha256 = "d954ea655a8e1ec911ce8954af4644ffbbf35abc9af9d59d2415d5839a1ab138"
 
 
 @subpackage("pimcommon-devel")
