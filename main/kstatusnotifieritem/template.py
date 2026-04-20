@@ -1,6 +1,6 @@
 pkgname = "kstatusnotifieritem"
-pkgver = "6.23.0"
-pkgrel = 1
+pkgver = "6.25.0"
+pkgrel = 0
 build_style = "cmake"
 # unpackaged pyside6
 configure_args = ["-DBUILD_PYTHON_BINDINGS=OFF"]
@@ -14,7 +14,7 @@ pkgdesc = "KDE Implementation of Status Notifier Items"
 license = "LGPL-2.0-or-later"
 url = "https://invent.kde.org/frameworks/kstatusnotifieritem"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kstatusnotifieritem-{pkgver}.tar.xz"
-sha256 = "a7225448dd96578a343fc9c3ab5409d3c7c0bce04665825ccb10273eff419ade"
+sha256 = "7a6397f08b15a7d50e407c193f1774b548994f6f9d12327dfbb674270adfc9af"
 hardening = ["vis"]
 
 

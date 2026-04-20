@@ -1,6 +1,6 @@
 pkgname = "kconfig"
-pkgver = "6.23.0"
-pkgrel = 1
+pkgver = "6.25.0"
+pkgrel = 0
 build_style = "cmake"
 # XXX drop libexec
 configure_args = ["-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib"]
@@ -19,7 +19,7 @@ pkgdesc = "KDE Persistent platform-independent application settings"
 license = "LGPL-2.0-or-later AND LGPL-2.0-only AND LGPL-2.1-or-later"
 url = "https://api.kde.org/frameworks/kconfig/html"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kconfig-{pkgver}.tar.xz"
-sha256 = "6d96d6a6b9e66e027a17284c48261ba81e1262fbd382fcdddc248107a9ca95ee"
+sha256 = "8c675c9d35a866fbf1b564354a589019b429cca949f7ba3ba0adb9f2fa15959c"
 hardening = ["vis"]
 
 

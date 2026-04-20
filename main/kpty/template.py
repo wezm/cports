@@ -1,5 +1,5 @@
 pkgname = "kpty"
-pkgver = "6.23.0"
+pkgver = "6.25.0"
 pkgrel = 0
 build_style = "cmake"
 hostmakedepends = ["cmake", "extra-cmake-modules", "gettext", "ninja"]
@@ -10,7 +10,7 @@ url = "https://api.kde.org/frameworks/kpty/html"
 source = (
     f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kpty-{pkgver}.tar.xz"
 )
-sha256 = "a1218eb6b9cc52f26d1e47923f8458d7c6712dced759860371ad330285a5b951"
+sha256 = "eb4deb424bdf20328dac0a12fdaab715dbf800e1cd08a4188cc2d3075543709f"
 hardening = ["vis"]
 
 

@@ -1,5 +1,5 @@
 pkgname = "ksvg"
-pkgver = "6.23.0"
+pkgver = "6.25.0"
 pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
@@ -21,7 +21,7 @@ url = "https://invent.kde.org/frameworks/ksvg"
 source = (
     f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/ksvg-{pkgver}.tar.xz"
 )
-sha256 = "44e302fd89eebb61853884d900d436bc4e0932287a117e69d3bce0aa9763232e"
+sha256 = "9c05166e289d39603696944edfbc3b50a1aadcd19e5b602002013c6149a44129"
 hardening = ["vis"]
 # expects installed imagesets
 options = ["!check"]

@@ -1,5 +1,5 @@
 pkgname = "kpackage"
-pkgver = "6.23.0"
+pkgver = "6.25.0"
 pkgrel = 0
 build_style = "cmake"
 # flaky createAndUpdatePackage() Could not delete package from: /tmp/.qttest/share/packageRoot/plasmoid_to_package/
@@ -16,7 +16,7 @@ pkgdesc = "KDE Installation and loading of additional content as packages"
 license = "LGPL-2.1-or-later"
 url = "https://api.kde.org/frameworks/kpackage/html"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kpackage-{pkgver}.tar.xz"
-sha256 = "cd4da49e7d73c382dcf1d5187367c7b62bbcd045712d5f4ec7658360ffc17fb6"
+sha256 = "bd465c0f1c11ec4c6767c985ebd144cc1efd6b6f249e7d19bf2cc04b956a663e"
 hardening = ["vis"]
 
 
