@@ -1,5 +1,5 @@
 pkgname = "qt6-qtdeclarative"
-pkgver = "6.10.2"
+pkgver = "6.11.0"
 pkgrel = 0
 build_style = "cmake"
 configure_args = ["-DQT_BUILD_TESTS=ON"]
@@ -19,7 +19,7 @@ license = (
 )
 url = "https://www.qt.io"
 source = f"https://download.qt.io/official_releases/qt/{pkgver[:-2]}/{pkgver}/submodules/qtdeclarative-everywhere-src-{pkgver}.tar.xz"
-sha256 = "a249914ff66cdcdbf0df8b5ffad997a2ee6dce01cc17d43c6cc56fdc1d0f4b0f"
+sha256 = "4eece569431ddf8324e7d322fa27001916570b23df535f8fb28aba445eedfde9"
 # FIXME
 hardening = ["!int"]
 # TODO
@@ -72,6 +72,8 @@ def init_check(self):
         "tst_qquickiconimage",  # execution failed with exit code Segmentation fault
         "tst_qquickfiledialogimpl",  # XXX
         "tst_qquickfolderdialogimpl",  # test failed
+        "tst_qquickeventreplay",  # needs installed qtdeclarative
+        "tst_qquickiconlabel",  # needs installed icon set
         "tst_qquickpopup",  # loongarch64 segv
         "tst_sanity",  # tst_Sanity::quickControlsSanityPlugin(signalHandlers) 'hasWarnings' returned FALSE
         "tst_fluentwinui*",

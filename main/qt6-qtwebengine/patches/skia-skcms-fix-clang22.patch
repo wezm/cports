@@ -1,0 +1,26 @@
+commit d91521e2b7d61cc60c0e812637ef3f5801b2708f
+Author: q66 <q66@chimera-linux.org>
+Date:   Tue Apr 21 11:57:08 2026 +0200
+
+    fix skcms clang build
+    
+    This is backported from a newer chromium version.
+
+diff --git a/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h b/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
+index 7bea9b9..f3f0194 100644
+--- a/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
++++ b/src/3rdparty/chromium/third_party/skia/modules/skcms/src/Transform_inl.h
+@@ -161,8 +161,13 @@ SI F F_from_Half(U16 half) {
+ #elif defined(USING_AVX512F)
+     return (F)_mm512_cvtph_ps((__m256i)half);
+ #elif defined(USING_AVX_F16C)
++#if defined(__clang__) && __clang_major__ >= 15 // for _Float16 support
++    typedef _Float16 __attribute__((vector_size(16))) F16;
++    return __builtin_convertvector((F16)half, F);
++#else
+     typedef int16_t __attribute__((vector_size(16))) I16;
+     return __builtin_ia32_vcvtph2ps256((I16)half);
++#endif // defined(__clang))
+ #else
+     U32 wide = cast<U32>(half);
+     // A half is 1-5-10 sign-exponent-mantissa, with 15 exponent bias.
