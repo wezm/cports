@@ -1,6 +1,6 @@
 pkgname = "plasma-keyboard"
 pkgver = "6.6.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 hostmakedepends = [
     "cmake",
