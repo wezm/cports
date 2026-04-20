@@ -30,10 +30,11 @@ sha256 = "2112eebac5c7b0aab7243c428c794aecb136168c326648cfbbd8654ea2cc7631"
 options = ["!cross"]
 
 
-def post_patch(self):
+def post_prepare(self):
     from cbuild.util import cargo
 
     cargo.Cargo(self, wrksrc=".").vendor()
+    cargo.clear_vendor_checksums(self, "zvariant")
 
 
 def init_build(self):
