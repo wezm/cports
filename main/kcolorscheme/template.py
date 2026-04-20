@@ -1,6 +1,6 @@
 pkgname = "kcolorscheme"
-pkgver = "6.23.0"
-pkgrel = 1
+pkgver = "6.25.0"
+pkgrel = 0
 build_style = "cmake"
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
 make_check_wrapper = ["dbus-run-session", "--"]
@@ -18,7 +18,7 @@ pkgdesc = "KDE library to interact with KColorScheme"
 license = "LGPL-2.0-or-later"
 url = "https://invent.kde.org/frameworks/kcolorscheme"
 source = f"$(KDE_SITE)/frameworks/{pkgver[: pkgver.rfind('.')]}/kcolorscheme-{pkgver}.tar.xz"
-sha256 = "bc4b4a928aeeab4c8df481e7f4754ee2491f33f7d7549d33fa452bae2d2c6c1c"
+sha256 = "95a8a37817765f910c59b269a9958557505b99ff698fd6d220bcb166d5e302f5"
 hardening = ["vis"]
 
 
