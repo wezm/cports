@@ -1,6 +1,6 @@
 pkgname = "libkleo"
-pkgver = "25.12.2"
-pkgrel = 1
+pkgver = "26.04.0"
+pkgrel = 0
 build_style = "cmake"
 # fails on aarch64 at least
 # newkeyapprovaldialogtest has wayland die
@@ -36,7 +36,7 @@ pkgdesc = "KDE PIM cryptography library"
 license = "GPL-3.0-or-later"
 url = "https://invent.kde.org/pim/libkleo"
 source = f"$(KDE_SITE)/release-service/{pkgver}/src/libkleo-{pkgver}.tar.xz"
-sha256 = "6b055214ba7c5c6da75454b9f2f0cf90213511b73cc18a47964ff553407697f7"
+sha256 = "c5816b9c46dc46e3f11a805c7a9508db2c33ad0fbf98d7e8fe681eb9bd8f84f6"
 
 
 @subpackage("libkleo-devel")

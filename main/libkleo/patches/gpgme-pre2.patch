@@ -1,0 +1,172 @@
+commit 1df051bf985262aef93eb16e42add0d2ee3c1da5
+Author: q66 <q66@chimera-linux.org>
+Date:   Wed Apr 22 15:56:56 2026 +0200
+
+    bring back support for gpgme < 2.0.0
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8f4d63b..4a29320 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -42,8 +42,8 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt
+ 
+ set(LIBKLEO_LIB_VERSION ${PIM_VERSION})
+ set(QT_REQUIRED_VERSION "6.7.0")
+-set(GPGME_REQUIRED_VERSION "2.0.0")
+-set(GPG_ERROR_REQUIRED_VERSION "1.47")
++set(GPGME_REQUIRED_VERSION "1.23.2")
++set(GPG_ERROR_REQUIRED_VERSION "1.36")
+ 
+ find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets)
+ find_package(KF6I18n ${KF6_WANT_VERSION} CONFIG REQUIRED)
+@@ -59,6 +59,12 @@ find_package(Gpgmepp ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
+ set_package_properties(Gpgmepp PROPERTIES DESCRIPTION "GpgME++ Library" URL "https://www.gnupg.org" TYPE REQUIRED PURPOSE "GpgME++ is required for OpenPGP support")
+ message(STATUS "GpgME++ Version ${Gpgmepp_VERSION}")
+ set(QGPGME_NAME "QGpgmeQt6")
++if(Gpgmepp_VERSION VERSION_GREATER_EQUAL "1.24.0")
++    set(GPGMEPP_ERROR_HAS_ASSTDSTRING 1)
++endif()
++if(Gpgmepp_VERSION VERSION_GREATER_EQUAL "1.24.1")
++    set(GPGMEPP_SUPPORTS_KYBER 1)
++endif()
+ find_package(${QGPGME_NAME} ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
+ 
+ find_package(LibGpgError ${GPG_ERROR_REQUIRED_VERSION} REQUIRED)
+diff --git a/config-libkleo.h.in b/config-libkleo.h.in
+index af4b8af..70353e2 100644
+--- a/config-libkleo.h.in
++++ b/config-libkleo.h.in
+@@ -1 +1,7 @@
++/* Whether Error::asStdString exist */
++#cmakedefine01 GPGMEPP_ERROR_HAS_ASSTDSTRING
++
++/* Whether Subkey::PubkeyAlgo::AlgoKyber exists */
++#cmakedefine01 GPGMEPP_SUPPORTS_KYBER
++
+ #cmakedefine01 UNITY_BUILD
+diff --git a/src/ui/newkeyapprovaldialog.cpp b/src/ui/newkeyapprovaldialog.cpp
+index d608b81..9f971cc 100644
+--- a/src/ui/newkeyapprovaldialog.cpp
++++ b/src/ui/newkeyapprovaldialog.cpp
+@@ -35,6 +35,7 @@
+ 
+ #include <QGpgME/Protocol>
+ #include <QGpgME/QuickJob>
++#include <qgpgme/qgpgme_version.h>
+ 
+ #include <QButtonGroup>
+ #include <QCheckBox>
+@@ -410,7 +411,11 @@ public:
+             qCWarning(LIBKLEO_LOG) << "new-style connect failed; connecting to QGpgME::QuickJob::result the old way";
+             connect(job, SIGNAL(result(const GpgME::Error &)), q, SLOT(handleKeyGenResult()));
+         }
++#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+         job->startCreate(addr);
++#else
++        job->startCreate(addr, nullptr);
++#endif
+         return;
+     }
+ 
+diff --git a/src/ui/openpgpcertificatecreationdialog.cpp b/src/ui/openpgpcertificatecreationdialog.cpp
+index 3c9888d..a522afd 100644
+--- a/src/ui/openpgpcertificatecreationdialog.cpp
++++ b/src/ui/openpgpcertificatecreationdialog.cpp
+@@ -321,6 +321,7 @@ private:
+                 parameters.setKeyCurve(QStringLiteral("ed448"));
+                 parameters.setSubkeyCurve(QStringLiteral("cv448"));
+             }
++#if GPGMEPP_SUPPORTS_KYBER
+         } else if (algoString == "ky768_bp256"_L1) {
+             keyType = GpgME::Subkey::AlgoECDSA;
+             subkeyType = GpgME::Subkey::AlgoKyber;
+@@ -333,6 +334,7 @@ private:
+             parameters.setKeyCurve(u"brainpoolP384r1"_s);
+             parameters.setSubkeyCurve(u"brainpoolP384r1"_s);
+             parameters.setSubkeyLength(1024);
++#endif
+         } else {
+             keyType = GpgME::Subkey::AlgoECDSA;
+             subkeyType = GpgME::Subkey::AlgoECDH;
+@@ -375,6 +377,7 @@ private:
+             index = ui.keyAlgoCB->findData(QStringLiteral("curve25519"));
+         } else if (parameters.keyCurve() == QLatin1StringView("ed448")) {
+             index = ui.keyAlgoCB->findData(QStringLiteral("curve448"));
++#if GPGMEPP_SUPPORTS_KYBER
+         } else if (parameters.subkeyType() == GpgME::Subkey::AlgoKyber) {
+             if (parameters.subkeyLength() == 768 && parameters.keyCurve() == "brainpoolP256r1"_L1) {
+                 index = ui.keyAlgoCB->findData("ky768_bp256"_L1);
+@@ -383,6 +386,7 @@ private:
+             } else {
+                 qCDebug(LIBKLEO_LOG) << __func__ << "Unsupported Kyber parameters" << parameters.subkeyLength() << parameters.keyCurve();
+             }
++#endif
+         } else {
+             index = ui.keyAlgoCB->findData(parameters.keyCurve());
+         }
+diff --git a/src/utils/compliance.cpp b/src/utils/compliance.cpp
+index ed07c6c..3ce1424 100644
+--- a/src/utils/compliance.cpp
++++ b/src/utils/compliance.cpp
+@@ -41,8 +41,10 @@ static const std::vector<std::string> &allCompliantAlgorithms()
+         "brainpoolP512r1",
+         "rsa3072",
+         "rsa4096",
++#if GPGMEPP_SUPPORTS_KYBER
+         "ky768_bp256",
+         "ky1024_bp384",
++#endif
+     };
+     return algos;
+ }
+diff --git a/src/utils/formatting.cpp b/src/utils/formatting.cpp
+index 6e66c6d..45c165f 100644
+--- a/src/utils/formatting.cpp
++++ b/src/utils/formatting.cpp
+@@ -1437,14 +1437,26 @@ QString Formatting::errorAsString(const GpgME::Error &error)
+ {
+ #ifdef Q_OS_WIN
+     // On Windows, we set GpgME resp. libgpg-error to return (translated) error messages as UTF-8
++#if GPGMEPP_ERROR_HAS_ASSTDSTRING
+     const std::string s = error.asStdString();
+     qCDebug(LIBKLEO_LOG) << __func__ << "gettext_use_utf8(-1) returns" << gettext_use_utf8(-1);
+     qCDebug(LIBKLEO_LOG) << __func__ << "error:" << s;
+     qCDebug(LIBKLEO_LOG) << __func__ << "error (percent-encoded):" << QByteArray::fromStdString(s).toPercentEncoding();
+     return QString::fromStdString(s);
+ #else
++    const char *s = error.asString();
++    qCDebug(LIBKLEO_LOG) << __func__ << "gettext_use_utf8(-1) returns" << gettext_use_utf8(-1);
++    qCDebug(LIBKLEO_LOG) << __func__ << "error:" << s;
++    qCDebug(LIBKLEO_LOG) << __func__ << "error (percent-encoded):" << QByteArray{s}.toPercentEncoding();
++    return QString::fromUtf8(s);
++#endif
++#else
++#if GPGMEPP_ERROR_HAS_ASSTDSTRING
+     const std::string s = error.asStdString();
+     return QString::fromLocal8Bit(QByteArrayView{s.data(), qsizetype(s.size())});
++#else
++    return QString::fromLocal8Bit(error.asString());
++#endif
+ #endif
+ }
+ 
+diff --git a/src/utils/gnupg.cpp b/src/utils/gnupg.cpp
+index 4108202..bd81536 100644
+--- a/src/utils/gnupg.cpp
++++ b/src/utils/gnupg.cpp
+@@ -593,6 +593,7 @@ static const std::vector<std::string> &availableAlgorithmsOpenPGP()
+             "rsa4096",
+             // "secp256k1", // Curve secp256k1 is explicitly ignored
+         };
++#if GPGMEPP_SUPPORTS_KYBER
+         if (Kleo::engineIsVersion(2, 5, 2)) {
+             algos.insert(algos.end(),
+                          {
+@@ -600,6 +601,7 @@ static const std::vector<std::string> &availableAlgorithmsOpenPGP()
+                              "ky1024_bp384",
+                          });
+         }
++#endif
+     }
+     return algos;
+ }

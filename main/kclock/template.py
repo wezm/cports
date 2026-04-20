@@ -1,6 +1,6 @@
 pkgname = "kclock"
-pkgver = "25.12.2"
-pkgrel = 3
+pkgver = "26.04.0"
+pkgrel = 0
 build_style = "cmake"
 hostmakedepends = [
     "cmake",
@@ -22,6 +22,7 @@ makedepends = [
     "kstatusnotifieritem-devel",
     "ksvg-devel",
     "libplasma-devel",
+    "plasma-wayland-protocols",
     "qt6-qtbase-private-devel",
     "qt6-qtmultimedia-devel",
     "qt6-qtsvg-devel",
@@ -32,5 +33,5 @@ pkgdesc = "KDE clock"
 license = "GPL-3.0-or-later AND LGPL-2.1-or-later"
 url = "https://apps.kde.org/kclock"
 source = f"$(KDE_SITE)/release-service/{pkgver}/src/kclock-{pkgver}.tar.xz"
-sha256 = "735da67672c7c86f2020b3dfc4f5cab90519e193dedd64e3ea9ff52efc79cc8e"
+sha256 = "6dabc156709dcfbf93cda41c81e5dd5bda44efc93ab5d9f527fc26fba471483c"
 hardening = ["vis"]

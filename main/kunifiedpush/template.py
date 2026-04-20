@@ -1,5 +1,5 @@
 pkgname = "kunifiedpush"
-pkgver = "25.12.2"
+pkgver = "26.04.0"
 pkgrel = 0
 build_style = "cmake"
 make_check_wrapper = ["dbus-run-session", "--"]
@@ -13,6 +13,7 @@ hostmakedepends = [
 makedepends = [
     "kcmutils-devel",
     "kcoreaddons-devel",
+    "kcrash-devel",
     "ki18n-devel",
     "kservice-devel",
     "qt6-qtbase-devel",
@@ -26,7 +27,7 @@ url = "https://api.kde.org/kunifiedpush/html"
 source = (
     f"$(KDE_SITE)/release-service/{pkgver}/src/kunifiedpush-{pkgver}.tar.xz"
 )
-sha256 = "e111dd53c7a77bfc32f358375b9649ed418d9c5acd9c44b95ec5a07c9c2078b9"
+sha256 = "0756dfc94de2bc065542e5c1e366dec2226615bfecc2993381a45051b1c24f03"
 
 
 def post_install(self):
