@@ -1,6 +1,6 @@
 pkgname = "oxygen"
-pkgver = "6.6.1"
-pkgrel = 1
+pkgver = "6.6.4"
+pkgrel = 0
 build_style = "cmake"
 configure_args = ["-DBUILD_QT5=OFF"]
 hostmakedepends = [
@@ -33,7 +33,7 @@ pkgdesc = "Oxygen visual style for the KDE Plasma Desktop"
 license = "GPL-2.0-or-later"  # FIXME
 url = "https://invent.kde.org/plasma/oxygen"
 source = f"$(KDE_SITE)/plasma/{pkgver}/oxygen-{pkgver}.tar.xz"
-sha256 = "5411df1dad9d3c0ba66d649c2ee744fbe62f76f33cf20859c8c6e232465f36f3"
+sha256 = "d42522d3c34138583f3ab6a3d8077fbc77cb87a413205fed35a9d5feef9009cd"
 hardening = ["vis"]
 
 

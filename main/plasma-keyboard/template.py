@@ -1,6 +1,6 @@
 pkgname = "plasma-keyboard"
-pkgver = "6.6.1"
-pkgrel = 1
+pkgver = "6.6.4"
+pkgrel = 0
 build_style = "cmake"
 hostmakedepends = [
     "cmake",
@@ -12,6 +12,7 @@ hostmakedepends = [
 makedepends = [
     "kcmutils-devel",
     "kcoreaddons-devel",
+    "kcrash-devel",
     "ki18n-devel",
     "qt6-qtbase-private-devel",
     "qt6-qtvirtualkeyboard-devel",
@@ -21,4 +22,4 @@ pkgdesc = "Plasma on-screen keyboard"
 license = "GPL-2.0-or-later"
 url = "https://invent.kde.org/plasma/plasma-keyboard"
 source = f"$(KDE_SITE)/plasma/{pkgver}/plasma-keyboard-{pkgver}.tar.xz"
-sha256 = "c2135c1a07fb6b9a94c52656067a09a0ba6cb745f6ac00514bf1394b19666d02"
+sha256 = "0c0ec31bf62c012855cb69d1374b9b5d1b9cc2638a1b3006036e34a829302e6d"
