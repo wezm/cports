@@ -4,7 +4,7 @@ with self.profile(self.profile().arch) as _pf:
 
 pkgname = "glibc"
 pkgver = "2.42"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--prefix=/usr",
@@ -45,6 +45,7 @@ makedepends = [
 # glibc dlopens libgcc_s in some cases
 # depends = ["so:libgcc_s.so.1!llvm-libgcc"] # creates a cycle
 depends = []
+triggers = ["/usr/share/i18n/locales"]
 provides = [
     # /usr/lib/gconv
     # ...not sure this is the right approach.
@@ -455,6 +456,11 @@ def post_install(self):
     # wcurl https://www.linuxfromscratch.org/patches/lfs/development/glibc-2.42-fhs-1.patch -o main/glibc/patches/fhs.patch
 
     self.uninstall("var/db/Makefile")
+
+    self.install_tmpfiles("^/tmpfiles.conf")
+
+    self.install_bin("^/locale-gen.sh", name="locale-gen")
+    self.install_file("^/libc-locales", "usr/share/glibc")
 
 
 @subpackage("glibc-locales")
