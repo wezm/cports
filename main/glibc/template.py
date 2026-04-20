@@ -4,7 +4,7 @@ with self.profile(self.profile().arch) as _pf:
 
 pkgname = "glibc"
 pkgver = "2.42"
-pkgrel = 1
+pkgrel = 2
 build_style = "gnu_configure"
 configure_args = [
     "--prefix=/usr",

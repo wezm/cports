@@ -33,6 +33,7 @@ LOCALES_CONF=/etc/default/libc-locales
 LOCALES=/usr/share/i18n/locales
 LOCALE_ALIAS=/usr/share/locale/locale.alias
 
+[ -f $LOCALES_CONF ] || exit 0
 [ -n "$POSIXLY_CORRECT" ] && unset POSIXLY_CORRECT
 [ -f $LOCALE_ARCHIVE ] && rm -f $LOCALE_ARCHIVE
 [ ! -d $LOCALE_ARCHIVEDIR ] && mkdir -p $LOCALE_ARCHIVEDIR
