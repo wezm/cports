@@ -1,0 +1,11 @@
+pkgname = "allsorts-tools"
+pkgver = "0.13.0"
+pkgrel = 0
+build_style = "cargo"
+hostmakedepends = ["cargo-auditable"]
+makedepends = ["rust-std"]
+pkgdesc = "Utility for inspecting fonts"
+license = "Apache-2.0"
+url = "https://github.com/yeslogic/allsorts-tools"
+source = f"{url}/archive/{pkgver}.tar.gz"
+sha256 = "d09eaca87e2da4951629332cd59b243dd5e5080ff69aa52455374391086ebf59"
