@@ -1,6 +1,6 @@
 pkgname = "messagelib"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_wrapper = ["wlheadless-run", "--"]
 hostmakedepends = [
@@ -15,7 +15,6 @@ makedepends = [
     "akonadi-devel",
     "akonadi-mime-devel",
     "akonadi-search-devel",
-    "gpgme-qt-devel",
     "grantleetheme-devel",
     "karchive-devel",
     "kcodecs-devel",
@@ -48,6 +47,7 @@ makedepends = [
     "libkleo-devel",
     "pimcommon-devel",
     "qca-devel",
+    "qgpgme-devel",
     "qt6-qtdeclarative-devel",
     "qt6-qtwebengine-devel",
     "sonnet-devel",

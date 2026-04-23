@@ -1,6 +1,6 @@
 pkgname = "neomutt"
 pkgver = "2026.01.05"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--gpgme",

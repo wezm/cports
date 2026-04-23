@@ -1,6 +1,6 @@
 pkgname = "mimetreeparser"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_args = ["-j1"]
 make_check_wrapper = ["wlheadless-run", "--"]
@@ -12,7 +12,7 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "gpgme-devel",
+    "gpgmepp-devel",
     "kcalendarcore-devel",
     "kcodecs-devel",
     "kcolorscheme-devel",

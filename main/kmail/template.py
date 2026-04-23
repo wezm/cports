@@ -1,6 +1,6 @@
 pkgname = "kmail"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_args = ["-E", "akonadi-sqlite-.*"]
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
@@ -16,7 +16,7 @@ makedepends = [
     "akonadi-devel",
     "akonadi-mime-devel",
     "akonadi-search-devel",
-    "gpgme-devel",
+    "gpgmepp-devel",
     "kbookmarks-devel",
     "kcalendarcore-devel",
     "kcalutils-devel",
