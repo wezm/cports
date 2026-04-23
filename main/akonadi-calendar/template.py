@@ -1,6 +1,6 @@
 pkgname = "akonadi-calendar"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # FIXME: ?
 make_check_args = ["-E", "kcalcoreserializertest"]
@@ -31,6 +31,7 @@ makedepends = [
     "kxmlgui-devel",
     "libkleo-devel",
     "messagelib-devel",
+    "qgpgme-devel",
     "qt6-qtdeclarative-devel",
 ]
 checkdepends = ["xwayland-run"]

@@ -1,6 +1,6 @@
 pkgname = "libkleo"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # fails on aarch64 at least
 # newkeyapprovaldialogtest has wayland die
@@ -18,7 +18,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "boost-devel",
-    "gpgme-qt-devel",
     "kcodecs-devel",
     "kcolorscheme-devel",
     "kcompletion-devel",
@@ -29,6 +28,7 @@ makedepends = [
     "ktextaddons-devel",
     "kwidgetsaddons-devel",
     "libgpg-error-devel",
+    "qgpgme-devel",
     "qt6-qtdeclarative-devel",
 ]
 checkdepends = ["xwayland-run"]
@@ -41,5 +41,5 @@ sha256 = "c5816b9c46dc46e3f11a805c7a9508db2c33ad0fbf98d7e8fe681eb9bd8f84f6"
 
 @subpackage("libkleo-devel")
 def _(self):
-    self.depends += ["gpgme-qt-devel"]
+    self.depends += ["qgpgme-devel"]
     return self.default_devel()

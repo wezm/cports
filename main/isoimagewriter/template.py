@@ -1,6 +1,6 @@
 pkgname = "isoimagewriter"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 hostmakedepends = [
     "cmake",
@@ -10,13 +10,13 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "gpgme-qt-devel",
     "karchive-devel",
     "kcoreaddons-devel",
     "kcrash-devel",
     "ki18n-devel",
     "kiconthemes-devel",
     "kwidgetsaddons-devel",
+    "qgpgme-devel",
     "qt6-qtbase-devel",
     "solid-devel",
 ]

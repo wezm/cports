@@ -1,7 +1,7 @@
 pkgname = "poppler"
 pkgver = "26.02.0"
 _test_commit = "9d5011815a14c157ba25bb160187842fb81579a5"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 configure_args = [
     "-DENABLE_UNSTABLE_API_ABI_HEADERS=ON",
@@ -26,7 +26,7 @@ makedepends = [
     "cairo-devel",
     "curl-devel",
     "glib-devel",
-    "gpgme-devel",
+    "gpgmepp-devel",
     "lcms2-devel",
     "libjpeg-turbo-devel",
     "libpng-devel",

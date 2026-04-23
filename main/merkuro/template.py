@@ -1,6 +1,6 @@
 pkgname = "merkuro"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_args = [
     "-E",
@@ -19,7 +19,7 @@ makedepends = [
     "akonadi-contacts-devel",
     "akonadi-devel",
     "akonadi-search-devel",
-    "gpgme-devel",
+    "gpgmepp-devel",
     "kcalendarcore-devel",
     "kcalutils-devel",
     "kconfigwidgets-devel",

@@ -1,6 +1,6 @@
 pkgname = "mailcommon"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # sqlite all fail
 # encryptions fail for some reason
@@ -18,7 +18,6 @@ makedepends = [
     "akonadi-contacts-devel",
     "akonadi-devel",
     "akonadi-mime-devel",
-    "gpgme-qt-devel",
     "karchive-devel",
     "kcodecs-devel",
     "kcompletion-devel",
@@ -41,6 +40,7 @@ makedepends = [
     "messagelib-devel",
     "phonon-devel",
     "pimcommon-devel",
+    "qgpgme-devel",
     "qt6-qtdeclarative-devel",
     "qt6-qtmultimedia-devel",
     "qt6-qttools-devel",

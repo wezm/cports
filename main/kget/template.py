@@ -1,6 +1,6 @@
 pkgname = "kget"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_wrapper = ["wlheadless-run", "--"]
 hostmakedepends = [
@@ -12,7 +12,6 @@ hostmakedepends = [
 ]
 makedepends = [
     "boost-devel",
-    "gpgme-qt-devel",
     "kcmutils-devel",
     "kcompletion-devel",
     "kconfig-devel",
@@ -34,6 +33,7 @@ makedepends = [
     "kxmlgui-devel",
     "libktorrent-devel",
     "libmms-devel",
+    "qgpgme-devel",
     "qt6-qtbase-devel",
     "sqlite-devel",
 ]

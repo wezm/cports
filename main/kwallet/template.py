@@ -1,6 +1,6 @@
 pkgname = "kwallet"
 pkgver = "6.25.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 hostmakedepends = [
     "cmake",
@@ -10,7 +10,7 @@ hostmakedepends = [
     "pkgconf",
 ]
 makedepends = [
-    "gpgme-devel",
+    "gpgmepp-devel",
     "kcolorscheme-devel",
     "kconfig-devel",
     "kcoreaddons-devel",

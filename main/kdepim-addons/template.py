@@ -1,6 +1,6 @@
 pkgname = "kdepim-addons"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 make_check_wrapper = [
     "dbus-run-session",
@@ -24,7 +24,7 @@ makedepends = [
     "akonadi-import-wizard-devel",
     "discount-devel",
     "eventviews-devel",
-    "gpgme-devel",
+    "gpgmepp-devel",
     "grantleetheme-devel",
     "incidenceeditor-devel",
     "kaddressbook-devel",

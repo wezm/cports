@@ -1,6 +1,6 @@
 pkgname = "kgpg"
 pkgver = "26.04.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # flaky
 make_check_args = [
