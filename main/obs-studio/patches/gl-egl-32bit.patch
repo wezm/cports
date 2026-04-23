@@ -11,7 +11,7 @@
  		*modifiers = NULL;
  		return false;
  	}
-+	*n_modifiers = size_t(nmod);
++	*n_modifiers = (size_t)nmod;
  	return true;
  }
  
