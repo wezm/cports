@@ -1,6 +1,6 @@
 pkgname = "qt6-qtdeclarative"
 pkgver = "6.11.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 configure_args = ["-DQT_BUILD_TESTS=ON"]
 hostmakedepends = [
@@ -115,6 +115,8 @@ def _(self):
     return self.default_devel(
         extra=[
             # named based on BUILD_TYPE
+            "usr/bin/qmleasing6",
+            "usr/bin/qmlpreview6",
             "usr/lib/objects-*",
             "usr/lib/qt6/metatypes",
             "usr/lib/qt6/mkspecs",
@@ -125,6 +127,7 @@ def _(self):
             "usr/lib/qt6/libexec/qmlcachegen",
             "usr/lib/qt6/libexec/qmlimportscanner",
             "usr/lib/qt6/libexec/qmltyperegistrar",
+            "usr/lib/qt6/bin/qmleasing",
             "usr/lib/qt6/bin/qmlformat",
             "usr/lib/qt6/bin/qmllint",
             "usr/lib/qt6/bin/qmlpreview",
