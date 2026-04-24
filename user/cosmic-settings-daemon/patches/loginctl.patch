@@ -1,0 +1,11 @@
+--- a/data/system_actions.ron	2026-04-28 13:24:45.708156033 +1000
++++ b/data/system_actions.ron	2026-04-28 14:00:08.295566803 +1000
+@@ -36,7 +36,7 @@
+     /// Takes a screenshot
+     Screenshot: "cosmic-screenshot",
+     /// Suspend the system
+-    Suspend: "systemctl suspend",
++    Suspend: "loginctl suspend",
+     /// Toggles the screen reader
+     ScreenReader: "busctl --user call com.system76.CosmicSettingsDaemon /com/system76/CosmicSettingsDaemon com.system76.CosmicSettingsDaemon ScreenReader",
+     /// Opens the system default terminal
