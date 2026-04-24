@@ -1,0 +1,11 @@
+--- a/Justfile	2026-04-24 21:47:53.844849164 +1000
++++ b/Justfile	2026-04-24 21:48:27.509884184 +1000
+@@ -36,7 +36,7 @@
+ 
+     # session start script
+     install -Dm0755 data/start-cosmic {{ bindir }}/start-cosmic
+-    sed -i "s|DCONF_PROFILE=cosmic|DCONF_PROFILE={{ cosmic_dconf_profile }}|" {{ bindir }}/start-cosmic
++    sed -i '' "s|DCONF_PROFILE=cosmic|DCONF_PROFILE={{ cosmic_dconf_profile }}|" {{ bindir }}/start-cosmic
+ 
+     # systemd target
+     install -Dm0644 data/cosmic-session.target {{ systemddir }}/cosmic-session.target
