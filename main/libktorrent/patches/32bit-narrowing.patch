@@ -1,5 +1,5 @@
 diff --git a/src/net/tests/packetsockettest.cpp b/src/net/tests/packetsockettest.cpp
-index d261f49..657add3 100644
+index d261f49..841c878 100644
 --- a/src/net/tests/packetsockettest.cpp
 +++ b/src/net/tests/packetsockettest.cpp
 @@ -78,7 +78,7 @@ struct PiecePacket {
@@ -7,7 +7,7 @@ index d261f49..657add3 100644
  
          const auto piece_data = buffer.sliced(13, m_length);
 -        if (piece_data != QByteArrayView{m_chunk->getPiece(m_offset, m_length, true)->data(), m_length}) {
-+        if (piece_data != QByteArrayView{m_chunk->getPiece(m_offset, qsizetype(m_length), true)->data(), m_length}) {
++        if (piece_data != QByteArrayView{m_chunk->getPiece(qsizetype(m_offset), qsizetype(m_length), true)->data(), m_length}) {
              bt::Out() << "Piece::VerifyBuffer incorrect piece data" << bt::endl;
              return false;
          }
