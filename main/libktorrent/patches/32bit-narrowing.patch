@@ -1,0 +1,11 @@
+--- a/src/peer/utmetadata.cpp
++++ b/src/peer/utmetadata.cpp
+@@ -34,7 +34,7 @@ void UTMetaData::handlePacket(const bt::Uint8 *packet, Uint32 size)
+         return;
+     }
+ 
+-    const auto tmp = QByteArrayView{packet, size}.sliced(2);
++    const auto tmp = QByteArrayView{packet, qsizetype(size)}.sliced(2);
+     try {
+         BDecoder dec(tmp.data(), tmp.size(), false);
+         const std::unique_ptr<BDictNode> dict = dec.decodeDict();
