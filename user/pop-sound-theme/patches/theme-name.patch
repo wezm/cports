@@ -1,0 +1,11 @@
+--- a/sounds/src/index.theme.in	2026-04-24 19:46:43.578972274 +1000
++++ b/sounds/src/index.theme.in	2026-04-24 19:47:32.794508295 +1000
+@@ -1,6 +1,6 @@
+ [Sound Theme]
+-Name=@ThemeName@
+-Comment=The @ThemeName@ Sound Theme
++Name=Pop
++Comment=The Pop Sound Theme
+ Directories=stereo/alert stereo/action stereo/notification
+ 
+ [stereo/alert]
