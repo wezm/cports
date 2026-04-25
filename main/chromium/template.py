@@ -178,9 +178,6 @@ match self.profile().arch:
         hardening += ["!int"]
 
 
-broken = "rust 1.95 shenanigans"
-
-
 def post_patch(self):
     self.rm("third_party/node/linux/node-linux-x64/bin/node", force=True)
     self.mkdir("third_party/node/linux/node-linux-x64/bin", parents=True)
