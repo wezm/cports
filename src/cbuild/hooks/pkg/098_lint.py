@@ -173,7 +173,7 @@ def invoke(pkg):
     for f in pkg.destdir.glob("*"):
         dirempty = False
         rf = f.relative_to(pkg.destdir)
-        if not allowpaths[f.name]:
+        if not allowpaths.get(f.name, False):
             pkg.log_red(f"forbidden directory '{rf}'")
             lintfail = True
             continue
