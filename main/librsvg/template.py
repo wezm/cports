@@ -1,6 +1,6 @@
 pkgname = "librsvg"
 pkgver = "2.62.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 configure_args = [
     f"-Dtriplet={self.profile().triplet}",
@@ -8,7 +8,7 @@ configure_args = [
     "-Ddocs=disabled",
     "-Dintrospection=enabled",
     "-Dpixbuf=enabled",
-    "-Dpixbuf-loader=enabled",
+    "-Dpixbuf-loader=disabled",
     "-Dvala=enabled",
     # disabled below
     "-Dtests=false",
@@ -16,7 +16,6 @@ configure_args = [
 hostmakedepends = [
     "cargo-auditable",
     "cargo-c",
-    "gdk-pixbuf-devel",
     "glib-devel",
     "gobject-introspection",
     "meson",
@@ -36,7 +35,6 @@ makedepends = [
     "rust-std",
     "vala-devel",
 ]
-provides = [self.with_pkgver("gdk-pixbuf-loader-svg")]
 pkgdesc = "SVG library for GNOME"
 license = "GPL-2.0-or-later AND LGPL-2.0-or-later"
 url = "https://wiki.gnome.org/Projects/LibRsvg"
