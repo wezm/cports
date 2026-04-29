@@ -1,11 +1,15 @@
-# keep in sync with glycin-gtk4
-pkgname = "glycin"
+# keep in sync with glycin
+pkgname = "glycin-gtk4"
 pkgver = "2.1.1"
 pkgrel = 0
 build_style = "meson"
 prepare_after_patch = True
 configure_args = [
-    "-Dlibglycin-gtk4=false",
+    "-Dglycin-loaders=false",
+    "-Dglycin-thumbnailer=false",
+    "-Dlibglycin=false",
+    "-Dlibglycin-gtk4=true",
+    "-Dtests=false",
     "--libexecdir=/usr/lib",  # XXX libexecdir
 ]
 hostmakedepends = [
@@ -17,25 +21,19 @@ hostmakedepends = [
     "vala",
 ]
 makedepends = [
-    "cairo-devel",
-    "libheif-devel",
-    "libjxl-devel",
-    "librsvg-devel",
+    "glycin-devel",
+    "gtk4-devel",
     "libseccomp-devel",
     "pango-devel",
     "rust-std",
 ]
-depends = [self.with_pkgver("glycin-loaders")]
-checkdepends = [*depends]
-# transitional
-provides = [self.with_pkgver("libglycin")]
 pkgdesc = "Sandboxed and extendable image decoding"
+subdesc = "GTK4 bindings"
 license = "MPL-2.0 OR LGPL-2.1-or-later"
 url = "https://gitlab.gnome.org/GNOME/glycin"
 source = f"$(GNOME_SITE)/glycin/{pkgver[:-2]}/glycin-{pkgver}.tar.xz"
 sha256 = "8e8e92e312b14d2c5f3a047bdc5305adcb9931ef0150cf74bf526a3741e6fb32"
 # gobject-introspection
-# check: for some divine reason, it always passes locally and never on the builders (??)
 options = ["!cross", "!check"]
 
 
@@ -54,19 +52,6 @@ def init_build(self):
     del self.make_env["CARGO_BUILD_TARGET"]
 
 
-@subpackage("glycin-devel")
+@subpackage("glycin-gtk4-devel")
 def _(self):
-    # transitional
-    self.provides = [self.with_pkgver("libglycin-devel")]
-
     return self.default_devel()
-
-
-@subpackage("glycin-loaders")
-def _(self):
-    self.subdesc = "loaders"
-    self.depends = ["bubblewrap"]
-    return [
-        "usr/lib/glycin-loaders",
-        "usr/share/glycin-loaders",
-    ]
