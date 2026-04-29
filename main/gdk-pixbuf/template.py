@@ -1,16 +1,16 @@
 pkgname = "gdk-pixbuf"
 pkgver = "2.44.6"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 configure_args = [
     "-Dintrospection=enabled",
     "-Dinstalled_tests=false",
-    # ugly depcycle, figure out later
-    "-Dglycin=disabled",
+    "-Dglycin=enabled",
 ]
 hostmakedepends = [
     "gettext",
     "glib-devel",
+    "glycin-loaders-none",
     "gobject-introspection",
     "meson",
     "pkgconf",
@@ -18,10 +18,11 @@ hostmakedepends = [
 ]
 makedepends = [
     "glib-devel",
-    "libpng-devel",
-    "libtiff-devel",
+    "glycin-devel",
+    "glycin-loaders-none",
     "shared-mime-info",
 ]
+checkdepends = []
 depends = ["shared-mime-info"]
 triggers = ["/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders"]
 pkgdesc = "Image loading library for GTK"
