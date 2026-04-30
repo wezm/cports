@@ -1,9 +1,3 @@
-commit b78ba7a93e5cb28d71cfbcd24b48665217c15725
-Author: q66 <q66@chimera-linux.org>
-Date:   Wed Apr 29 16:08:06 2026 +0200
-
-    bla
-
 diff --git a/glycin-loaders/meson.build b/glycin-loaders/meson.build
 index 805a646..efe891c 100644
 --- a/glycin-loaders/meson.build

@@ -1,6 +1,6 @@
 pkgname = "base-removed-dbg"
 pkgver = "1.0"
-pkgrel = 24
+pkgrel = 25
 build_style = "meta"
 provides = []
 pkgdesc = "Removed debug packages"
@@ -33,8 +33,6 @@ for _pkg in [
     "libflac",
     "libgdm",
     "libgirepository",
-    "libglycin",
-    "libglycin-gtk4",
     "libgs",
     "libgssapi",
     "libhcrypto",
