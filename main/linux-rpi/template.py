@@ -32,7 +32,9 @@ options = [
     "foreignelf",  # vdso32
 ]
 
-if self.profile().cross:
+if self.current_target == "custom:generate-configs":
+    hostmakedepends += ["base-cross", "ncurses-devel"]
+elif self.profile().cross:
     broken = "linux-devel does not come out right"
 
 

@@ -31,8 +31,7 @@ broken = 'ERROR: modpost: "wcslen" [fs/smb/client/cifs.ko] undefined!'
 
 if self.current_target == "custom:generate-configs":
     hostmakedepends += ["base-cross", "ncurses-devel"]
-
-if self.profile().cross:
+elif self.profile().cross:
     broken = "linux-devel does not come out right"
 
 
