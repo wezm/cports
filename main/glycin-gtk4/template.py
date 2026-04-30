@@ -1,7 +1,7 @@
 # keep in sync with glycin
 pkgname = "glycin-gtk4"
 pkgver = "2.1.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 prepare_after_patch = True
 configure_args = [
@@ -22,11 +22,13 @@ hostmakedepends = [
 ]
 makedepends = [
     "glycin-devel",
+    "glycin-loaders-none",
     "gtk4-devel",
     "libseccomp-devel",
     "pango-devel",
     "rust-std",
 ]
+renames = ["libglycin-gtk4"]
 pkgdesc = "Sandboxed and extendable image decoding"
 subdesc = "GTK4 bindings"
 license = "MPL-2.0 OR LGPL-2.1-or-later"
