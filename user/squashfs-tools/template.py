@@ -26,7 +26,7 @@ makedepends = [
 pkgdesc = "Tools to create and extract Squashfs filesystems"
 license = "GPL-2.0-only"
 url = "https://github.com/plougher/squashfs-tools"
-source = f"https://github.com/plougher/squashfs-tools/archive/refs/tags/{pkgver}.tar.gz"
+source = f"{url}/releases/download/{pkgver}/squashfs-tools-{pkgver}.tar.gz"
 sha256 = "94201754b36121a9f022a190c75f718441df15402df32c2b520ca331a107511c"
 # no tests
 options = ["!check"]
