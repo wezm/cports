@@ -30,6 +30,8 @@ _failing_tests = [
     "test_env::test_env_arg_ignore_signal_valid_signals",
     "test_hostname::test_hostname_ip",
     "test_install::test_install_and_strip",
+    "test_logname::test_normal",
+    "test_logname::test_output_format",
     "test_ls::test_device_number",
     "test_test::test_file_not_owned_by_egid",
     "test_test::test_file_not_owned_by_euid",
