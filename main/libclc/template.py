@@ -1,5 +1,5 @@
 pkgname = "libclc"
-pkgver = "22.1.3"
+pkgver = "22.1.4"
 pkgrel = 0
 build_style = "cmake"
 configure_args = ["-DCMAKE_BUILD_TYPE=Release"]
@@ -19,7 +19,7 @@ pkgdesc = "Open implementation of the OpenCL C programming language"
 license = "Apache-2.0 WITH LLVM-exception AND NCSA"
 url = "https://libclc.llvm.org"
 source = f"https://github.com/llvm/llvm-project/releases/download/llvmorg-{pkgver}/llvm-project-{pkgver}.src.tar.xz"
-sha256 = "2488c33a959eafba1c44f253e5bbe7ac958eb53fa626298a3a5f4b87373767cd"
+sha256 = "3e68c90dda630c27d41d201e37b8bbf5222e39b273dec5ca880709c69e0a07d4"
 hardening = ["vis", "!cfi"]
 # external-calls-clspv broken
 options = ["!check"]
