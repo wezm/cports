@@ -171,7 +171,7 @@ url = "https://www.libreoffice.org"
 # FIXME: lto breaks LO with clang 17
 options = ["!lto", "!cross", "!check", "linkundefver", "empty"]
 
-_surl = f"https://download.documentfoundation.org/libreoffice/src/{pkgver[:-2]}"
+_surl = f"https://mirror.aarnet.edu.au/pub/tdf/libreoffice/src/{pkgver[:-2]}"
 _aurl = "!https://dev-www.libreoffice.org/src"
 _eurl = "!https://dev-www.libreoffice.org/extern"
 
