@@ -1,6 +1,6 @@
 pkgname = "caddy"
 pkgver = "2.11.2"
-pkgrel = 2
+pkgrel = 3
 build_style = "go"
 prepare_after_patch = True
 make_build_args = [
