@@ -9,6 +9,7 @@ make_build_args = [
 ]
 make_check_args = [
     "--",
+    "--test-threads=1",
     "--skip=shell::environment::env::path_is_a_list_in_repl",
     "--skip=shell::environment::env::env_shlvl_in_exec_repl",
     "--skip=shell::environment::env::env_shlvl_in_repl",
