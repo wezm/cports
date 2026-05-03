@@ -1,7 +1,7 @@
 pkgname = "sqlite"
 pkgver = "3.53.0"
 _amalg = "3530000"
-pkgrel = 0
+pkgrel = 1
 build_style = "configure"
 configure_args = [
     "--prefix=/usr",
@@ -13,6 +13,7 @@ configure_args = [
     "--editline",
     "--soname=legacy",
 ]
+make_build_args = ["libsqlite3.so", "libsqlite3.a"]
 hostmakedepends = ["pkgconf"]
 makedepends = ["libedit-readline-devel", "zlib-ng-compat-devel"]
 pkgdesc = "SQL Database Engine in a C library"
@@ -51,6 +52,12 @@ else:
     _cflags += ["-DSHA3_BYTEORDER=1234", "-DSQLITE_BYTEORDER=1234"]
 
 tool_flags = {"CFLAGS": _cflags}
+
+
+def post_build(self):
+    # compile with extra flag to get .recover command
+    # this is security-sensitive so it should not be in the librar
+    self.make.build(["sqlite3", "CFLAGS=-DSQLITE_ENABLE_DBPAGE_VTAB"])
 
 
 @subpackage("sqlite-devel")
