@@ -1,6 +1,6 @@
 pkgname = "fossil"
 pkgver = "2.26"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--json",
@@ -22,6 +22,7 @@ source = f"https://fossil-scm.org/home/tarball/version-{pkgver}/fossil-src-{pkgv
 sha256 = "3c8f21844d603260fff5232dcd44fc1418cb1bb61b9983f61d95cf858e88e914"
 # tests are unmaintained: https://fossil-scm.org/forum/forumpost/77cd773882607d94
 options = ["!cross", "!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):
