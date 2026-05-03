@@ -1,0 +1,21 @@
+commit b4520b27d74f3a3cc75be132c9fad6e5bfadc24a
+Author: q66 <q66@chimera-linux.org>
+Date:   Sun May 3 19:25:32 2026 +0200
+
+    only use opt impl on x86_64 and aarch64
+    
+    Because it is only implemented for those
+
+diff --git a/src/bridges/bridge_argon2id_reference.c b/src/bridges/bridge_argon2id_reference.c
+index 88d9df3..0e0bcfc 100644
+--- a/src/bridges/bridge_argon2id_reference.c
++++ b/src/bridges/bridge_argon2id_reference.c
+@@ -18,7 +18,7 @@
+ #include "core.c"
+ #include "blake2/blake2b.c"
+ 
+-#if defined(__riscv)
++#if !defined(__aarch64__) && !defined(__x86_64__)
+ #include "ref.c"
+ #else
+ #include "opt.c"
