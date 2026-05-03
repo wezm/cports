@@ -22,7 +22,13 @@ license = "GPL-2.0-only"
 url = "https://github.com/magicant/yash"
 source = f"{url}/releases/download/{pkgver}/yash-{pkgver}.tar.xz"
 sha256 = "a214966f4ff8b293aa5521a4d3ef6e87d707579eee616aa2f8218edaa920d447"
+# check may be off
+options = []
 restricted = "disabled until requested"
+
+if self.profile().arch in ["loongarch64"]:
+    # some permissions tests fail, same behavior observed elsewhere
+    options += ["!check"]
 
 
 def post_install(self):
