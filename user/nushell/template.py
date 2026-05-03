@@ -39,6 +39,8 @@ restricted = "disabled until requested"
 if self.profile().wordsize == 32:
     # TODO: probably fixable
     broken = "needs atomicu64"
+elif self.profile().arch in ["loongarch64"]:
+    broken = "unresolved import self::consts when building nix"
 
 
 def install(self):
