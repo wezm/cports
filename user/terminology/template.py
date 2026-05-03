@@ -1,6 +1,6 @@
 pkgname = "terminology"
 pkgver = "1.14.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 hostmakedepends = ["meson", "pkgconf", "gettext"]
 makedepends = ["efl-devel"]
@@ -11,6 +11,7 @@ url = "https://enlightenment.org"
 source = f"http://download.enlightenment.org/rel/apps/terminology/terminology-{pkgver}.tar.xz"
 sha256 = "f354057051b05cffb699e33836a1135db1d4ed8bf954f9b57dc0e93bc307514d"
 hardening = ["vis", "!cfi"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

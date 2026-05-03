@@ -1,6 +1,6 @@
 pkgname = "efl"
 pkgver = "1.28.1"
-pkgrel = 1
+pkgrel = 2
 build_style = "meson"
 configure_args = [
     "-Dbuild-tests=false",  # enable if enabling tests
@@ -107,6 +107,7 @@ tool_flags = {
 hardening = ["!int"]
 # some suites are in a bad shape
 options = ["!check"]
+restricted = "disabled until requested"
 
 match self.profile().arch:
     case "ppc64le" | "aarch64":  # requires SSE3 on x86, so not there
