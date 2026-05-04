@@ -21,6 +21,7 @@ source = f"https://www.mercurial-scm.org/release/mercurial-{pkgver}.tar.gz"
 sha256 = "47cf66ba89c175536faf844c9b4cd962eb432afb516c073e51f436bf3f0bc148"
 # a lot of them fail just due to different positions of messages in a diff
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def check(self):
