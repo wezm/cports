@@ -24,6 +24,7 @@ license = "BSD-3-Clause"
 url = "https://ugrep.com"
 source = f"https://github.com/Genivia/ugrep/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "08ed29981e4e9ed07077139519a17273658d6097f90642a14d9dfdf07fb74ee9"
+restricted = "disabled until requested"
 
 
 def post_install(self):
