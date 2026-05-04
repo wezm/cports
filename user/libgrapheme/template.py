@@ -12,6 +12,7 @@ source = f"https://dl.suckless.org/libgrapheme/libgrapheme-{pkgver}.tar.gz"
 sha256 = "a68bbddde76bd55ba5d64116ce5e42a13df045c81c0852de9ab60896aa143125"
 # link errors on ppc*
 options = ["!lto"]
+restricted = "disabled until requested"
 
 
 def post_install(self):
