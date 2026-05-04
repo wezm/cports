@@ -18,3 +18,4 @@ source = (
     f"https://github.com/z-erica/sc2-uqm/archive/refs/tags/v{pkgver}.tar.gz"
 )
 sha256 = "bf65c4346ed316800e45f67805a14cf22bf96bb7585a5e42ad4999176b8301ed"
+restricted = "disabled until requested"
