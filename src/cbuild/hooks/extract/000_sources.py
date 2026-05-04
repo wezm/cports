@@ -29,6 +29,7 @@ suffixes = {
     "*.sh": "txt",
     "*.7z": "7z",
     "*.crate": "crate",
+    "*.rar": "rar",
 }
 
 
@@ -242,7 +243,7 @@ def invoke(pkg):
                     exf = extract_tar
                 case "gz" | "bz2" | "xz":
                     exf = extract_notar
-                case "zip" | "7z" | "rpm":
+                case "zip" | "7z" | "rar" | "rpm":
                     exf = extract_alsotar
                 case "deb":
                     exf = extract_deb
