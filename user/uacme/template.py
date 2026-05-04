@@ -20,3 +20,4 @@ url = "https://github.com/ndilieto/uacme"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "921d0ad09edbb96d02adbdac5cafc1f6d7e5f929d833c375fd2028ada1a95d39"
 hardening = ["vis", "cfi"]
+restricted = "disabled until requested"
