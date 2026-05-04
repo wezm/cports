@@ -1,0 +1,12 @@
+pkgname = "nss-mdns"
+pkgver = "0.15.1"
+pkgrel = 0
+build_style = "gnu_configure"
+configure_gen = []
+depends = ["avahi"]
+pkgdesc = "Plugin providing host name resolution via mDNS for glibc"
+license = "LGPL-2.0-or-later"
+url = "http://0pointer.de/lennart/projects/nss-mdns"
+source = f"https://github.com/lathiat/nss-mdns/releases/download/v{pkgver}/nss-mdns-{pkgver}.tar.gz"
+sha256 = "ddf71453d7a7cdc5921fe53ef387b24fd0c3c49f4dcf94a2a437498596761a21"
+options = ["linkundefver"]
