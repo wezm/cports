@@ -9,6 +9,7 @@ source = f"https://dl.xonotic.org/xonotic-{pkgver}.zip"
 sha256 = "50850f8d800e7499722f6ea61e478e96464a375494b5a24da93aa0598cbe964d"
 # no tests
 options = ["!check", "!cross"]
+restricted = "disabled until requested"
 
 
 def install(self):
