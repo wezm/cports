@@ -17,3 +17,4 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "cd920994700e700c0354f56b73a2591f652a44fa2ff28552d89c975bd820c647"
 # tests not runnable >=3.13
 options = ["!check"]
+restricted = "disabled until requested"

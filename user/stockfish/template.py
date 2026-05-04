@@ -23,6 +23,7 @@ sha256 = [
 tool_flags = {"LDFLAGS": ["-Wl,-z,stack-size=2097152"]}
 # no check target
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_extract(self):
