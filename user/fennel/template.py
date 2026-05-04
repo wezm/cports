@@ -1,6 +1,6 @@
 pkgname = "fennel"
 pkgver = "1.6.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "makefile"
 make_check_target = "test"
 hostmakedepends = ["lua5.4"]
