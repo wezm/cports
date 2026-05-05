@@ -1,5 +1,5 @@
 pkgname = "cosmic-notifications"
-pkgver = "1.0.8"
+pkgver = "1.0.11"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -13,7 +13,7 @@ pkgdesc = "COSMIC notification daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-notifications"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "6c0b7c3d8468be797952f0c1963b8a638336b61945bc9e4bc957c6b479afc3ff"
+sha256 = "ff43e58e79ea505bcf56bd301d92dc5539d65047b1a8f855a1fbe48093187da4"
 # no tests
 options = ["!check"]
 

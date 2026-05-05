@@ -1,5 +1,5 @@
 pkgname = "cosmic-icon-theme"
-pkgver = "1.0.8"
+pkgver = "1.0.11"
 pkgrel = 0
 hostmakedepends = ["just"]
 depends = ["pop-icon-theme"]
@@ -7,7 +7,7 @@ pkgdesc = "COSMIC icon theme"
 license = "CC-BY-SA-4.0"
 url = "https://github.com/pop-os/cosmic-icons"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "4fc8d208316532766de8c4481b88e8a28fb42cdcb184ef4c92393dad1c98367c"
+sha256 = "1979dc4124edd79c62ed6d3c613b3bef28efe8404690635a555b1478d1dea1f1"
 
 
 def install(self):
