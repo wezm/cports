@@ -1,5 +1,5 @@
 pkgname = "gleam"
-pkgver = "1.15.2"
+pkgver = "1.16.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
@@ -11,7 +11,7 @@ url = "https://gleam.run"
 source = (
     f"https://github.com/gleam-lang/gleam/archive/refs/tags/v{pkgver}.tar.gz"
 )
-sha256 = "6fe365a52660d854a73d56e0752fc9ff47fdaa19b0ddc9edbcaa1fb935685eca"
+sha256 = "dd676c5faff4963d7a26683b164788a09f1261326bcb1c7fc20e001ed3843c30"
 
 
 def install(self):
