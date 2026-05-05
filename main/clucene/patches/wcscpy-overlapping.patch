@@ -1,0 +1,106 @@
+clucene calls wcscpy and wcsncpy in may places with overlapping pointers
+invoking UB. E.g. Misc::wordTrim. This causes corrupted output in the
+query parser escaping test.
+
+Source of replacement functions is musl:
+
+Copyright © 2005-2020 Rich Felker, et al.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+diff --git a/src/shared/CLucene/config/repl_tchar.h b/src/shared/CLucene/config/repl_tchar.h
+index c65b7cd..657b40f 100644
+--- a/src/shared/CLucene/config/repl_tchar.h
++++ b/src/shared/CLucene/config/repl_tchar.h
+@@ -9,6 +9,7 @@
+ 
+ #ifndef _CL_HAVE_TCHAR_H
+     #if defined(_UCS2)
++        #include "CLucene/util/Misc.h"
+ 
+         //note: descriptions with * in front have replacement functions
+ 
+@@ -32,8 +33,10 @@
+ 
+         //these are the string handling functions
+         //we may need to create wide-character/multi-byte replacements for these
+-        #define _tcscpy wcscpy //copy a string to another string
+-        #define _tcsncpy wcsncpy //copy a specified amount of one string to another string.
++        // #define _tcscpy wcscpy //copy a string to another string
++        #define _tcscpy(target,src) CL_NS(util)::Misc::wcscpyOverlap(target,src)
++        // #define _tcsncpy wcsncpy //copy a specified amount of one string to another string.
++        #define _tcsncpy(target,src,n) CL_NS(util)::Misc::wcsncpyOverlap(target,src,n)
+         #define _tcscat wcscat //copy a string onto the end of the other string
+     		#define _tcsncat wcsncat
+ #if defined(_LIBCPP_VERSION) && defined(__APPLE__)
+@@ -99,7 +102,7 @@
+         //converstion methods
+         #define _tcstod strtod
+         #define _tcstoi64 strtoll
+-        #define _itot _i64tot 
++        #define _itot _i64tot
+         #define _i64tot lltoa
+ 
+     #endif
+diff --git a/src/shared/CLucene/util/Misc.cpp b/src/shared/CLucene/util/Misc.cpp
+index ec9eabd..ea29bca 100644
+--- a/src/shared/CLucene/util/Misc.cpp
++++ b/src/shared/CLucene/util/Misc.cpp
+@@ -136,6 +136,19 @@ void Misc::_cpycharToWide(const char* s, wchar_t* d, size_t len){
+     for ( uint32_t i=0;i<len&&i<sLen+1;i++ )
+       d[i] = s[i];
+ }
++wchar_t *Misc::wcscpyOverlap(wchar_t* d, const wchar_t* s){
++    wchar_t *a = d;
++    while ((*d++ = *s++));
++    return a;
++}
++
++wchar_t *Misc::wcsncpyOverlap(wchar_t *d, const wchar_t *s, size_t n){
++        wchar_t *a = d;
++        while (n && *s) n--, *d++ = *s++;
++        wmemset(d, 0, n);
++        return a;
++}
++
+ #endif
+ 
+ //static
+diff --git a/src/shared/CLucene/util/Misc.h b/src/shared/CLucene/util/Misc.h
+index c6c177c..947304f 100644
+--- a/src/shared/CLucene/util/Misc.h
++++ b/src/shared/CLucene/util/Misc.h
+@@ -25,7 +25,7 @@ CL_NS_DEF(util)
+     /**
+      * Unlinks the given file, waits until dir_Exists is false. It makes maxAttempts
+      * attempts to remove the file. If maxAttemps is less than 0 then unlimited
+-     * count of attempts is done. 
++     * count of attempts is done.
+      * Returns 1 if deleted and dir_Exists returns false
+      * Returns 0 if deleted and dir_Exists returns still true
+      * Returns -1 if file can not be deleted.
+@@ -84,6 +84,8 @@ CL_NS_DEF(util)
+ 
+     static void _cpycharToWide(const char* s, wchar_t* d, size_t len);
+     static void _cpywideToChar(const wchar_t* s, char* d, size_t len);
++    static wchar_t *wcscpyOverlap(wchar_t* d, const wchar_t* s);
++    static wchar_t *wcsncpyOverlap(wchar_t *d, const wchar_t *s, size_t n);
+ 	#else
+ 		#define thashCode ahashCode
+ 	#endif
