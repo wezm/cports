@@ -1,5 +1,5 @@
 pkgname = "cosmic-launcher"
-pkgver = "1.0.11"
+pkgver = "1.0.12"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf", "intltool"]
@@ -12,7 +12,7 @@ pkgdesc = "COSMIC front-end for pop-launcher"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-launcher"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "30c5daa37c7a3312a0f269bc96fecd923c2c420d80b5f1a250365a1c8aee0977"
+sha256 = "c917ad1700d2004068e74839812b116cd36f89ee02c968dfd9a6940e2e8b448d"
 # no tests
 options = ["!check"]
 

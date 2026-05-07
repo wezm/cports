@@ -1,15 +1,15 @@
---- justfile.orig	2026-04-24 21:11:48.692362962 +1000
-+++ justfile	2026-04-24 21:12:10.022128533 +1000
-@@ -38,10 +38,10 @@
-     ln -sf {{cosmic-applets-bin}} {{bindir}}/{{name}}
+--- a/justfile	2026-05-07 19:37:03.752097633 +1000
++++ b/justfile	2026-05-07 19:37:13.314917092 +1000
+@@ -35,10 +35,10 @@
+     ln -sf {{ cosmic-applets-bin }} {{ bindir }}/{{ name }}
  
  _install_icons name:
--    find {{name}}/'data'/'icons' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -d '\n' -I {} install -Dm0644 {{name}}/'data'/'icons'/{} {{iconsdir}}/{}
-+    find {{name}}/'data'/'icons' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -I {} install -Dm0644 {{name}}/'data'/'icons'/{} {{iconsdir}}/{}
+-    find {{ name }}/'data'/'icons' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -d '\n' -I {} install -Dm0644 {{ name }}/'data'/'icons'/{} {{ iconsdir }}/{}
++    find {{ name }}/'data'/'icons' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -I {} install -Dm0644 {{ name }}/'data'/'icons'/{} {{ iconsdir }}/{}
  
  _install_default_schema name:
--    find {{name}}/'data'/'default_schema' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -d '\n' -I {} install -Dm0644 {{name}}/'data'/'default_schema'/{} {{default-schema-target}}/{}
-+    find {{name}}/'data'/'default_schema' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -I {} install -Dm0644 {{name}}/'data'/'default_schema'/{} {{default-schema-target}}/{}
+-    find {{ name }}/'data'/'default_schema' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -d '\n' -I {} install -Dm0644 {{ name }}/'data'/'default_schema'/{} {{ default-schema-target }}/{}
++    find {{ name }}/'data'/'default_schema' -type f -exec echo {} \; | rev | cut -d'/' -f-3 | rev | xargs -I {} install -Dm0644 {{ name }}/'data'/'default_schema'/{} {{ default-schema-target }}/{}
  
  _install_desktop path:
-     install -Dm0644 {{path}} {{sharedir}}/applications/{{file_name(path)}}
+     install -Dm0644 {{ path }} {{ sharedir }}/applications/{{ file_name(path) }}
