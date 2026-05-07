@@ -20,7 +20,7 @@ pkgdesc = "Backend implementation for xdg-desktop-portal using libcosmic"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/xdg-desktop-portal-cosmic"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "454178f0e51a30b04a672cd682895f06ac976246cc44c26fccb45062c6030695"
+sha256 = "4b50ca311717fc135c5fef3f4b1af633eba054be8f62b9d16aa48f0f7072e888"
 # no tests
 options = ["!check"]
 
@@ -45,4 +45,4 @@ def install(self):
     # TODO: Maybe put these in a cosmic subdir
     for p in default_schema.iterdir():
         if p.is_dir():
-            self.install_files(p, "usr/share/icons")
+            self.install_files(p, "usr/share/icons/hicolor")

@@ -1,5 +1,5 @@
 pkgname = "cosmic-bg"
-pkgver = "1.0.11"
+pkgver = "1.0.12"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -9,24 +9,16 @@ pkgdesc = "COSMIC background image service"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-bg"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "a47777270928fa871e1001bd6ab5bb5065aae722d88eaf7c7ee7cbd8af47234c"
+sha256 = "ec69e9724cdc4c5f095b2c6800f845dbd81f7087a816c53d91d01e3169632c81"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/cosmic-bg")
+    _target_dir = f"target/{self.profile().triplet}"
     self.do(
         "just",
-        "appid=com.system76.CosmicBackground",
-        f"install-dir={self.chroot_destdir}/usr/share",
+        f"rootdir={self.chroot_destdir}",
+        f"cargo-target-dir={_target_dir}",
         "install",
-        wrksrc=self.chroot_srcdir / "data",
-    )
-    self.do(
-        "just",
-        "appid=com.system76.CosmicBackground",
-        f"install-dir={self.chroot_destdir}/usr/share",
-        "install",
-        wrksrc=self.chroot_srcdir / "data/icons",
     )
