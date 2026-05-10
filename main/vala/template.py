@@ -1,7 +1,7 @@
 # keep in sync with vala-valadoc
 pkgname = "vala"
 pkgver = "0.56.19"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = ["--disable-valadoc"]
 hostmakedepends = [
