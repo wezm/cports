@@ -1,6 +1,6 @@
 pkgname = "shotwell"
 pkgver = "0.32.15"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 configure_args = ["-Ddefault_library=shared", "-Dinstall_apport_hook=false"]
 hostmakedepends = [
