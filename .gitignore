@@ -15,4 +15,5 @@ bootstrap.*
 !bootstrap.ini
 
 # custom configs
+.gram/
 .nvim.lua
