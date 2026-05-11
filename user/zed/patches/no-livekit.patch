@@ -1,0 +1,150 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 9e22a77e65..1998619a52 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -10172,7 +10172,6 @@ dependencies = [
+  "tokio",
+  "ui",
+  "util",
+- "webrtc-sys",
+  "zed-scap",
+ ]
+ 
+diff --git a/crates/audio/Cargo.toml b/crates/audio/Cargo.toml
+index 59df698af1..240caed786 100644
+--- a/crates/audio/Cargo.toml
++++ b/crates/audio/Cargo.toml
+@@ -27,5 +27,5 @@ settings.workspace = true
+ thiserror.workspace = true
+ util.workspace = true
+ 
+-[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))'.dependencies]
++[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))'.dependencies]
+ libwebrtc.workspace = true
+diff --git a/crates/audio/src/audio_pipeline/echo_canceller.rs b/crates/audio/src/audio_pipeline/echo_canceller.rs
+index ec612b1b44..1ee9ea71b1 100644
+--- a/crates/audio/src/audio_pipeline/echo_canceller.rs
++++ b/crates/audio/src/audio_pipeline/echo_canceller.rs
+@@ -1,4 +1,4 @@
+-#[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))]
++#[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))]
+ mod real_implementation {
+     use anyhow::Context;
+     use libwebrtc::native::apm;
+@@ -35,7 +35,7 @@ mod real_implementation {
+     }
+ }
+ 
+-#[cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd"))]
++#[cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux"))]
+ mod fake_implementation {
+     #[derive(Clone, Default)]
+     pub struct EchoCanceller;
+@@ -48,7 +48,7 @@ mod fake_implementation {
+     }
+ }
+ 
+-#[cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd"))]
++#[cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux"))]
+ pub use fake_implementation::EchoCanceller;
+-#[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))]
++#[cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))]
+ pub use real_implementation::EchoCanceller;
+diff --git a/crates/call/src/call_impl/diagnostics.rs b/crates/call/src/call_impl/diagnostics.rs
+index 1aa1774dfb..fc46fef3e5 100644
+--- a/crates/call/src/call_impl/diagnostics.rs
++++ b/crates/call/src/call_impl/diagnostics.rs
+@@ -132,7 +132,8 @@ fn compute_network_stats(stats: &livekit_client::SessionStats) -> ComputedNetwor
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     )
+ ))]
+ fn extract_metrics(
+@@ -150,7 +151,8 @@ fn extract_metrics(
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     ))
+ ))]
+ fn extract_metrics(
+diff --git a/crates/livekit_client/Cargo.toml b/crates/livekit_client/Cargo.toml
+index 42c13f094c..bc814439e4 100644
+--- a/crates/livekit_client/Cargo.toml
++++ b/crates/livekit_client/Cargo.toml
+@@ -43,13 +43,13 @@ smallvec.workspace = true
+ ui.workspace = true
+ util.workspace = true
+ 
+-[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))'.dependencies]
++[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))'.dependencies]
+ libwebrtc.workspace = true
+ livekit.workspace = true
+ 
+ [target.'cfg(target_os = "linux")'.dependencies]
+ tokio = { workspace = true, features = ["time"] }
+-webrtc-sys.workspace = true
++# webrtc-sys.workspace = true
+ 
+ [target.'cfg(any(target_os = "linux", target_os = "freebsd", target_os = "windows"))'.dependencies]
+ scap.workspace = true
+diff --git a/crates/livekit_client/src/lib.rs b/crates/livekit_client/src/lib.rs
+index aa4831562c..fd12ea1738 100644
+--- a/crates/livekit_client/src/lib.rs
++++ b/crates/livekit_client/src/lib.rs
+@@ -15,7 +15,8 @@ pub use record::CaptureInput;
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     ))
+ ))]
+ mod livekit_client;
+@@ -25,7 +26,8 @@ mod livekit_client;
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     ))
+ ))]
+ pub use livekit_client::*;
+@@ -36,7 +38,8 @@ pub use livekit_client::*;
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     )
+ ))]
+ mod mock_client;
+@@ -46,7 +49,8 @@ mod mock_client;
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     )
+ ))]
+ pub mod test;
+@@ -56,7 +60,8 @@ pub mod test;
+         test,
+         feature = "test-support",
+         all(target_os = "windows", target_env = "gnu"),
+-        target_os = "freebsd"
++        target_os = "freebsd",
++        target_os = "linux"
+     )
+ ))]
+ pub use mock_client::*;
