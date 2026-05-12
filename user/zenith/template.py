@@ -1,5 +1,5 @@
 pkgname = "zenith"
-pkgver = "0.14.3"
+pkgver = "0.15.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
@@ -8,13 +8,9 @@ pkgdesc = "System resource monitor"
 license = "MIT"
 url = "https://github.com/bvaisvil/zenith"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "b092048d1a9ce7234584d928e4b103aaaa7e47589923cf4e48dfa8919b3f8d88"
+sha256 = "f92ed87b66f97b1f6c5863a62cc795ec877510dcd0284fba822ef5dc091b9355"
 # no tests
 options = ["!check"]
-
-
-def post_extract(self):
-    self.rm(".cargo/config")
 
 
 def install(self):
