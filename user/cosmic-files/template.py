@@ -1,5 +1,5 @@
 pkgname = "cosmic-files"
-pkgver = "1.0.12"
+pkgver = "1.0.13"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -9,7 +9,7 @@ pkgdesc = "COSMIC file manager"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-files"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "fc9a053a05973084795d4bade0d869bea20a1e006f0c1740236bfd172c145c7b"
+sha256 = "e211a3746e4ed2e2fea5ae1d82fcdb5f1352a87ed19fabb7eb8326647fb74369"
 # examples/copy.rs fails to build
 options = ["!check"]
 
