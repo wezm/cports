@@ -1,5 +1,5 @@
 pkgname = "zed"
-pkgver = "1.1.8"
+pkgver = "1.2.3"
 pkgrel = 0
 # wasmtime
 archs = ["aarch64", "x86_64"]
@@ -38,7 +38,7 @@ pkgdesc = "Graphical text editor"
 license = "GPL-3.0-or-later AND AGPL-3.0-or-later AND Apache-2.0"
 url = "https://zed.dev"
 source = f"https://github.com/zed-industries/zed/archive/v{pkgver}.tar.gz"
-sha256 = "d139a71fe14ec13739add7fddae90b39bd34538aebb6abd12afa303398713137"
+sha256 = "c397c39495239a7a5a774bd91164a6e17d6a07f224c2f5038fcd776d25ed04d1"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
 tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}

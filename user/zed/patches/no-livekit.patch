@@ -1,8 +1,14 @@
+commit a8d0661391da6444aa51baa58ccf13d4ebda9986
+Author: Wesley Moore <wes@wezm.net>
+Date:   Mon May 11 13:33:30 2026 +1000
+
+    Disable livekit on Linux
+
 diff --git a/Cargo.lock b/Cargo.lock
-index 9e22a77e65..1998619a52 100644
+index 40e3e12130..8f8d34fcb6 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -10172,7 +10172,6 @@ dependencies = [
+@@ -10203,7 +10203,6 @@ dependencies = [
   "tokio",
   "ui",
   "util",
