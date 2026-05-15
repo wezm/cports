@@ -1,10 +1,10 @@
 pkgname = "doxygen"
 pkgver = "1.14.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 configure_args = ["-DCMAKE_BUILD_TYPE=Release"]
 hostmakedepends = ["cmake", "ninja", "perl", "python", "flex", "bison"]
-checkdepends = ["libxml2-progs"]
+checkdepends = ["libxml2-bootstrap"]
 pkgdesc = "Source code documentation generator tool"
 license = "GPL-2.0-only"
 url = "https://doxygen.nl"
