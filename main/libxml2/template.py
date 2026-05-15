@@ -1,18 +1,23 @@
 pkgname = "libxml2"
-pkgver = "2.14.6"
-pkgrel = 1
+pkgver = "2.15.3"
+pkgrel = 0
 build_style = "gnu_configure"
 configure_args = [
     "--enable-shared",
     "--enable-static",
+    "--with-docs",
     "--with-history",
     "--with-icu",
     "--with-legacy",
+    "--with-python",
     "--with-threads",
 ]
 hostmakedepends = [
     "automake",
+    "docbook-xsl-nons",
+    "doxygen",
     "libtool",
+    "libxslt-progs",
     "pkgconf",
     "python-devel",
 ]
@@ -28,7 +33,7 @@ pkgdesc = "XML parsing library"
 license = "MIT"
 url = "http://www.xmlsoft.org"
 source = f"$(GNOME_SITE)/libxml2/{pkgver[: pkgver.rfind('.')]}/libxml2-{pkgver}.tar.xz"
-sha256 = "7ce458a0affeb83f0b55f1f4f9e0e55735dbfc1a9de124ee86fb4a66b597203a"
+sha256 = "78262a6e7ac170d6528ebfe2efccdf220191a5af6a6cd61ea4a9a9a5042c7a07"
 
 
 def post_install(self):
@@ -46,9 +51,7 @@ def _(self):
 
 @subpackage("libxml2-devel")
 def _(self):
-    return self.default_devel(
-        extra=["usr/share/gtk-doc", "usr/share/doc/libxml2"]
-    )
+    return self.default_devel(extra=["usr/share/doc/libxml2"])
 
 
 @subpackage("libxml2-progs")
