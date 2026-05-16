@@ -1,11 +1,7 @@
-# cports
+# glibcports
 
-Cports is a collection of source package ports for Chimera. The system has been
-written specifically for the distribution using the Python scripting language.
-
-From user standpoint, it works similarly to many distro packaging systems (users
-of Void Linux `xbps-src` will most likely find it a little familiar) however it
-is not based on any existing system and should not be considered a variant of any.
+`glibcports` is a collection of source package ports for Casuarina Linux.
+It's derived from [cports in Chimera](https://github.com/chimera-linux/cports).
 
 There are two authoritative documents on the system:
 
@@ -18,9 +14,9 @@ Most people looking to get involved with the project should read both.
 
 To get started, read [`Usage.md`](Usage.md) first.
 
-## Using cports with Chimera
+## Using cports with Casuarina
 
-You might want to test your built packages in an actual Chimera system. Since
+You might want to test your built packages in an actual Casuarina system. Since
 `cbuild` creates a regular `apk` repository for you, this is as simple as
 adding the repositories in your system.
 
