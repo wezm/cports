@@ -1,6 +1,6 @@
 pkgname = "base-full"
 pkgver = "0.6"
-pkgrel = 3
+pkgrel = 4
 build_style = "meta"
 provides = [self.with_pkgver("base-core")]
 pkgdesc = "Chimera base package for bare metal and virtual machines"
@@ -134,7 +134,7 @@ def _(self):
     self.provides = [self.with_pkgver("base-core-misc")]
     self.depends = [
         "bc-gh",
-        "chimera-artwork",
+        "casuarina-artwork",
         "chimerautils-extra",
         "chrony",
         "file",
