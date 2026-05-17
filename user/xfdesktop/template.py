@@ -1,9 +1,9 @@
 pkgname = "xfdesktop"
 pkgver = "4.20.1"
-pkgrel = 1
+pkgrel = 2
 build_style = "gnu_configure"
 configure_args = [
-    "--with-default-backdrop-filename=/usr/share/backgrounds/chimera/bg-l.svg"
+    "--with-default-backdrop-filename=/usr/share/backgrounds/casuarina/bg-l.jpg"
 ]
 hostmakedepends = [
     "automake",
@@ -28,7 +28,7 @@ makedepends = [
     "thunar-devel",
     "xfconf-devel",
 ]
-depends = ["chimera-artwork"]
+depends = ["casuarina-artwork"]
 pkgdesc = "Xfce desktop manager"
 license = "GPL-2.0-or-later"
 url = "https://docs.xfce.org/xfce/xfdesktop/start"
