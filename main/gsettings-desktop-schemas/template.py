@@ -1,6 +1,6 @@
 pkgname = "gsettings-desktop-schemas"
 pkgver = "50.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "meson"
 configure_args = ["-Dintrospection=true"]
 hostmakedepends = [
@@ -13,7 +13,7 @@ hostmakedepends = [
 makedepends = ["glib-devel"]
 depends = [
     "adwaita-icon-theme",
-    "chimera-artwork",
+    "casuarina-artwork",
     "fonts-adwaita-ttf",
 ]
 pkgdesc = "Collection of GSettings schemas"
@@ -26,7 +26,7 @@ options = ["!cross"]
 
 def post_install(self):
     self.install_file(
-        self.files_path / "10_chimera_theme.gschema.override",
+        self.files_path / "10_casuarina_theme.gschema.override",
         "usr/share/glib-2.0/schemas",
     )
 
