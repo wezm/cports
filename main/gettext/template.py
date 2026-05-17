@@ -1,6 +1,6 @@
 pkgname = "gettext"
 pkgver = "0.23.2"
-pkgrel = 0
+pkgrel = 1
 build_style = "gnu_configure"
 configure_args = [
     "--disable-java",
@@ -10,7 +10,7 @@ configure_args = [
 ]
 make_check_args = ["-j1"]
 hostmakedepends = ["automake", "libtool", "xz"]
-makedepends = ["libunistring-devel", "libxml2-devel", "ncurses-devel"]
+makedepends = ["libunistring-devel", "libxml2-bootstrap", "ncurses-devel"]
 checkdepends = ["perl", "bash"]
 pkgdesc = "GNU internationalization utilities"
 license = "GPL-3.0-or-later"
