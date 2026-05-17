@@ -21,7 +21,7 @@ makedepends = [
 depends = [
     "adwaita-icon-theme",
     "adwaita-icon-theme-legacy",
-    "chimera-artwork",
+    "casuarina-artwork",
     "hwdata-pnp",
 ]
 pkgdesc = "Cinnamon desktop library and common settings schemas"
