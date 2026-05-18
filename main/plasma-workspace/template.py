@@ -1,6 +1,6 @@
 pkgname = "plasma-workspace"
 pkgver = "6.6.5"
-pkgrel = 1
+pkgrel = 2
 build_style = "cmake"
 # TODO: -DINSTALL_SDDM_WAYLAND_SESSION=ON experiments?
 configure_args = [
@@ -118,7 +118,7 @@ makedepends = [
 ]
 depends = [
     "appmenu-gtk-module",
-    # "casuarina-artwork-kde",
+    "casuarina-artwork-kde",
     "iso-codes",
     "kio-extras",
     "kio-fuse",
