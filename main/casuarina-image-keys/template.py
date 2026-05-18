@@ -1,5 +1,5 @@
 pkgname = "casuarina-image-keys"
-pkgver = "20260516"
+pkgver = "20260518"
 pkgrel = 0
 build_style = "meta"
 depends = ["minisign"]
