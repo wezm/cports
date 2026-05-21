@@ -10,12 +10,12 @@ Before this pull request is reviewed, certain conditions must be met.
 
 The following must be true for all changes:
 
-- [ ] I have read [CONTRIBUTING.md](https://github.com/chimera-linux/cports/blob/master/CONTRIBUTING.md)
+- [ ] I have read [CONTRIBUTING.md](https://codeberg.org/casuarina/glibcports/src/branch/main/CONTRIBUTING.md)
 - [ ] I acknowledge that overtly not following the above or the below will result in my pull request getting closed
 
 The following must be true for template/package changes:
 
-- [ ] I have read [Packaging.md](https://github.com/chimera-linux/cports/blob/master/Packaging.md#quality_requirements)
+- [ ] I have read [Packaging.md](https://codeberg.org/casuarina/glibcports/src/branch/main/Packaging.md)
 - [ ] I have built and tested my changes on my machine
 
 The following must be true for new package submissions:

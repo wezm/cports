@@ -2,12 +2,8 @@
 
 set -e
 
-APK_REPO="https://au.mirror.7bit.org/cobblestone/current/"
-
 echo "=> Setting up cbuild configuration..."
 cat << EOF > etc/config.ini
-[apk]
-repo = ${APK_REPO}
 [build]
 jobs = 8
 ccache = yes
