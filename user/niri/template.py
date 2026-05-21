@@ -36,7 +36,6 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "134c602d8e0d53413a52d6cd58f9ce7e79a07d03288ee0a51ba1abd5db1b1ad9"
 # cross: generates completions using host binary
 options = ["!cross"]
-restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     # rust libc time32 broken interaction with pipewire-rs
