@@ -1,10 +1,10 @@
 # rebuild on major clang version updates
 pkgname = "gcc"
 _clangver = "22"
-pkgver = "15.2.0"
+pkgver = "16.1.0"
 _bver = pkgver
 _mnver = _bver[0 : _bver.rfind(".")]
-pkgrel = 2
+pkgrel = 0
 build_style = "gnu_configure"
 configure_args = [
     "--disable-cet",
@@ -22,7 +22,6 @@ configure_args = [
     "--disable-vtable-verify",
     "--disable-werror",
     "--enable-checking=release",
-    "--enable-autolink-libatomic",
     "--enable-__cxa_atexit",
     "--enable-default-pie",
     "--enable-default-ssp",
@@ -69,18 +68,18 @@ license = "GPL-3.0-or-later"
 url = "https://gcc.gnu.org"
 source = [f"$(GNU_SITE)/gcc/gcc-{pkgver}/gcc-{pkgver}.tar.xz"]
 source_paths = ["."]
-sha256 = ["438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e"]
+sha256 = "50efb4d94c3397aff3b0d61a5abd748b4dd31d9d3f2ab7be05b171d36a510f79"
 
 if self.stage == 0:
     source += [
         "https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz",
-        "$(GNU_SITE)/mpc/mpc-1.3.1.tar.gz",
+        "$(GNU_SITE)/mpc/mpc-1.4.1.tar.xz",
         "https://www.mpfr.org/mpfr-4.2.2/mpfr-4.2.2.tar.xz",
     ]
     source_paths += ["gmp", "mpc", "mpfr"]
     sha256 += [
         "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898",
-        "ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8",
+        "91204cd32f164bd3b7c992d4a6a8ce6519511aadab30f78b6982d0bf8d73e931",
         "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01",
     ]
 
@@ -244,8 +243,8 @@ def post_install(self):
     # self.uninstall("usr/lib/libsupc++.*", glob=True)
     # self.uninstall("usr/share/gcc-*/python/libstdcxx", glob=True)
     # other stuff we don't want
-    self.uninstall("usr/lib/libatomic.*", glob=True)
-    self.uninstall("usr/lib/libgcc_s.*", glob=True)
+    self.uninstall("usr/lib/libatomic*.*", glob=True)
+    self.uninstall("usr/lib/libgcc_s*.*", glob=True)
     # provided by clang
     self.uninstall("usr/bin/c++")
     self.uninstall(f"usr/bin/{_trip}-c++")
