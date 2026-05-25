@@ -1,5 +1,5 @@
 pkgname = "beyond-compare"
-pkgver = "5.2.1.32035"
+pkgver = "5.2.2.32209"
 pkgrel = 0
 archs = ["x86_64"]
 hostmakedepends = ["bash"]
@@ -8,7 +8,7 @@ pkgdesc = "Compare, sync, and merge files and folders"
 license = "LicenseRef-BeyondCompare-Proprietary"
 url = "https://www.scootersoftware.com"
 source = f"{url}/bcompare-{pkgver}.x86_64.tar.gz"
-sha256 = "04ff69fb9da1187b926e0caaad1f88697a134c8d641360945b4f525a1bb23188"
+sha256 = "405941cbf588b2768d7550d38ed54c489cefef5e60d2468e5604fac10f524a40"
 options = ["!distlicense"]
 restricted = "proprietary"
 
