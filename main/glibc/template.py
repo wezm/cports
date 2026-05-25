@@ -398,23 +398,15 @@ def install(self):
 
 
 def post_install(self):
-    # hardlink detected (usr/libexec/getconf/POSIX_V7_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
-    # hardlink detected (usr/libexec/getconf/POSIX_V6_LP64_OFF64, previously usr/libexec/getconf/XBS5_LP64_OFF64)
-    # hardlink detected (usr/bin/getconf, previously usr/libexec/getconf/XBS5_LP64_OFF64)
-
     # fix up hardlinks
-    self.uninstall("usr/libexec/getconf/POSIX_V6_LP64_OFF64")
-    self.install_link(
-        "usr/libexec/getconf/POSIX_V6_LP64_OFF64", "XBS5_LP64_OFF64"
-    )
+    self.uninstall("usr/lib/getconf/POSIX_V6_LP64_OFF64")
+    self.install_link("usr/lib/getconf/POSIX_V6_LP64_OFF64", "XBS5_LP64_OFF64")
 
-    self.uninstall("usr/libexec/getconf/POSIX_V7_LP64_OFF64")
-    self.install_link(
-        "usr/libexec/getconf/POSIX_V7_LP64_OFF64", "XBS5_LP64_OFF64"
-    )
+    self.uninstall("usr/lib/getconf/POSIX_V7_LP64_OFF64")
+    self.install_link("usr/lib/getconf/POSIX_V7_LP64_OFF64", "XBS5_LP64_OFF64")
 
     self.uninstall("usr/bin/getconf")
-    self.install_link("usr/bin/getconf", "../libexec/getconf/XBS5_LP64_OFF64")
+    self.install_link("usr/bin/getconf", "../lib/getconf/XBS5_LP64_OFF64")
 
     #  self.install_link("lib", "usr/lib64")
 
