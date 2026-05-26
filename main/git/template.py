@@ -66,12 +66,12 @@ def build(self):
 
 
 def check(self):
-    # t5000.75 fails intermittently, t5303.5, t5303.7, t5303.11 fail to due missing files
+    # t5000.75 fails intermittently
     self.do(
         "make",
         "all",
         env={
-            "GIT_SKIP_TESTS": "t5000.75 t5303.5 t5303.7 t5303.11",
+            "GIT_SKIP_TESTS": "t5000.75",
             "GIT_TEST_OPTS": "--verbose-log",
         },
         wrksrc="t",
