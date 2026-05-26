@@ -6,6 +6,7 @@ hostmakedepends = [
     "python-build",
     "python-cython",
     "python-installer",
+    "python-poetry-core",
     "python-setuptools",
     "python-wheel",
 ]
@@ -20,3 +21,7 @@ sha256 = "480aab74948a7f339b749b5c39bdb4caf15429f4b49a998c770d5f371098d351"
 # exists (precedence)
 options = ["!check"]
 broken = "ftbfs"
+
+
+def build(self):
+    self.do("pyproject-build", "--no-isolation", "--wheel", ".")

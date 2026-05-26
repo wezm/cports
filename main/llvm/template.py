@@ -2,7 +2,7 @@ pkgname = "llvm"
 # check chromium/patches/wm-clang-version.patch on major version bump
 # main/libtool also needs to be bumped on major version upgrade
 pkgver = "22.1.6"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 configure_args = [
     "-DCMAKE_BUILD_TYPE=Release",
