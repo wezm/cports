@@ -1,5 +1,5 @@
 pkgname = "pop-launcher"
-pkgver = "1.2.7"
+pkgver = "1.0.14"
 pkgrel = 0
 build_style = "cargo"
 make_build_args = ["-p", "pop-launcher-bin"]
@@ -24,8 +24,8 @@ depends = [
 pkgdesc = "Modular IPC-based desktop launcher service"
 license = "MPL-2.0"
 url = "https://github.com/pop-os/launcher"
-source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
-sha256 = "e02ffd9876bb11c50118bf5e9c0bec57132f7010831da749dc6107e31ca198a6"
+source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
+sha256 = "6b4f7f27d0cf44d24e1e24141210dfb87badff2e06cfa47a05e411ebd4d86de3"
 # no tests
 options = ["!check"]
 
