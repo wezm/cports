@@ -1,0 +1,11 @@
+# mistakes.computer service
+
+type = process
+command = /usr/bin/mistakes /etc/mistakes.txt
+working-dir = /usr/share/mistakes
+run-as = _mistakes
+env-file = /usr/share/mistakes/mistakes.env
+logfile = /var/log/mistakes.log
+smooth-recovery = true
+depends-on: local.target
+depends-on: network.target
