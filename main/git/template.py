@@ -34,8 +34,7 @@ hardening = ["cfi", "vis"]
 
 def configure(self):
     with open(self.cwd / "config.mak", "w") as cf:
-        cf.write(
-            f"""
+        cf.write(f"""
 prefix = /usr
 gitexecdir = /usr/lib/git-core
 CC = {self.get_tool("CC")}
@@ -51,8 +50,7 @@ INSTALL_SYMLINKS = 1
 perllibdir = /usr/share/perl5/vendor_perl
 PYTHON_PATH = /usr/bin/python
 HOST_CPU = {self.profile().arch}
-"""
-        )
+""")
 
 
 def build(self):
