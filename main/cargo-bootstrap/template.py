@@ -1,5 +1,5 @@
 pkgname = "cargo-bootstrap"
-pkgver = "1.94.0"
+pkgver = "1.95.0"
 pkgrel = 0
 # satisfy runtime dependencies
 hostmakedepends = ["curl"]
@@ -39,7 +39,7 @@ match self.profile().arch:
     #    )
     case "x86_64":
         sha256 = (
-            "61977682b8f8a02c92e4a78c0d6595b44615092e2760f82d832764f3bb32cec7"
+            "e236caea93c9b243766d1d3cc0bf66055c27e6af24b4bad9e1759831ceea8815"
         )
     case _:
         broken = f"not yet built for {self.profile().arch}"
