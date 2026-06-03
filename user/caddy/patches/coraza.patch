@@ -11,7 +11,7 @@ index 5002605..61df4b4 100644
  
  func main() {
 diff --git a/go.mod b/go.mod
-index be17897..5a7e1d5 100644
+index 3230b47..5e036a1 100644
 --- a/go.mod
 +++ b/go.mod
 @@ -12,6 +12,7 @@ require (
@@ -21,7 +21,7 @@ index be17897..5a7e1d5 100644
 +	github.com/corazawaf/coraza-caddy/v2 v2.5.0
  	github.com/dustin/go-humanize v1.0.1
  	github.com/go-chi/chi/v5 v5.2.5
- 	github.com/google/cel-go v0.28.0
+ 	github.com/google/cel-go v0.28.1
 @@ -60,24 +61,36 @@ require (
  	github.com/antlr4-go/antlr/v4 v4.13.1 // indirect
  	github.com/ccoveille/go-safecast/v2 v2.0.0 // indirect
@@ -33,7 +33,7 @@ index be17897..5a7e1d5 100644
 -	github.com/davecgh/go-spew v1.1.1 // indirect
 +	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
  	github.com/fxamacker/cbor/v2 v2.9.0 // indirect
- 	github.com/go-jose/go-jose/v3 v3.0.4 // indirect
+ 	github.com/go-jose/go-jose/v3 v3.0.5 // indirect
  	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 +	github.com/goccy/go-json v0.10.5 // indirect
 +	github.com/goccy/go-yaml v1.18.0 // indirect
@@ -41,8 +41,8 @@ index be17897..5a7e1d5 100644
  	github.com/google/go-tpm v0.9.8 // indirect
  	github.com/google/go-tspi v0.3.0 // indirect
  	github.com/google/s2a-go v0.1.9 // indirect
- 	github.com/googleapis/enterprise-certificate-proxy v0.3.14 // indirect
- 	github.com/googleapis/gax-go/v2 v2.18.0 // indirect
+ 	github.com/googleapis/enterprise-certificate-proxy v0.3.15 // indirect
+ 	github.com/googleapis/gax-go/v2 v2.22.0 // indirect
 +	github.com/gotnospirit/makeplural v0.0.0-20180622080156-a5f48d94d976 // indirect
 +	github.com/gotnospirit/messageformat v0.0.0-20221001023931-dfe49f1eb092 // indirect
  	github.com/grpc-ecosystem/grpc-gateway/v2 v2.28.0 // indirect
@@ -73,15 +73,15 @@ index be17897..5a7e1d5 100644
  	github.com/zeebo/blake3 v0.2.4 // indirect
  	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
 @@ -113,6 +130,7 @@ require (
- 	google.golang.org/genproto/googleapis/api v0.0.0-20260401024825-9d38bb4040a9 // indirect
- 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260401024825-9d38bb4040a9 // indirect
+ 	google.golang.org/genproto/googleapis/api v0.0.0-20260406210006-6f92a3bedf2d // indirect
+ 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260427160629-7cedc36a6bc4 // indirect
  	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.5.1 // indirect
 +	rsc.io/binaryregexp v0.2.0 // indirect
  )
  
  require (
 diff --git a/go.sum b/go.sum
-index 0112afc..1278145 100644
+index 080d4c6..244d98f 100644
 --- a/go.sum
 +++ b/go.sum
 @@ -108,6 +108,16 @@ github.com/chzyer/test v1.0.0 h1:p3BQDXSxOhOG0P9z6/hGnII4LGiEPOYBhs8asl/fC04=
@@ -132,10 +132,10 @@ index 0112afc..1278145 100644
  github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
  github.com/golang/protobuf v1.5.4 h1:i7eJL8qZTpSEXOPTxNKhASYpMn+8e5Q6AdndVa1dWek=
  github.com/golang/protobuf v1.5.4/go.mod h1:lnTiLA8Wa4RWRcIUkrtSVa5nRhsEGBg48fD6rSs7xps=
-@@ -191,6 +208,10 @@ github.com/googleapis/enterprise-certificate-proxy v0.3.14 h1:yh8ncqsbUY4shRD5dA
- github.com/googleapis/enterprise-certificate-proxy v0.3.14/go.mod h1:vqVt9yG9480NtzREnTlmGSBmFrA+bzb0yl0TxoBQXOg=
- github.com/googleapis/gax-go/v2 v2.18.0 h1:jxP5Uuo3bxm3M6gGtV94P4lliVetoCB4Wk2x8QA86LI=
- github.com/googleapis/gax-go/v2 v2.18.0/go.mod h1:uSzZN4a356eRG985CzJ3WfbFSpqkLTjsnhWGJR6EwrE=
+@@ -191,6 +208,10 @@ github.com/googleapis/enterprise-certificate-proxy v0.3.15 h1:xolVQTEXusUcAA5Ugt
+ github.com/googleapis/enterprise-certificate-proxy v0.3.15/go.mod h1:vqVt9yG9480NtzREnTlmGSBmFrA+bzb0yl0TxoBQXOg=
+ github.com/googleapis/gax-go/v2 v2.22.0 h1:PjIWBpgGIVKGoCXuiCoP64altEJCj3/Ei+kSU5vlZD4=
+ github.com/googleapis/gax-go/v2 v2.22.0/go.mod h1:irWBbALSr0Sk3qlqb9SyJ1h68WjgeFuiOzI4Rqw5+aY=
 +github.com/gotnospirit/makeplural v0.0.0-20180622080156-a5f48d94d976 h1:b70jEaX2iaJSPZULSUxKtm73LBfsCrMsIlYCUgNGSIs=
 +github.com/gotnospirit/makeplural v0.0.0-20180622080156-a5f48d94d976/go.mod h1:ZGQeOwybjD8lkCjIyJfqR5LD2wMVHJ31d6GdPxoTsWY=
 +github.com/gotnospirit/messageformat v0.0.0-20221001023931-dfe49f1eb092 h1:c7gcNWTSr1gtLp6PyYi3wzvFCEcHJ4YRobDgqmIgf7Q=
@@ -155,8 +155,8 @@ index 0112afc..1278145 100644
 +github.com/kaptinlin/jsonschema v0.4.6 h1:vOSFg5tjmfkOdKg+D6Oo4fVOM/pActWu/ntkPsI1T64=
 +github.com/kaptinlin/jsonschema v0.4.6/go.mod h1:1DUd7r5SdyB2ZnMtyB7uLv64dE3zTFTiYytDCd+AEL0=
  github.com/klauspost/compress v1.12.3/go.mod h1:8dP1Hq4DHOhN9w426knH3Rhby4rFm6D8eO+e+Dq5Gzg=
- github.com/klauspost/compress v1.18.5 h1:/h1gH5Ce+VWNLSWqPzOVn6XBO+vJbCNGvjoaGBFW2IE=
- github.com/klauspost/compress v1.18.5/go.mod h1:cwPg85FWrGar70rWktvGQj8/hthj3wpl0PGDogxkrSQ=
+ github.com/klauspost/compress v1.18.6 h1:2jupLlAwFm95+YDR+NwD2MEfFO9d4z4Prjl1XXDjuao=
+ github.com/klauspost/compress v1.18.6/go.mod h1:cwPg85FWrGar70rWktvGQj8/hthj3wpl0PGDogxkrSQ=
 @@ -231,6 +258,8 @@ github.com/letsencrypt/pebble/v2 v2.10.0 h1:Wq6gYXlsY6ubqI3hhxsTzdyotvfdjFBxuwYq
  github.com/letsencrypt/pebble/v2 v2.10.0/go.mod h1:Sk8cmUIPcIdv2nINo+9PB4L+ZBhzY+F9A1a/h/xmWiQ=
  github.com/libdns/libdns v1.1.1 h1:wPrHrXILoSHKWJKGd0EiAVmiJbFShguILTg9leS/P/U=
@@ -177,8 +177,8 @@ index 0112afc..1278145 100644
 +github.com/petar-dambovaliev/aho-corasick v0.0.0-20250424160509-463d218d4745/go.mod h1:EHPiTAKtiFmrMldLUNswFwfZ2eJIYBHktdaUTZxYWRw=
  github.com/peterbourgon/diskv/v3 v3.0.1 h1:x06SQA46+PKIUftmEujdwSEpIx8kR+M9eLYsUxeYveU=
  github.com/peterbourgon/diskv/v3 v3.0.1/go.mod h1:kJ5Ny7vLdARGU3WUuy6uzO6T0nb/2gWcT1JiBvRmb5o=
- github.com/pires/go-proxyproto v0.11.0 h1:gUQpS85X/VJMdUsYyEgyn59uLJvGqPhJV5YvG68wXH4=
-@@ -264,8 +298,9 @@ github.com/pires/go-proxyproto v0.11.0/go.mod h1:ZKAAyp3cgy5Y5Mo4n9AlScrkCZwUy0g
+ github.com/pires/go-proxyproto v0.12.0 h1:TTCxD66dU898tahivkqc3hoceZp7P44FnorWyo9d5vM=
+@@ -264,8 +298,9 @@ github.com/pires/go-proxyproto v0.12.0/go.mod h1:qUvfqUMEoX7T8g0q7TQLDnhMjdTrxnG
  github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
  github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
  github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
