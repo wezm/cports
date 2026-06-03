@@ -2,6 +2,7 @@ pkgname = "python-click"
 pkgver = "8.2.2"
 pkgrel = 1
 build_style = "python_pep517"
+make_check_args = ["-knot echo_via_pager"]
 hostmakedepends = [
     "python-build",
     "python-flit_core",
