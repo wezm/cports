@@ -1,5 +1,5 @@
 pkgname = "cosmic-settings"
-pkgver = "1.0.14"
+pkgver = "1.0.15"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -23,7 +23,7 @@ pkgdesc = "Settings application for the COSMIC desktop"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-settings"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "554c7a80565b5b7797f3cff85534e7d915ee30b0631698c05c7946416870d2d4"
+sha256 = "4c158935aa652156dfa5ad8524666f4fb2ba2654ea9f6ec2d5fe94e0e6549e91"
 # no tests
 options = ["!check"]
 

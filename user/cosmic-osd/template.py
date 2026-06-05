@@ -1,5 +1,5 @@
 pkgname = "cosmic-osd"
-pkgver = "1.0.14"
+pkgver = "1.0.15"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -16,7 +16,7 @@ pkgdesc = "COSMIC on-screen display"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-osd"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "6da3cd50b04d254660bcd07d9271ae211f8e8e57393e95c346575db05834537d"
+sha256 = "868851a3ac185b1eea76a963bf3aabbbce8eaacf06ea927d4848500fae729172"
 env = {"POLKIT_AGENT_HELPER_1": "/usr/lib/polkit-1/polkit-agent-helper-1"}
 # no tests
 options = ["!check"]

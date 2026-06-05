@@ -1,5 +1,5 @@
 pkgname = "cosmic-randr"
-pkgver = "1.0.14"
+pkgver = "1.0.15"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -11,7 +11,7 @@ pkgdesc = "Utility for displaying and configuring Wayland outputs"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-randr"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "6595b09c650816447f7d3332b2f62b0ed2d4d8b2ab06d88876853159a2daec3c"
+sha256 = "c6892430ab2efe1b778bfa353a7d51f6766c07b1103dbe14021a1f540e57900a"
 
 
 def install(self):
