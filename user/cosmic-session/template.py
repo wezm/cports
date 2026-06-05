@@ -1,5 +1,5 @@
 pkgname = "cosmic-session"
-pkgver = "1.0.14"
+pkgver = "1.0.15"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -37,7 +37,7 @@ pkgdesc = "Session manager for the COSMIC desktop environment"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-session"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "83e827331d7412a55500ea4bbb0b3e9642675fbbdfc4d0687e06e1cf6ce44666"
+sha256 = "6ad66f984c05780753e3730cda779c9906e218d63bb8eec7b36312af1d74e072"
 # no tests
 options = ["!check"]
 

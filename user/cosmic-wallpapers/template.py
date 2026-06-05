@@ -1,11 +1,11 @@
 pkgname = "cosmic-wallpapers"
-pkgver = "1.0.14"
+pkgver = "1.0.15"
 pkgrel = 0
 pkgdesc = "Wallpapers for the COSMIC desktop environment"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-wallpapers"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "3171c89f36777f9bd6af4e4728ce7f667f0429444bac3ab23a14af10b9decee0"
+sha256 = "9bd3f7bfa426eddc8ae8bcab0eb81b77821bcc02350befa67ea400bb9ef8400c"
 
 
 def install(self):
