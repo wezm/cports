@@ -1,6 +1,6 @@
 pkgname = "nfs-utils"
 pkgver = "2.8.2"
-pkgrel = 2
+pkgrel = 3
 build_style = "gnu_configure"
 configure_args = [
     "--disable-sbin-override",
@@ -30,6 +30,7 @@ makedepends = [
     "libxml2-devel",
     "linux-headers",
     "lvm2-devel",
+    "rpcbind",
     "sqlite-devel",
     "util-linux-mount-devel",
 ]
@@ -44,8 +45,6 @@ tool_flags = {"CFLAGS": ["-Wno-format-nonliteral", "-Wno-strict-prototypes"]}
 file_modes = {"usr/bin/mount.nfs": ("root", "root", 0o4755)}
 # tests require a running nfsd
 options = ["!check"]
-# nfs-utils-server-dinit-2.8.2-r2: ERROR:   svc: nfs-proc-nfsd (unknown provider)
-broken = "unknown provider for one of the dinit services"
 
 
 def post_install(self):
