@@ -1,0 +1,14 @@
+--- a/vendor/aws-lc-sys-0.42.0/builder/cc_builder.rs	2026-09-08 11:51:48.629664068 +1000
++++ b/vendor/aws-lc-sys-0.42.0/builder/cc_builder.rs	2026-09-08 11:52:40.418856675 +1000
+@@ -388,11 +388,6 @@
+             && !matches!(opt_level.as_str(), "0" | "1" | "2")
+             && !self.manifest_dir.to_string_lossy().contains(' ')
+         {
+-            let path_str = self.manifest_dir.display().to_string();
+-            let asm_flag = format!("-Wa,--debug-prefix-map={path_str}=");
+-            if cc_build.is_flag_supported(&asm_flag).unwrap_or(false) {
+-                cc_build.asm_flag(asm_flag);
+-            }
+         }
+ 
+         cc_build
