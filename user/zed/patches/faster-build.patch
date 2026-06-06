@@ -1,0 +1,14 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 773c0096c2..1ddc8258b4 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -840,8 +840,7 @@ zed_actions = { codegen-units = 1 }
+ 
+ [profile.release]
+ debug = "limited"
+-lto = "thin"
+-codegen-units = 1
++codegen-units = 16
+ 
+ [profile.release.package]
+ zed = { codegen-units = 16 }
