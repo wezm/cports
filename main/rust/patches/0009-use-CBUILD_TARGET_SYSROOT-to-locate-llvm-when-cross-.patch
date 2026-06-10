@@ -1,3 +1,13 @@
+From 721d6c220c3009dc58bc651ed5b2a20dc8a00111 Mon Sep 17 00:00:00 2001
+From: q66 <q66@chimera-linux.org>
+Date: Mon, 20 Dec 2021 01:56:48 +0100
+Subject: [PATCH 09/16] use CBUILD_TARGET_SYSROOT to locate llvm when
+ cross-compiling
+
+---
+ compiler/rustc_llvm/build.rs | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
 diff --git a/compiler/rustc_llvm/build.rs b/compiler/rustc_llvm/build.rs
 index 38c16fb1c..5c39083e9 100644
 --- a/compiler/rustc_llvm/build.rs
