@@ -1,6 +1,6 @@
 pkgname = "cargo"
 pkgver = "1.96.0"
-pkgrel = 0
+pkgrel = 1
 build_wrksrc = "src/tools/cargo"
 build_style = "cargo"
 # PKG_CONFIG being in environment mysteriously brings target sysroot
