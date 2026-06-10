@@ -378,61 +378,6 @@ def _(self):
     _repack(self, "rust-std")
 
 
-def install(self):
-    self.install_license("COPYRIGHT")
-    self.install_license("LICENSE-MIT")
-
-    # used if we decide to ship src
-    self.install_dir("usr/src")
-
-    # extract the archives
-    for f in [
-        "rustc",
-        "rust-std",
-        "rustc-dev",
-        "clippy",
-        "rustfmt",
-    ]:
-        self.log(f"unpacking {f}...")
-        _untar(self, f)
-    # wasm shit
-    self.log("unpacking wasm targets...")
-    _untar(self, "rust-std", "wasm32-unknown-unknown")
-    _untar(self, "rust-std", "wasm32-wasip1")
-    _untar(self, "rust-std", "wasm32-wasip1-threads")
-    _untar(self, "rust-std", "wasm32-wasip2")
-
-    self.log("unpacking rust-src...")
-    _untar(self, "rust-src", False)
-
-    # move from a non-compliant path
-    self.rename(
-        "usr/etc/target-spec-json-schema.json",
-        "usr/share/rust/target-spec-json-schema.json",
-        relative=False,
-    )
-
-    # remove rust copies of llvm tools
-    self.log("cleaning up tools...")
-    trip = self.profile().triplet
-    self.uninstall(f"usr/lib/rustlib/{trip}/bin")
-
-    # libexec fixup
-    self.rename(
-        "usr/libexec/rust-analyzer-proc-macro-srv",
-        "usr/lib/rust-analyzer-proc-macro-srv",
-        relative=False,
-    )
-
-    # usr/lib stuff should be symlinks into rustlib
-    self.log("relinking rustlibs...")
-    for f in (self.destdir / "usr/lib").glob("*.so"):
-        rlibf = self.destdir / _rlib_dir / "lib" / f.name
-        rlibf.unlink()
-        self.mv(f, rlibf)
-        f.symlink_to(rlibf.relative_to(f.parent))
-
-
 @subpackage("rust-wasm")
 def _(self):
     self.pkgdesc = "WebAssembly targets"
@@ -484,3 +429,60 @@ def _(self):
         "usr/lib/rustlib/rustc-src",
         "usr/lib/rustlib/src",
     ]
+
+
+def install(self):
+    self.install_license("COPYRIGHT")
+    self.install_license("LICENSE-MIT")
+
+    # used if we decide to ship src
+    self.install_dir("usr/src")
+
+    # extract the archives
+    for f in [
+        "rustc",
+        "rust-std",
+        "rustc-dev",
+        "clippy",
+        "rustfmt",
+    ]:
+        self.log(f"unpacking {f}...")
+        _untar(self, f)
+    # wasm shit
+    self.log("unpacking wasm targets...")
+    _untar(self, "rust-std", "wasm32-unknown-unknown")
+    _untar(self, "rust-std", "wasm32-wasip1")
+    _untar(self, "rust-std", "wasm32-wasip1-threads")
+    _untar(self, "rust-std", "wasm32-wasip2")
+
+    self.log("unpacking rust-src...")
+    _untar(self, "rust-src", False)
+
+    # move from a non-compliant path
+    self.rename(
+        "usr/etc/target-spec-json-schema.json",
+        "usr/share/rust/target-spec-json-schema.json",
+        relative=False,
+    )
+
+    # remove rust copies of llvm tools
+    self.log("cleaning up tools...")
+    trip = self.profile().triplet
+    self.uninstall(f"usr/lib/rustlib/{trip}/bin")
+
+    # libexec fixup
+    match self.profile().arch:
+        case "aarch64" | "ppc64" | "ppc64le" | "x86_64":
+            self.rename(
+                "usr/libexec/rust-analyzer-proc-macro-srv",
+                "usr/lib/rust-analyzer-proc-macro-srv",
+                relative=False,
+            )
+
+    # usr/lib stuff should be symlinks into rustlib
+    self.log("relinking rustlibs...")
+    for f in (self.destdir / "usr/lib").glob("*.so"):
+        rlibf = self.destdir / _rlib_dir / "lib" / f.name
+        rlibf.unlink()
+        self.mv(f, rlibf)
+        f.symlink_to(rlibf.relative_to(f.parent))
