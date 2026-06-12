@@ -1,5 +1,5 @@
 pkgname = "cosmic-workspaces"
-pkgver = "1.0.15"
+pkgver = "1.0.16"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -15,7 +15,7 @@ pkgdesc = "COSMIC notification daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-workspaces-epoch"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "a4a0d3ff668df7fbfa3909be20c23dd4e7fc1f5e89a6d67cd4f7bc575b805a92"
+sha256 = "aa974853ecd5e587f884f40c36c297412c6e4a2b46224284991edd9c49f5e7df"
 # no tests
 options = ["!check"]
 
