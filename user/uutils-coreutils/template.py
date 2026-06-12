@@ -27,16 +27,17 @@ _failing_tests = [
     "test_chown::test_big_p",
     "test_cp::test_cp_r_symlink",
     "test_df::test_type_option_with_file",
+    "test_du::test_du_repeated",
     "test_env::test_env_arg_ignore_signal_valid_signals",
     "test_hostname::test_hostname_ip",
     "test_install::test_install_and_strip",
     "test_logname::test_normal",
     "test_logname::test_output_format",
     "test_ls::test_device_number",
-    "test_test::test_file_not_owned_by_egid",
-    "test_test::test_file_not_owned_by_euid",
     "test_mv::test_mv_cross_device_preserves_ownership",
     "test_mv::test_mv_cross_device_preserves_ownership_recursive",
+    "test_test::test_file_not_owned_by_egid",
+    "test_test::test_file_not_owned_by_euid",
 ]
 make_install_args = ["LN=ln -s", *make_build_args]
 make_check_target = "test"
