@@ -1,5 +1,5 @@
 pkgname = "zed"
-pkgver = "1.4.2"
+pkgver = "1.6.3"
 pkgrel = 0
 # wasmtime
 archs = ["aarch64", "x86_64"]
@@ -24,7 +24,6 @@ makedepends = [
     "curl-devel",
     "fontconfig-devel",
     "freetype-devel",
-    "libgit2-devel",
     "libxkbcommon-devel",
     "rust-bindgen",
     "rust-std",
@@ -35,10 +34,10 @@ makedepends = [
 # otherwise downloads a non-working one
 depends = ["nodejs"]
 pkgdesc = "Graphical text editor"
-license = "GPL-3.0-or-later AND AGPL-3.0-or-later AND Apache-2.0"
+license = "GPL-3.0-or-later AND Apache-2.0"
 url = "https://zed.dev"
 source = f"https://github.com/zed-industries/zed/archive/v{pkgver}.tar.gz"
-sha256 = "139165edf8aabfa242dea5bba4d4fa4d26a99ab63beac274dd3452f35b60a8af"
+sha256 = "092802148973c75716d3ccdc7ad0d3297c4a519ad6f2c9ec3937a394fe6777b2"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
 tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}
@@ -85,7 +84,7 @@ def install(self):
         "usr/share/applications",
         name="dev.zed.Zed.desktop",
     )
-    self.install_license("LICENSE-AGPL")
+    self.install_license("LICENSE-GPL")
 
 
 @subpackage("zed-server")
