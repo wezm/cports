@@ -1,25 +1,23 @@
-diff --git a/GNUmakefile b/GNUmakefile
-index 7a00f41..92e1d69 100644
---- a/GNUmakefile
-+++ b/GNUmakefile
-@@ -203,7 +203,7 @@ ifeq ($(MANPAGES),y)
+--- a/GNUmakefile	2026-06-10 15:43:05.288217805 +1000
++++ b/GNUmakefile	2026-06-10 15:43:55.667571733 +1000
+@@ -204,7 +204,7 @@
  build-uudoc:
  	@unset CARGO_BUILD_TARGET && ${CARGO} build ${CARGOFLAGS} --bin uudoc --features "uudoc ${EXES}" ${PROFILE_CMD} --no-default-features
  
 -install-manpages: build-uudoc
 +install-manpages:
- 	mkdir -p $(DESTDIR)$(DATAROOTDIR)/man/man1
+ 	$(INSTALL) -d $(DESTDIR)$(DATAROOTDIR)/man/man1
  	$(foreach prog, $(INSTALLEES), \
  		$(BUILDDIR_UUDOC)/uudoc manpage $(prog) > $(DESTDIR)$(DATAROOTDIR)/man/man1/$(PROG_PREFIX)$(prog).1 $(newline) \
-@@ -214,13 +214,13 @@ endif
+@@ -215,13 +215,13 @@
  
  ifeq ($(COMPLETIONS),y)
  
 -install-completions: build-uudoc
 +install-completions:
- 	mkdir -p $(DESTDIR)$(DATAROOTDIR)/zsh/site-functions
- 	mkdir -p $(DESTDIR)$(DATAROOTDIR)/bash-completion/completions
- 	mkdir -p $(DESTDIR)$(DATAROOTDIR)/fish/vendor_completions.d
+ 	$(INSTALL) -d $(DESTDIR)$(DATAROOTDIR)/zsh/site-functions
+ 	$(INSTALL) -d $(DESTDIR)$(DATAROOTDIR)/bash-completion/completions
+ 	$(INSTALL) -d $(DESTDIR)$(DATAROOTDIR)/fish/vendor_completions.d
  	$(foreach prog, $(INSTALLEES), \
  		$(BUILDDIR_UUDOC)/uudoc completion $(prog) zsh > $(DESTDIR)$(DATAROOTDIR)/zsh/site-functions/_$(PROG_PREFIX)$(prog) $(newline) \
 -		$(BUILDDIR_UUDOC)/uudoc completion $(prog) bash > $(DESTDIR)$(DATAROOTDIR)/bash-completion/completions/$(PROG_PREFIX)$(prog).bash $(newline) \
@@ -27,12 +25,12 @@ index 7a00f41..92e1d69 100644
  		$(BUILDDIR_UUDOC)/uudoc completion $(prog) fish > $(DESTDIR)$(DATAROOTDIR)/fish/vendor_completions.d/$(PROG_PREFIX)$(prog).fish $(newline) \
  	)
  else
-@@ -269,7 +269,7 @@ locales:
+@@ -270,7 +270,7 @@
  install-locales:
  endif
  
 -install: build install-manpages install-completions install-locales
 +install: install-manpages install-completions install-locales
- 	mkdir -p $(INSTALLDIR_BIN)
+ 	$(INSTALL) -d $(INSTALLDIR_BIN)
  ifneq (,$(and $(findstring stdbuf,$(UTILS)),$(findstring feat_external_libstdbuf,$(CARGOFLAGS))))
- 	mkdir -p $(DESTDIR)$(LIBSTDBUF_DIR)
+ 	$(INSTALL) -d $(DESTDIR)$(LIBSTDBUF_DIR)
