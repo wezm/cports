@@ -13,7 +13,7 @@ file_modes = {
     "opt/1Password/1Password-BrowserSupport": ("root", "onepassword", 0o2755),
 }
 options = ["!distlicense", "!scanrundeps", "!scanshlibs", "allowopt"]
-# restricted = "proprietary"
+restricted = "proprietary"
 
 
 def install(self):
