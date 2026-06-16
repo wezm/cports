@@ -1,6 +1,6 @@
 pkgname = "kglobalacceld"
 pkgver = "6.6.5"
-pkgrel = 0
+pkgrel = 1
 build_style = "cmake"
 # shortcuts: needs full init of kglobalaccel
 # migrateconfig: fails; Alpine skips too
