@@ -3,8 +3,8 @@ pkgver = "6.7.1"
 pkgrel = 0
 build_style = "cmake"
 # shortcuts: needs full init of kglobalaccel
-# migrateconfig: fails; Alpine skips too
-make_check_args = ["-E", "(shortcuts|migrateconfig)test"]
+# migrateconfigtest passes at times but flaky
+make_check_args = ["-E", "(migrateconfigtest|shortcutstest)"]
 make_check_env = {"QT_QPA_PLATFORM": "offscreen"}
 make_check_wrapper = ["dbus-run-session"]
 hostmakedepends = ["cmake", "extra-cmake-modules", "ninja"]
