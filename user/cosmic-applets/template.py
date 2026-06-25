@@ -1,5 +1,5 @@
 pkgname = "cosmic-applets"
-pkgver = "1.0.16"
+pkgver = "1.1.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -17,7 +17,7 @@ pkgdesc = "Applets for COSMIC panel"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-applets"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "80425106cc800797c5818893986920e8724b5c24acec611ef9454c316d81d471"
+sha256 = "72e109b16e1135824a9b5ad02ffeff0e52a30efb24aab9b7023f0b6265f7c54c"
 # no tests
 options = ["!check"]
 
