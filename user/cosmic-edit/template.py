@@ -1,5 +1,5 @@
 pkgname = "cosmic-edit"
-pkgver = "1.1.0"
+pkgver = "1.2.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -16,7 +16,7 @@ pkgdesc = "COSMIC text editor"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-edit"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "8a254c3fc067f472f6b8f25880c8823b905b777647c136224f1da42e38464746"
+sha256 = "f060b5c3a870680051e55351cf0f217164be1e578213f7d26172cfd587276505"
 # no tests
 options = ["!check"]
 
