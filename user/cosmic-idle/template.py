@@ -1,5 +1,5 @@
 pkgname = "cosmic-idle"
-pkgver = "1.1.0"
+pkgver = "1.2.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
@@ -8,7 +8,7 @@ pkgdesc = "COSMIC idle daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-idle"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "c305ca769949a8eb395fa40b26f28599e8961bd8df3cc3a97dc310209fccf39c"
+sha256 = "72c0f692983239e01278dff2839450f4155f044984f59e78360cfd52f912b6bd"
 # no tests
 options = ["!check"]
 

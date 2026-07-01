@@ -1,5 +1,5 @@
 pkgname = "cosmic-settings-daemon"
-pkgver = "1.1.0"
+pkgver = "1.2.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -31,7 +31,7 @@ pkgdesc = "COSMIC settings daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-settings-daemon"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "adb78c8eb43c0acf79a056100653de30f64f220d8387658dfa16efa22fead523"
+sha256 = "ca84e881451ce90c387d475d650fe4916c3af572ec48cd622d0319b0b7d04320"
 # no tests
 options = ["!check"]
 
