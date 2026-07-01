@@ -1,4 +1,5 @@
 re: removing safe - hardened is enabled somewhere, and it can't be both.
+
 --- a/build_overrides/build.gni
 +++ b/build_overrides/build.gni
 @@ -27,7 +27,7 @@ build_with_v8_embedder = build_with_chromium
