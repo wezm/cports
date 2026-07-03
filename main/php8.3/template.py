@@ -134,6 +134,7 @@ license = "PHP-3.01"
 url = "https://www.php.net"
 source = f"{url}/distributions/php-{pkgver}.tar.gz"
 sha256 = "4e7baaf0a690e954a20e7ced3dd633ce8cb8094e2b6b612a55e703ecbbdcbf4f"
+options = ["etcfiles"]
 
 
 def post_patch(self):
@@ -301,6 +302,7 @@ def _extension(extn, iif):
     def _(self):
         self.subdesc = f"{extn} extension"
         self.depends += [self.parent]
+        options = ["etcfiles"]
 
         if iif:
             self.install_if = [self.parent]
@@ -359,3 +361,4 @@ for _extn, _iif in [
     ("zlib", False),
 ]:
     _extension(_extn, _iif)
+    options = ["etcfiles"]

@@ -38,7 +38,7 @@ sha256 = "37f1580200ab78305d1fc872d89241aaee0c93cbe85bc559bf332737a60d3be8"
 # FAIL: test/unit/tcti-swtpm
 # tried this; didn't work
 # make_check_env = {"CMOCKA_SKIP_FILTER":"test/unit/tcti-device,test/unit/tcti-mssim,test/unit/tcti-swtpm"}
-options = ["!check"]
+options = ["!check", "etcfiles"]
 
 
 def post_install(self):

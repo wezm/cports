@@ -45,6 +45,7 @@ tool_flags = {
     # workaround for --gc-sections breaking in test files
     "LDFLAGS": ["-Wl,-z,nostart-stop-gc"],
 }
+options = ["etcfiles"]
 
 
 def post_install(self):

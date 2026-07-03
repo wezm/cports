@@ -141,7 +141,7 @@ source = f"$(KDE_SITE)/plasma/{'.'.join(pkgver.split('.')[0:3])}/plasma-workspac
 sha256 = "89419e0532a8b33fda721e750c8f480c38828d5c14523952430dffcce0adc606"
 hardening = ["vis"]
 # FIXME: lots of failures: https://gist.github.com/wezm/d46885ab0702d9c8ace05f69a05e01af
-options = ["!check"]
+options = ["!check", "etcfiles"]
 
 
 def post_install(self):

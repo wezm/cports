@@ -52,7 +52,7 @@ sha256 = "57926752365a17d3bf64945ea04dc63cc446a8863037b043b97799af30126b6b"
 tool_flags = {"CFLAGS": ["-DNDEBUG"], "CXXFLAGS": ["-DNDEBUG"]}
 hardening = ["!int"]
 # see below
-options = []
+options = ["etcfiles"]
 restricted = "disabled until requested"
 
 if self.profile().arch == "ppc64le":

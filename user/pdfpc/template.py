@@ -26,4 +26,5 @@ license = "GPL-3.0-or-later"
 url = "https://pdfpc.github.io"
 source = f"https://github.com/pdfpc/pdfpc/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "0083a958a2e9288a15c31aabb76b3eadf104672b4e815017f31ffa0d87db02ec"
+options = ["etcfiles"]
 restricted = "disabled until requested"

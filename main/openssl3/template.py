@@ -36,7 +36,7 @@ sha256 = "243a86649cf6f23eeb6a2ff2456e09e5d77dd9018a54d3d96b0c6bdd6ba6c7f1"
 # the codebase is not LTO-ready:
 # https://github.com/openssl/openssl/issues/18663
 # https://github.com/openssl/openssl/issues/22854
-options = ["bootstrap", "!lto"]
+options = ["bootstrap", "etcfiles", "!lto"]
 
 if self.stage > 0:
     makedepends = ["linux-headers"]

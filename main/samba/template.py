@@ -98,7 +98,7 @@ sha256 = "06cdbb27a6956978b045455fe0696d998ffbac8d24ba24de87a4ef8200813320"
 tool_flags = {"CFLAGS": ["-D_BSD_SOURCE"]}
 env = {"PYTHONHASHSEED": "1"}
 # check needs --enable-selftest, which needs extra system dependencies
-options = ["!cross", "!check", "!installroot", "linkundefver"]
+options = ["etcfiles", "!cross", "!check", "!installroot", "linkundefver"]
 
 # idmap_ad should go here if active directory is enabled
 configure_args.append(
@@ -354,6 +354,7 @@ def _(self):
         "tdb-progs",
         "iproute2",
     ]
+    self.options = ["etcfiles"]
 
     return [
         "etc/ctdb",

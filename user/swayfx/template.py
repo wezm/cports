@@ -42,6 +42,7 @@ file_xattrs = {
         "security.capability": "cap_sys_nice+ep",
     },
 }
+options = ["etcfiles"]
 restricted = "disabled until requested"
 
 

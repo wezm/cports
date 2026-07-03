@@ -33,6 +33,7 @@ tool_flags = {
     # mmap64, open64
     "CXXFLAGS": ["-D_LARGEFILE64_SOURCE"],
 }
+options = ["etcfiles"]
 
 
 @subpackage("v4l-utils-devel")

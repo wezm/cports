@@ -48,7 +48,7 @@ file_modes = {
 }
 hardening = ["!vis", "!cfi"]
 # messes with filesystem
-options = ["!check"]
+options = ["etcfiles", "!check"]
 
 
 def pre_install(self):
