@@ -1,5 +1,5 @@
 pkgname = "1password"
-pkgver = "8.12.24"
+pkgver = "8.12.26"
 pkgrel = 0
 archs = ["x86_64"]
 depends = ["hicolor-icon-theme", "gtk+3", "xdg-utils", "zlib-ng-compat"]
@@ -8,7 +8,7 @@ license = "LicenseRef-1Password-Proprietary"
 url = "https://1password.com"
 source = f"https://downloads.1password.com/linux/tar/stable/x86_64/1password-{pkgver}.x64.tar.gz"
 source_paths = ["1password"]
-sha256 = "5f3c52d5f2eea80d60c5d76b313a1ea8efcc235453dace67b5a3d0dedaf189e2"
+sha256 = "c489cf6d9d6613466a52b06bd44211d54b6f032fdf612cd5c647fc88eedddae4"
 file_modes = {
     "opt/1Password/1Password-BrowserSupport": ("root", "onepassword", 0o2755),
 }
