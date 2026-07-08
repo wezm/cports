@@ -1,5 +1,5 @@
 pkgname = "php8.3"
-pkgver = "8.3.31"
+pkgver = "8.3.32"
 _majver = pkgver[0 : pkgver.rfind(".")]
 pkgrel = 0
 _apiver = "20230831"
@@ -133,8 +133,12 @@ pkgdesc = "HTML-embedded scripting language"
 license = "PHP-3.01"
 url = "https://www.php.net"
 source = f"{url}/distributions/php-{pkgver}.tar.gz"
-sha256 = "4e7baaf0a690e954a20e7ced3dd633ce8cb8094e2b6b612a55e703ecbbdcbf4f"
+sha256 = "8e1f03eea0b07bc29e1f94d3cfcf0532b0421ec63c1792346b58c3ad8e40fc9b"
 options = ["etcfiles"]
+
+if self.profile().arch in ["loongarch64"]:
+    makedepends += ["libucontext-devel"]
+    tool_flags = {"LDFLAGS": ["-lucontext"]}
 
 
 def post_patch(self):
@@ -270,39 +274,12 @@ def _(self):
     ]
 
 
-@subpackage(f"php{_majver}-pear")
-def _(self):
-    self.pkgdesc = f"PHP{_majver} Extension and Application Repository"
-    self.depends = [self.parent, f"{pkgname}-xml"]
-    self.install_if = [self.parent]
-
-    return [
-        f"etc/php{_majver}/pear.conf",
-        f"usr/bin/pear{_majver}",
-        f"usr/bin/peardev{_majver}",
-        f"usr/bin/pecl{_majver}",
-        f"usr/share/php{_majver}/pear",
-    ]
-
-
-@subpackage(f"php{_majver}-devel")
-def _(self):
-    self.depends += [self.parent]
-
-    return self.default_devel(
-        extra=[
-            f"usr/bin/phpize{_majver}",
-            f"usr/lib/php{_majver}/build",
-        ]
-    )
-
-
 def _extension(extn, iif):
     @subpackage(f"php{_majver}-{extn}")
     def _(self):
         self.subdesc = f"{extn} extension"
         self.depends += [self.parent]
-        options = ["etcfiles"]
+        self.options = ["etcfiles"]
 
         if iif:
             self.install_if = [self.parent]
@@ -361,4 +338,31 @@ for _extn, _iif in [
     ("zlib", False),
 ]:
     _extension(_extn, _iif)
-    options = ["etcfiles"]
+
+
+@subpackage(f"php{_majver}-pear")
+def _(self):
+    self.pkgdesc = f"PHP{_majver} Extension and Application Repository"
+    self.depends = [self.parent, f"{pkgname}-xml"]
+    self.install_if = [self.parent]
+    self.options = ["etcfiles"]
+
+    return [
+        f"etc/php{_majver}/pear.conf",
+        f"usr/bin/pear{_majver}",
+        f"usr/bin/peardev{_majver}",
+        f"usr/bin/pecl{_majver}",
+        f"usr/share/php{_majver}/pear",
+    ]
+
+
+@subpackage(f"php{_majver}-devel")
+def _(self):
+    self.depends += [self.parent]
+
+    return self.default_devel(
+        extra=[
+            f"usr/bin/phpize{_majver}",
+            f"usr/lib/php{_majver}/build",
+        ]
+    )
