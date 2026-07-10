@@ -40,6 +40,7 @@ broken_symlinks = ["usr/bin/docker-init"]
 # the build system was originally designed to be ran in a container so tests are a mess
 # also likely wouldnt work in a cbuild environment anyways
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def prepare(self):
