@@ -1,5 +1,5 @@
 pkgname = "bottom"
-pkgver = "0.14.2"
+pkgver = "0.14.4"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
@@ -18,11 +18,10 @@ source_paths = [
     "man",
 ]
 sha256 = [
-    "40fae71b665bc9bb84f42ddeb65d12c09d689cd155680b93e5aaabdfa28cecf8",
-    "d1f751025f012b9329b58c24ebf54511968360d45e20fb7bdf8cb873d4fa2bc5",
-    "f952cfbfa03d2a58af4c8cf2627b720c7fb1c6f77e976d9c6591feb3148a30a1",
+    "c2b2a5bf438d014b2a32fbbd9edc2da634cbdff4b01a2810d5dcb571d3998051",
+    "0b458a63f14b148cf4a19ce152331f3a404aaba00a725dbd603402781669799f",
+    "cea096d6f9936312be0ecc337eac1efe16bd603f383ea86b80834829d9f8a048",
 ]
-restricted = "disabled until requested"
 
 
 def post_install(self):
