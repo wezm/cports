@@ -20,6 +20,7 @@ license = "MIT"
 url = "https://github.com/krallin/tini"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "0fd35a7030052acd9f58948d1d900fe1e432ee37103c5561554408bdac6bbf0d"
+restricted = "disabled until requested"
 
 
 def post_install(self):
