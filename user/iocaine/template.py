@@ -22,6 +22,9 @@ sha256 = "d0acb7019238c4b7cb163a999dacbe4919ab0cc1380c1c39e79b6b7e108d6f1b"
 restricted = "disabled until requested"
 
 
+if self.profile().wordsize == 32:
+    broken = "atomic64"
+
 
 def install(self):
     self.install_license("LICENSES/MIT.txt")
