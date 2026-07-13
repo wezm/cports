@@ -36,6 +36,9 @@ restricted = "disabled until requested"
 if self.profile().arch in ["loongarch64"]:
     broken = "outdated nix crate, can't update"
 
+if self.profile().wordsize == 32:
+    broken = "atomic64"
+
 
 def post_install(self):
     self.install_license("LICENSE")
