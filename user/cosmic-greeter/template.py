@@ -1,5 +1,5 @@
 pkgname = "cosmic-greeter"
-pkgver = "1.2.0"
+pkgver = "1.3.0"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
@@ -31,9 +31,9 @@ pkgdesc = "COSMIC greeter for greetd"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-greeter"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "9a6a844711f624900cf96905a5b85206d4ea09f13733eedec29a56567f5102fd"
+sha256 = "ec9921d3c2089df604d3851161d4ffb30c7630120801b86747d562d4e031cf09"
 # no tests
-options = ["!check"]
+options = ["!check", "etcfiles"]
 
 
 def install(self):
