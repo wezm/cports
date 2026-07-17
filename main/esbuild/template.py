@@ -1,6 +1,6 @@
 pkgname = "esbuild"
-pkgver = "0.28.0"
-pkgrel = 4
+pkgver = "0.28.1"
+pkgrel = 0
 build_style = "go"
 make_build_args = ["./cmd/esbuild"]
 hostmakedepends = ["go", "nodejs"]
@@ -8,7 +8,7 @@ pkgdesc = "JavaScript and CSS bundler and minifier"
 license = "MIT"
 url = "https://esbuild.github.io"
 source = f"https://github.com/evanw/esbuild/archive/v{pkgver}.tar.gz"
-sha256 = "7aae83b197db3fd695e6f378d30fd6cbddeb93e4b1057b2c41d36ecb1dfebbc2"
+sha256 = "65c756fa87d43178ac4a5242454c2bd0fde325f8ecf77997f8fa4b88f94d5cd2"
 
 
 def post_build(self):
