@@ -1,0 +1,14 @@
+https://sourceforge.net/p/pmt/bugs/82/
+diff --git a/pngcrush.c b/pngcrush.c
+index d0c387e..9851d52 100644
+--- a/pngcrush.c
++++ b/pngcrush.c
+@@ -5520,8 +5520,6 @@ int main(int argc, char *argv[])
+                      * they were already checked in the pngcrush_measure_idat
+                      * function
+                      */
+-                    png_set_option(read_ptr, PNG_IGNORE_ADLER32,
+-                        PNG_OPTION_ON);
+                     png_set_crc_action(read_ptr, PNG_CRC_QUIET_USE,
+                                        PNG_CRC_QUIET_USE);
+                 }
