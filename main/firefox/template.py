@@ -216,6 +216,7 @@ def configure(self):
                 "dbus-run-session",
                 "--",
                 "cage",
+                "--",
                 "sh",
                 "-c",
                 "wlr-randr --output HEADLESS-1 --custom-mode 1920x1080@60; ./mach python ./build/pgo/profileserver.py",
