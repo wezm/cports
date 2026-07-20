@@ -2,6 +2,7 @@ pkgname = "pods"
 pkgver = "3.1.1"
 pkgrel = 0
 build_style = "meson"
+make_build_env = {}
 hostmakedepends = [
     "blueprint-compiler",
     "cargo-auditable",
@@ -31,6 +32,10 @@ restricted = "disabled until requested"
 
 if self.profile().wordsize == 32:
     broken = "needs atomic64"
+
+if self.profile().arch in ["loongarch64"]:
+    # loongarch64-chimera-linux-musl-ld: error: address assignment did not converge
+    make_build_env["RUSTFLAGS"] = "-C link-arg=-mno-relax"
 
 
 def post_extract(self):
