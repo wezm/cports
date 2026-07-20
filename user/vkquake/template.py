@@ -27,6 +27,7 @@ license = "GPL-2.0-only"
 url = "https://github.com/Novum/vkQuake"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "9f3a2bbf7ef22224c26a1a0d574562573fdaae2dc9758a98068617062d49c584"
+restricted = "disabled until requested"
 
 
 def install(self):
