@@ -1,5 +1,5 @@
 pkgname = "git"
-pkgver = "2.54.0"
+pkgver = "2.55.0"
 pkgrel = 0
 hostmakedepends = [
     "asciidoctor",
@@ -14,6 +14,7 @@ makedepends = [
     "curl-devel",
     "libexpat-devel",
     "libsecret-devel",
+    "linux-headers",
     "pcre2-devel",
     "tk-devel",
 ]
@@ -28,7 +29,7 @@ pkgdesc = "Fast, distributed version control system"
 license = "GPL-2.0-only"
 url = "https://git-scm.com"
 source = f"https://www.kernel.org/pub/software/scm/git/git-{pkgver}.tar.xz"
-sha256 = "f689162364c10de79ef89aa8dbf48731eb057e34edbbd20aca510ce0154681a3"
+sha256 = "457fdb04dc8728e007d4688695e6912e6f680727920f2a40bf11eacc17505357"
 hardening = ["cfi", "vis"]
 
 
@@ -45,6 +46,8 @@ LDFLAGS = {self.get_ldflags(shell=True)}
 USE_LIBPCRE2 = Yes
 USE_ASCIIDOCTOR = Yes
 NO_INSTALL_HARDLINKS = Yes
+# this won't work forever but for now saves us some pain in the ass
+NO_RUST = Yes
 INSTALLDIRS = vendor
 INSTALL_SYMLINKS = 1
 perllibdir = /usr/share/perl5/vendor_perl
@@ -65,15 +68,8 @@ def build(self):
 
 def check(self):
     # t5000.75 fails intermittently
-    self.do(
-        "make",
-        "all",
-        env={
-            "GIT_SKIP_TESTS": "t5000.75",
-            "GIT_TEST_OPTS": "--verbose-log",
-        },
-        wrksrc="t",
-    )
+    # t7527 hangs in test env
+    self.do("make", "all", env={"GIT_SKIP_TESTS": "t5000.75 t7527"}, wrksrc="t")
     self.do("make", "-C", "contrib/diff-highlight", "test")
     self.do("make", "-C", "contrib/subtree", "test")
 
