@@ -382,6 +382,7 @@ default_options = {
     "ltostrip": (False, False),
     "linkparallel": (True, True),
     "linkundefver": (False, False),
+    "linkrelax": (True, False),
     "framepointer": (True, True),
     "fullrustflags": (False, True),
     "sanruntime": (False, True),
@@ -1966,6 +1967,8 @@ class Template(Package):
         lld_args = compiler._get_lld_cpuargs(self.link_threads)
         if self.options["linkundefver"]:
             lld_args += ["--undefined-version"]
+        if not self.options["linkrelax"]:
+            lld_args += ["--no-relax"]
         if self.use_ltocache:
             lld_args += [
                 f"--thinlto-cache-policy=cache_size_bytes={self.use_ltocache}",
