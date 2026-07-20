@@ -25,4 +25,4 @@ restricted = "disabled until requested"
 
 def post_install(self):
     self.install_license("LICENSE")
-    self.install_service("^/wluma.user")
+    self.install_service(self.files_path / "wluma.user")

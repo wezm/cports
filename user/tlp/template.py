@@ -25,7 +25,7 @@ restricted = "disabled until requested"
 
 
 def post_install(self):
-    self.install_service("^/tlp")
+    self.install_service(self.files_path / "tlp")
 
 
 @subpackage("tlp-rdw")

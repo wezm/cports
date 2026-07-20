@@ -21,5 +21,5 @@ if self.profile().wordsize == 32:
 
 
 def post_install(self):
-    self.install_service("^/nbfc")
+    self.install_service(self.files_path / "nbfc")
     self.uninstall("usr/lib/systemd")

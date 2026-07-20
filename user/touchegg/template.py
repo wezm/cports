@@ -30,5 +30,5 @@ restricted = "disabled until requested"
 
 
 def post_install(self):
-    self.install_sysusers("^/sysusers.conf")
-    self.install_service("^/touchegg")
+    self.install_sysusers(self.files_path / "sysusers.conf")
+    self.install_service(self.files_path / "touchegg")
