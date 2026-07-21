@@ -1,34 +1,44 @@
 pkgname = "zstd"
 pkgver = "1.5.7"
-pkgrel = 0
-build_style = "meson"
-configure_args = [
-    "-Db_ndebug=true",
-    "-Dbin_contrib=true",
-    "-Dbin_tests=true",
-    "-Dlz4=enabled",
-    "-Dlzma=enabled",
-    "-Dzlib=enabled",
-]
-make_dir = "mbuild"
-meson_dir = "build/meson"
-hostmakedepends = ["meson", "pkgconf"]
+pkgrel = 1
+hostmakedepends = ["pkgconf"]
 makedepends = ["lz4-devel", "xz-devel", "zlib-ng-compat-devel"]
-provides = [self.with_pkgver("libzstd")]
+renames = ["libzstd"]
 pkgdesc = "Zstd compression utilities"
 license = "BSD-3-Clause"
 url = "http://www.zstd.net"
 source = f"https://github.com/facebook/zstd/releases/download/v{pkgver}/zstd-{pkgver}.tar.gz"
 sha256 = "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3"
+compression = "deflate"
 hardening = ["!vis", "!cfi"]
-options = ["bootstrap"]
-if self.stage == 0:
-    # SONAME: libc.so.6 (unknown provider)
-    # SONAME: libc++.so.1 (unknown provider)
-    options += ["!scanrundeps"]
+# needs gtest
+options = ["!check"]
 
 
-def post_install(self):
+def build(self):
+    self.do("make", f"-j{self.make_jobs}", "PREFIX=/usr", "lib-mt")
+    self.do(
+        "make",
+        f"-j{self.make_jobs}",
+        "PREFIX=/usr",
+        "-C",
+        "programs",
+        "zstd-dll",
+        "LIB_BINDIR=../lib",
+    )
+    self.do("make", f"-j{self.make_jobs}", "PREFIX=/usr", "-C", "contrib/pzstd")
+
+
+def install(self):
+    self.do("make", "PREFIX=/usr", f"DESTDIR={self.chroot_destdir}", "install")
+    self.do(
+        "make",
+        "-C",
+        "contrib/pzstd",
+        "PREFIX=/usr",
+        f"DESTDIR={self.chroot_destdir}",
+        "install",
+    )
     self.install_license("LICENSE")
     for tool in ["zstdgrep", "zstdless"]:
         self.uninstall(f"usr/bin/{tool}")
@@ -38,10 +48,6 @@ def post_install(self):
 @subpackage("zstd-progs")
 def _(self):
     self.install_if = [self.parent]
-    if self.stage == 0:
-        # SONAME: libc.so.6 (unknown provider)
-        # SONAME: libc++.so.1 (unknown provider)
-        self.options += ["!scanrundeps"]
 
     return self.default_progs()
 
