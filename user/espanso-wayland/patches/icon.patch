@@ -1,14 +1,12 @@
 diff --git a/espanso/src/res/linux/espanso.desktop b/espanso/src/res/linux/espanso.desktop
-index bd30bb9..79fdcaf 100644
+index cb0ad7a..03aeed5 100644
 --- a/espanso/src/res/linux/espanso.desktop
 +++ b/espanso/src/res/linux/espanso.desktop
-@@ -1,6 +1,6 @@
- [Desktop Entry]
+@@ -2,6 +2,6 @@
  Name=Espanso
+ Comment=Cross-platform Text Expander written in Rust
  Exec=espanso launcher
 -Icon=icon
 +Icon=espanso
  Type=Application
--Categories=Utility;
-\ No newline at end of file
-+Categories=Utility;
+ Categories=Utility;

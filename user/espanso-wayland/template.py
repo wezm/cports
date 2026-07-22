@@ -1,5 +1,5 @@
 pkgname = "espanso-wayland"
-pkgver = "2.3.0"
+pkgver = "2.4.0"
 pkgrel = 0
 build_style = "cargo"
 make_build_args = [
@@ -22,7 +22,7 @@ pkgdesc = "Automatic ZFS snapshot utility"
 license = "GPL-3.0-only"
 url = "https://espanso.org"
 source = f"https://github.com/espanso/espanso/archive/v{pkgver}.tar.gz"
-sha256 = "32b315a813114b28ef3ee74c5d2ce0bfc2f75a0bd9a4141c7465cd0b00fdf34c"
+sha256 = "90895a8a79476f902a6cfc88a67e8e077971be13f728ce1a35866355d60285a7"
 env = {"CXXSTDLIB": "c++"}
 file_modes = {
     "usr/bin/espanso": ("root", "root", 0o755),
@@ -44,4 +44,4 @@ def install(self):
         "usr/share/icons/hicolor/160x160/apps/espanso.png",
         name="espanso.png",
     )
-    self.install_service("^/espanso.user")
+    self.install_service(self.files_path / "espanso.user")
