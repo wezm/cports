@@ -449,10 +449,10 @@ def post_install(self):
 
     self.uninstall("var/db/Makefile")
 
-    self.install_tmpfiles("^/tmpfiles.conf")
+    self.install_tmpfiles(self.files_path / "tmpfiles.conf")
 
-    self.install_bin("^/locale-gen.sh", name="locale-gen")
-    self.install_file("^/libc-locales", "usr/share/glibc")
+    self.install_bin(self.files_path / "locale-gen.sh", name="locale-gen")
+    self.install_file(self.files_path / "libc-locales", "usr/share/glibc")
 
 
 @subpackage("glibc-locales")
