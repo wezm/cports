@@ -16,6 +16,7 @@ license = "MIT"
 url = "https://host-oman.github.io/libraqm"
 source = f"https://github.com/HOST-Oman/libraqm/releases/download/v{pkgver}/raqm-{pkgver}.tar.xz"
 sha256 = "3d0add115f7d4a9410d3377462ed3c05e86342193ef984183e4380e3787b2d4c"
+restricted = "disabled until requested"
 
 
 def post_install(self):

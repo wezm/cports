@@ -15,6 +15,7 @@ license = "GPL-3.0-or-later"
 url = "https://github.com/anyrun-org/anyrun"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "0b2abc1da9fdea12a753ca3024d5ede62209b82837d49eb5da35d99ba22a5790"
+restricted = "disabled until requested"
 
 
 def install(self):

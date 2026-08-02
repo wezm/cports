@@ -15,6 +15,7 @@ license = "GPL-3.0-only"
 url = "https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "455fd89ed5f57cb895d213d60e6acefcf0d779fcbc982e31c0f0acb085909430"
+restricted = "disabled until requested"
 
 
 def pre_prepare(self):
