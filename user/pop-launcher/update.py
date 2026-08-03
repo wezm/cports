@@ -1,1 +1,1 @@
-pattern = r"epoch-([0-9.]+)"
+pattern = r"/releases/tag/epoch-([\d.]+)(?=\")"
