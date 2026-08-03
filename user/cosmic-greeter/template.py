@@ -1,8 +1,9 @@
 pkgname = "cosmic-greeter"
-pkgver = "1.3.0"
+pkgver = "1.5.0"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
+# skip systemd feature
 make_build_args = [
     "--all",
     "--no-default-features",
@@ -31,7 +32,7 @@ pkgdesc = "COSMIC greeter for greetd"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-greeter"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "ec9921d3c2089df604d3851161d4ffb30c7630120801b86747d562d4e031cf09"
+sha256 = "bbd49754abdef813b8bf86fa3e724c243d0baca27447b8f908c85cfe2a60a73e"
 # no tests
 options = ["!check", "etcfiles"]
 
@@ -48,11 +49,13 @@ def install(self):
         "dbus/com.system76.CosmicGreeter.conf", "usr/share/dbus-1/system.d"
     )
     self.install_file(
-        "^/cosmic-greeter.pam", "usr/lib/pam.d", name="cosmic-greeter"
+        self.files_path / "cosmic-greeter.pam",
+        "usr/lib/pam.d",
+        name="cosmic-greeter",
     )
 
-    self.install_service("^/cosmic-greeter-daemon")
-    self.install_service("^/cosmic-greeter")
+    self.install_service(self.files_path / "cosmic-greeter-daemon")
+    self.install_service(self.files_path / "cosmic-greeter")
 
-    self.install_sysusers("^/sysusers.conf")
-    self.install_tmpfiles("^/tmpfiles.conf")
+    self.install_sysusers(self.files_path / "sysusers.conf")
+    self.install_tmpfiles(self.files_path / "tmpfiles.conf")

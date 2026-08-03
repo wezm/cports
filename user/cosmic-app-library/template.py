@@ -1,5 +1,5 @@
 pkgname = "cosmic-app-library"
-pkgver = "1.3.0"
+pkgver = "1.5.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -9,7 +9,7 @@ pkgdesc = "COSMIC application launcher"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-app-library"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "242699ea80d67718a4cd13862897c33a46d7c4532986ab577e06b260f8d7b14c"
+sha256 = "39dfa91d807240585ece7794190229832cb0c48162d87a29d62fb6a43a5238e6"
 # no tests
 options = ["!check"]
 
