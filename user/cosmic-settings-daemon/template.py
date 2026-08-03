@@ -1,5 +1,5 @@
 pkgname = "cosmic-settings-daemon"
-pkgver = "1.3.0"
+pkgver = "1.5.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -20,18 +20,18 @@ depends = [
     "adw-gtk3",
     "alsa-utils",
     "breeze-icons",
+    "cosmic-sound-theme",
     # for loginctl
     "elogind",
     "geoclue",
     "playerctl",
-    "pop-sound-theme",
     "wireplumber",
 ]
 pkgdesc = "COSMIC settings daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-settings-daemon"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "70bb2dbfc9d321f4bb446c047980933d8817bd5ab0f6ab856dd9f74caab59f36"
+sha256 = "5b404784098e5b92f989e7b7c4e0c645b2f60c3b385c283ad052d75b5d75952c"
 # no tests
 options = ["!check"]
 

@@ -1,4 +1,4 @@
-# deinit service for cosmic-greeter-daemon
+# dinit service for cosmic-greeter-daemon
 
 type = process
 command = /usr/bin/cosmic-greeter-daemon
