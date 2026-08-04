@@ -17,7 +17,6 @@ makedepends = [
     "libusb-devel",
     "linux-headers",
     "lz4-devel",
-    "musl-bsd-headers",
     "pcre2-devel",
     "protobuf-devel",
     "zstd-devel",
