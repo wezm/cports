@@ -1,5 +1,5 @@
 pkgname = "openal-soft"
-pkgver = "1.25.1"
+pkgver = "1.25.2"
 pkgrel = 0
 build_style = "cmake"
 configure_args = ["-DALSOFT_EXAMPLES=OFF"]
@@ -18,7 +18,7 @@ url = "https://openal-soft.org"
 # expired certificate
 # source = f"{url}/openal-releases/openal-soft-{pkgver}.tar.bz2"
 source = f"https://github.com/kcat/openal-soft/archive/{pkgver}.tar.gz"
-sha256 = "5f8efe8dfba5e9307a50251ba615ace857c7fa9dddfe34130b83e213d7f7cf24"
+sha256 = "fb27e5839aa11f0e5b9d33756965291fad5d6909ab928ea1f796f4a1a6877894"
 # no test target
 options = ["!check"]
 
