@@ -1,5 +1,5 @@
 pkgname = "rust-bootstrap"
-pkgver = "1.96.1"
+pkgver = "1.97.1"
 pkgrel = 0
 # satisfy revdeps
 makedepends = ["zlib-ng-compat", "ncurses-libs", "zstd"]
@@ -20,8 +20,8 @@ options = ["!strip", "!splitstatic", "!lto"]
 match self.profile().arch:
     case "x86_64":
         sha256 = [
-            "27925affa420e5b39227edde96d77ec6a5688631a076babbc0e4459cda3c45b4",
-            "c5d399200305231d6d4b6b57509c0a57858ff635f30b0d3f11a0fb87634a457e",
+            "4d5010adaa0a9299bd7b85f92f35d855c4876b05efc529eff8c3fec8307df78e",
+            "f82f9719e3bfc43b52c3e7313506e852d09ef44c3a4977bbe1b57fc3964c6203",
         ]
     case _:
         broken = f"not yet built for {self.profile().arch}"
