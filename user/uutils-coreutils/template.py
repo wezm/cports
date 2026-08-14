@@ -35,6 +35,7 @@ _failing_tests = [
     "test_test::test_file_not_owned_by_euid",
     # fail on builder
     "test_du::test_du_repeated_apparent_size",
+    "test_du::test_du_repeated_b",
     "test_logname::test_normal",
     "test_logname::test_output_format",
 ]
