@@ -63,6 +63,7 @@ sha256 = [
 ]
 # needs some manual setup
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def install(self):

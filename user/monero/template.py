@@ -47,6 +47,7 @@ sha256 = [
 ]
 # needs some manual setup
 options = ["etcfiles", "!cross"]
+restricted = "disabled until requested"
 
 
 def post_install(self):
