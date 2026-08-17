@@ -9,6 +9,7 @@ license = "MIT"
 url = "https://gitlab.com/saalen/astyle"
 source = f"{url}/-/archive/{pkgver}/astyle-{pkgver}.tar.gz"
 sha256 = "5ca894e3d651983baa4f8a36113a948b5de66328e6cd55f08a6fba91c0ffca21"
+restricted = "disabled until requested"
 
 
 def post_install(self):
