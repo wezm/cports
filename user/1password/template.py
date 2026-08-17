@@ -1,5 +1,5 @@
 pkgname = "1password"
-pkgver = "8.12.28"
+pkgver = "8.12.32"
 pkgrel = 0
 archs = ["x86_64"]
 depends = ["hicolor-icon-theme", "gtk+3", "xdg-utils", "zlib-ng-compat"]
@@ -8,12 +8,11 @@ license = "LicenseRef-1Password-Proprietary"
 url = "https://1password.com"
 source = f"https://downloads.1password.com/linux/tar/stable/x86_64/1password-{pkgver}.x64.tar.gz"
 source_paths = ["1password"]
-sha256 = "2695d72e98c039f061fa8735608071a816616b4d88bb3725561411885dbd57a7"
+sha256 = "760e3649034c4bbefedfddec0cfebac1e677dd55482a3390119c1a2bcda27d97"
 file_modes = {
     "opt/1Password/1Password-BrowserSupport": ("root", "onepassword", 0o2755),
 }
 options = ["!distlicense", "!scanrundeps", "!scanshlibs", "allowopt"]
-restricted = "proprietary"
 
 
 def install(self):
