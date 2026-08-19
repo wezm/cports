@@ -1,5 +1,5 @@
 pkgname = "cosmic-screenshot"
-pkgver = "1.5.0"
+pkgver = "1.6.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -11,7 +11,7 @@ pkgdesc = "COSMIC screenshot utility"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-screenshot"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "2a0a1fb18303773fbfe54613b0b5603871a72cbbb5b0ae183b5390227671b9a3"
+sha256 = "22db661edfbcf69907d432e4bdd1d01145765e42437de59d3b3e89b61e8425da"
 # no tests
 options = ["!check"]
 

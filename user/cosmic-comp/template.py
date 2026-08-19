@@ -1,5 +1,5 @@
 pkgname = "cosmic-comp"
-pkgver = "1.5.0"
+pkgver = "1.6.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -22,7 +22,7 @@ pkgdesc = "COSMIC compositor"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-comp"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "ebdc79bd667b6ee167fcf5c4a616f56db7c24adfabc11ab3c3e572c5b2a52421"
+sha256 = "c3cc440fd5e0f2b3eda42d28a956a7c19616391c52c1c27efd1a002c131d15cc"
 # no tests
 options = ["!check"]
 
