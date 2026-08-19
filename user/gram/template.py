@@ -1,5 +1,5 @@
 pkgname = "gram"
-pkgver = "3.0.1"
+pkgver = "3.2.0"
 pkgrel = 0
 build_style = "cargo"
 make_env = {
@@ -49,7 +49,7 @@ pkgdesc = "Code editor, forked from Zed"
 license = "GPL-3.0-only"
 url = "https://gram-editor.com"
 source = f"https://codeberg.org/GramEditor/gram/archive/{pkgver}.tar.gz"
-sha256 = "4fc7521b417e56a990920f985656be0f72f16a957405d299cfbe6ea9c5e7fa94"
+sha256 = "ff455814b3ba5909a1ae359bd5716874bd072495fdaa55fafbc025ed060f1989"
 # check: runs out of RAM; builds all the examples
 options = ["!check"]
 # TODO(Harper): Patch message "Installation from source URL requires rustup to be installed"
