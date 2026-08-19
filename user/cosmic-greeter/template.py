@@ -1,5 +1,5 @@
 pkgname = "cosmic-greeter"
-pkgver = "1.5.0"
+pkgver = "1.6.0"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
@@ -17,6 +17,7 @@ make_build_env = {
 }
 hostmakedepends = ["cargo-auditable", "pkgconf"]
 makedepends = [
+    "dav1d-devel",
     "dinit-chimera",
     "dinit-dbus",
     "glib-devel",
@@ -32,7 +33,7 @@ pkgdesc = "COSMIC greeter for greetd"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-greeter"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "bbd49754abdef813b8bf86fa3e724c243d0baca27447b8f908c85cfe2a60a73e"
+sha256 = "d8d4135d926c0f2673dbb8ddb6120a7dc5f992811798ca193372db904f385f76"
 # no tests
 options = ["!check", "etcfiles"]
 

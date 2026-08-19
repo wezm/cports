@@ -1,5 +1,5 @@
 pkgname = "cosmic"
-pkgver = "1.5.0"
+pkgver = "1.6.0"
 pkgrel = 0
 build_style = "meta"
 depends = [

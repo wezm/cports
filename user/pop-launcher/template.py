@@ -1,5 +1,5 @@
 pkgname = "pop-launcher"
-pkgver = "1.5.0"
+pkgver = "1.6.0"
 pkgrel = 0
 build_style = "cargo"
 make_build_args = ["-p", "pop-launcher-bin"]
@@ -16,7 +16,7 @@ makedepends = [
 depends = [
     "dbus",
     "fd",
-    "libqalculate",
+    "libqalculate-progs",
     "polkit",
     "pop-icon-theme",
     "xdg-utils",
@@ -25,7 +25,7 @@ pkgdesc = "Modular IPC-based desktop launcher service"
 license = "MPL-2.0"
 url = "https://github.com/pop-os/launcher"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "39858eb5a15dac23604981a045db219a7cd435bc9d553974fa653ee0431f9871"
+sha256 = "eb7d22712b03db50bf1a3629d133109275636b3d079501df8dfcb97fbe10d8fb"
 # no tests
 options = ["!check"]
 
