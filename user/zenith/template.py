@@ -1,6 +1,6 @@
 pkgname = "zenith"
 pkgver = "0.15.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable"]
 makedepends = ["rust-std"]

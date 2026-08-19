@@ -1,0 +1,24 @@
+diff --git a/src/metrics/mod.rs b/src/metrics/mod.rs
+index a2f5d83..9cf0945 100644
+--- a/src/metrics/mod.rs
++++ b/src/metrics/mod.rs
+@@ -37,7 +37,7 @@ use nvml::{cuda_driver_version_major, cuda_driver_version_minor};
+ 
+ use std::fs;
+ use std::path::{Path, PathBuf};
+-use sysinfo::{Component, Components, Disk, Disks, Networks, System};
++use sysinfo::{Component, Components, Disk, Disks, Networks, System, ThreadKind};
+ use uzers::{Users, UsersCache};
+ 
+ #[cfg(all(feature = "nvidia", not(target_os = "linux")))]
+@@ -503,6 +503,10 @@ impl CPUTimeApp {
+         self.threads_total = 0;
+ 
+         for (pid, process) in process_list {
++            if process.thread_kind() == Some(ThreadKind::Userland) {
++                continue;
++            }
++
+             if let Some(zp) = self.process_map.get_mut(&pid.as_u32()) {
+                 if zp.start_time == process.start_time() {
+                     let disk_usage = process.disk_usage();
