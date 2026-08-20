@@ -1,5 +1,5 @@
 pkgname = "rust"
-pkgver = "1.97.1"
+pkgver = "1.98.0"
 pkgrel = 0
 hostmakedepends = [
     "cargo-bootstrap",
@@ -29,7 +29,7 @@ pkgdesc = "Rust programming language"
 license = "MIT OR Apache-2.0"
 url = "https://rust-lang.org"
 source = f"https://static.rust-lang.org/dist/rustc-{pkgver}-src.tar.xz"
-sha256 = "0ed06fdaffd4722a7702e0b4eebfafc897ab8f513e8e1b247cdd7e5c6df6ded2"
+sha256 = "271fa73d8174f53d713c46a8310da7bf7cfdcfb8b7cfd1c2b74b84a83ae9fb1e"
 tool_flags = {
     "RUSTFLAGS": [
         # make the std debugging symbols point to rust-src
@@ -78,7 +78,6 @@ def post_patch(self):
     cargo.clear_vendor_checksums(self, "cc-1.2.19")
     cargo.clear_vendor_checksums(self, "cc-1.2.20")
     cargo.clear_vendor_checksums(self, "cc-1.2.28")
-    cargo.clear_vendor_checksums(self, "cc-1.2.38")
 
 
 def configure(self):
@@ -155,7 +154,7 @@ unsafe extern "C" {}
     # check src/bootstrap/src/utils/change_tracker.rs
     with open(self.cwd / "bootstrap.toml", "w") as cfg:
         cfg.write(f"""
-change-id = 154587
+change-id = 158169
 
 [llvm]
 ninja = false
