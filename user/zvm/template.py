@@ -9,7 +9,6 @@ url = "https://github.com/tristanisham/zvm"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "d41875911b44bf0faf01322b6ec46958d73a80e49a8d50db4380c1f064ddc6cd"
 options = ["!cross"]
-restricted = "disabled until requested"
 
 
 def post_build(self):
