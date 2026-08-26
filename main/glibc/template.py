@@ -4,7 +4,7 @@ with self.profile(self.profile().arch) as _pf:
 
 pkgname = "glibc"
 pkgver = "2.42"
-pkgrel = 2
+pkgrel = 3
 build_style = "gnu_configure"
 configure_args = [
     "--prefix=/usr",
@@ -320,7 +320,7 @@ tools = {
     "OBJDUMP": "objdump",  # TODO: gobjdump?
 }
 # resistance is futile
-options = ["bootstrap", "!check", "!lto"]  # TODO: check
+options = ["bootstrap", "!check", "etcfiles", "!lto"]  # TODO: check
 
 # work around:
 # objdump -f /builddir/glibc-2.42/build/format.lds.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > /builddir/glibc-2.42/build/format.lds
