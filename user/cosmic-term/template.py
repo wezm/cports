@@ -1,5 +1,5 @@
 pkgname = "cosmic-term"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -9,11 +9,11 @@ pkgdesc = "COSMIC terminal emulator"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-term"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "1f67186d1e058563ee61bb17b40764e69d0e40661a69b526fef957a4d0ad3f7e"
+sha256 = "00bd6308c660f21ffebf008998c2d4e80701a771659ef0890234aea4fee5dc55"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/cosmic-term")
+    self.install_bin(f"target/{self.profile.triplet}/release/cosmic-term")
     self.install_file(
         "target/xdgen/com.system76.CosmicTerm.metainfo.xml",
         "usr/share/metainfo",

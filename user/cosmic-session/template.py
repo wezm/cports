@@ -1,5 +1,5 @@
 pkgname = "cosmic-session"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -37,13 +37,13 @@ pkgdesc = "Session manager for the COSMIC desktop environment"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-session"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "e8fb29e7945ca0325988b0d4a00bc1093e1f0d3384263510b1ae99aced2ba756"
+sha256 = "e6e82bce485af7ec8900ef09da5e317c8a1fd4b76901901acf6eaead778542e6"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    _target_dir = f"target/{self.profile().triplet}"
+    _target_dir = f"target/{self.profile.triplet}"
     self.do(
         "just",
         f"rootdir={self.chroot_destdir}",

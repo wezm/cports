@@ -1,5 +1,5 @@
 pkgname = "cosmic-settings-daemon"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -31,18 +31,18 @@ pkgdesc = "COSMIC settings daemon"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-settings-daemon"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "449c9e199516b107555ab691ee1e7bbe9ed1bbed997988aae1adaeb3d2714d54"
+sha256 = "10e26ed1d815f8e6176068df3c441c13dd6fda7bd85a059afcfddd54b4689e8e"
 # no tests
 options = ["!check"]
 
 
 def install(self):
     self.install_bin(
-        f"target/{self.profile().triplet}/release/cosmic-settings-daemon"
+        f"target/{self.profile.triplet}/release/cosmic-settings-daemon"
     )
     # TODO: Internal binary feels like it could go in /usr/lib
     # self.install_file(
-    #     f"target/{self.profile().triplet}/release/cosmic-settings-daemon",
+    #     f"target/{self.profile.triplet}/release/cosmic-settings-daemon",
     #     "usr/lib",
     # )
 

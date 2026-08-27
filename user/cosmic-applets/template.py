@@ -1,5 +1,5 @@
 pkgname = "cosmic-applets"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -17,13 +17,13 @@ pkgdesc = "Applets for COSMIC panel"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-applets"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "ec62d99dc499373bce7970cceb08de0f2a8392d969b7d4384722816524a54083"
+sha256 = "11364c2827d878a8f1aa2ee084c448b677ad97fe077aab7316040591e4ce24a4"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    _target_dir = f"target/{self.profile().triplet}"
+    _target_dir = f"target/{self.profile.triplet}"
     self.do(
         "just",
         f"rootdir={self.chroot_destdir}",

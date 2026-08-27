@@ -1,5 +1,5 @@
 pkgname = "cosmic-bg"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -9,13 +9,13 @@ pkgdesc = "COSMIC background image service"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-bg"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "31a9e71c29747c3ff604dbbc52485f4689f0f0d9fd298b069aa7b9516343afe2"
+sha256 = "270c7d77e9b6d7283c016c3d2a6b64e4f029b6c419371642f6ce5bef81d1a967"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    _target_dir = f"target/{self.profile().triplet}"
+    _target_dir = f"target/{self.profile.triplet}"
     self.do(
         "just",
         f"rootdir={self.chroot_destdir}",
