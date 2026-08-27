@@ -1,5 +1,5 @@
 pkgname = "cosmic-settings"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -24,13 +24,13 @@ pkgdesc = "Settings application for the COSMIC desktop"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-settings"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "63301c0f05ae9594f684b2942f7a5b3b9ac85a1a1726a59cd9fe65667cf652e0"
+sha256 = "669bb605a63806a8afc751d78c17d7f0e8adc5297247919773b9184ab53328ac"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    _target_dir = f"target/{self.profile().triplet}"
+    _target_dir = f"target/{self.profile.triplet}"
     self.do(
         "just",
         f"rootdir={self.chroot_destdir}",

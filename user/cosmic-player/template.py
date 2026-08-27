@@ -1,5 +1,5 @@
 pkgname = "cosmic-player"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -14,13 +14,13 @@ pkgdesc = "COSMIC media player"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-player"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "98e36ff74a7c92b7c8e9242876e7dcef0c3905fbc9898500b0fd1217fa8865af"
+sha256 = "34e23a39e8cf9d484378355a0890dfdb0f050c0dcc10c37026549ff112e1aa89"
 # no tests
 options = ["!check"]
 
 
 def install(self):
-    _target_dir = f"target/{self.profile().triplet}"
+    _target_dir = f"target/{self.profile.triplet}"
     self.do(
         "just",
         f"rootdir={self.chroot_destdir}",

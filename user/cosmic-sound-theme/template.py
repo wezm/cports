@@ -1,5 +1,5 @@
 pkgname = "cosmic-sound-theme"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "meson"
 hostmakedepends = ["meson"]
@@ -7,4 +7,4 @@ pkgdesc = "COSMIC sound theme"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-sound-theme"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "5edab2a6a08396b11d8d8492fca814def6664d7fba6799420b5cd43c4ed61fab"
+sha256 = "478c51c500d639433032535d98074949a4574fad7a156bbd65288a02b53ba086"

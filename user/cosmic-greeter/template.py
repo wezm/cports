@@ -1,5 +1,5 @@
 pkgname = "cosmic-greeter"
-pkgver = "1.6.0"
+pkgver = "1.8.0"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
@@ -33,15 +33,15 @@ pkgdesc = "COSMIC greeter for greetd"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-greeter"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "d8d4135d926c0f2673dbb8ddb6120a7dc5f992811798ca193372db904f385f76"
+sha256 = "c16b4cecb3c356c17520ff16761f19ce5274d761b4a553fcf5bb9089dab047e1"
 # no tests
 options = ["!check", "etcfiles"]
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/cosmic-greeter")
+    self.install_bin(f"target/{self.profile.triplet}/release/cosmic-greeter")
     self.install_bin(
-        f"target/{self.profile().triplet}/release/cosmic-greeter-daemon"
+        f"target/{self.profile.triplet}/release/cosmic-greeter-daemon"
     )
     self.install_bin("cosmic-greeter-start.sh", name="cosmic-greeter-start")
 
