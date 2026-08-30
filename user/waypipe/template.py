@@ -62,4 +62,6 @@ def init_build(self):
 def post_install(self):
     from cbuild.util import cargo
 
-    self.install_bin(cargo.target_path(self, "waypipe", "build/target"))
+    self.install_bin(
+        cargo.target_path(self, "waypipe", "build/target", "meson-2")
+    )
