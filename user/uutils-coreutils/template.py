@@ -1,5 +1,5 @@
 pkgname = "uutils-coreutils"
-pkgver = "0.10.0"
+pkgver = "0.11.0"
 pkgrel = 0
 build_style = "makefile"
 make_build_args = [
@@ -28,9 +28,13 @@ _failing_tests = [
     "test_df::test_type_option_with_file",
     "test_env::test_env_arg_ignore_signal_valid_signals",
     "test_hostname::test_hostname_ip",
+    "test_id::test_id_groups_ordering",
+    "test_install::test_install_dev_full_as_dst",
     "test_ls::test_device_number",
     "test_mv::test_mv_cross_device_preserves_ownership",
     "test_mv::test_mv_cross_device_preserves_ownership_recursive",
+    "test_stdbuf::test_stdbuf_reports_signalled_command",
+    "test_tee::linux_only::test_permission_denied_clean",
     "test_test::test_file_not_owned_by_egid",
     "test_test::test_file_not_owned_by_euid",
     # fail on builder
@@ -52,7 +56,7 @@ pkgdesc = "Reimplementation of GNU coreutils"
 license = "MIT"
 url = "https://github.com/uutils/coreutils"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "f8e68cd0e3629378f047544ead272161a83211c43f4985a9f52944e5db8f1a44"
+sha256 = "a47966117783bef18650cc724f1b1d061b717ac91a0feaabdd34910703cf70a4"
 
 
 def prepare(self):
