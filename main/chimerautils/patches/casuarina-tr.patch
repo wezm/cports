@@ -1,5 +1,15 @@
+commit 3359e3158dac0efd8614300ce585d3f582ae4af6
+Author: Wesley Moore <wes@wezm.net>
+Date:   Mon Mar 2 17:49:58 2026 +1000
+
+    tr: use bytes instead of wide chars
+    
+    tr uses wide chars and getwchar, which works when LC_CHAR=C on FreeBSD
+    and musl, but causes an error on glibc. Change tr to just operate on
+    plain bytes.
+
 diff --git a/src.freebsd/coreutils/tr/tr.c b/src.freebsd/coreutils/tr/tr.c
-index 07ccb15..ba43e2a 100644
+index 8a925e9..031bafb 100644
 --- a/src.freebsd/coreutils/tr/tr.c
 +++ b/src.freebsd/coreutils/tr/tr.c
 @@ -43,13 +43,13 @@
@@ -84,7 +94,7 @@ index 07ccb15..ba43e2a 100644
  					cset_add(squeeze, ch);
  				if (!next(&s1))
  					goto endloop;
-@@ -267,8 +267,8 @@ endloop:
+@@ -301,8 +301,8 @@ endloop:
  		 */
  		s2.str = argv[1];
  		s2.state = NORMAL;
@@ -95,7 +105,7 @@ index 07ccb15..ba43e2a 100644
  				continue;
  			if (cmap_lookup(map, cnt) == OOBCH) {
  				if (next(&s2)) {
-@@ -285,7 +285,7 @@ endloop:
+@@ -319,7 +319,7 @@ endloop:
  		cmap_default(map, s2.lastch);
  	} else if (Cflag) {
  		for (p = carray, cnt = 0; cnt < NCHARS_SB; cnt++) {
@@ -104,7 +114,7 @@ index 07ccb15..ba43e2a 100644
  				*p++ = cnt;
  			else
  				cmap_add(map, cnt, cnt);
-@@ -296,7 +296,7 @@ endloop:
+@@ -330,7 +330,7 @@ endloop:
  
  		s2.str = argv[1];
  		s2.state = NORMAL;
@@ -113,7 +123,7 @@ index 07ccb15..ba43e2a 100644
  			(void)next(&s2);
  			cmap_add(map, carray[cnt], s2.lastch);
  			/*
-@@ -313,19 +313,19 @@ endloop:
+@@ -347,19 +347,19 @@ endloop:
  	cmap_cache(map);
  
  	if (sflag)

@@ -1,8 +1,8 @@
-commit b43139c14f3344dd29c50e77a3d135a2c21c8f84
+commit 63b7a97e722c85dee833bc540401bcdeaa72d5d0
 Author: Wesley Moore <wes@wezm.net>
 Date:   Mon Mar 2 17:59:48 2026 +1000
 
-    Just make everything use POSIX getopt on glibc
+    Make everything use POSIX getopt on glibc
 
 diff --git a/src.freebsd/apply/apply.c b/src.freebsd/apply/apply.c
 index 1b98e7a..81e8618 100644
@@ -161,13 +161,13 @@ index 22f184f..6342a77 100644
  		case 'b':
  			get_list(optarg);
 diff --git a/src.freebsd/coreutils/date/date.c b/src.freebsd/coreutils/date/date.c
-index a5f7407..ab4de43 100644
+index 289cc3f..98388f8 100644
 --- a/src.freebsd/coreutils/date/date.c
 +++ b/src.freebsd/coreutils/date/date.c
-@@ -101,7 +101,7 @@ main(int argc, char *argv[])
+@@ -100,7 +100,7 @@ main(int argc, char *argv[])
+ 	(void) setlocale(LC_TIME, "");
+ 	rflag = 0;
  	Iflag = jflag = Rflag = 0;
- 	ts.tv_sec = 0;
- 	ts.tv_nsec = 0;
 -	while ((ch = getopt(argc, argv, "f:I::jnRr:uv:z:")) != -1)
 +	while ((ch = getopt(argc, argv, "+f:I::jnRr:uv:z:")) != -1)
  		switch((char)ch) {
@@ -339,7 +339,7 @@ index d6fda3f..b9c5639 100644
  		case 'n':
  			errno = 0;
 diff --git a/src.freebsd/coreutils/nl/nl.c b/src.freebsd/coreutils/nl/nl.c
-index 05837e6..14c2a51 100644
+index d0f6413..d69e164 100644
 --- a/src.freebsd/coreutils/nl/nl.c
 +++ b/src.freebsd/coreutils/nl/nl.c
 @@ -135,7 +135,7 @@ main(int argc, char *argv[])
@@ -404,18 +404,18 @@ index 16461d4..833aa73 100644
  		case '+':
  			if ((pgnm = atoi(eoptarg)) < 1) {
 diff --git a/src.freebsd/coreutils/printenv/printenv.c b/src.freebsd/coreutils/printenv/printenv.c
-index 43dbdb0..30f2418 100644
+index ba221fe..16e7f70 100644
 --- a/src.freebsd/coreutils/printenv/printenv.c
 +++ b/src.freebsd/coreutils/printenv/printenv.c
-@@ -57,7 +57,7 @@ main(int argc, char *argv[])
+@@ -63,7 +63,7 @@ main(int argc, char *argv[])
  	if (caph_limit_stdio() < 0 || caph_enter() < 0)
  		err(1, "capsicum");
  
--	while ((ch = getopt(argc, argv, "")) != -1)
-+	while ((ch = getopt(argc, argv, "+")) != -1)
- 		switch(ch) {
- 		case '?':
+-	while ((opt = getopt(argc, argv, "")) != -1) {
++	while ((opt = getopt(argc, argv, "+")) != -1) {
+ 		switch (opt) {
  		default:
+ 			usage();
 diff --git a/src.freebsd/coreutils/printf/printf.c b/src.freebsd/coreutils/printf/printf.c
 index 18e7a4d..a25d3f3 100644
 --- a/src.freebsd/coreutils/printf/printf.c
@@ -430,18 +430,18 @@ index 18e7a4d..a25d3f3 100644
  		case '?':
  		default:
 diff --git a/src.freebsd/coreutils/pwd/pwd.c b/src.freebsd/coreutils/pwd/pwd.c
-index 8e055a8..71935b1 100644
+index 8331ee4..573369f 100644
 --- a/src.freebsd/coreutils/pwd/pwd.c
 +++ b/src.freebsd/coreutils/pwd/pwd.c
-@@ -51,7 +51,7 @@ main(int argc, char *argv[])
- 	char *p;
+@@ -87,7 +87,7 @@ main(int argc, char *argv[])
+ 	bool logical;
  
- 	physical = 1;
--	while ((ch = getopt(argc, argv, "LP")) != -1)
-+	while ((ch = getopt(argc, argv, "+LP")) != -1)
- 		switch (ch) {
+ 	logical = true;
+-	while ((opt = getopt(argc, argv, "LP")) != -1) {
++	while ((opt = getopt(argc, argv, "+LP")) != -1) {
+ 		switch (opt) {
  		case 'L':
- 			physical = 0;
+ 			logical = true;
 diff --git a/src.freebsd/coreutils/realpath/realpath.c b/src.freebsd/coreutils/realpath/realpath.c
 index 61263e5..06dcdff 100644
 --- a/src.freebsd/coreutils/realpath/realpath.c
@@ -456,7 +456,7 @@ index 61263e5..06dcdff 100644
  		case 'q':
  			qflag = 1;
 diff --git a/src.freebsd/coreutils/rm/rm.c b/src.freebsd/coreutils/rm/rm.c
-index 708c817..6cbadb8 100644
+index 396cce9..1ec29ed 100644
 --- a/src.freebsd/coreutils/rm/rm.c
 +++ b/src.freebsd/coreutils/rm/rm.c
 @@ -97,7 +97,7 @@ main(int argc, char *argv[])
@@ -508,7 +508,7 @@ index 63cf055..6743158 100644
  		case '0': case '1': case '2': case '3': case '4':
  		case '5': case '6': case '7': case '8': case '9':
 diff --git a/src.freebsd/coreutils/stat/stat.c b/src.freebsd/coreutils/stat/stat.c
-index f3601cd..5e750d6 100644
+index 548d96e..c0e8b23 100644
 --- a/src.freebsd/coreutils/stat/stat.c
 +++ b/src.freebsd/coreutils/stat/stat.c
 @@ -232,13 +232,13 @@ main(int argc, char *argv[])
@@ -567,7 +567,7 @@ index be8c4fe..563925c 100644
  		case 'a':
  			append = 1;
 diff --git a/src.freebsd/coreutils/touch/touch.c b/src.freebsd/coreutils/touch/touch.c
-index a883522..72bc745 100644
+index f91cf95..dd98f8d 100644
 --- a/src.freebsd/coreutils/touch/touch.c
 +++ b/src.freebsd/coreutils/touch/touch.c
 @@ -67,7 +67,7 @@ main(int argc, char *argv[])
@@ -580,7 +580,7 @@ index a883522..72bc745 100644
  		case 'A':
  			Aflag = timeoffset(optarg);
 diff --git a/src.freebsd/coreutils/tr/tr.c b/src.freebsd/coreutils/tr/tr.c
-index ba43e2a..b5f81e3 100644
+index 031bafb..485819e 100644
 --- a/src.freebsd/coreutils/tr/tr.c
 +++ b/src.freebsd/coreutils/tr/tr.c
 @@ -76,7 +76,7 @@ main(int argc, char **argv)
@@ -658,7 +658,7 @@ index e89dd0d..199e649 100644
  		case 'a':	/* Un-expand all spaces, not just leading. */
  			all = 1;
 diff --git a/src.freebsd/coreutils/wc/wc.c b/src.freebsd/coreutils/wc/wc.c
-index bcb6675..1614e78 100644
+index f993c74..cd9c121 100644
 --- a/src.freebsd/coreutils/wc/wc.c
 +++ b/src.freebsd/coreutils/wc/wc.c
 @@ -96,7 +96,7 @@ main(int argc, char *argv[])
@@ -684,7 +684,7 @@ index f71adee..7bc52cd 100644
  		case 'H':		/* Write column headings */
  			Hflag = 1;
 diff --git a/src.freebsd/coreutils/xinstall/xinstall.c b/src.freebsd/coreutils/xinstall/xinstall.c
-index 1b65231..4d62c27 100644
+index cd6179f..175b9dc 100644
 --- a/src.freebsd/coreutils/xinstall/xinstall.c
 +++ b/src.freebsd/coreutils/xinstall/xinstall.c
 @@ -162,7 +162,7 @@ static int
@@ -894,6 +894,19 @@ index 12e5398..b8bbd54 100644
  		switch (ch) {
  		case 'a':
  			aflg = 1;
+diff --git a/src.freebsd/miscutils/time/time.c b/src.freebsd/miscutils/time/time.c
+index 6a20ed8..16b809a 100644
+--- a/src.freebsd/miscutils/time/time.c
++++ b/src.freebsd/miscutils/time/time.c
+@@ -76,7 +76,7 @@ main(int argc, char **argv)
+ 	decimal_point = localeconv()->decimal_point[0];
+ 
+ 	aflag = hflag = pflag = 0;
+-	while ((ch = getopt(argc, argv, "aho:p")) != -1)
++	while ((ch = getopt(argc, argv, "+aho:p")) != -1)
+ 		switch((char)ch) {
+ 		case 'a':
+ 			aflag = 1;
 diff --git a/src.freebsd/miscutils/ul/ul.c b/src.freebsd/miscutils/ul/ul.c
 index 8c35536..c74eeb8 100644
 --- a/src.freebsd/miscutils/ul/ul.c
@@ -959,6 +972,19 @@ index 26fb482..8f6bd2c 100644
  #endif
  		switch (ch) {
  		case 'c':		/* Run the command. */
+diff --git a/src.freebsd/sed/main.c b/src.freebsd/sed/main.c
+index bfa39d5..5207e21 100644
+--- a/src.freebsd/sed/main.c
++++ b/src.freebsd/sed/main.c
+@@ -123,7 +123,7 @@ main(int argc, char *argv[])
+ 	fflagstdin = 0;
+ 	inplace = NULL;
+ 
+-	while ((c = getopt(argc, argv, "EI:ae:f:i:lnru")) != -1)
++	while ((c = getopt(argc, argv, "+EI:ae:f:i:lnru")) != -1)
+ 		switch (c) {
+ 		case 'r':		/* Gnu sed compat */
+ 		case 'E':
 diff --git a/src.freebsd/su/su.c b/src.freebsd/su/su.c
 index de1f447..9cf31db 100644
 --- a/src.freebsd/su/su.c
