@@ -95,7 +95,7 @@ source = [
     f"https://download.qt.io/official_releases/qt/{pkgver[:-2]}/{pkgver}/submodules/qtwebengine-everywhere-src-{pkgver}.tar.xz",
     f"https://github.com/qt/qtwebengine-chromium/archive/{_qtwebengine_gitrev}.tar.gz",
 ]
-source_paths = [".", "3rdparty-chromium"]
+source_paths = [".", "+src/3rdparty"]
 sha256 = [
     "6101c1aa00ff933d1b65ee5d167f76e8d71b9ac5b378b0111277723ebda7c163",
     "3a1f08a634eaf56b5c414cbc828e5aafa7fae382945e757aecc8f70aed3f5deb",
@@ -116,12 +116,6 @@ tool_flags = {
 hardening = ["!int", "!scp"]
 # lol
 options = ["!check", "!cross"]
-
-
-def post_extract(self):
-    # nuke old chromium tree to replace with the updated one
-    self.rm("src/3rdparty", recursive=True)
-    self.mv("3rdparty-chromium", "src/3rdparty")
 
 
 def post_install(self):
