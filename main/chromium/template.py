@@ -69,6 +69,7 @@ hostmakedepends = [
     "rust",
     "rust-bindgen",
     "rust-rustfmt",
+    "typescript",
 ]
 makedepends = [
     "alsa-lib-devel",
