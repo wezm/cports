@@ -208,6 +208,8 @@ match self.profile().arch:
 
 
 def post_patch(self):
+    from cbuild.util import patch
+
     # replace wrong node with a working one
     self.rm("third_party/node/linux/node-linux-x64/bin/node", force=True)
     self.mkdir("third_party/node/linux/node-linux-x64/bin", parents=True)
@@ -239,7 +241,17 @@ def post_patch(self):
         "/usr/bin/go", "third_party/dawn/tools/golang/linux-unknown/bin/go"
     )
     # replace x64 typescript with the one for our correct platform
+    # and patch the library to suit whatever google is doing
     self.rm("third_party/typescript/linux-amd64/src", recursive=True)
+    patch.patch(
+        self,
+        list(
+            (self.cwd / "third_party/typescript/linux-amd64/3pp/patches").glob(
+                "*.patch"
+            )
+        ),
+        wrksrc="typescript",
+    )
     self.mv("typescript", "third_party/typescript/linux-amd64/src")
 
     self.cp(self.files_path / "unbundle.sh", ".")

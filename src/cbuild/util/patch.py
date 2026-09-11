@@ -23,8 +23,12 @@ def patch(pkg, patch_list, wrksrc=None, apply_args=[], stamp=False):
         *apply_args,
     ]
 
+    srcd = pkg.srcdir
+    if wrksrc:
+        srcd = srcd / wrksrc
+
     def _apply(p):
-        if not git.call([*srcmd, p], cwd=pkg.srcdir, foreground=True):
+        if not git.call([*srcmd, p], cwd=srcd, foreground=True):
             pkg.error(f"failed to apply '{p.name}'")
 
     for p in patch_list:
