@@ -1063,7 +1063,8 @@ Keep in mind that default values may be overridden by build styles.
   `wrksrc` that the source's extracted result will have. Specifying an empty
   string or `.` implies default behavior. Effectively all sources that have
   a path that is not the default will be extracted separately and then moved
-  into place.
+  into place. Source paths starting with `+` will replace any previous path
+  already there.
 * `subdesc` *(str)* The package sub-description which will be appended to
   the main description as ` (subdesc)`.
 * `tools` *(dict)* This can be used to override default tools. Refer to the
