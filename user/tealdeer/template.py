@@ -28,7 +28,9 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile.triplet}/release/tldr")
+    from cbuild.util import cargo
+
+    self.install_bin(cargo.target_path(self, "tldr"))
     self.install_license("LICENSE-MIT")
     self.install_completion("completion/bash_tealdeer", "bash", "tldr")
     self.install_completion("completion/zsh_tealdeer", "zsh", "tldr")
