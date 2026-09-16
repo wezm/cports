@@ -1,6 +1,6 @@
 pkgname = "evince"
 pkgver = "48.4"
-pkgrel = 1
+pkgrel = 2
 build_style = "meson"
 # dvi needs kpathsea, which is in texlive
 # does anyone actually need dvi?
