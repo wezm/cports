@@ -24,7 +24,7 @@ options = []
 restricted = "disabled until requested"
 
 # err: while opening file: /tmp/badger/000003.vlog err: cannot allocate memory
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     options += ["!check"]
 
 

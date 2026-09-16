@@ -12,5 +12,5 @@ sha256 = "7002789471f8ef3a36f4d4db7be98f2847724e2b81a53c5e23d5cae022fb704b"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/samply")
+    self.install_bin(f"target/{self.profile.triplet}/release/samply")
     self.install_license("LICENSE-MIT")

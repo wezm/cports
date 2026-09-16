@@ -1,5 +1,5 @@
 # when bootstrapping, this will check the actual profile
-with self.profile(self.profile().arch) as _pf:
+with self.use_profile(self.profile.arch) as _pf:
     _trip = _pf.triplet
 
 pkgname = "glibc"
@@ -383,7 +383,7 @@ def install(self):
     self.make.install()
 
     # generate all locales
-    if self.profile().cross:
+    if self.profile.cross:
         self.error("not yet implemented")
     else:
         self.make.invoke(

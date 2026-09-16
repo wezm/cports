@@ -23,7 +23,7 @@ sha256 = "662c910f774e9fee3a19c4e057f380581ab2fc4ee52da4761304ac9c31b8869d"
 options = ["etcfiles", "!cross", "!lintstatic"]
 restricted = "disabled until requested"
 
-match self.profile().arch:
+match self.profile.arch:
     # native archs
     case "aarch64" | "ppc64" | "ppc64le" | "riscv64" | "x86_64":
         make_build_args += ["opt"]

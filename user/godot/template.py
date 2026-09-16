@@ -42,10 +42,10 @@ sha256 = "0230d490846467c4fd772cc70b08dc56cb3adfedd55d039de0af74ddfdba00eb"
 options = ["!cross"]
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "SafeNumeric seemingly unimplemented"
 
-match self.profile().arch:
+match self.profile.arch:
     case "x86_64":
         _godot_arch = "x86_64"
     case "armv7":
@@ -60,7 +60,7 @@ match self.profile().arch:
         _godot_arch = "ppc64"
     case _:
         _godot_arch = ""
-        broken = f"{self.profile().arch} is unsupported"
+        broken = f"{self.profile.arch} is unsupported"
 
 _scons_flags = [
     "platform=linuxbsd",
@@ -110,7 +110,7 @@ _scons_flags = [
 ]
 
 
-if self.profile().arch in ["aarch64", "x86_64"]:
+if self.profile.arch in ["aarch64", "x86_64"]:
     makedepends += ["embree-devel"]
     _scons_flags += ["builtin_embree=false"]
 

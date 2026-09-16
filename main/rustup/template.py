@@ -32,7 +32,7 @@ options = ["!check", "!cross", "!lintcomp"]
 
 def post_build(self):
     # required so that can be invoked as rustup
-    self.ln_s(f"target/{self.profile().triplet}/release/rustup-init", "rustup")
+    self.ln_s(f"target/{self.profile.triplet}/release/rustup-init", "rustup")
 
     for shell in ["bash", "fish", "zsh"]:
         with open(self.cwd / f"rustup.{shell}", "w") as outf:
@@ -45,7 +45,7 @@ def post_build(self):
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/rustup-init")
+    self.install_bin(f"target/{self.profile.triplet}/release/rustup-init")
     self.install_license("LICENSE-MIT")
     for shell in ["bash", "fish", "zsh"]:
         self.install_completion(f"rustup.{shell}", shell)

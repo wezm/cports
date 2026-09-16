@@ -17,7 +17,7 @@ sha256 = "433a6ee912d84b2aa4b59b329775a7ee1a1cdc3094412c2f185ac5ce681a64f0"
 # generates completions using host binary
 options = ["!check", "!cross"]
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "requires atomic64"
 
 # TODO service + sysusers
@@ -27,7 +27,7 @@ def post_build(self):
     for shell in ["bash", "fish", "nushell", "zsh"]:
         with open(self.cwd / f"atuin.{shell}", "w") as outf:
             self.do(
-                f"target/{self.profile().triplet}/release/atuin",
+                f"target/{self.profile.triplet}/release/atuin",
                 "gen-completion",
                 "--shell",
                 shell,
@@ -36,8 +36,8 @@ def post_build(self):
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/atuin")
-    self.install_bin(f"target/{self.profile().triplet}/release/atuin-server")
+    self.install_bin(f"target/{self.profile.triplet}/release/atuin")
+    self.install_bin(f"target/{self.profile.triplet}/release/atuin-server")
 
     for shell in ["bash", "fish", "nushell", "zsh"]:
         self.install_completion(f"atuin.{shell}", shell)

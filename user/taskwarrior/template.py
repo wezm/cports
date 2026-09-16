@@ -20,7 +20,7 @@ source = f"https://github.com/GothenburgBitFactory/taskwarrior/releases/download
 sha256 = "d302761fcd1268e4a5a545613a2b68c61abd50c0bcaade3b3e68d728dd02e716"
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "atomic64 assumptions"
 
 

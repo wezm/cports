@@ -12,4 +12,4 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/{pkgname}")
+    self.install_bin(f"target/{self.profile.triplet}/release/{pkgname}")

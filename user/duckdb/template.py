@@ -23,7 +23,7 @@ options = ["!check"]
 restricted = "disabled until requested"
 
 
-match self.profile().arch:
+match self.profile.arch:
     case "x86_64":
         configure_args += ["-DDUCKDB_EXPLICIT_PLATFORM=linux_amd64_musl"]
     case "aarch64":

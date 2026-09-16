@@ -32,7 +32,7 @@ options = ["etcfiles", "!check", "!cross"]
 restricted = "disabled until requested"
 
 # same as main/chez-scheme
-match self.profile().arch:
+match self.profile.arch:
     case "aarch64":
         configure_args += ["--enable-mach=tarm64le"]
     case "armhf" | "armv7":
@@ -46,7 +46,7 @@ match self.profile().arch:
     case _:
         # portable bytecode
         configure_args += [
-            f"--enable-mach=tpb{self.profile().wordsize}{self.profile().endian[0]}",
+            f"--enable-mach=tpb{self.profile.wordsize}{self.profile.endian[0]}",
         ]
         configure_args += ["--enable-pb"]
 

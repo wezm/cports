@@ -15,10 +15,10 @@ sha256 = "1eb8dbb85839c5b0d333e8c3f9011c3f725e0244bb92f4db918fce9d69851ff7"
 options = ["!cross", "!check"]
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "needs atomic64"
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     broken = "outdated nix crate, can't update"
 
 
@@ -32,7 +32,7 @@ def install(self):
     self.install_license("LICENSE-MIT")
     self.do(
         self.chroot_cwd
-        / f"target/{self.profile().triplet}/release/git-branchless",
+        / f"target/{self.profile.triplet}/release/git-branchless",
         "install-man-pages",
         self.chroot_destdir / "usr/share/man",
     )

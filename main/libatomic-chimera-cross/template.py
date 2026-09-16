@@ -24,7 +24,7 @@ _targetlist = [
     "riscv64",
     "loongarch64",
 ]
-_targets = list(filter(lambda p: p != self.profile().arch, _targetlist))
+_targets = list(filter(lambda p: p != self.profile.arch, _targetlist))
 
 
 def post_extract(self):
@@ -37,7 +37,7 @@ def post_extract(self):
 
 def build(self):
     for an in _targets:
-        with self.profile(an) as pf:
+        with self.use_profile(an) as pf:
             at = pf.triplet
             with self.stamp(f"{an}_build"):
                 self.cp("build", f"build-{an}", recursive=True)
@@ -62,7 +62,7 @@ def build(self):
 
 def install(self):
     for an in _targets:
-        with self.profile(an) as pf:
+        with self.use_profile(an) as pf:
             at = pf.triplet
             self.install_dir(f"usr/{at}/usr/lib")
             self.install_link(f"usr/{at}/lib", "usr/lib")
@@ -102,7 +102,7 @@ def _gen_crossp(an, at):
 
 
 for _an in _targetlist:
-    with self.profile(_an) as _pf:
+    with self.use_profile(_an) as _pf:
         _gen_crossp(_an, _pf.triplet)
 
 

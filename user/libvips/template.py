@@ -43,7 +43,7 @@ options = ["!cross"]
 restricted = "disabled until requested"
 
 
-if self.profile().arch == "riscv64":
+if self.profile.arch == "riscv64":
     broken = "gir generation dies with illegal instruction"
 
 

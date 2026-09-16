@@ -18,6 +18,6 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/broot")
+    self.install_bin(f"target/{self.profile.triplet}/release/broot")
     self.install_license("LICENSE")
     self.install_man("man/page", cat=1, name="broot")

@@ -41,7 +41,7 @@ sha256 = "0ad41003ab48a5309e3f2df0d6fe723babfe66007c980d3d0abf72c0a4d47f59"
 options = ["!cross"]
 restricted = "disabled until requested"
 
-if self.profile().arch == "loongarch64":
+if self.profile.arch == "loongarch64":
     broken = "nix crate issues"
 
 
@@ -49,7 +49,7 @@ def post_build(self):
     for shell in ["bash", "fish", "zsh", "nushell"]:
         with open(self.cwd / f"prs.{shell}", "w") as f:
             self.do(
-                f"../target/{self.profile().triplet}/release/prs",
+                f"../target/{self.profile.triplet}/release/prs",
                 "internal",
                 "completions",
                 shell,

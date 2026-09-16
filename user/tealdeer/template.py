@@ -28,7 +28,7 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/tldr")
+    self.install_bin(f"target/{self.profile.triplet}/release/tldr")
     self.install_license("LICENSE-MIT")
     self.install_completion("completion/bash_tealdeer", "bash", "tldr")
     self.install_completion("completion/zsh_tealdeer", "zsh", "tldr")

@@ -14,7 +14,7 @@ options = []
 restricted = "disabled until requested"
 
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     # linux-raw-sys ftbfs
     options += ["!check"]
 
@@ -33,5 +33,5 @@ def pre_prepare(self):
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/riff")
+    self.install_bin(f"target/{self.profile.triplet}/release/riff")
     self.install_license("LICENSE")

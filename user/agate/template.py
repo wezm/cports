@@ -14,7 +14,7 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/agate")
+    self.install_bin(f"target/{self.profile.triplet}/release/agate")
     self.install_tmpfiles(self.files_path / "tmpfiles.conf")
     self.install_sysusers(self.files_path / "sysusers.conf")
     self.install_license("LICENSE-MIT")

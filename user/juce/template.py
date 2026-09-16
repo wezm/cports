@@ -33,7 +33,7 @@ source = (
 sha256 = "08abd711eb0345972974d589648f5c8829cb478bc513ddb34836664b0b36d152"
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "needs lock-free 64-bit atomics"
 
 

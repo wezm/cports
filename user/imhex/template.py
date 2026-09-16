@@ -60,7 +60,7 @@ sha256 = [
 options = ["!lintpixmaps"]
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "uses int128"
 
 

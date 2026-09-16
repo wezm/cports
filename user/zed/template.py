@@ -57,16 +57,16 @@ def init_build(self):
 
 def install(self):
     self.install_file(
-        f"target/{self.profile().triplet}/release/zed",
+        f"target/{self.profile.triplet}/release/zed",
         "usr/lib/zed",
         name="zed-editor",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/cli",
+        f"target/{self.profile.triplet}/release/cli",
         name="z",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/remote_server",
+        f"target/{self.profile.triplet}/release/remote_server",
         name="zed-server",
     )
     self.install_file(

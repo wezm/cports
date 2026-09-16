@@ -18,7 +18,7 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/rmpc")
+    self.install_bin(f"target/{self.profile.triplet}/release/rmpc")
     self.install_license("LICENSE")
 
     self.install_completion("target/completions/rmpc.bash", "bash", "rmpc")

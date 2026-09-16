@@ -33,7 +33,7 @@ hardening = ["!int", "!format"]
 options = ["!lto"]
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "wraps time64-unsafe apis, breaking redirects"
 
 tool_flags = {

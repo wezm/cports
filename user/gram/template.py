@@ -58,16 +58,16 @@ options = ["!check"]
 
 def install(self):
     self.install_file(
-        f"target/{self.profile().triplet}/release/gram",
+        f"target/{self.profile.triplet}/release/gram",
         "usr/lib/gram",
         name="gram-editor",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/cli",
+        f"target/{self.profile.triplet}/release/cli",
         name="gram",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/remote_server",
+        f"target/{self.profile.triplet}/release/remote_server",
         name="gram-server",
     )
     self.install_file(

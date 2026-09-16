@@ -31,7 +31,7 @@ source = f"https://gitlab.com/schmiddi-on-mobile/flare/-/archive/{pkgver}/flare-
 sha256 = "ac0a09a11dc3265c89eebeb01e2f8951f57c8aa8ccc39f10a70542275dcc7729"
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "needs atomic64"
 
 
@@ -49,5 +49,5 @@ def init_build(self):
 
 
 def post_install(self):
-    self.install_bin(f"build/target/{self.profile().triplet}/release/flare")
+    self.install_bin(f"build/target/{self.profile.triplet}/release/flare")
     self.install_license("LICENSE")

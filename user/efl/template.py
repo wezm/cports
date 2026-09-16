@@ -109,13 +109,13 @@ hardening = ["!int"]
 options = ["!check"]
 restricted = "disabled until requested"
 
-match self.profile().arch:
+match self.profile.arch:
     case "ppc64le" | "aarch64":  # requires SSE3 on x86, so not there
         configure_args.append("-Dnative-arch-optimization=true")
     case _:
         configure_args.append("-Dnative-arch-optimization=false")
 
-if self.profile().cross:
+if self.profile.cross:
     hostmakedepends.append("efl-devel")
 
 

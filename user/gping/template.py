@@ -18,6 +18,6 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/gping")
+    self.install_bin(f"target/{self.profile.triplet}/release/gping")
     self.install_man("gping.1")
     self.install_license("LICENSE")

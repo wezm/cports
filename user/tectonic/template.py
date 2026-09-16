@@ -33,10 +33,10 @@ source = f"https://github.com/tectonic-typesetting/tectonic/archive/refs/tags/te
 sha256 = "30adda98f67dd5389844f6023adeeb54b5475c17a54b777900644468fbc9765d"
 restricted = "disabled until requested"
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     broken = "outdated nix crate, can't update"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "atomic64"
 
 

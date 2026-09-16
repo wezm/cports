@@ -15,7 +15,5 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(
-        f"target/{self.profile().triplet}/release/listenbrainz-mpd"
-    )
+    self.install_bin(f"target/{self.profile.triplet}/release/listenbrainz-mpd")
     self.install_license("LICENSE.txt")

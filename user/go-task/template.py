@@ -16,7 +16,7 @@ options = []
 restricted = "disabled until requested"
 
 # test suite expects amd64
-if self.profile().arch != "x86_64":
+if self.profile.arch != "x86_64":
     options += ["!check"]
 
 

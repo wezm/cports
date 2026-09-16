@@ -21,7 +21,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "06f595719417b70a592580258ed980237892eadc198e02363201abe6ca59e49a"
 restricted = "disabled until requested"
 
-if self.profile().wordsize != 64:
+if self.profile.wordsize != 64:
     broken = "explicitly asserts 64-bit"
 
 

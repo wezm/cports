@@ -35,7 +35,7 @@ options = ["!check", "!cross"]
 restricted = "disabled until requested"
 
 
-if self.profile().endian == "big":
+if self.profile.endian == "big":
     broken = "bug endian"
 
 

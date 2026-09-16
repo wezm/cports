@@ -18,7 +18,7 @@ sha256 = "d274451b145b0aaecfdf2d01ad45473b61ab40f3f58e4735cee50aa7573c584d"
 options = ["!cross"]
 restricted = "disabled until requested"
 
-if self.profile().arch in ["loongarch64", "ppc64", "ppc64le"]:
+if self.profile.arch in ["loongarch64", "ppc64", "ppc64le"]:
     # not supported by go-tpm-tools simulator
     options += ["!check"]
 

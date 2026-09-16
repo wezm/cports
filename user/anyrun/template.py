@@ -19,11 +19,11 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/anyrun")
+    self.install_bin(f"target/{self.profile.triplet}/release/anyrun")
 
     # PLUGIN_PATHS in anyrun-provider
     self.install_file(
-        f"target/{self.profile().triplet}/release/*.so",
+        f"target/{self.profile.triplet}/release/*.so",
         "usr/lib/anyrun",
         glob=True,
     )

@@ -21,7 +21,7 @@ def post_build(self):
     for shell in ["bash", "fish", "zsh", "nushell"]:
         with open(self.cwd / f"zizmor.{shell}", "w") as f:
             self.do(
-                f"./target/{self.profile().triplet}/release/zizmor",
+                f"./target/{self.profile.triplet}/release/zizmor",
                 "--completions",
                 shell,
                 stdout=f,
@@ -29,7 +29,7 @@ def post_build(self):
 
 
 def install(self):
-    self.install_bin(f"./target/{self.profile().triplet}/release/zizmor")
+    self.install_bin(f"./target/{self.profile.triplet}/release/zizmor")
     for shell in ["bash", "fish", "zsh", "nushell"]:
         self.install_completion(f"zizmor.{shell}", shell)
     self.install_license("LICENSE")

@@ -45,7 +45,7 @@ options = ["!check", "!lintpixmaps"]
 restricted = "disabled until requested"
 
 
-match self.profile().arch:
+match self.profile.arch:
     case "ppc64" | "ppc":
         # vsx assumptions in altivec code
         tool_flags = {"CXXFLAGS": ["-DEIGEN_DONT_VECTORIZE"]}

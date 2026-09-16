@@ -35,7 +35,7 @@ file_xattrs = {
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/espanso")
+    self.install_bin(f"target/{self.profile.triplet}/release/espanso")
     self.install_file(
         "espanso/src/res/linux/espanso.desktop", "usr/share/applications"
     )

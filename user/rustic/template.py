@@ -17,7 +17,7 @@ sha256 = "b65c1b432a9903f554516445588cbab796865a7058380fd7856835b081e0ec0e"
 options = ["!cross"]
 restricted = "disabled until requested"
 
-if self.profile().wordsize == 32:
+if self.profile.wordsize == 32:
     broken = "needs atomic64"
 
 
@@ -25,7 +25,7 @@ def post_build(self):
     for shell in ["bash", "fish", "zsh"]:
         with open(self.cwd / f"rustic.{shell}", "w") as outf:
             self.do(
-                f"target/{self.profile().triplet}/release/rustic",
+                f"target/{self.profile.triplet}/release/rustic",
                 "completions",
                 shell,
                 stdout=outf,

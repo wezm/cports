@@ -27,8 +27,8 @@ if self.stage == 0:
     # SONAME: libc.so.6 (unknown provider)
     options += ["!scanrundeps"]
 
-if self.profile().cross:
-    configure_env["CHOST"] = self.profile().triplet
+if self.profile.cross:
+    configure_env["CHOST"] = self.profile.triplet
 
 
 @subpackage("zlib-ng-compat-devel")

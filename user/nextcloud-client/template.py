@@ -41,7 +41,7 @@ options = ["etcfiles"]
 restricted = "disabled until requested"
 
 
-if self.profile().arch in ["aarch64", "ppc64le", "x86_64"]:
+if self.profile.arch in ["aarch64", "ppc64le", "x86_64"]:
     makedepends += ["qt6-qtwebengine-devel"]
 else:
     configure_args += ["-DBUILD_WITH_WEBENGINE=OFF"]

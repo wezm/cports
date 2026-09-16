@@ -20,7 +20,7 @@ sha256 = "710644e037e381d394a60c9c3fad48c57e81889b2f54fd1d101f2a4066805179"
 options = ["!check"]
 restricted = "disabled until requested"
 
-match self.profile().arch:
+match self.profile.arch:
     case "aarch64" | "x86_64":
         pass
     case _:

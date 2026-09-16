@@ -22,5 +22,5 @@ sha256 = "99ec83404558d4d0cbde9dd44b8c6fa2a511a2f8bb04a31f54c0929ec4491990"
 
 
 def install(self):
-    self.install_bin(f"./target/{self.profile().triplet}/release/wild")
+    self.install_bin(f"./target/{self.profile.triplet}/release/wild")
     self.install_license("LICENSE-MIT")

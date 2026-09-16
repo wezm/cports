@@ -45,7 +45,7 @@ configure_args = [
 ]
 configure_gen = []
 hostmakedepends = [
-    f"binutils-{self.profile().arch}",
+    f"binutils-{self.profile.arch}",
     "bison",
     "flex",
     "gawk",
@@ -59,7 +59,7 @@ makedepends = [
     "zstd-devel",
 ]
 depends = [
-    f"binutils-{self.profile().arch}",
+    f"binutils-{self.profile.arch}",
     #  f"clang-rt-devel~{_clangver}",
     #  f"libcxx-devel~{_clangver}",
 ]
@@ -118,7 +118,7 @@ else:
     ]
 
 # when bootstrapping, this will check the actual profile
-with self.profile(self.profile().arch) as _pf:
+with self.use_profile(self.profile.arch) as _pf:
     _trip = _pf.triplet
 
 configure_args += [f"--build={_trip}"]
@@ -143,14 +143,14 @@ broken_symlinks = [
 # so in order to avoid trouble
 _use_bootstrap = False
 
-#  match self.profile().arch:
+#  match self.profile.arch:
 #      case (
 #          "aarch64" | "armv7" | "ppc64le" | "ppc64" | "ppc" | "riscv64" | "x86_64"
 #      ):
 #          _use_bootstrap = True
 #          hostmakedepends += ["gcc-bootstrap"]
 
-match self.profile().arch:
+match self.profile.arch:
     case "aarch64":
         configure_args += [
             "--with-arch=armv8-a",
@@ -193,7 +193,7 @@ match self.profile().arch:
             "--with-abi=lp64d",
         ]
 
-match self.profile().arch:
+match self.profile.arch:
     case "ppc" | "x86":
         makedepends += ["musl-libssp-static"]
         depends += ["musl-libssp-static"]

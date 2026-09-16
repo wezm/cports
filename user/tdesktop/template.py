@@ -77,9 +77,9 @@ tool_flags = {"CXXFLAGS": [], "CFLAGS": []}
 hardening = ["!int"]
 restricted = "disabled until requested"
 
-if self.profile().endian == "big":
+if self.profile.endian == "big":
     broken = "broken at protocol level"
-elif self.profile().arch == "riscv64":
+elif self.profile.arch == "riscv64":
     broken = "compiler segfault"
 
 

@@ -23,7 +23,7 @@ sha256 = "9a966c1340a1a1d92073091643687b1205c46b57017c5da2bf7e97e3f5729a5a"
 options = ["!check"]
 restricted = "disabled until requested"
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     broken = "vendor/github.com/aperturerobotics/jacobsa-crypto/cmac/hash.go:97:3: undefined: xorBlock"
 
 

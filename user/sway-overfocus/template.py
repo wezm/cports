@@ -13,5 +13,5 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    self.install_bin(f"target/{self.profile().triplet}/release/sway-overfocus")
+    self.install_bin(f"target/{self.profile.triplet}/release/sway-overfocus")
     self.install_license("LICENSE")

@@ -14,7 +14,7 @@ sha256 = "227ff262138440ff68e893f6c95c4e586e954c46913106d84fff78d220e18b6c"
 options = ["!check"]
 restricted = "disabled until requested"
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     broken = (
         "vendor/github.com/creack/pty/pty_linux.go:39:8: undefined: _C_uint"
     )

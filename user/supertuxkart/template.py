@@ -31,7 +31,7 @@ tool_flags = {"LDFLAGS": []}
 hardening = ["!int"]
 restricted = "disabled until requested"
 
-if self.profile().arch in ["loongarch64"]:
+if self.profile.arch in ["loongarch64"]:
     # loongarch64-chimera-linux-musl-ld: error: address assignment did not converge
     tool_flags["LDFLAGS"] += ["-mno-relax"]
 

@@ -52,7 +52,7 @@ INSTALLDIRS = vendor
 INSTALL_SYMLINKS = 1
 perllibdir = /usr/share/perl5/vendor_perl
 PYTHON_PATH = /usr/bin/python
-HOST_CPU = {self.profile().arch}
+HOST_CPU = {self.profile.arch}
 """)
 
 

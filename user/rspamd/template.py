@@ -44,7 +44,7 @@ options = ["etcfiles"]
 restricted = "disabled until requested"
 
 
-match self.profile().arch:
+match self.profile.arch:
     case "aarch64" | "ppc64le" | "x86_64":
         configure_args += ["-DENABLE_HYPERSCAN=ON"]
         makedepends += ["luajit-devel", "vectorscan-devel"]
@@ -60,7 +60,7 @@ def post_patch(self):
     self.rm("contrib/fmt", recursive=True)
     self.mkdir("contrib/fmt/include", parents=True)
     self.ln_s(
-        self.profile().sysroot / "usr/include/fmt", "contrib/fmt/include/fmt"
+        self.profile.sysroot / "usr/include/fmt", "contrib/fmt/include/fmt"
     )
 
 
