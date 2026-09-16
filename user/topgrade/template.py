@@ -15,17 +15,19 @@ restricted = "disabled until requested"
 
 
 def post_build(self):
+    from cbuild.util import cargo
+
     for shell in ["bash", "fish", "zsh"]:
         with open(f"{self.cwd}/topgrade.{shell}", "w") as o:
             self.do(
-                f"target/{self.profile.triplet}/release/topgrade",
+                cargo.target_path(self, "topgrade"),
                 "--gen-completion",
                 shell,
                 stdout=o,
             )
     with open(f"{self.cwd}/topgrade.1", "w") as o:
         self.do(
-            f"target/{self.profile.triplet}/release/topgrade",
+            cargo.target_path("topgrade"),
             "--gen-manpage",
             stdout=o,
         )

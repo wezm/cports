@@ -43,7 +43,9 @@ def init_build(self):
 
 
 def post_install(self):
+    from cbuild.util import cargo
+
     self.install_bin(
-        f"build/src/{self.profile.triplet}/release/news_flash_gtk",
+        cargo.target_path(self, "news_flash_gtk", "build/src"),
         name="io.gitlab.news_flash.NewsFlash",
     )

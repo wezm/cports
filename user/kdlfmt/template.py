@@ -15,10 +15,12 @@ restricted = "disabled until requested"
 
 
 def post_build(self):
+    from cbuild.util import cargo
+
     for shell in ["bash", "fish", "nushell", "zsh"]:
         with open(self.cwd / f"kdlfmt.{shell}", "w") as outf:
             self.do(
-                f"target/{self.profile.triplet}/release/kdlfmt",
+                cargo.target_path(self, "kdlfmt"),
                 "completions",
                 shell,
                 stdout=outf,

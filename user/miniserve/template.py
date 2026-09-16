@@ -29,11 +29,11 @@ restricted = "disabled until requested"
 
 
 def post_build(self):
-    miniserve_exe = f"target/{self.profile.triplet}/release/miniserve"
+    from cbuild.util import cargo
 
     with open(self.cwd / "miniserve.1", "w") as outf:
         self.do(
-            miniserve_exe,
+            cargo.target_path(self, "miniserve"),
             "--print-manpage",
             stdout=outf,
         )
@@ -41,7 +41,7 @@ def post_build(self):
     for shell in ["bash", "fish", "zsh"]:
         with open(self.cwd / f"miniserve.{shell}", "w") as outf:
             self.do(
-                miniserve_exe,
+                cargo.target_path(self, "miniserve"),
                 "--print-completions",
                 shell,
                 stdout=outf,

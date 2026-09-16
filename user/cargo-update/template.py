@@ -18,7 +18,8 @@ restricted = "disabled until requested"
 
 
 def install(self):
-    with self.pushd(f"target/{self.profile.triplet}/release"):
-        self.install_bin("cargo-install-update")
-        self.install_bin("cargo-install-update-config")
+    from cbuild.util import cargo
+
+    self.install_bin(cargo.target_path(self, "cargo-install-update"))
+    self.install_bin(cargo.target_path(self, "cargo-install-update-config"))
     self.install_license("LICENSE")
