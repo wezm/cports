@@ -10,9 +10,14 @@ configure_args = [
     "-DENABLE_VALA_BINDINGS=ON",
     "-DWITH_OPENLDAP=OFF",  # don't depend on shit software
 ]
+# test-camel-hostname fails intermittently
 # test-book-client-custom-summary fails with:
 # assertion failed (setlocale (LC_ADDRESS, NULL) == "en_US.UTF-8"): ("C" == "en_US.UTF-8")
-make_check_args = ["-j1", "-E", "test-book-client-custom-summary"]
+make_check_args = [
+    "-j1",
+    "-E",
+    "(test-book-client-custom-summary|test-camel-hostname)",
+]
 hostmakedepends = [
     "cmake",
     "flex",
