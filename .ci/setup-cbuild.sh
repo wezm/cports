@@ -7,6 +7,8 @@ cat << EOF > etc/config.ini
 [build]
 jobs = 8
 ccache = yes
+# skip packages that have the !ci tag
+allow_ci = no
 # they will not be packaged, but we can still CI them (no public artifacts)
 allow_restricted = yes
 # we lint in separate step
