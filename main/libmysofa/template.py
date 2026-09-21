@@ -1,10 +1,7 @@
 pkgname = "libmysofa"
-pkgver = "1.3.2"
-pkgrel = 1
+pkgver = "1.3.5"
+pkgrel = 0
 build_style = "cmake"
-configure_args = [
-    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
-]
 # tests fail when run in parallel
 make_check_args = ["-j1"]
 hostmakedepends = ["cmake", "ninja", "pkgconf"]
@@ -14,7 +11,7 @@ pkgdesc = "Reader for AES SOFA files to get better HRTFs"
 license = "BSD-3-Clause"
 url = "https://github.com/hoene/libmysofa"
 source = f"{url}/archive/v{pkgver}.tar.gz"
-sha256 = "6c5224562895977e87698a64cb7031361803d136057bba35ed4979b69ab4ba76"
+sha256 = "f29508c335c83d8703f943ffc9ca783ac39aca84e851357f13a55af0f8143137"
 # FIXME: breaks fail-issue-167a test
 hardening = ["!int"]
 # no nodejs on some platforms
