@@ -1,0 +1,50 @@
+From adf181f49960e5a3d276d8f92e3c7272188ea186 Mon Sep 17 00:00:00 2001
+From: "Haelwenn (lanodan) Monnier" <contact@hacktivis.me>
+Date: Thu, 26 Aug 2021 04:24:03 +0200
+Subject: [PATCH] CMake: hook up tests to CTest
+
+- test/test.cpp: remove prompt for Enter
+- "test" is a reserved name so smftest is used instead
+- Remove option for "BUILD_TESTING", CTest provides it, enabled by default
+
+Signed-off-by: Haelwenn (lanodan) Monnier <contact@hacktivis.me>
+---
+ CMakeLists.txt      | 2 +-
+ test/CMakeLists.txt | 5 +++--
+ test/test.cpp       | 2 --
+ 3 files changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index defe5f6..9d306f2 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -92,7 +92,7 @@ if(BUILD_APPS)
+   add_subdirectory(apps)
+ endif()
+ 
+-option(BUILD_TESTING "Include test projects" OFF)
++include(CTest)
+ if(BUILD_TESTING)
+   add_subdirectory(test)
+ endif()
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 36f3104..cf989e5 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -1,2 +1,3 @@
+-add_executable(test test.cpp)
+-target_link_libraries(test PortSMF)
++add_executable(smftest test.cpp)
++target_link_libraries(smftest PortSMF)
++add_test(NAME smftest COMMAND smftest)
+diff --git a/test/test.cpp b/test/test.cpp
+index 3746d72..7553bb5 100644
+--- a/test/test.cpp
++++ b/test/test.cpp
+@@ -831,6 +831,4 @@ int main()
+     //test32();
+     printf("*** Test 33 ... DISABLED\n");
+     //test33();
+-    printf("press enter to exit\n");
+-    getchar();
+ }
