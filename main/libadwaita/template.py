@@ -25,7 +25,7 @@ makedepends = [
     "gtk4-devel",
     "harfbuzz-devel",
 ]
-checkdepends = ["fonts-dejavu-otf", "xwayland-run"]
+checkdepends = ["fonts-dejavu-otf", "glibc-locales", "xwayland-run"]
 pkgdesc = "GTK4 building blocks for modern adaptive applications"
 license = "LGPL-2.1-or-later"
 url = "https://gitlab.gnome.org/GNOME/libadwaita"
