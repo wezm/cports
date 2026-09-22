@@ -37,8 +37,9 @@ license = "LGPL-2.1-or-later"
 url = "https://github.com/libvips/libvips"
 source = f"https://github.com/libvips/libvips/releases/download/v{pkgver}/vips-{pkgver}.tar.xz"
 sha256 = "3c41e1d5458081bfa4a5bc54e116c46259c75c6760a18027764555632b9dda3e"
-# broken
-options = ["!cross"]
+# cross: broken
+# lto: lld segfaults: https://bugs.gentoo.org/921728
+options = ["!cross", "!lto"]
 
 if self.profile.arch in ["riscv64"]:
     # riscv highway integration is weirdly broken
