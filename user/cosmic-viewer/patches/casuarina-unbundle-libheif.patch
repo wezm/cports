@@ -1,0 +1,12 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 95c84f27..a70daf18 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -41,7 +41,6 @@ image = { version = "0.25.9", features = [
+ ] }
+ kamadak-exif = "0.6.1"
+ libheif-rs = { version = "2.7.0", default-features = false, features = [
+-  "embedded-libheif",
+   "v1_17",
+ ] }
+ lru = "0.16.3"
