@@ -1,5 +1,5 @@
 pkgname = "uutils-coreutils"
-pkgver = "0.11.0"
+pkgver = "0.12.0"
 pkgrel = 0
 build_style = "makefile"
 make_build_args = [
@@ -49,14 +49,14 @@ make_check_args = [
     "TEST_NO_FAIL_FAST=-- " + " ".join([f"--skip={t}" for t in _failing_tests])
 ]
 hostmakedepends = ["cargo-auditable", "pkgconf"]
-makedepends = ["oniguruma-devel", "rust-std"]
+makedepends = ["rust-std"]
 # for filefrag
 checkdepends = ["e2fsprogs"]
 pkgdesc = "Reimplementation of GNU coreutils"
 license = "MIT"
 url = "https://github.com/uutils/coreutils"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "a47966117783bef18650cc724f1b1d061b717ac91a0feaabdd34910703cf70a4"
+sha256 = "4fb327655cb4ffcbf2f16550cf9234079ffe839692f7aa1a6eda104af684e122"
 
 
 def prepare(self):
