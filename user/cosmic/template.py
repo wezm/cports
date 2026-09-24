@@ -1,6 +1,6 @@
 pkgname = "cosmic"
 pkgver = "1.8.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "meta"
 depends = [
     "cosmic-initial-setup",
@@ -21,5 +21,6 @@ def _(self):
         "cosmic-player",
         # "cosmic-reader",
         "cosmic-term",
+        "cosmic-viewer",
     ]
     return []
