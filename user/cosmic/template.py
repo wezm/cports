@@ -1,6 +1,6 @@
 pkgname = "cosmic"
-pkgver = "1.8.0"
-pkgrel = 1
+pkgver = "1.9.0"
+pkgrel = 0
 build_style = "meta"
 depends = [
     "cosmic-initial-setup",

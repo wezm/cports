@@ -1,5 +1,5 @@
 pkgname = "cosmic-initial-setup"
-pkgver = "1.8.0"
+pkgver = "1.9.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -15,7 +15,7 @@ pkgdesc = "COSMIC background image service"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-initial-setup"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "54096043127b802320966b343d675cb7323aa2614a9b89522730c7ccbe4369a0"
+sha256 = "6327cce425d6590b8479bdd459f34e9522663fa47b86c9af020f055e746c61eb"
 # no tests
 options = ["!check", "etcfiles"]
 
