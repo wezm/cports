@@ -1,5 +1,5 @@
 pkgname = "jj"
-pkgver = "0.44.0"
+pkgver = "0.45.1"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
@@ -9,7 +9,7 @@ prepare_after_patch = True
 #   right: [CommitId("2b7aaf1a6b595cf01eef"), CommitId("24710ad3e307a23a2542")]
 make_check_args = [
     "--",
-    "--skip=test_converge::test_build_truncated_evolution_graph",
+    "--skip=test_converge::test_find_divergent_changes_two_found",
 ]
 hostmakedepends = ["cargo-auditable"]
 makedepends = ["rust-std"]
@@ -18,7 +18,7 @@ pkgdesc = "Git-compatible VCS frontend"
 license = "Apache-2.0"
 url = "https://www.jj-vcs.dev"
 source = f"https://github.com/martinvonz/jj/archive/refs/tags/v{pkgver}.tar.gz"
-sha256 = "cd72ac1040c93d474dcafd8dd7f8d91d7407f9358bc9ffd4a6b72f4017112eab"
+sha256 = "72bf95905a92c592dd0e7316e2cbbad9a8f2ca04ca770cc4f4f7960495a44e15"
 # generates completions with host binary
 options = ["!cross"]
 
