@@ -1,7 +1,8 @@
 pkgname = "cosmic-session"
 pkgver = "1.8.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
+make_build_args = ["--features", "autostart"]
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
 makedepends = [
     "libxkbcommon-devel",
