@@ -1,5 +1,5 @@
 pkgname = "cosmic-player"
-pkgver = "1.8.0"
+pkgver = "1.9.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -14,7 +14,7 @@ pkgdesc = "COSMIC media player"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-player"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "34e23a39e8cf9d484378355a0890dfdb0f050c0dcc10c37026549ff112e1aa89"
+sha256 = "d2a13306348cdc3886f75c918f00e3722ec85509d0b7f286023f3929b7aa0600"
 # no tests
 options = ["!check"]
 

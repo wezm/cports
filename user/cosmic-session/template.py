@@ -1,5 +1,5 @@
 pkgname = "cosmic-session"
-pkgver = "1.8.0"
+pkgver = "1.9.0"
 pkgrel = 1
 build_style = "cargo"
 make_build_args = ["--features", "autostart"]
@@ -21,6 +21,7 @@ depends = [
     "cosmic-launcher",
     "cosmic-notifications",
     "cosmic-osd",
+    "cosmic-osk",
     "cosmic-panel",
     "cosmic-randr",
     "cosmic-screenshot",
@@ -38,7 +39,7 @@ pkgdesc = "Session manager for the COSMIC desktop environment"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-session"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "e6e82bce485af7ec8900ef09da5e317c8a1fd4b76901901acf6eaead778542e6"
+sha256 = "e6d093938ab59baafdccac576cb0bc1a1966c825a5fedf9cb498061d8099ed57"
 # no tests
 options = ["!check"]
 

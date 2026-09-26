@@ -1,5 +1,5 @@
 pkgname = "cosmic-panel"
-pkgver = "1.8.0"
+pkgver = "1.9.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -12,7 +12,7 @@ pkgdesc = "COSMIC applet for creating panels and docks"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-panel"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "3bc2f7d6481a5ad221c9ee505fcc068a7c28df42c54e171cc6a4c86a5a64549e"
+sha256 = "6b036076e162568b6d0230ab82916b30d06b4942cb5be6a39960e42b499cab9b"
 # no tests
 options = ["!check"]
 

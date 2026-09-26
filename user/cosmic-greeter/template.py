@@ -1,9 +1,8 @@
 pkgname = "cosmic-greeter"
-pkgver = "1.8.0"
+pkgver = "1.9.1"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
-# skip systemd feature
 make_build_args = [
     "--all",
     "--no-default-features",
@@ -13,7 +12,7 @@ make_build_args = [
 make_build_env = {
     # dummy values to stop it trying to run git
     "VERGEN_GIT_COMMIT_DATE": "2026-03-27",
-    "VERGEN_GIT_SHA": "0000000000000000000000000000000000000000",
+    "VERGEN_GIT_SHA": "unknown",
 }
 hostmakedepends = ["cargo-auditable", "pkgconf"]
 makedepends = [
@@ -28,12 +27,12 @@ makedepends = [
     "udev-devel",
     "zstd-devel",
 ]
-depends = ["clang-libs", "greetd", "cosmic-comp"]
+depends = ["greetd", "cosmic-comp"]
 pkgdesc = "COSMIC greeter for greetd"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-greeter"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "c16b4cecb3c356c17520ff16761f19ce5274d761b4a553fcf5bb9089dab047e1"
+sha256 = "a818e9f96715a09360a083685e5eb8eab9af5fc7e58fa92c839fa801912fe32f"
 # no tests
 options = ["!check", "etcfiles"]
 
