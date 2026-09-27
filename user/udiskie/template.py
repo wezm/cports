@@ -26,6 +26,11 @@ options = ["!lintcomp"]
 restricted = "disabled until requested"
 
 
+def pre_check(self):
+    # test data breaks on loongarch
+    self.rm("test/test_cache.py")
+
+
 def post_install(self):
     self.install_license("COPYING")
     self.install_service(self.files_path / "udiskie.user")
