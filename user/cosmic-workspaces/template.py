@@ -21,9 +21,7 @@ options = ["!check"]
 
 
 def install(self):
-    self.install_bin(
-        f"target/{self.profile.triplet}/release/cosmic-workspaces"
-    )
+    self.install_bin(f"target/{self.profile.triplet}/release/cosmic-workspaces")
     self.install_file(
         "data/com.system76.CosmicWorkspaces.desktop", "usr/share/applications"
     )
