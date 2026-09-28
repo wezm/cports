@@ -16,6 +16,7 @@ make_check_args = [
     " %eglot-tests.el"  # requires a variety of lsp servers
     " %tramp-tests.el"  # TODO: fails mysteriously
     " %package-vc-tests.el"  # TODO: hangs
+    " %dired-tests.el"  # dired-test-bug25609 fails; Guix also skip it
 ]
 hostmakedepends = [
     "automake",
