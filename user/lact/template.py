@@ -31,6 +31,7 @@ license = "MIT"
 url = "https://github.com/ilya-zlobintsev/LACT"
 source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "cbbbd0336fb65ce539ea29d99fe2e38f7c82de08c07d26dfab355735a88d853c"
+restricted = "disabled until requested"
 
 
 def install(self):

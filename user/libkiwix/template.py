@@ -28,6 +28,7 @@ license = "GPL-3.0-or-later"
 url = "https://github.com/kiwix/libkiwix"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "cff1eb06d62ab42e1720a49f473b7d9364f02ee77a8a455c9adb26db419e0fff"
+restricted = "disabled until requested"
 
 
 def post_install(self):

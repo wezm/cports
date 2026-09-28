@@ -39,6 +39,7 @@ source = (
     f"{url}/releases/download/v{pkgver}/wsddn-src-prefetch-{pkgver}.tar.bz2"
 )
 sha256 = "be374039ca4650cc8207c0655064b18d5cd640acee7d8376bde37944b73ab8ff"
+restricted = "disabled until requested"
 
 
 def post_install(self):

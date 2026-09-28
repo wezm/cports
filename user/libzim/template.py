@@ -27,6 +27,7 @@ source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "38f8e2139a089f00196f288f52f2d0677a6becc218f380b54ca70b6f162398bd"
 # tests require external ZIM test data
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

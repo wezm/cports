@@ -46,6 +46,7 @@ source = (
 )
 sha256 = "6aaf9d89deb94eeda6acceaa6fe48d8cd365d0908231e58f628538ff49696fc4"
 options = ["etcfiles"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

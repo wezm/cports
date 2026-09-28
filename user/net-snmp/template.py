@@ -30,6 +30,7 @@ source = f"https://sourceforge.net/projects/{pkgname}/files/{pkgname}/{pkgver}/n
 sha256 = "16707719f833184a4b72835dac359ae188123b06b5e42817c00790d7dc1384bf"
 # tests take an eternity
 options = ["!check"]
+restricted = "disabled until requested"
 
 
 def post_install(self):

@@ -17,3 +17,4 @@ sha256 = "1397bba6774a6361171c72464ddcdcfbc36d44fa413ecc9a1d56092f8da58825"
 file_modes = {"usr/bin/firejail": ("root", "root", 0o4755)}
 hardening = ["vis", "cfi"]
 options = ["etcfiles"]
+restricted = "disabled until requested"

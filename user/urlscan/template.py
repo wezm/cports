@@ -18,3 +18,4 @@ source = f"$(PYPI_SITE)/u/urlscan/urlscan-{pkgver}.tar.gz"
 sha256 = "e4f01037dcb84f0cc5733b9423732ebf368cb9b4c9714bdaf7dd336d883a78b2"
 # no tests defined
 options = ["!check"]
+restricted = "disabled until requested"

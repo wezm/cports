@@ -8,6 +8,7 @@ license = "MIT"
 url = "https://www.gopass.pw"
 source = f"https://github.com/gopasspw/gopass-jsonapi/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "4b2c0fc019b2667af845202059103f70d684d924a5dc0590469f825ca7d251d3"
+restricted = "disabled until requested"
 
 
 def post_install(self):

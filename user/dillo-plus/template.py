@@ -21,6 +21,7 @@ hardening = ["!int"]
 # Makefile has no automated check target
 # test/Makefile generates visual/interactive tests (mostly)
 options = ["etcfiles", "!check"]
+restricted = "disabled until requested"
 
 
 def pre_build(self):

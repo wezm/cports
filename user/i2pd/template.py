@@ -17,6 +17,7 @@ url = "https://github.com/PurpleI2P/i2pd"
 source = f"{url}/archive/refs/tags/{pkgver}.tar.gz"
 sha256 = "409cd3c0257491286611ab6aaf690940c7248fb898377c13fadb65a836e2a0ab"
 options = ["etcfiles"]
+restricted = "disabled until requested"
 
 
 def install(self):
