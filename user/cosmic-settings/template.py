@@ -1,6 +1,6 @@
 pkgname = "cosmic-settings"
 pkgver = "1.9.0"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
 makedepends = [
@@ -17,7 +17,7 @@ depends = [
     "cosmic-icon-theme",
     "cosmic-randr",
     "iso-codes",
-    "network-manager-applet",
+    "networkmanager",
     "xkeyboard-config",
 ]
 pkgdesc = "Settings application for the COSMIC desktop"
