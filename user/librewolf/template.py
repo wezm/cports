@@ -85,6 +85,7 @@ env = {
 hardening = ["!int"]
 # XXX: maybe someday
 options = ["!ci", "!cross", "!check"]
+restricted = "disabled until requested"
 
 if self.profile.endian == "big":
     broken = "broken colors, needs patching, etc."
