@@ -11,6 +11,7 @@ source = f"{url}/archive/refs/tags/v{pkgver}.tar.gz"
 sha256 = "2107f90e315e48a676922010b036357ff2b0c6b9160ce17fa9396e5860b1d715"
 # signed overflow in unittests (scan/sort/dependent_asyncs)
 hardening = ["!int"]
+restricted = "disabled until requested"
 
 if self.profile.cross:
     # doctest execs tests during build, not check, so cbuild's cross skip doesn't help

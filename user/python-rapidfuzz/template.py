@@ -19,6 +19,7 @@ source = f"$(PYPI_SITE)/r/rapidfuzz/rapidfuzz-{pkgver}.tar.gz"
 sha256 = "e13a8160d017b499ec7a2fa9d0ce1ae2e7377080815785819f966fb235d4eb60"
 # python_pep517 doesn't pass a CMake toolchain to scikit-build-core
 options = ["!cross"]
+restricted = "disabled until requested"
 
 
 def post_install(self):
