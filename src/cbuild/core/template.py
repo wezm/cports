@@ -2661,7 +2661,7 @@ class Subpackage(Package):
                                 True,
                             )
                             self._take_impl(
-                                f"usr/share/fish/completions/{p.name}.fish",
+                                f"usr/share/fish/vendor_completions.d/{p.name}.fish",
                                 True,
                             )
 
