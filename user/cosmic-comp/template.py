@@ -1,7 +1,9 @@
 pkgname = "cosmic-comp"
-pkgver = "1.9.0"
+pkgver = "1.10.0"
 pkgrel = 0
 build_style = "cargo"
+make_build_args = ["--no-default-features", "--features", "logind"]
+make_check_args = [*make_build_args]
 hostmakedepends = ["cargo-auditable", "pkgconf"]
 makedepends = [
     "fontconfig-devel",
@@ -22,7 +24,7 @@ pkgdesc = "COSMIC compositor"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-comp"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "f0f3a2362861fe8976d7d45436aaa0a10de975522b6e8a53d77058a74ffc81e8"
+sha256 = "db6bf35703db06b3ac89e5da9ba9cd60eceaed90515c47e4b3256d73cf0a0b81"
 # no tests
 options = ["!check"]
 
