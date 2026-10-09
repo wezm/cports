@@ -1,5 +1,5 @@
 pkgname = "cosmic-monitor"
-pkgver = "1.9.0"
+pkgver = "1.10.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -11,7 +11,7 @@ pkgdesc = "COSMIC system monitor"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-monitor"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "2ef7102ddfc982bd4c3e70632bce1b0e5bb2d6d96fb830a3ac8db0b2fff47709"
+sha256 = "ad05af39c240f252bf1191a58563c3d3e858afeeec8334879bba0050c9697496"
 # no tests
 options = ["!check"]
 

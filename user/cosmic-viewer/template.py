@@ -1,5 +1,5 @@
 pkgname = "cosmic-viewer"
-pkgver = "1.9.0"
+pkgver = "1.10.0"
 pkgrel = 0
 build_style = "cargo"
 prepare_after_patch = True
@@ -16,7 +16,7 @@ pkgdesc = "COSMIC image viewer"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-viewer"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "a1c3b54c5f7dde278d17e4bd67395cd1ce4ef4a130ec1b0cfeebc05cc0ce3026"
+sha256 = "ac0cee420c954b85188d1fbfffee32a49d11dacced881c68b068c56e83efcdad"
 env = {"TURBOJPEG_SOURCE": "pkg-config"}
 
 

@@ -1,8 +1,8 @@
 pkgname = "cosmic-session"
-pkgver = "1.9.0"
-pkgrel = 1
+pkgver = "1.10.0"
+pkgrel = 0
 build_style = "cargo"
-make_build_args = ["--features", "autostart"]
+make_build_args = ["--no-default-features", "--features", "autostart,logind"]
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
 makedepends = [
     "libxkbcommon-devel",
@@ -39,7 +39,7 @@ pkgdesc = "Session manager for the COSMIC desktop environment"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-session"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "e6d093938ab59baafdccac576cb0bc1a1966c825a5fedf9cb498061d8099ed57"
+sha256 = "9eafc77c833ae8da30c2d20c751fd585b4e699b4e4bbad44760ab70089923825"
 # no tests
 options = ["!check"]
 
