@@ -1,5 +1,5 @@
 pkgname = "zed"
-pkgver = "1.18.0"
+pkgver = "1.24.3"
 pkgrel = 0
 # wasmtime
 archs = ["aarch64", "x86_64"]
@@ -37,7 +37,7 @@ pkgdesc = "Graphical text editor"
 license = "GPL-3.0-or-later AND Apache-2.0"
 url = "https://zed.dev"
 source = f"https://github.com/zed-industries/zed/archive/v{pkgver}.tar.gz"
-sha256 = "939dde198f36d917e372e7a4e10b07ed7d1ae7d720652ca40f9cefc544c35bdc"
+sha256 = "69e06d42fe32af31fc549001e3ccb6397610deacf6ccc3482a2bdb0a629bc269"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
 tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}
@@ -50,15 +50,6 @@ env = {
 options = ["!check", "!cross"]
 
 
-def post_prepare(self):
-    from cbuild.util import cargo, patch
-
-    # done separately because we need to patch lockfile before vendoring :/
-    patch.patch(self, [self.files_path / "aws-lc-sys.patch"])
-
-    cargo.clear_vendor_checksums(self, "aws-lc-sys-0.42.0")
-
-
 def init_build(self):
     with open(self.cwd / "crates/zed/RELEASE_CHANNEL", "w") as cf:
         cf.write(self.env["ZED_RELEASE_CHANNEL"])
@@ -66,16 +57,16 @@ def init_build(self):
 
 def install(self):
     self.install_file(
-        f"target/{self.profile().triplet}/release/zed",
+        f"target/{self.profile.triplet}/release/zed",
         "usr/lib/zed",
         name="zed-editor",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/cli",
+        f"target/{self.profile.triplet}/release/cli",
         name="z",
     )
     self.install_bin(
-        f"target/{self.profile().triplet}/release/remote_server",
+        f"target/{self.profile.triplet}/release/remote_server",
         name="zed-server",
     )
     self.install_file(
