@@ -1,14 +1,14 @@
-commit 9b414cef157c3005dbd0479a6452663e90035fd3
+commit 6f862e863c034ec98e227f1e7a1a39f7b3cb92b3
 Author: Wesley Moore <wes@wezm.net>
 Date:   Mon May 11 13:33:30 2026 +1000
 
     Disable livekit on Linux
 
 diff --git a/Cargo.lock b/Cargo.lock
-index ccabb0bd88..bb26a674e3 100644
+index e9bedbf02c..a59d233f63 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -10451,7 +10451,6 @@ dependencies = [
+@@ -10192,7 +10192,6 @@ dependencies = [
   "tokio",
   "ui",
   "util",
@@ -17,10 +17,10 @@ index ccabb0bd88..bb26a674e3 100644
  ]
  
 diff --git a/crates/audio/Cargo.toml b/crates/audio/Cargo.toml
-index 156915b4ba..8f8360989b 100644
+index d3f59e293c..9118f60a12 100644
 --- a/crates/audio/Cargo.toml
 +++ b/crates/audio/Cargo.toml
-@@ -26,5 +26,5 @@ settings.workspace = true
+@@ -25,5 +25,5 @@ settings.workspace = true
  thiserror.workspace = true
  util.workspace = true
  
@@ -101,12 +101,18 @@ index 9410151049..02279f7e92 100644
  ))]
  fn extract_metrics(
 diff --git a/crates/livekit_client/Cargo.toml b/crates/livekit_client/Cargo.toml
-index a229d39ca8..59d6c52fdf 100644
+index 5d3a86b8cb..4e1485934f 100644
 --- a/crates/livekit_client/Cargo.toml
 +++ b/crates/livekit_client/Cargo.toml
-@@ -43,13 +43,13 @@ smallvec.workspace = true
+@@ -43,18 +43,18 @@ smallvec.workspace = true
  ui.workspace = true
  util.workspace = true
+ 
+-[target.'cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd"))'.dependencies]
++[target.'cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux"))'.dependencies]
+ livekit_api.workspace = true
+ nanoid.workspace = true
+ postage = { workspace = true, features = ["futures-traits", "logging", "blocking"] }
  
 -[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))'.dependencies]
 +[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))'.dependencies]
