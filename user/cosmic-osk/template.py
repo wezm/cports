@@ -1,5 +1,5 @@
 pkgname = "cosmic-osk"
-pkgver = "1.10.0"
+pkgver = "1.11.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "pkgconf"]
@@ -9,7 +9,7 @@ pkgdesc = "COSMIC on-screen keyboard"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-osk"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "7d92c3df124d1d009ae94cc95915c9085af4ceeb6027473fc02ee564dcead81a"
+sha256 = "bdb94386f451e672c2512ddb65bd0c8691921d5488595d0988fd935ce7e43bb6"
 # no tests
 options = ["!check"]
 

@@ -1,5 +1,5 @@
 pkgname = "cosmic-bg"
-pkgver = "1.10.0"
+pkgver = "1.11.0"
 pkgrel = 0
 build_style = "cargo"
 hostmakedepends = ["cargo-auditable", "just", "pkgconf"]
@@ -9,7 +9,7 @@ pkgdesc = "COSMIC background image service"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/cosmic-bg"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "1595505815bdf96cf4cfd16736a1d235cb249d78e4a35dccd02e3c997649b357"
+sha256 = "00e0874b82877378be9cb305139e626f3cd5ef01ad7a1a517de826086adc2652"
 # no tests
 options = ["!check"]
 

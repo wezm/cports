@@ -1,5 +1,5 @@
 pkgname = "xdg-desktop-portal-cosmic"
-pkgver = "1.10.0"
+pkgver = "1.11.0"
 pkgrel = 0
 build_style = "cargo"
 make_build_args = [
@@ -24,7 +24,7 @@ pkgdesc = "Backend implementation for xdg-desktop-portal using libcosmic"
 license = "GPL-3.0-only"
 url = "https://github.com/pop-os/xdg-desktop-portal-cosmic"
 source = f"{url}/archive/refs/tags/epoch-{pkgver}.tar.gz"
-sha256 = "b80b6f443ddb1a43b6c02bb1e81ab1b9c1e93724990576ac88d88ef1ccc9c699"
+sha256 = "5befa4beda6ee231ebaa553b3db53d794500b5646de385fd1f576a7406242f16"
 # no tests
 options = ["!check"]
 
