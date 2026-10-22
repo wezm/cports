@@ -1,14 +1,14 @@
-commit 6f862e863c034ec98e227f1e7a1a39f7b3cb92b3
+commit 15eb79fa91f2e716a0a79bdf432bce3b29beaf87
 Author: Wesley Moore <wes@wezm.net>
 Date:   Mon May 11 13:33:30 2026 +1000
 
     Disable livekit on Linux
 
 diff --git a/Cargo.lock b/Cargo.lock
-index e9bedbf02c..a59d233f63 100644
+index 62b2a5636b..5a69415b57 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -10192,7 +10192,6 @@ dependencies = [
+@@ -10127,7 +10127,6 @@ dependencies = [
   "tokio",
   "ui",
   "util",
@@ -17,12 +17,12 @@ index e9bedbf02c..a59d233f63 100644
  ]
  
 diff --git a/crates/audio/Cargo.toml b/crates/audio/Cargo.toml
-index d3f59e293c..9118f60a12 100644
+index 9e10f135f6..17b297cd40 100644
 --- a/crates/audio/Cargo.toml
 +++ b/crates/audio/Cargo.toml
-@@ -25,5 +25,5 @@ settings.workspace = true
- thiserror.workspace = true
- util.workspace = true
+@@ -29,5 +29,5 @@ util.workspace = true
+ [dev-dependencies]
+ gpui = { workspace = true, features = ["test-support"] }
  
 -[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd")))'.dependencies]
 +[target.'cfg(not(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd", target_os = "linux")))'.dependencies]
@@ -101,7 +101,7 @@ index 9410151049..02279f7e92 100644
  ))]
  fn extract_metrics(
 diff --git a/crates/livekit_client/Cargo.toml b/crates/livekit_client/Cargo.toml
-index 5d3a86b8cb..4e1485934f 100644
+index 022ab3484a..effac94695 100644
 --- a/crates/livekit_client/Cargo.toml
 +++ b/crates/livekit_client/Cargo.toml
 @@ -43,18 +43,18 @@ smallvec.workspace = true
