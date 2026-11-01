@@ -1,6 +1,6 @@
 pkgname = "mercury"
-pkgver = "2026.10.01"
-pkgrel = 1
+pkgver = "2026.10.06"
+pkgrel = 0
 build_style = "gnu_configure"
 configure_args = [
     "--disable-csharp-grade",
@@ -15,7 +15,7 @@ pkgdesc = "Mercury compiler"
 license = "GPL-2.0-only"
 url = "http://www.mercurylang.org"
 source = f"https://github.com/Mercury-Language/mercury-srcdist/archive/rotd-{pkgver.replace('.', '-')}.tar.gz"
-sha256 = "2f16807ba2566007e2d1b3814596d83bd30812d775bd5cb6fa73a7c02c49f412"
+sha256 = "1a025c7b40a9200a56630f278e83e432e8d0b94d232b70022002fac6fa6afdfc"
 # no check target
 options = ["!check", "!lto", "!splitstatic"]
 
