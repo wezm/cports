@@ -8,7 +8,7 @@ pkgdesc = "Automatic ZFS snapshot utility"
 license = "MIT"
 url = "https://codeberg.org/wezm/zfs-autosnap"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "a7823ac8fcdd008faa29b1a63551eff2eaacf57c1f25445b0f84096adafae3ed"
+sha256 = "751a0ad2fed3c50a4b1e29fe1f44bfe47838511bb0ce166505297a902a48f9d9"
 
 
 def post_install(self):
