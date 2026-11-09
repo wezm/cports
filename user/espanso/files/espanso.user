@@ -1,0 +1,5 @@
+type = process
+command = /usr/bin/espanso launcher
+restart-delay = 3
+depends-on: graphical.target
+

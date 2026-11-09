@@ -1,0 +1,13 @@
+diff --git a/espanso-render/src/extension/shell.rs b/espanso-render/src/extension/shell.rs
+index 2263ebe..811534d 100644
+--- a/espanso-render/src/extension/shell.rs
++++ b/espanso-render/src/extension/shell.rs
+@@ -183,7 +183,7 @@ impl Default for Shell {
+                 None | Some(MacShell::Sh) => Self::Sh,
+             }
+         } else if cfg!(target_os = "linux") {
+-            Self::Bash
++            Self::Sh
+         } else {
+             panic!("invalid target os for shell")
+         }
