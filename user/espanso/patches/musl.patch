@@ -1,0 +1,38 @@
+diff --git a/espanso-inject/src/evdev/uinput.rs b/espanso-inject/src/evdev/uinput.rs
+index d01f94d..d9797a3 100644
+--- a/espanso-inject/src/evdev/uinput.rs
++++ b/espanso-inject/src/evdev/uinput.rs
+@@ -50,13 +50,13 @@ impl UInputDevice {
+         });
+ 
+         // Enable keyboard events
+-        if unsafe { ioctl(*fd, ui_set_evbit(), EV_KEY as c_uint) } != 0 {
++        if unsafe { ioctl(*fd, ui_set_evbit().try_into().unwrap(), EV_KEY as c_uint) } != 0 {
+             return Err(UInputDeviceError::KeyEVBit().into());
+         }
+ 
+         // Register all keycodes
+         for key_code in 0..256 {
+-            if unsafe { ioctl(*fd, ui_set_keybit(), key_code) } != 0 {
++            if unsafe { ioctl(*fd, ui_set_keybit().try_into().unwrap(), key_code) } != 0 {
+                 return Err(UInputDeviceError::KeyBit().into());
+             }
+         }
+@@ -67,7 +67,7 @@ impl UInputDevice {
+         }
+ 
+         // Create the device
+-        if unsafe { ioctl(*fd, ui_dev_create()) } != 0 {
++        if unsafe { ioctl(*fd, ui_dev_create().try_into().unwrap()) } != 0 {
+             return Err(UInputDeviceError::DeviceCreate().into());
+         }
+ 
+@@ -87,7 +87,7 @@ impl UInputDevice {
+ impl Drop for UInputDevice {
+     fn drop(&mut self) {
+         unsafe {
+-            ioctl(self.fd, ui_dev_destroy());
++            ioctl(self.fd, ui_dev_destroy().try_into().unwrap());
+             close(self.fd);
+         }
+     }
