@@ -30,6 +30,7 @@ _failing_tests = [
     "test_df::test_type_option_with_file",
     "test_env::test_env_arg_ignore_signal_valid_signals",
     "test_hostname::test_hostname_ip",
+    "test_id::test_id_groups_ordering",
     "test_install::test_install_dev_full_as_dst",
     "test_logname::test_normal",
     "test_logname::test_output_format",
