@@ -1,6 +1,6 @@
 pkgname = "espanso"
 pkgver = "2.4.1"
-pkgrel = 0
+pkgrel = 1
 build_style = "cargo"
 make_build_args = [
     "--no-default-features",
@@ -42,7 +42,6 @@ def install(self):
     )
     self.install_file(
         "espanso/src/res/linux/espanso.png",
-        "usr/share/icons/hicolor/160x160/apps/espanso.png",
-        name="espanso.png",
+        "usr/share/icons/hicolor/160x160/apps",
     )
     self.install_service(self.files_path / "espanso.user")
