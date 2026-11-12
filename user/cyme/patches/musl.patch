@@ -1,0 +1,45 @@
+diff --git a/vendor/udevrs-0.5.0/src/device.rs b/vendor/udevrs-0.5.0/src/device.rs
+index 740a773c..2428b968 100644
+--- a/vendor/udevrs-0.5.0/src/device.rs
++++ b/vendor/udevrs-0.5.0/src/device.rs
+@@ -352,7 +352,7 @@ impl UdevDevice {
+                 let mut ifr: libc::ifreq = unsafe { mem::zeroed() };
+                 ifr.ifr_ifru.ifru_ifindex = ifindex;
+                 // SAFETY: all arguments are valid, pointers reference valid memory, and `SICGIFNAME` is a valid ioctl
+-                if unsafe { libc::ioctl(sock, libc::SIOCGIFNAME, &mut ifr) } != 0 {
++                if unsafe { libc::ioctl(sock, libc::SIOCGIFNAME.try_into().unwrap(), &mut ifr) } != 0 {
+                     let errno = io::Error::last_os_error();
+                     // SAFETY: `sock` is a valid socket file descriptor returned by the kernel
+                     unsafe { libc::close(sock) };
+diff --git a/vendor/udevrs-0.5.0/src/monitor.rs b/vendor/udevrs-0.5.0/src/monitor.rs
+index c0785f62..01b3d84e 100644
+--- a/vendor/udevrs-0.5.0/src/monitor.rs
++++ b/vendor/udevrs-0.5.0/src/monitor.rs
+@@ -781,7 +781,7 @@ impl UdevMonitor {
+             smsg.msg_iov = &mut iov as *mut libc::iovec as *mut _;
+             smsg.msg_iovlen = 1;
+             smsg.msg_control = cred_msg.as_mut_ptr() as *mut _;
+-            smsg.msg_controllen = cred_msg.len();
++            smsg.msg_controllen = cred_msg.len().try_into().unwrap();
+             smsg.msg_name = &mut snl as *mut libc::sockaddr_nl as *mut _;
+             smsg.msg_namelen = mem::size_of::<libc::sockaddr_nl>() as u32;
+ 
+@@ -932,15 +932,9 @@ impl UdevMonitor {
+             },
+         ];
+ 
+-        let mut smsg = libc::msghdr {
+-            msg_iov: iov.as_mut_ptr() as *mut _,
+-            msg_iovlen: iov.len(),
+-            msg_control: core::ptr::null_mut(),
+-            msg_controllen: 0,
+-            msg_flags: 0,
+-            msg_name: core::ptr::null_mut(),
+-            msg_namelen: 0,
+-        };
++        let mut smsg: libc::msghdr = unsafe { mem::zeroed() };
++        smsg.msg_iov = iov.as_mut_ptr() as *mut _;
++        smsg.msg_iovlen = iov.len().try_into().unwrap();
+ 
+         if device.get_properties_monitor_buf().len() < 32 {
+             Err(Error::UdevMonitor(
