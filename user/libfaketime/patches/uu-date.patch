@@ -1,0 +1,11 @@
+--- a/src/faketime.c	2026-04-29 15:42:57.890776725 +1000
++++ b/src/faketime.c	2026-04-29 15:43:11.084082191 +1000
+@@ -53,7 +53,7 @@
+ #if (defined __APPLE__) || (defined __sun)
+ static const char *date_cmd = "gdate";
+ #else
+-static const char *date_cmd = "date";
++static const char *date_cmd = "uu-date";
+ #endif
+ 
+ #define PATH_BUFSIZE 4096
