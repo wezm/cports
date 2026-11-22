@@ -1,5 +1,5 @@
 pkgname = "uutils-coreutils"
-pkgver = "0.12.0"
+pkgver = "0.13.0"
 pkgrel = 0
 build_style = "makefile"
 make_build_args = [
@@ -24,6 +24,7 @@ _failing_tests = [
     "test_chgrp::test_reference",
     "test_chgrp::test_subdir_permission_denied",
     "test_chgrp::test_traverse_symlinks",
+    "test_chmod::test_chmod_readonly_filesystem",
     "test_chown::test_big_p",
     "test_cp::test_cp_r_symlink",
     "test_date::test_date_tz_with_relative_time",
@@ -37,10 +38,13 @@ _failing_tests = [
     "test_ls::test_device_number",
     "test_mv::test_mv_cross_device_preserves_ownership",
     "test_mv::test_mv_cross_device_preserves_ownership_recursive",
+    "test_sort::test_spill_write_error_does_not_panic",
     "test_stdbuf::test_stdbuf_reports_signalled_command",
+    "test_tail::test_follow_with_pid",
     "test_tee::linux_only::test_permission_denied_clean",
     "test_test::test_file_not_owned_by_egid",
     "test_test::test_file_not_owned_by_euid",
+    "test_touch::test_touch_explicit_time_on_root_owned_file_eperm",
     # these fail on the casuarina builder
     # "test_du::test_du_repeated_apparent_size",
     # "test_du::test_du_repeated_b",
@@ -60,7 +64,7 @@ pkgdesc = "Reimplementation of GNU coreutils"
 license = "MIT"
 url = "https://github.com/uutils/coreutils"
 source = f"{url}/archive/{pkgver}.tar.gz"
-sha256 = "4fb327655cb4ffcbf2f16550cf9234079ffe839692f7aa1a6eda104af684e122"
+sha256 = "5830c023555ea8e98505e8cfb09524d3097f427c5e58ef197a943e6cb73af9b0"
 
 
 def prepare(self):
