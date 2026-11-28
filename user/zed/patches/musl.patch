@@ -1,0 +1,26 @@
+commit f0a4e02b05fba76591caf1c9301a11d88981060f
+Author: Wesley Moore <wes@wezm.net>
+Date:   Fri Nov 27 15:30:06 2026 +1000
+
+    musl ioctl compat
+
+diff --git a/crates/sandbox_linux/src/helper.rs b/crates/sandbox_linux/src/helper.rs
+index bd318b876d..3a2cff7b3b 100644
+--- a/crates/sandbox_linux/src/helper.rs
++++ b/crates/sandbox_linux/src/helper.rs
+@@ -199,13 +199,13 @@ fn bring_up_loopback() -> Result<()> {
+     unsafe {
+         cvt(libc::ioctl(
+             socket.as_raw_fd(),
+-            libc::SIOCGIFFLAGS,
++            libc::SIOCGIFFLAGS as _,
+             &mut request,
+         ))?;
+         request.ifr_ifru.ifru_flags |= libc::IFF_UP as libc::c_short;
+         cvt(libc::ioctl(
+             socket.as_raw_fd(),
+-            libc::SIOCSIFFLAGS,
++            libc::SIOCSIFFLAGS as _,
+             &request,
+         ))
+         .context("bringing up loopback")?;

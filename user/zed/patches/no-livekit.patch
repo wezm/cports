@@ -1,14 +1,14 @@
-commit 15eb79fa91f2e716a0a79bdf432bce3b29beaf87
+commit 6a3a29ffe1f6661116dcc7937c5d25edb4fb9ef3
 Author: Wesley Moore <wes@wezm.net>
 Date:   Mon May 11 13:33:30 2026 +1000
 
     Disable livekit on Linux
 
 diff --git a/Cargo.lock b/Cargo.lock
-index 62b2a5636b..5a69415b57 100644
+index 3d57d3c41d..48f896dd4e 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
-@@ -10127,7 +10127,6 @@ dependencies = [
+@@ -10212,7 +10212,6 @@ dependencies = [
   "tokio",
   "ui",
   "util",
@@ -101,11 +101,11 @@ index 9410151049..02279f7e92 100644
  ))]
  fn extract_metrics(
 diff --git a/crates/livekit_client/Cargo.toml b/crates/livekit_client/Cargo.toml
-index 022ab3484a..effac94695 100644
+index 651854ed29..0b62278fa8 100644
 --- a/crates/livekit_client/Cargo.toml
 +++ b/crates/livekit_client/Cargo.toml
-@@ -43,18 +43,18 @@ smallvec.workspace = true
- ui.workspace = true
+@@ -42,18 +42,18 @@ settings.workspace = true
+ smallvec.workspace = true
  util.workspace = true
  
 -[target.'cfg(any(all(target_os = "windows", target_env = "gnu"), target_os = "freebsd"))'.dependencies]

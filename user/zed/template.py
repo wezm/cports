@@ -1,5 +1,5 @@
 pkgname = "zed"
-pkgver = "1.29.3"
+pkgver = "1.30.2"
 pkgrel = 0
 # wasmtime
 archs = ["aarch64", "x86_64"]
@@ -37,7 +37,7 @@ pkgdesc = "Graphical text editor"
 license = "GPL-3.0-or-later AND Apache-2.0"
 url = "https://zed.dev"
 source = f"https://github.com/zed-industries/zed/archive/v{pkgver}.tar.gz"
-sha256 = "dd3556ea8d5edaf6336b924c42997a0313070b428561cf32c776a3d5d744506a"
+sha256 = "4278dd5692451d7a6227439cb353edf261803f3a45716f794eec0bf36f3928c4"
 # workaround code that fails with default gc-sections with lld
 # https://github.com/zed-industries/zed/issues/15902
 tool_flags = {"RUSTFLAGS": ["-Clink-arg=-Wl,-lc,-z,nostart-stop-gc"]}
@@ -87,7 +87,7 @@ def install(self):
     self.install_license("LICENSE-GPL")
 
 
-@subpackage("zed-server")
+@split("server")
 def _(self):
     self.subdesc = "Zed remote server"
 
