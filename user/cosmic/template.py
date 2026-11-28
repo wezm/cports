@@ -11,7 +11,7 @@ license = "custom:meta"
 url = "https://www.gnome.org"
 
 
-@subpackage("cosmic-apps")
+@split("apps")
 def _(self):
     self.subdesc = "apps"
     self.install_if = [self.parent]
